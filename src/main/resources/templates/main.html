@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Page</title>
+</head>
+<body>
+<h1>Test Page</h1>
+
+<h2>Specialty</h2>
+
+<form action="/specialty/add" method="post">
+    <label>Name: <input name="name" type="text" placeholder="Enter the name"/></label>
+    <label>Year: <select name="year">
+        <option selected="selected">1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+        <option>6</option>
+    </select></label>
+    <button type="submit">Add</button>
+    <button type="reset">Clear</button>
+</form>
+<br/>
+<div>
+    <table>
+        <caption>Added specialties</caption>
+        <tr>
+            <th>Name</th>
+            <th>Year</th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr th:each="specialty: ${specialties}">
+            <td th:text="${specialty.name}"></td>
+            <td th:text="${specialty.year}"></td>
+            <td><form action="specialty/delete/" method="post">
+                <input name="id" type="hidden" th:value="${specialty.id}">
+                <button type="submit">Delete</button>
+            </form></td>
+            <td><form action="specialty/update/" method="post">
+                <input name="id" type="hidden" th:value="${specialty.id}">
+                <button type="submit">Update</button>
+            </form></td>
+        </tr>
+    </table>
+</div>
+
+
+<p></p>
+</body>
+</html>
