@@ -3,6 +3,8 @@ package com.sbproject.schedule.database;
 import com.sbproject.schedule.models.Specialty;
 import com.sbproject.schedule.models.Subject;
 import com.sbproject.schedule.models.Teacher;
+import com.sbproject.schedule.models.User;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -53,5 +55,18 @@ public class Database {
         s.put(2L, new Subject(2L,"Об'єктно-орієнтоване програмування", 6, new ArrayList<>(teachers().values())));
         return s;
     }
+    
+    /**
+     * primitive db for users
+     * @return
+     */
+    @Bean
+    public Map<String, User> users() {
+    	Map<String, User> s = new HashMap<String, User>();
+        s.put("vovan", new User("vovan", "1234", false));
+        s.put("ilya", new User("ilya", "4321", true));
+        return s;
+    }
+    
 
 }

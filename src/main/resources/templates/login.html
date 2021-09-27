@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+</head>
+<body>
+
+<h2>LogIn</h2>
+
+<form action="/login/new" method="post">
+    <label>Login: <input name="login" type="text" placeholder="Enter the login"/></label>
+    <br>
+    <p></p>
+    <br>
+    <label>Password: <input name="password" type="password" placeholder="Enter the password"/></label>
+    <br>
+    <p></p>
+    <button type="submit" formaction="/login/validate">Log In</button>
+    <button type="submit">New Account</button>
+    <label style="margin-left: 2em;">Is Admin: <input type="checkbox" name="isAdmin" /></label>
+</form>
+<br>
+<p style="color: orangered;" th:text="${errorMessage}"></p>
+</body>
+</html>
