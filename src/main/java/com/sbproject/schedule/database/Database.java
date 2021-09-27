@@ -1,5 +1,6 @@
 package com.sbproject.schedule.database;
 
+import com.sbproject.schedule.models.Lesson;
 import com.sbproject.schedule.models.Specialty;
 import com.sbproject.schedule.models.Subject;
 import com.sbproject.schedule.models.Teacher;
@@ -8,6 +9,7 @@ import com.sbproject.schedule.models.User;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.time.DayOfWeek;
 import java.util.*;
 
 import static java.util.stream.Collectors.toList;
@@ -68,5 +70,15 @@ public class Database {
         return s;
     }
     
+
+    @Bean
+    public Map<Long, Lesson> lessons(){
+        Map<Long, Lesson> l = new HashMap<Long, Lesson>();
+        l.put(1L, new Lesson(1L, Lesson.Time.TIME1, subjects().get(1L), teachers().get(1L),
+                Lesson.SubjectType.LECTURE,"1-15", Lesson.Room.REMOTELY, DayOfWeek.MONDAY));
+        l.put(2L, new Lesson(2L, Lesson.Time.TIME2, subjects().get(2L), teachers().get(3L),
+                Lesson.SubjectType.PRACTICE.setGroup(1),"2-14", Lesson.Room.ROOM.setRoom("215"), DayOfWeek.MONDAY));
+        return l;
+    }
 
 }
