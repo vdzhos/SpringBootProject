@@ -1,18 +1,11 @@
 package com.sbproject.schedule.database;
 
-import com.sbproject.schedule.models.Lesson;
-import com.sbproject.schedule.models.Specialty;
-import com.sbproject.schedule.models.Subject;
-import com.sbproject.schedule.models.Teacher;
-import com.sbproject.schedule.models.User;
-
+import com.sbproject.schedule.models.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.time.DayOfWeek;
 import java.util.*;
-
-import static java.util.stream.Collectors.toList;
 
 @Configuration
 public class Database {
@@ -30,7 +23,7 @@ public class Database {
         Map<Long, Specialty> s = new HashMap<Long, Specialty>();
         s.put(1L, new Specialty(1L,"IPZ",4));
         s.put(2L, new Specialty(2L,"IPZ",1));
-        s.put(3L, new Specialty(2L,"IPZ",2));
+        s.put(3L, new Specialty(3L,"IPZ",2));
         return s;
     }
 
