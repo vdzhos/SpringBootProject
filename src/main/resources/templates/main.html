@@ -8,7 +8,7 @@
 <h1>Test Page</h1>
 
 <h2>Specialty</h2>
-
+<div th:text="${notification}"></div>
 <form action="/specialty/add" method="post">
     <label>Name: <input name="name" type="text" placeholder="Enter the name"/></label>
     <label>Year: <select name="year">
@@ -45,6 +45,13 @@
             </form></td>
         </tr>
     </table>
+<!--    <form>-->
+<!--        <label>Discipline-->
+<!--            <select name="discipline" th:each="secialty: ${specialties}">-->
+<!--                <option th:text="${specialty.name}"></option>-->
+<!--            </select>-->
+<!--        </label>-->
+<!--    </form>-->
 </div>
 
 

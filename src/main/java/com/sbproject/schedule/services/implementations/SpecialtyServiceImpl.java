@@ -1,10 +1,13 @@
 package com.sbproject.schedule.services.implementations;
 
 import com.sbproject.schedule.database.Database;
+import com.sbproject.schedule.exceptions.specialty.InvalidSpecialtyNameException;
+import com.sbproject.schedule.exceptions.specialty.SpecialtyInstanceAlreadyExistsException;
 import com.sbproject.schedule.models.Specialty;
 import com.sbproject.schedule.repositories.fakes.interfaces.SpecialtyRepository;
 import com.sbproject.schedule.services.interfaces.SpecialtyService;
 import com.sbproject.schedule.utils.Utils;
+import com.sbproject.schedule.utils.Values;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,11 +28,12 @@ public class SpecialtyServiceImpl implements SpecialtyService {
     }
 
     @Override
-    public boolean addSpecialty(String name, int year) {
+    public void addSpecialty(String name, int year) throws SpecialtyInstanceAlreadyExistsException, InvalidSpecialtyNameException {
+        name = processor.processName(name);
+        processor.checkName(name);
         if(specialtyRepository.existsByNameAndYear(name, year))
-            return false;
-        specialtyRepository.save(new Specialty(Database.getUniqueId(), processor.processName(name),year));
-        return true;
+            throw new SpecialtyInstanceAlreadyExistsException(Values.SPECIALTY_ALREADY_EXISTS);
+        specialtyRepository.save(new Specialty(Database.getUniqueId(), name,year));
     }
 
     @Override
@@ -39,9 +43,16 @@ public class SpecialtyServiceImpl implements SpecialtyService {
 
 
     @Override
-    public boolean updateSpecialty(String name, int year) {
-        specialtyRepository.save(new Specialty(Database.getUniqueId(), processor.processName(name),year));
-        return false;
+    public void updateSpecialty(long id, String name, int year) throws InvalidSpecialtyNameException, SpecialtyInstanceAlreadyExistsException {
+        name = processor.processName(name);
+        processor.checkName(name);
+        if(specialtyRepository.existsByNameAndYear(name,year)){
+            throw new SpecialtyInstanceAlreadyExistsException(Values.SPECIALTY_ALREADY_EXISTS);
+        }
+        Specialty specialty = specialtyRepository.findById(id);//.orElseThrow();
+        specialty.setName(name);
+        specialty.setYear(year);
+        specialtyRepository.save(specialty);
     }
 
     @Override
