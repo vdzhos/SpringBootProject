@@ -118,6 +118,36 @@
     </table>
 </div>
 
+<br><br>
+<form action="/teacher/add" method="post">
+    <label>Name: <input name="name" type="text" placeholder="Enter the name"/></label>
+    <button type="submit">Add</button>
+    <button type="reset">Clear</button>
+</form>
+<br/>
+
+<br>
+<div>
+    <table border="1px">
+        <caption>Added teachers</caption>
+        <tr>
+<!--            <th>Id</th>-->
+            <th>Name</th>
+        </tr>
+        <tr th:each="teacher: ${teachers}">
+<!--            <td th:text="${teacher.id}"></td>-->
+            <td th:text="${teacher.name}"></td>
+            <td><form action="teacher/delete/" method="post">
+                <input name="id" type="hidden" th:value="${teacher.id}">
+                <button type="submit">Delete</button>
+            </form></td>
+            <td><form action="teacher/update/" method="post">
+                <input name="id" type="hidden" th:value="${teacher.id}">
+                <button type="submit">Update</button>
+            </form></td>
+        </tr>
+    </table>
+</div>
 
 <p></p>
 </body>
