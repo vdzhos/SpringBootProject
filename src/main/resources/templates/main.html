@@ -24,7 +24,7 @@
 </form>
 <br/>
 <div>
-    <table>
+    <table border="1px">
         <caption>Added specialties</caption>
         <tr>
             <th>Name</th>
@@ -47,6 +47,35 @@
     </table>
 </div>
 
+<div>
+    <table border="1px">
+        <caption>Added subjects</caption>
+        <tr>
+            <th>Name</th>
+            <th>Quantity of groups</th>
+            <th>Teachers</th>
+            <th>Specialties</th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr th:each="subject: ${subjects}">
+            <td th:text="${subject.name}"></td>
+            <td th:text="${subject.quantOfGroups}"></td>
+            <td th:text="${subject.teachers}"></td>
+            <td th:text="${subject.specialties}"></td>
+            <td><form action="subject/delete/" method="post">
+                <input name="id" type="hidden" th:value="${subject.id}">
+                <button type="submit">Delete</button>
+            </form></td>
+            <td><form action="subject/update/" method="post">
+                <input name="id" type="hidden" th:value="${subject.id}">
+                <button type="submit">Update</button>
+            </form></td>
+        </tr>
+    </table>
+</div>
+
+<p></p>
 
 <div>
     <table border="1px">

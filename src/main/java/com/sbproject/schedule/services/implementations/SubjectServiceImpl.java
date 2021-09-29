@@ -1,6 +1,7 @@
 package com.sbproject.schedule.services.implementations;
 
 import com.sbproject.schedule.database.Database;
+import com.sbproject.schedule.models.Specialty;
 import com.sbproject.schedule.models.Subject;
 import com.sbproject.schedule.models.Teacher;
 import com.sbproject.schedule.repositories.fakes.interfaces.SubjectRepository;
@@ -28,10 +29,10 @@ public class SubjectServiceImpl implements SubjectService {
     }
 
     @Override
-    public boolean addSubject(String name, int quantOfGroups, List<Teacher> teachers) {
-        if(subjectRepository.existsByNameAndQuantOfGroups(name, quantOfGroups))
+    public boolean addSubject(String name, int quantOfGroups, List<Teacher> teachers, List<Specialty> specialties) {
+        if(subjectRepository.existsByNameAndSpecialties(name, specialties))
             return false;
-        subjectRepository.save(new Subject(Database.getUniqueId(), processor.processName(name), quantOfGroups, teachers));
+        subjectRepository.save(new Subject(Database.getUniqueId(), processor.processName(name), quantOfGroups, teachers, specialties));
         return true;
     }
 
@@ -41,8 +42,8 @@ public class SubjectServiceImpl implements SubjectService {
     }
 
     @Override
-    public boolean updateSubject(String name, int quantOfGroups, List<Teacher> teachers) {
-        subjectRepository.save(new Subject(Database.getUniqueId(), processor.processName(name), quantOfGroups, teachers));
+    public boolean updateSubject(String name, int quantOfGroups, List<Teacher> teachers, List<Specialty> specialties) {
+        subjectRepository.save(new Subject(Database.getUniqueId(), processor.processName(name), quantOfGroups, teachers, specialties));
         return false;
     }
 

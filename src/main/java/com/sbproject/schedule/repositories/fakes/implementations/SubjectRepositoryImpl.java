@@ -1,10 +1,12 @@
 package com.sbproject.schedule.repositories.fakes.implementations;
 
+import com.sbproject.schedule.models.Specialty;
 import com.sbproject.schedule.models.Subject;
 import com.sbproject.schedule.repositories.fakes.interfaces.SubjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Map;
 
 @Component
@@ -39,7 +41,7 @@ public class SubjectRepositoryImpl implements SubjectRepository {
     }
 
     @Override
-    public boolean existsByNameAndQuantOfGroups(String name, int year) {
+    public boolean existsByNameAndSpecialties(String name,  List<Specialty> specialties) {
         return false;
     }
 

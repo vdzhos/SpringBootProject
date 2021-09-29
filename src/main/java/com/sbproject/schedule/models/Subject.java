@@ -9,15 +9,17 @@ public class Subject {
     private String name;
     private int quantOfGroups;
     private List<Teacher> teachers;
+    private List<Specialty> specialties;
 
     public Subject() {
     }
 
-    public Subject(Long id, String name, int quantOfGroups, List<Teacher> teachers) {
+    public Subject(Long id, String name, int quantOfGroups, List<Teacher> teachers, List<Specialty> specialties) {
         this.id = id;
         this.name = name;
         this.quantOfGroups = quantOfGroups;
         this.teachers = teachers;
+        this.specialties = specialties;
     }
 
     @Override
@@ -26,7 +28,8 @@ public class Subject {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", quantOfGroups=" + quantOfGroups +
-                "teachers: " + teachers + '}';
+                ", teachers: " + teachers +
+                ", specialties: " + specialties + '}';
     }
 
 
@@ -60,6 +63,14 @@ public class Subject {
 
     public void setTeachers(List<Teacher> teachers) {
         this.teachers = teachers;
+    }
+
+    public List<Specialty> getSpecialties() {
+        return specialties;
+    }
+
+    public void setSpecialties(List<Specialty> specialties) {
+        this.specialties = specialties;
     }
 
 }

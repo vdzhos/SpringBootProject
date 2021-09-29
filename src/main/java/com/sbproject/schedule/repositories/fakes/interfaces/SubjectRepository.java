@@ -1,6 +1,9 @@
 package com.sbproject.schedule.repositories.fakes.interfaces;
 
+import com.sbproject.schedule.models.Specialty;
 import com.sbproject.schedule.models.Subject;
+
+import java.util.List;
 
 public interface SubjectRepository {
 
@@ -9,6 +12,6 @@ public interface SubjectRepository {
     Iterable<Subject> findByName(String name);
 
     Subject save(Subject s);
-    boolean existsByNameAndQuantOfGroups(String name, int quantOfGroups);
+    boolean existsByNameAndSpecialties(String name, List<Specialty> specialties);
     void deleteById(Long id);
 }

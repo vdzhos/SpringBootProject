@@ -30,6 +30,7 @@ public class Database {
         Map<Long, Specialty> s = new HashMap<Long, Specialty>();
         s.put(1L, new Specialty(1L,"IPZ",4));
         s.put(2L, new Specialty(2L,"IPZ",1));
+        s.put(3L, new Specialty(2L,"IPZ",2));
         return s;
     }
 
@@ -52,9 +53,11 @@ public class Database {
      */
     @Bean
     public Map<Long, Subject> subjects(){
+        List<Specialty> specialties = new ArrayList<>();
+        specialties.add(specialties().get(3L));
         Map<Long, Subject> s = new HashMap<Long, Subject>();
-        s.put(1L, new Subject(1L,"Процедурне програмування", 6, new ArrayList<>(teachers().values())));
-        s.put(2L, new Subject(2L,"Об'єктно-орієнтоване програмування", 6, new ArrayList<>(teachers().values())));
+        s.put(1L, new Subject(1L,"Процедурне програмування", 6, new ArrayList<>(teachers().values()), specialties));
+        s.put(2L, new Subject(2L,"Об'єктно-орієнтоване програмування", 6, new ArrayList<>(teachers().values()), specialties));
         return s;
     }
     

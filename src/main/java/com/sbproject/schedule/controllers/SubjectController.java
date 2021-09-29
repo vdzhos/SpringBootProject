@@ -1,5 +1,6 @@
 package com.sbproject.schedule.controllers;
 
+import com.sbproject.schedule.models.Specialty;
 import com.sbproject.schedule.models.Teacher;
 import com.sbproject.schedule.services.implementations.SubjectServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +27,10 @@ public class SubjectController {
     }
 
     @PostMapping("/add")
-    public String addSubject(@RequestParam String name, @RequestParam int quantOfGroups, @RequestParam List<Teacher> teachers, Model model){
-        subjectService.addSubject(name, quantOfGroups, teachers);
+    public String addSubject(@RequestParam String name, @RequestParam int quantOfGroups,
+                             @RequestParam List<Teacher> teachers,
+                             @RequestParam List<Specialty> specialties, Model model){
+        subjectService.addSubject(name, quantOfGroups, teachers, specialties);
         //put info about success/failure into the model
         return "redirect:/";
     }
@@ -39,9 +42,9 @@ public class SubjectController {
         return "redirect:/";
     }
 
-    @PostMapping("/update")//@RequestParam Long id,@RequestParam String newName,@RequestParam int newQuantOfGroups,@RequestParam List<Teacher> newTeachers
+    @PostMapping("/update")//@RequestParam Long id,@RequestParam String newName,@RequestParam int newQuantOfGroups,@RequestParam List<Teacher> newTeachers, @RequestParam List<Specialty> newSpecialties
     public String updateSubject(Model model){
-//        SubjectService.updateSubject(newName,newQuantOfSubjects, newTeachers);
+//        SubjectService.updateSubject(newName,newQuantOfSubjects, newTeachers, newSpecialties);
         //put info about success/failure into the model
         return "redirect:/";
     }

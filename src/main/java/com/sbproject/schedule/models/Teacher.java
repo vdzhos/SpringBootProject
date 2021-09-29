@@ -13,11 +13,16 @@ public class Teacher {
         this.name = name;
     }
 
-    @Override
+    /*@Override
     public String toString() {
         return "Teacher{" +
                 "id=" + id +
                 ", name='" + name + '}';
+    }*/
+
+    @Override
+    public String toString() {
+        return name;
     }
 
     public Long getId() {
