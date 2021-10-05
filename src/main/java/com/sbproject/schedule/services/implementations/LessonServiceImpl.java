@@ -1,6 +1,6 @@
 package com.sbproject.schedule.services.implementations;
 
-import com.sbproject.schedule.database.Database;
+import com.demo.customstarter.utils.Utils;
 import com.sbproject.schedule.models.Lesson;
 import com.sbproject.schedule.models.Subject;
 import com.sbproject.schedule.models.Teacher;
@@ -17,13 +17,16 @@ public class LessonServiceImpl implements LessonService {
     private LessonRepository lessonRepository;
 
     @Autowired
+    private Utils utils;
+
+    @Autowired
     public void setLessonRepository(LessonRepository lessonRepository) {
         this.lessonRepository = lessonRepository;
     }
 
     @Override
     public boolean addLesson(Lesson.Time time, Subject subject, Teacher teacher, Lesson.SubjectType group, String weeks, Lesson.Room room, DayOfWeek dayOfWeek) {
-        lessonRepository.save(new Lesson(Database.getUniqueId(),time,subject,teacher,group,weeks,room,dayOfWeek));
+        lessonRepository.save(new Lesson(utils.getUniqueId(),time,subject,teacher,group,weeks,room,dayOfWeek));
         return true;
     }
 

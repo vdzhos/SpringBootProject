@@ -4,7 +4,6 @@ import com.demo.customstarter.exceptions.InvalidSpecialtyNameException;
 import com.demo.customstarter.exceptions.SpecialtyInstanceAlreadyExistsException;
 import com.demo.customstarter.utils.Utils;
 import com.demo.customstarter.utils.Values;
-import com.sbproject.schedule.database.Database;
 import com.sbproject.schedule.models.Specialty;
 import com.sbproject.schedule.repositories.fakes.interfaces.SpecialtyRepository;
 import com.sbproject.schedule.services.interfaces.SpecialtyService;
@@ -15,6 +14,9 @@ import org.springframework.stereotype.Service;
 public class SpecialtyServiceImpl implements SpecialtyService {
 
     private SpecialtyRepository specialtyRepository;
+
+    @Autowired
+    private Utils utils;
 
     @Autowired
     private Utils processor;
@@ -35,7 +37,7 @@ public class SpecialtyServiceImpl implements SpecialtyService {
         processor.checkName(name);
         if(specialtyRepository.existsByNameAndYear(name, year))
             throw new SpecialtyInstanceAlreadyExistsException(Values.SPECIALTY_ALREADY_EXISTS);
-        specialtyRepository.save(new Specialty(Database.getUniqueId(), name,year));
+        specialtyRepository.save(new Specialty(utils.getUniqueId(), name,year));
     }
 
     @Override

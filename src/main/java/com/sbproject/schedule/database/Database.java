@@ -1,18 +1,20 @@
 package com.sbproject.schedule.database;
 
 import com.sbproject.schedule.models.*;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.time.DayOfWeek;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Configuration
+@ConditionalOnExpression("${custom.use-test-database:false}==false")
 public class Database {
 
-    public static Long getUniqueId() {
-        return new Random().nextLong()+System.currentTimeMillis();
-    }
 
     /**
      * primitive db for specialties

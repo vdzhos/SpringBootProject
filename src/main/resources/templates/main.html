@@ -2,10 +2,10 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Test Page</title>
+    <title th:text="${appName}"></title>
 </head>
 <body>
-<h1>Test Page</h1>
+<h1 th:text="${appName}"></h1>
 
 <h2>Specialty</h2>
 <div th:text="${notification}"></div>

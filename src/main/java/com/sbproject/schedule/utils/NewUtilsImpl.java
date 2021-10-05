@@ -8,7 +8,8 @@ public class NewUtilsImpl implements Utils {
 
     @Override
     public String processName(String name) {
-        return null;
+        System.out.println("NEW UTILS IMPLEMENTATION");
+        return name;
     }
 
     @Override

@@ -12,6 +12,7 @@ public class CustomProperties {
     private String adminCode;
     private String userCode;
     private boolean useStarterUtils;
+    private boolean useTestDatabase;
 
     public String getAdminCode() {
         return adminCode;
@@ -35,5 +36,13 @@ public class CustomProperties {
 
     public void setUseStarterUtils(boolean useStarterUtils) {
         this.useStarterUtils = useStarterUtils;
+    }
+
+    public boolean isUseTestDatabase() {
+        return useTestDatabase;
+    }
+
+    public void setUseTestDatabase(boolean useTestDatabase) {
+        this.useTestDatabase = useTestDatabase;
     }
 }
