@@ -1,7 +1,7 @@
 package com.sbproject.schedule.services.interfaces;
 
-import com.sbproject.schedule.exceptions.specialty.InvalidSpecialtyNameException;
-import com.sbproject.schedule.exceptions.specialty.SpecialtyInstanceAlreadyExistsException;
+import com.demo.customstarter.exceptions.InvalidSpecialtyNameException;
+import com.demo.customstarter.exceptions.SpecialtyInstanceAlreadyExistsException;
 import com.sbproject.schedule.models.Specialty;
 
 public interface SpecialtyService {

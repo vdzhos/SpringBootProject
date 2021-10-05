@@ -1,13 +1,13 @@
 package com.sbproject.schedule.services.implementations;
 
+import com.demo.customstarter.exceptions.InvalidSpecialtyNameException;
+import com.demo.customstarter.exceptions.SpecialtyInstanceAlreadyExistsException;
+import com.demo.customstarter.utils.Utils;
+import com.demo.customstarter.utils.Values;
 import com.sbproject.schedule.database.Database;
-import com.sbproject.schedule.exceptions.specialty.InvalidSpecialtyNameException;
-import com.sbproject.schedule.exceptions.specialty.SpecialtyInstanceAlreadyExistsException;
 import com.sbproject.schedule.models.Specialty;
 import com.sbproject.schedule.repositories.fakes.interfaces.SpecialtyRepository;
 import com.sbproject.schedule.services.interfaces.SpecialtyService;
-import com.sbproject.schedule.utils.Utils;
-import com.sbproject.schedule.utils.Values;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +15,8 @@ import org.springframework.stereotype.Service;
 public class SpecialtyServiceImpl implements SpecialtyService {
 
     private SpecialtyRepository specialtyRepository;
+
+    @Autowired
     private Utils processor;
 
     @Autowired

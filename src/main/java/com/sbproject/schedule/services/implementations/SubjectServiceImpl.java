@@ -1,12 +1,12 @@
 package com.sbproject.schedule.services.implementations;
 
+import com.demo.customstarter.utils.Utils;
 import com.sbproject.schedule.database.Database;
 import com.sbproject.schedule.models.Specialty;
 import com.sbproject.schedule.models.Subject;
 import com.sbproject.schedule.models.Teacher;
 import com.sbproject.schedule.repositories.fakes.interfaces.SubjectRepository;
 import com.sbproject.schedule.services.interfaces.SubjectService;
-import com.sbproject.schedule.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

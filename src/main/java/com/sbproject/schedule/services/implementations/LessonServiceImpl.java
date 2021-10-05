@@ -6,7 +6,6 @@ import com.sbproject.schedule.models.Subject;
 import com.sbproject.schedule.models.Teacher;
 import com.sbproject.schedule.repositories.fakes.interfaces.LessonRepository;
 import com.sbproject.schedule.services.interfaces.LessonService;
-import com.sbproject.schedule.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,12 +15,6 @@ import java.time.DayOfWeek;
 public class LessonServiceImpl implements LessonService {
 
     private LessonRepository lessonRepository;
-    //private Utils processor;
-
-//    @Autowired
-//    public void setProcessor(Utils processor) {
-//        this.processor = processor;
-//    }
 
     @Autowired
     public void setLessonRepository(LessonRepository lessonRepository) {
