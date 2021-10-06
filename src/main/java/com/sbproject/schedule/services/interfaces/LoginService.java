@@ -4,7 +4,7 @@ import com.sbproject.schedule.models.User;
 
 public interface LoginService {
 	
-	 boolean addUser(String login, String password, boolean isAdmin);
+	 String addUser(String login, String password, String roleCode);
 	// void deleteUser(String login);
 	 boolean validateUser(String login, String password);
 	 

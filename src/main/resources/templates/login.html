@@ -12,13 +12,15 @@
     <label>Login: <input name="login" type="text" placeholder="Enter the login"/></label>
     <br>
     <p></p>
-    <br>
     <label>Password: <input name="password" type="password" placeholder="Enter the password"/></label>
+    <br>
+    <p></p>
+    <label>Role code: <input name="role" type="password" placeholder="Enter the role code"/></label>
     <br>
     <p></p>
     <button type="submit" formaction="/login/validate">Log In</button>
     <button type="submit">New Account</button>
-    <label style="margin-left: 2em;">Is Admin: <input type="checkbox" name="isAdmin" /></label>
+    <!--<label style="margin-left: 2em;">Is Admin: <input type="checkbox" name="isAdmin" /></label>-->
 </form>
 <br>
 <p style="color: orangered;" th:text="${errorMessage}"></p>

@@ -1,6 +1,7 @@
 package com.sbproject.schedule.services.implementations;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.sbproject.schedule.models.User;
@@ -12,17 +13,25 @@ public class LoginServiceImpl implements LoginService {
 
 	private UserRepository userRepo;
 
+	@Value("${custom.admin-code}")
+	private String adminCode;
+	
+	@Value("${custom.user-code}")
+	private String userCode;
+	
 	@Autowired
 	public void setUserRepository(UserRepository repo) {
 		this.userRepo = repo;
 	}
 	
 	@Override
-	public boolean addUser(String login, String password, boolean isAdmin) {
+	public String addUser(String login, String password, String roleCode) {
+		if(!roleCode.equals(adminCode) && !roleCode.equals(userCode)) // || userRepo.findByLogin(login) != null)
+			return "Wrong role code!";
 		if(userRepo.findByLogin(login) != null)
-			return false;
-		userRepo.save(new User(login, password, isAdmin));
-		return true;
+			return "Such account already exists!";
+		userRepo.save(new User(login, password, roleCode.equals(adminCode)));
+		return "SUCCESS";
 	}
 
 	/*@Override
