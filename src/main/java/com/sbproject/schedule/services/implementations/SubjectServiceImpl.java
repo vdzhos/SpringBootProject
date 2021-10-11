@@ -32,7 +32,7 @@ public class SubjectServiceImpl implements SubjectService {
     public boolean addSubject(String name, int quantOfGroups, List<Teacher> teachers, List<Specialty> specialties) {
         if(subjectRepository.existsByNameAndSpecialties(name, specialties))
             return false;
-        subjectRepository.save(new Subject(Database.getUniqueId(), processor.processName(name), quantOfGroups, teachers, specialties));
+        subjectRepository.save(new Subject(processor.getUniqueId(), processor.processName(name), quantOfGroups, teachers, specialties));
         return true;
     }
 
@@ -43,7 +43,7 @@ public class SubjectServiceImpl implements SubjectService {
 
     @Override
     public boolean updateSubject(String name, int quantOfGroups, List<Teacher> teachers, List<Specialty> specialties) {
-        subjectRepository.save(new Subject(Database.getUniqueId(), processor.processName(name), quantOfGroups, teachers, specialties));
+        subjectRepository.save(new Subject(processor.getUniqueId(), processor.processName(name), quantOfGroups, teachers, specialties));
         return false;
     }
 

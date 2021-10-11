@@ -5,6 +5,7 @@ import com.sbproject.schedule.services.implementations.SubjectServiceImpl;
 import com.sbproject.schedule.services.interfaces.LessonService;
 import com.sbproject.schedule.services.interfaces.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,8 +26,12 @@ public class MainController {
     @Autowired
     private TeacherService teacherService;
 
+    @Value("${spring.application.name}")
+    private String appName;
+
     @GetMapping
     public String getAll(Model model){
+        model.addAttribute("appName",appName);
         model.addAttribute("specialties",specialtyService.getAll());
         model.addAttribute("subjects",subjectService.getAll());
         model.addAttribute("lessons", lessonService.getAll());

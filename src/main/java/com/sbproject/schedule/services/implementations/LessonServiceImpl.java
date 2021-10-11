@@ -15,6 +15,9 @@ import java.time.DayOfWeek;
 @Service
 public class LessonServiceImpl implements LessonService {
 
+    @Autowired
+    private Utils utils;
+
     private LessonRepository lessonRepository;
     //private Utils processor;
 
@@ -30,7 +33,7 @@ public class LessonServiceImpl implements LessonService {
 
     @Override
     public boolean addLesson(Lesson.Time time, Subject subject, Teacher teacher, Lesson.SubjectType group, String weeks, Lesson.Room room, DayOfWeek dayOfWeek) {
-        lessonRepository.save(new Lesson(Database.getUniqueId(),time,subject,teacher,group,weeks,room,dayOfWeek));
+        lessonRepository.save(new Lesson(utils.getUniqueId(),time,subject,teacher,group,weeks,room,dayOfWeek));
         return true;
     }
 

@@ -2,6 +2,8 @@ package com.sbproject.schedule.utils;
 
 import com.sbproject.schedule.exceptions.specialty.InvalidSpecialtyNameException;
 
+import java.util.Random;
+
 public class UtilsImpl  implements Utils {
 
     @Override
@@ -21,5 +23,9 @@ public class UtilsImpl  implements Utils {
         }
     }
 
+    @Override
+    public Long getUniqueId() {
+        return new Random().nextLong()+System.currentTimeMillis();
+    }
 
 }

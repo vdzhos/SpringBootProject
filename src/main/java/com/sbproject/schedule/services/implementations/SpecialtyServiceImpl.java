@@ -15,6 +15,8 @@ import org.springframework.stereotype.Service;
 public class SpecialtyServiceImpl implements SpecialtyService {
 
     private SpecialtyRepository specialtyRepository;
+
+    @Autowired
     private Utils processor;
 
     @Autowired
@@ -33,7 +35,7 @@ public class SpecialtyServiceImpl implements SpecialtyService {
         processor.checkName(name);
         if(specialtyRepository.existsByNameAndYear(name, year))
             throw new SpecialtyInstanceAlreadyExistsException(Values.SPECIALTY_ALREADY_EXISTS);
-        specialtyRepository.save(new Specialty(Database.getUniqueId(), name,year));
+        specialtyRepository.save(new Specialty(processor.getUniqueId(), name,year));
     }
 
     @Override

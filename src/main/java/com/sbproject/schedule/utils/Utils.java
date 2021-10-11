@@ -9,4 +9,6 @@ public interface Utils {
     boolean isInvalidName(String name);
 
     void checkName(String name) throws InvalidSpecialtyNameException;
+
+    public Long getUniqueId();
 }
