@@ -56,13 +56,13 @@ public class Database {
      * primitive db for users
      * @return
      */
-    @Bean
+   /* @Bean
     public Map<String, User> users() {
     	Map<String, User> s = new HashMap<String, User>();
         s.put("vovan", new User("vovan", "1234", false));
         s.put("ilya", new User("ilya", "4321", true));
         return s;
-    }
+    }  */
     
 
     @Bean
