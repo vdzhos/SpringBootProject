@@ -1,17 +1,25 @@
 package com.sbproject.schedule.models;
+import javax.persistence.*;
 
-
+@Entity
+@Table(name = "SPECIALTY")
 public class Specialty {
 
+    @Id
+    @GeneratedValue
+    @Column(name = "Id", nullable = false)
     private Long id;
+
+    @Column(name = "Name", nullable = false)
     private String name;
+
+    @Column(name = "Year", nullable = false)
     private int year;
 
     public Specialty() {
     }
 
-    public Specialty(Long id, String name, int year) {
-        this.id = id;
+    public Specialty(String name, int year) {
         this.name = name;
         this.year = year;
     }

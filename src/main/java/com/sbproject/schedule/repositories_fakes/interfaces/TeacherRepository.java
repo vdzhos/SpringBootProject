@@ -1,4 +1,4 @@
-package com.sbproject.schedule.repositories.fakes.interfaces;
+package com.sbproject.schedule.repositories_fakes.interfaces;
 
 import com.sbproject.schedule.models.Teacher;
 

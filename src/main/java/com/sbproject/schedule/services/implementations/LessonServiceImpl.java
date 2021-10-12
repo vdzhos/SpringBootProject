@@ -1,10 +1,9 @@
 package com.sbproject.schedule.services.implementations;
 
-import com.sbproject.schedule.database.Database;
 import com.sbproject.schedule.models.Lesson;
 import com.sbproject.schedule.models.Subject;
 import com.sbproject.schedule.models.Teacher;
-import com.sbproject.schedule.repositories.fakes.interfaces.LessonRepository;
+import com.sbproject.schedule.repositories_fakes.interfaces.LessonRepository;
 import com.sbproject.schedule.services.interfaces.LessonService;
 import com.sbproject.schedule.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;

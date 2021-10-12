@@ -19,9 +19,9 @@ public class Database {
     @Bean
     public Map<Long, Specialty> specialties(){
         Map<Long, Specialty> s = new HashMap<Long, Specialty>();
-        s.put(1L, new Specialty(1L,"IPZ",4));
-        s.put(2L, new Specialty(2L,"IPZ",1));
-        s.put(3L, new Specialty(3L,"IPZ",2));
+        s.put(1L, new Specialty("IPZ",4));
+        s.put(2L, new Specialty("IPZ",1));
+        s.put(3L, new Specialty("IPZ",2));
         return s;
     }
 

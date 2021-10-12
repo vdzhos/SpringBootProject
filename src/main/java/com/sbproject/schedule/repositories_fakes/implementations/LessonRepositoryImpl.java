@@ -1,7 +1,7 @@
-package com.sbproject.schedule.repositories.fakes.implementations;
+package com.sbproject.schedule.repositories_fakes.implementations;
 
 import com.sbproject.schedule.models.Lesson;
-import com.sbproject.schedule.repositories.fakes.interfaces.LessonRepository;
+import com.sbproject.schedule.repositories_fakes.interfaces.LessonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

@@ -1,15 +1,19 @@
 package com.sbproject.schedule.services.implementations;
 
-import com.sbproject.schedule.database.Database;
 import com.sbproject.schedule.exceptions.specialty.InvalidSpecialtyNameException;
 import com.sbproject.schedule.exceptions.specialty.SpecialtyInstanceAlreadyExistsException;
 import com.sbproject.schedule.models.Specialty;
-import com.sbproject.schedule.repositories.fakes.interfaces.SpecialtyRepository;
+
+import com.sbproject.schedule.repositories.SpecialtyRepository;
 import com.sbproject.schedule.services.interfaces.SpecialtyService;
 import com.sbproject.schedule.utils.Utils;
 import com.sbproject.schedule.utils.Values;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.Optional;
 
 @Service
 public class SpecialtyServiceImpl implements SpecialtyService {
@@ -35,7 +39,7 @@ public class SpecialtyServiceImpl implements SpecialtyService {
         processor.checkName(name);
         if(specialtyRepository.existsByNameAndYear(name, year))
             throw new SpecialtyInstanceAlreadyExistsException(Values.SPECIALTY_ALREADY_EXISTS);
-        specialtyRepository.save(new Specialty(processor.getUniqueId(), name,year));
+        specialtyRepository.save(new Specialty(name,year));
     }
 
     @Override
@@ -51,14 +55,29 @@ public class SpecialtyServiceImpl implements SpecialtyService {
         if(specialtyRepository.existsByNameAndYear(name,year)){
             throw new SpecialtyInstanceAlreadyExistsException(Values.SPECIALTY_ALREADY_EXISTS);
         }
-        Specialty specialty = specialtyRepository.findById(id);//.orElseThrow();
-        specialty.setName(name);
-        specialty.setYear(year);
-        specialtyRepository.save(specialty);
+        Optional<Specialty> specialtyOp = specialtyRepository.findById(id);//.orElseThrow();
+        if (specialtyOp.isPresent()){
+            Specialty specialty = specialtyOp.get();
+            specialty.setName(name);
+            specialty.setYear(year);
+            specialtyRepository.save(specialty);
+        }
     }
 
     @Override
     public Iterable<Specialty> getAll() {
         return specialtyRepository.findAll();
+    }
+
+    @ResponseBody
+    @RequestMapping("/")
+    public String index() {
+        Iterable<Specialty> all = specialtyRepository.findAll();
+
+        StringBuilder sb = new StringBuilder();
+
+        all.forEach(p -> sb.append(p.getName() + "<br>"));
+
+        return sb.toString();
     }
 }

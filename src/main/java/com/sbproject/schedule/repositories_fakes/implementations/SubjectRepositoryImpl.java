@@ -1,8 +1,8 @@
-package com.sbproject.schedule.repositories.fakes.implementations;
+package com.sbproject.schedule.repositories_fakes.implementations;
 
 import com.sbproject.schedule.models.Specialty;
 import com.sbproject.schedule.models.Subject;
-import com.sbproject.schedule.repositories.fakes.interfaces.SubjectRepository;
+import com.sbproject.schedule.repositories_fakes.interfaces.SubjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

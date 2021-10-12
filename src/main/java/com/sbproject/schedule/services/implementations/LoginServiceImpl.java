@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.sbproject.schedule.models.User;
-import com.sbproject.schedule.repositories.fakes.interfaces.UserRepository;
+import com.sbproject.schedule.repositories_fakes.interfaces.UserRepository;
 import com.sbproject.schedule.services.interfaces.LoginService;
 
 @Service

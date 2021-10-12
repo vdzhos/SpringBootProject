@@ -1,12 +1,12 @@
-package com.sbproject.schedule.repositories.fakes.implementations;
+package com.sbproject.schedule.repositories_fakes.implementations;
 
 import java.util.Map;
 
+import com.sbproject.schedule.repositories_fakes.interfaces.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.sbproject.schedule.models.User;
-import com.sbproject.schedule.repositories.fakes.interfaces.UserRepository;
 
 @Component
 public class UserRepositoryImpl implements UserRepository {
