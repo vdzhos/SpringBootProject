@@ -32,11 +32,10 @@ public class DataInit implements ApplicationRunner {
 //        	userRepository.save(u2);
 //        }
 
-        addSpecialties();
         addSubjects();
+        addSpecialties();
         addTeachers();
         assignTeachers();
-        //assignSubjects();
     }
 
     private void assignTeachers() {
@@ -73,31 +72,25 @@ public class DataInit implements ApplicationRunner {
 
     private void addSpecialties(){
         if (specialtyRepository.count() == 0) {
-            Specialty s1 =  new Specialty("IPZ",3);
-            Specialty s2 =  new Specialty("IPZ",4);
-            Specialty s3 =  new Specialty("KN",3);
+            Specialty sp1 =  new Specialty("IPZ",3);
+            Specialty sp2 =  new Specialty("IPZ",4);
+            Specialty sp3 =  new Specialty("KN",3);
 
-            specialtyRepository.save(s1);
-            specialtyRepository.save(s2);
-            specialtyRepository.save(s3);
+            Subject s1 = subjectRepository.findByName("Subject 1").iterator().next();
+            Subject s2 = subjectRepository.findByName("Subject 2").iterator().next();
+            Subject s3 = subjectRepository.findByName("Subject 3").iterator().next();
+
+            sp1.addSubject(s1);
+            sp1.addSubject(s2);
+            sp2.addSubject(s2);
+            sp2.addSubject(s3);
+            sp3.addSubject(s3);
+
+            specialtyRepository.save(sp1);
+            specialtyRepository.save(sp2);
+            specialtyRepository.save(sp3);
             //specialtyRepository.findAll();
         }
     }
-
-    private void assignSubjects() {
-
-        Subject s = subjectRepository.findByName("Subject 1").iterator().next();
-
-        Iterable<Specialty> specialties = specialtyRepository.findAll();
-        for(Specialty sp: specialties){
-            sp.addSubject(s);
-            specialtyRepository.save(sp);
-        }
-
-        Specialty sp1 = specialtyRepository.findByNameAndYear("IPZ", 3).iterator().next();
-        sp1.addSubject(subjectRepository.findByName("Subject 2").iterator().next());
-        specialtyRepository.save(sp1);
-    }
-
 
 }
