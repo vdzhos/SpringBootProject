@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${appName}"></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+<section class="container">
+        <header>
+            <h1 th:text="${appName}"></h1>
+        </header>
+
+
+        <h2>Specialty</h2>
+        <div th:text="${notification}"></div>
+        <form action="/specialty/add" method="post">
+            <label>Name: <input name="name" type="text" placeholder="Enter the name"/></label>
+            <label>Year: <select name="year">
+                <option selected="selected">1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+            </select></label>
+            <button type="submit">Add</button>
+            <button type="reset">Clear</button>
+        </form>
+        <br/>
+        <div>
+            <table border="1px">
+                <caption>Added specialties</caption>
+                <tr>
+                    <th>Name</th>
+                    <th>Year</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                <tr th:each="specialty: ${specialties}">
+                    <td th:text="${specialty.name}"></td>
+                    <td th:text="${specialty.year}"></td>
+                    <td>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" th:attr="data-target='#modal'+${specialty.id}">
+                            Change
+                        </button>
+                    </td>
+                </tr>
+            </table>
+            <!--    <form>-->
+            <!--        <label>Discipline-->
+            <!--            <select name="discipline" th:each="secialty: ${specialties}">-->
+            <!--                <option th:text="${specialty.name}"></option>-->
+            <!--            </select>-->
+            <!--        </label>-->
+            <!--    </form>-->
+        </div>
+
+        <div>
+            <table border="1px">
+                <caption>Added subjects</caption>
+                <tr>
+                    <th>Name</th>
+                    <th>Quantity of groups</th>
+                    <th>Teachers</th>
+                    <th>Specialties</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                <tr th:each="subject: ${subjects}">
+                    <td th:text="${subject.name}"></td>
+                    <td th:text="${subject.quantOfGroups}"></td>
+                    <td th:text="${subject.teachers}"></td>
+                    <td th:text="${subject.specialties}"></td>
+                    <td><form action="subject/delete/" method="post">
+                        <input name="id" type="hidden" th:value="${subject.id}">
+                        <button type="submit">Delete</button>
+                    </form></td>
+                    <td><form action="subject/update/" method="post">
+                        <input name="id" type="hidden" th:value="${subject.id}">
+                        <button type="submit">Update</button>
+                    </form></td>
+                </tr>
+            </table>
+        </div>
+
+        <p></p>
+
+        <div>
+            <table border="1px">
+                <caption>Added lessons</caption>
+                <tr>
+                    <th>Day</th>
+                    <th>Time</th>
+                    <th>Subject</th>
+                    <th>Teacher</th>
+                    <th>Group</th>
+                    <th>Weeks</th>
+                    <th>Room</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                <tr th:each="lesson: ${lessons}">
+                    <td th:text="${lesson.dayOfWeek}"></td>
+                    <td th:text="${lesson.time}"></td>
+                    <td th:text="${lesson.subject.name}"></td>
+                    <td th:text="${lesson.teacher.name}"></td>
+                    <td th:text="${lesson.group}"></td>
+                    <td th:text="${lesson.weeks}"></td>
+                    <td th:text="${lesson.room}"></td>
+                    <td><form action="lesson/delete/" method="post">
+                        <input name="id" type="hidden" th:value="${lesson.id}">
+                        <button type="submit">Delete</button>
+                    </form></td>
+                    <td><form action="lesson/update/" method="post">
+                        <input name="id" type="hidden" th:value="${lesson.id}">
+                        <button type="submit">Update</button>
+                    </form></td>
+                </tr>
+            </table>
+        </div>
+
+        <br><br>
+        <form action="/teacher/add" method="post">
+            <label>Name: <input name="name" type="text" placeholder="Enter the name"/></label>
+            <button type="submit">Add</button>
+            <button type="reset">Clear</button>
+        </form>
+        <br/>
+
+        <br>
+        <div>
+            <table border="1px">
+                <caption>Added teachers</caption>
+                <tr>
+                    <!--            <th>Id</th>-->
+                    <th>Name</th>
+                </tr>
+                <tr th:each="teacher: ${teachers}">
+                    <!--            <td th:text="${teacher.id}"></td>-->
+                    <td th:text="${teacher.name}"></td>
+                    <td><form action="teacher/delete/" method="post">
+                        <input name="id" type="hidden" th:value="${teacher.id}">
+                        <button type="submit">Delete</button>
+                    </form></td>
+                    <td><form action="teacher/update/" method="post">
+                        <input name="id" type="hidden" th:value="${teacher.id}">
+                        <button type="submit">Update</button>
+                    </form></td>
+                </tr>
+            </table>
+        </div>
+</section>
+
+
+
+<div class="container">
+    <h2>Modal Example</h2>
+    <!-- Button to Open the Modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+        Open modal
+    </button>
+
+    <!-- The Modal -->
+</div>
+
+
+<section >
+    <div th:each="specialty: ${specialties}" class="modal fade" th:id="'modal'+${specialty.id}">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Specialties</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <form class="col-12" action="/specialty/update/" method="post">
+                                <div class="form-group">
+                                    <label for="specName">Name:</label>
+                                    <input th:attr="value=${specialty.name} " type="text" class="form-control" id="specName" placeholder="Enter the name" name="specName">
+                                </div>
+                                <input name="id" type="hidden" th:value="${specialty.id}">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="col-md-2 col-sm-12" for="specYear">Year:</label>
+                                        <select class="col-md-2 col-sm-2 form-select"  id="specYear" name="specYear">
+                                            <option th:each="i : ${#numbers.sequence(1, 6)}" th:value="${i}" th:text="${i}"
+                                                    th:selected="${i==specialty.year}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div style="height: 15px;"></div>
+                                <div class="form-group">
+                                        <button type="submit" class="col-3 btn btn-success">Update</button>
+                                        <button formaction="specialty/delete/" type="submit" class="ml-2 col-3 btn btn-danger">Delete</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal footer -->
+<!--                <div class="modal-footer">-->
+<!--                    <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>-->
+<!--                </div>-->
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+</body>
+</html>
