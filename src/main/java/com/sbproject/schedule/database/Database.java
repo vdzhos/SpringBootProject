@@ -16,14 +16,14 @@ public class Database {
      * primitive db for specialties
      * @return
      */
-    @Bean
+    /*@Bean
     public Map<Long, Specialty> specialties(){
         Map<Long, Specialty> s = new HashMap<Long, Specialty>();
         s.put(1L, new Specialty("IPZ",4));
         s.put(2L, new Specialty("IPZ",1));
         s.put(3L, new Specialty("IPZ",2));
         return s;
-    }
+    }*/
 
     /**
      * primitive db for teachers
@@ -42,7 +42,7 @@ public class Database {
      * primitive db for subjects
      * @return
      */
-    @Bean
+    /*@Bean
     public Map<Long, Subject> subjects(){
         List<Specialty> specialties = new ArrayList<>();
         specialties.add(specialties().get(3L));
@@ -50,7 +50,7 @@ public class Database {
         s.put(1L, new Subject(1L,"Процедурне програмування", 6, new ArrayList<>(teachers().values()), specialties));
         s.put(2L, new Subject(2L,"Об'єктно-орієнтоване програмування", 6, new ArrayList<>(teachers().values()), specialties));
         return s;
-    }
+    }*/
     
     /**
      * primitive db for users
@@ -65,7 +65,7 @@ public class Database {
     }
     
 
-    @Bean
+    /*@Bean
     public Map<Long, Lesson> lessons(){
         Map<Long, Lesson> l = new HashMap<Long, Lesson>();
         l.put(1L, new Lesson(1L, Lesson.Time.TIME1, subjects().get(1L), teachers().get(1L),
@@ -73,6 +73,6 @@ public class Database {
         l.put(2L, new Lesson(2L, Lesson.Time.TIME2, subjects().get(2L), teachers().get(3L),
                 Lesson.SubjectType.PRACTICE.setGroup(1),"2-14", Lesson.Room.ROOM.setRoom("215"), DayOfWeek.MONDAY));
         return l;
-    }
+    }*/
 
 }

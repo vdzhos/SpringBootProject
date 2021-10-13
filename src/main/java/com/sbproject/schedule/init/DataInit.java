@@ -29,6 +29,7 @@ public class DataInit implements ApplicationRunner {
             specialtyRepository.save(s1);
             specialtyRepository.save(s2);
             specialtyRepository.save(s3);
+            //specialtyRepository.findAll();
         }
 
     }

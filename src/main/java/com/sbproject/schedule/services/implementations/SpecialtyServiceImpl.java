@@ -33,6 +33,8 @@ public class SpecialtyServiceImpl implements SpecialtyService {
         this.specialtyRepository = specialtyRepository;
     }
 
+    //@ResponseBody
+    //@RequestMapping("/")
     @Override
     public void addSpecialty(String name, int year) throws SpecialtyInstanceAlreadyExistsException, InvalidSpecialtyNameException {
         name = processor.processName(name);
@@ -42,6 +44,8 @@ public class SpecialtyServiceImpl implements SpecialtyService {
         specialtyRepository.save(new Specialty(name,year));
     }
 
+    //@ResponseBody
+    //@RequestMapping("/")
     @Override
     public void deleteSpecialty(Long id) {
         specialtyRepository.deleteById(id);
@@ -64,12 +68,14 @@ public class SpecialtyServiceImpl implements SpecialtyService {
         }
     }
 
+    //@ResponseBody
+    //@RequestMapping("/")
     @Override
     public Iterable<Specialty> getAll() {
         return specialtyRepository.findAll();
     }
 
-    @ResponseBody
+    /*@ResponseBody
     @RequestMapping("/")
     public String index() {
         Iterable<Specialty> all = specialtyRepository.findAll();
@@ -79,5 +85,5 @@ public class SpecialtyServiceImpl implements SpecialtyService {
         all.forEach(p -> sb.append(p.getName() + "<br>"));
 
         return sb.toString();
-    }
+    }*/
 }
