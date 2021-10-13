@@ -54,6 +54,17 @@
 <!--    </form>-->
 </div>
 
+<br><br>
+<form action="/subject/add" method="post">
+    <label>Name: <input name="name" type="text" placeholder="Enter the name"/></label>
+    <label>Quantity of groups: <input name="quantOfGroups" type="number" min="1" max="20"/></label>
+    <label>Specialties: <input name="specialties" th:each="specialty: ${specialties}" th:value="${specialty.id}" th:text="${specialty.name}+'-'+${specialty.year}"
+                           type="checkbox"/></label>
+    <button type="submit">Add</button>
+    <button type="reset">Clear</button>
+</form>
+<br/>
+
 <div>
     <table border="1px">
         <caption>Added subjects</caption>

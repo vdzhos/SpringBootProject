@@ -3,6 +3,7 @@ package com.sbproject.schedule.services.implementations;
 import com.sbproject.schedule.models.Specialty;
 import com.sbproject.schedule.models.Subject;
 import com.sbproject.schedule.models.Teacher;
+import com.sbproject.schedule.repositories.SpecialtyRepository;
 import com.sbproject.schedule.repositories.SubjectRepository;
 import com.sbproject.schedule.services.interfaces.SubjectService;
 import com.sbproject.schedule.utils.Utils;
@@ -16,7 +17,12 @@ import java.util.Set;
 @Service
 public class SubjectServiceImpl implements SubjectService {
 
+    @Autowired
     private SubjectRepository subjectRepository;
+
+    @Autowired
+    private SpecialtyRepository specialtyRepository;
+
     private Utils processor;
 
     @Autowired
@@ -24,18 +30,17 @@ public class SubjectServiceImpl implements SubjectService {
         this.processor = processor;
     }
 
-    @Autowired
-    public void setSubjectRepository(SubjectRepository subjectRepository) {
-        this.subjectRepository = subjectRepository;
-    }
-
+    //TO DO - need to add better check
     @Override
-    public boolean addSubject(String name, int quantOfGroups, Set<Teacher> teachers, Set<Specialty> specialties) {
+    public boolean addSubject(String name, int quantOfGroups, Set<Specialty> specialties) {
         //must not use existsByNameAndSpecialties
 //        if(subjectRepository.existsByNameAndSpecialties(name, specialties))
 //            return false;
 //        subjectRepository.save(new Subject(processor.getUniqueId(), processor.processName(name), quantOfGroups, teachers, specialties));
 //        return true;
+        if (subjectRepository.existsByName(name) || specialties.isEmpty())
+            return false;
+        subjectRepository.save(new Subject(name, quantOfGroups, specialties));
         return true;
     }
 

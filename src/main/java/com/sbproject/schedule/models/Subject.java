@@ -48,14 +48,22 @@ public class Subject {
     public Subject(String name, int quantOfGroups) {
         this.name = name;
         this.quantOfGroups = quantOfGroups;
-        teachers = new HashSet<>();
-        specialties = new HashSet<>();
+        this.teachers = new HashSet<>();
+        this.specialties = new HashSet<>();
     }
 
-
-    public Subject(long id, String name, int quantOfGroups, Set<Teacher> teachers, Set<Specialty> specialties) {
+    public Subject(String name, int quantOfGroups, Set<Specialty> specialties) {
         this.name = name;
         this.quantOfGroups = quantOfGroups;
+        this.teachers = new HashSet<>();
+        this.specialties = specialties;
+    }
+
+    public Subject(long id, String name, int quantOfGroups, Set<Teacher> teachers,Set<Specialty> specialties) {
+        this.name = name;
+        this.quantOfGroups = quantOfGroups;
+        this.teachers = teachers;
+        this.specialties = specialties;
     }
 
     @Override

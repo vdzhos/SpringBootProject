@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 import java.util.Set;
@@ -30,13 +32,20 @@ public class SubjectController {
     }
 
     @PostMapping("/add")
-    public String addSubject(@RequestParam String name, @RequestParam int quantOfGroups,
-                             @RequestParam Set<Teacher> teachers,
-                             @RequestParam Set<Specialty> specialties, Model model){
-        subjectService.addSubject(name, quantOfGroups, teachers, specialties);
+    public RedirectView addSubject(@RequestParam String name, @RequestParam int quantOfGroups,
+                             @RequestParam Set<Specialty> specialties, Model model, RedirectAttributes redir){
+        subjectService.addSubject(name, quantOfGroups, specialties);
         //put info about success/failure into the model
-        return "redirect:/";
+        //return "redirect:/";
+        RedirectView redirectView= new RedirectView("/",true);
+        //String notification = "Предмет '"+name+"' було успішно додано!";
+        boolean success = subjectService.addSubject(name, quantOfGroups, specialties);
+        //if (!success) notification = "Предмет не було додано!";
+        //redir.addFlashAttribute("success", success);
+        //redir.addFlashAttribute("notification",notification);
+        return redirectView;
     }
+
 
     @PostMapping("/delete")
     public String deleteSubject(@RequestParam Long id, Model model){

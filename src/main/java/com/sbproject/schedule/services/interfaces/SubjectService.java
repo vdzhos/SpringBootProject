@@ -9,7 +9,7 @@ import java.util.Set;
 
 public interface SubjectService {
 
-    boolean addSubject(String name, int quantOfGroups, Set<Teacher> teachers, Set<Specialty> specialties);
+    boolean addSubject(String name, int quantOfGroups, Set<Specialty> specialties);
     void deleteSubject(Long id);
     boolean updateSubject(String name, int quantOfGroups, Set<Teacher> teachers,  Set<Specialty> specialties);
     Iterable<Subject> getAll();
