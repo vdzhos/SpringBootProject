@@ -1,18 +1,30 @@
 package com.sbproject.schedule.models;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import com.sbproject.schedule.utils.Role;
+
+@Entity
+@Table(name = "USER")
 public class User {
 
-	//private Long id; actually, user login serves as id
+	@Id
+	@Column(name = "Login", nullable = false)
 	private String login;
+	@Column(name = "Password", nullable = false)
 	private String password;
-	private boolean isAdmin;
+	@Column(name = "Role", nullable = false)
+	private Role role;
 	
 	public User() {}
 	
-	public User(String login, String password, boolean isAdmin) {
+	public User(String login, String password, Role role) {
 		this.login = login;
 		this.password = password;
-		this.isAdmin = isAdmin;
+		this.role = role;
 	}
 	
 	public String getLogin() {
@@ -23,8 +35,8 @@ public class User {
 		return this.password;
 	}
 	
-	public boolean isAdmin() {
-		return this.isAdmin;
+	public Role getRole() {
+		return this.role;
 	}
 	
 	public void setLogin(String login) {
@@ -35,8 +47,8 @@ public class User {
 		this.password = pswrd;
 	}
 	
-	public void setRole(boolean isAdmin) {
-		this.isAdmin = isAdmin;
+	public void setRole(Role role) {
+		this.role = role;
 	}
 	
 	@Override
@@ -44,7 +56,7 @@ public class User {
 		return "User{" +
                 "login = " + this.login + "\\ " +
                 "password = " + this.password + "\\ " +
-                "role = " + (isAdmin? "admin" : "regular user")+ '}';
+                "role = " + this.role.name() + '}';
 	}
 	
 }
