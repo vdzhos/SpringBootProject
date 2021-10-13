@@ -1,8 +1,13 @@
 package com.sbproject.schedule.models;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class User {
 
 	//private Long id; actually, user login serves as id
+	@Id
 	private String login;
 	private String password;
 	private boolean isAdmin;

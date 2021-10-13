@@ -1,11 +1,11 @@
 package com.sbproject.schedule.services.implementations;
 
+import com.sbproject.schedule.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.sbproject.schedule.models.User;
-import com.sbproject.schedule.repositories_fakes.interfaces.UserRepository;
 import com.sbproject.schedule.services.interfaces.LoginService;
 
 @Service
@@ -46,7 +46,7 @@ public class LoginServiceImpl implements LoginService {
 
 	@Override
 	public boolean validateUser(String login, String password) {
-		User user = userRepo.findByLogin(login);
+		User user = userRepo.findByLogin(login).iterator().next();
 		if(user == null || !user.getPassword().equals(password))
 			return false;
 		return true;

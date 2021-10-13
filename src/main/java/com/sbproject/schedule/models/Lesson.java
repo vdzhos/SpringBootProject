@@ -1,17 +1,25 @@
 package com.sbproject.schedule.models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.time.DayOfWeek;
 
+@Entity
 public class Lesson {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Time time;
-    private Subject subject;
-    private Teacher teacher;
-    private SubjectType group;
-    private String weeks;
-    private Room room;
-    private DayOfWeek dayOfWeek;
+
+//    private Time time;
+//    private Subject subject;
+//    private Teacher teacher;
+//    private SubjectType group;
+//    private String weeks;
+//    private Room room;
+//    private DayOfWeek dayOfWeek;
 
     public Lesson() {
     }
@@ -19,27 +27,27 @@ public class Lesson {
     public Lesson(Long id, Time time, Subject subject, Teacher teacher, SubjectType group,
                   String weeks, Room room, DayOfWeek dayOfWeek) {
         this.id = id;
-        this.subject = subject;
-        this.time = time;
-        this.teacher = teacher;
-        this.group = group;
-        this.weeks = weeks;
-        this.room = room;
-        this.dayOfWeek = dayOfWeek;
+//        this.subject = subject;
+//        this.time = time;
+//        this.teacher = teacher;
+//        this.group = group;
+//        this.weeks = weeks;
+//        this.room = room;
+//        this.dayOfWeek = dayOfWeek;
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Lesson{")
-                .append("id=").append(id).append(',')
-                .append("time=").append(time).append(',')
-                .append("subject=").append(subject).append(',')
-                .append("teacher=").append(teacher).append(',')
-                .append("group=").append(group).append(',')
-                .append("weeks=").append(weeks).append(',')
-                .append("room=").append(room).append(',')
-                .append("dayOfWeek=").append(dayOfWeek).append('}');
+                .append("id=").append(id).append(',');
+//                .append("time=").append(time).append(',')
+//                .append("subject=").append(subject).append(',')
+//                .append("teacher=").append(teacher).append(',')
+//                .append("group=").append(group).append(',')
+//                .append("weeks=").append(weeks).append(',')
+//                .append("room=").append(room).append(',')
+//                .append("dayOfWeek=").append(dayOfWeek).append('}');
         return super.toString();
     }
 
@@ -51,61 +59,61 @@ public class Lesson {
         this.id = id;
     }
 
-    public Subject getSubject() {
-        return subject;
-    }
+//    public Subject getSubject() {
+//        return subject;
+//    }
 
-    public void setSubject(Subject subject) {
-        this.subject = subject;
-    }
+//    public void setSubject(Subject subject) {
+//        this.subject = subject;
+//    }
 
-    public Time getTime() {
-        return time;
-    }
+//    public Time getTime() {
+//        return time;
+//    }
 
-    public void setTime(Time time) {
-        this.time = time;
-    }
+//    public void setTime(Time time) {
+//        this.time = time;
+//    }
 
-    public Teacher getTeacher() {
-        return teacher;
-    }
+//    public Teacher getTeacher() {
+//        return teacher;
+//    }
 
-    public void setTeacher(Teacher teacher) {
-        this.teacher = teacher;
-    }
+//    public void setTeacher(Teacher teacher) {
+//        this.teacher = teacher;
+//    }
 
-    public SubjectType getGroup() {
-        return group;
-    }
+//    public SubjectType getGroup() {
+//        return group;
+//    }
 
-    public void setGroup(SubjectType group) {
-        this.group = group;
-    }
+//    public void setGroup(SubjectType group) {
+//        this.group = group;
+//    }
 
-    public String getWeeks() {
-        return weeks;
-    }
+//    public String getWeeks() {
+//        return weeks;
+//    }
 
-    public void setWeeks(String weeks) {
-        this.weeks = weeks;
-    }
+//    public void setWeeks(String weeks) {
+//        this.weeks = weeks;
+//    }
 
-    public Room getRoom() {
-        return room;
-    }
+//    public Room getRoom() {
+//        return room;
+//    }
 
-    public void setRoom(Room room) {
-        this.room = room;
-    }
+//    public void setRoom(Room room) {
+//        this.room = room;
+//    }
 
-    public DayOfWeek getDayOfWeek() {
-        return dayOfWeek;
-    }
+//    public DayOfWeek getDayOfWeek() {
+//        return dayOfWeek;
+//    }
 
-    public void setDayOfWeek(DayOfWeek dayOfWeek) {
-        this.dayOfWeek = dayOfWeek;
-    }
+//    public void setDayOfWeek(DayOfWeek dayOfWeek) {
+//        this.dayOfWeek = dayOfWeek;
+//    }
 
     public enum Room {
 

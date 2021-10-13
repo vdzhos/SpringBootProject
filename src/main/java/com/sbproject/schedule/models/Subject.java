@@ -1,25 +1,52 @@
 package com.sbproject.schedule.models;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
+import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
+
+@Entity
 public class Subject {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @Column(nullable = false)
     private String name;
+
+    @Column(nullable = false)
     private int quantOfGroups;
+
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "teachers_subjects",
+            joinColumns = @JoinColumn(name = "subject_id", nullable = false),
+            inverseJoinColumns = @JoinColumn(name = "teacher_id", nullable = false)
+    )
     private List<Teacher> teachers;
+
+
+
+    @ManyToMany(mappedBy = "subjects")
     private List<Specialty> specialties;
+
 
     public Subject() {
     }
 
-    public Subject(Long id, String name, int quantOfGroups, List<Teacher> teachers, List<Specialty> specialties) {
-        this.id = id;
+    public Subject(String name, int quantOfGroups) {
         this.name = name;
         this.quantOfGroups = quantOfGroups;
-        this.teachers = teachers;
-        this.specialties = specialties;
+        teachers = new ArrayList<>();
+        specialties = new ArrayList<>();
+    }
+
+
+    public Subject(long id, String name, int quantOfGroups, List<Teacher> teachers, List<Specialty> specialties) {
+        this.name = name;
+        this.quantOfGroups = quantOfGroups;
     }
 
     @Override
@@ -73,4 +100,7 @@ public class Subject {
         this.specialties = specialties;
     }
 
+    public void addTeacher(Teacher t) {
+        teachers.add(t);
+    }
 }
