@@ -5,6 +5,7 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -13,6 +14,8 @@ public class Teacher {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @Column(nullable = false)
     private String name;
 
 
@@ -21,10 +24,11 @@ public class Teacher {
     @JoinTable(
             name = "teachers_subjects",
             joinColumns = @JoinColumn(name = "teacher_id", nullable = false),
-            inverseJoinColumns = @JoinColumn(name = "subject_id", nullable = false)
-    )
+            inverseJoinColumns = @JoinColumn(name = "subject_id", nullable = false))
     private Set<Subject> subjects;
 
+    @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL)
+    private List<Lesson> lessons;
 
     public Teacher(String name) {
         this.name = name;

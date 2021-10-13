@@ -18,10 +18,12 @@ public class Lesson {
     @JoinColumn(name = "subject_id", nullable = false)
     private Subject subject;
 
-    //private Teacher teacher;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "teacher_id", nullable = false)
+    private Teacher teacher;
 
     @Lob
-    @Column(name = "gropValue", nullable = false)
+    @Column(name = "groupValue", nullable = false)
     private SubjectType group;
 
     @Column(nullable = false)
@@ -36,9 +38,11 @@ public class Lesson {
 
     public Lesson() { }
 
-    public Lesson(Time time, Subject subject, SubjectType group, String weeks, Room room, DayOfWeek dayOfWeek) {
-        this.time = time;
+    public Lesson(Time time, Subject subject, Teacher teacher, SubjectType group,
+                  String weeks, Room room, DayOfWeek dayOfWeek) {
         this.subject = subject;
+        this.time = time;
+        this.teacher = teacher;
         this.group = group;
         this.weeks = weeks;
         this.room = room;
@@ -50,7 +54,7 @@ public class Lesson {
         this.id = id;
         this.subject = subject;
         this.time = time;
-//        this.teacher = teacher;
+        this.teacher = teacher;
         this.group = group;
         this.weeks = weeks;
         this.room = room;
@@ -96,14 +100,14 @@ public class Lesson {
         this.time = time;
     }
 
-//    public Teacher getTeacher() {
-//        return teacher;
-//    }
-//
-//    public void setTeacher(Teacher teacher) {
-//        this.teacher = teacher;
-//    }
-//
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
+    }
+
     public SubjectType getGroup() {
         return group;
     }

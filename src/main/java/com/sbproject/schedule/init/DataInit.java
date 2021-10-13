@@ -89,10 +89,15 @@ public class DataInit implements ApplicationRunner {
     private void addLessons(){
 
         Subject s = subjectRepository.findByName("Subject 1").iterator().next();
+        Subject s2 = subjectRepository.findByName("Subject 2").iterator().next();
 
-        Lesson l1 = new Lesson(Lesson.Time.TIME1, s, new SubjectType(0), "1-15", new Room("215"), DayOfWeek.MONDAY);
-        Lesson l2 = new Lesson(Lesson.Time.TIME2, s, new SubjectType(1), "1-15", new Room("216"), DayOfWeek.MONDAY);
-        Lesson l3 = new Lesson(Lesson.Time.TIME3, s, new SubjectType(2), "1-15", new Room("216"), DayOfWeek.MONDAY);
+        Teacher t1 = teacherRepository.findByName("Teacher 1").iterator().next();
+        Teacher t2 = teacherRepository.findByName("Teacher 2").iterator().next();
+        Teacher t3 = teacherRepository.findByName("Teacher 3").iterator().next();
+
+        Lesson l1 = new Lesson(Lesson.Time.TIME1, s, t1, new SubjectType(0), "1-15", new Room("215"), DayOfWeek.MONDAY);
+        Lesson l2 = new Lesson(Lesson.Time.TIME2, s, t2, new SubjectType(1), "1-15", new Room("216"), DayOfWeek.MONDAY);
+        Lesson l3 = new Lesson(Lesson.Time.TIME3, s2, t3, new SubjectType(2), "1-15", new Room("216"), DayOfWeek.MONDAY);
 
         lessonRepository.save(l1);
         lessonRepository.save(l2);
