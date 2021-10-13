@@ -52,13 +52,18 @@ public class Subject {
 
     @Override
     public String toString() {
-        return "Subject{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", quantOfGroups=" + quantOfGroups +
-                ", teachers: " + teachers +
-                ", specialties: " + specialties + '}';
+        return name;
     }
+
+//    @Override
+//    public String toString() {
+//        return "Subject{" +
+//                "id=" + id +
+//                ", name='" + name + '\'' +
+//                ", quantOfGroups=" + quantOfGroups +
+//                ", teachers: " + teachers +
+//                ", specialties: " + specialties + '}';
+//    }
 
 
     public Long getId() {
