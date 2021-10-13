@@ -1,8 +1,13 @@
 package com.sbproject.schedule.models;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 @Entity
@@ -19,17 +24,16 @@ public class Subject {
     private int quantOfGroups;
 
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "teachers_subjects",
-            joinColumns = @JoinColumn(name = "subject_id", nullable = false),
-            inverseJoinColumns = @JoinColumn(name = "teacher_id", nullable = false)
-    )
-    private List<Teacher> teachers;
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @ManyToMany(mappedBy = "subjects", fetch = FetchType.LAZY)
+    private Set<Teacher> teachers;
+
 
     @ManyToMany(mappedBy = "subjects")
     private List<Specialty> specialties;
 
+    @OneToMany(mappedBy = "subject", cascade = CascadeType.ALL)
+    private List<Lesson> lessons;
 
     public Subject() {
     }
@@ -37,7 +41,7 @@ public class Subject {
     public Subject(String name, int quantOfGroups) {
         this.name = name;
         this.quantOfGroups = quantOfGroups;
-        teachers = new ArrayList<>();
+        teachers = new HashSet<>();
         specialties = new ArrayList<>();
     }
 
@@ -82,11 +86,11 @@ public class Subject {
         this.quantOfGroups = quantOfGroups;
     }
 
-    public List<Teacher> getTeachers() {
+    public Set<Teacher> getTeachers() {
         return teachers;
     }
 
-    public void setTeachers(List<Teacher> teachers) {
+    public void setTeachers(Set<Teacher> teachers) {
         this.teachers = teachers;
     }
 

@@ -1,8 +1,7 @@
 package com.sbproject.schedule.init;
 
-import com.sbproject.schedule.models.Specialty;
-import com.sbproject.schedule.models.Subject;
-import com.sbproject.schedule.models.Teacher;
+import com.sbproject.schedule.models.*;
+import com.sbproject.schedule.repositories.LessonRepository;
 import com.sbproject.schedule.repositories.SpecialtyRepository;
 import com.sbproject.schedule.repositories.SubjectRepository;
 import com.sbproject.schedule.repositories.TeacherRepository;
@@ -10,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
+
+import java.time.DayOfWeek;
 
 @Component
 public class DataInit implements ApplicationRunner {
@@ -20,6 +21,8 @@ public class DataInit implements ApplicationRunner {
     private SubjectRepository subjectRepository;
     @Autowired
     private TeacherRepository teacherRepository;
+    @Autowired
+    private LessonRepository lessonRepository;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
@@ -32,28 +35,28 @@ public class DataInit implements ApplicationRunner {
 //        	userRepository.save(u2);
 //        }
 
+        addSpecialties();
         addSubjects();
         addSpecialties();
         addTeachers();
-        assignTeachers();
+        addLessons();
     }
 
-    private void assignTeachers() {
-
-        Teacher t = teacherRepository.findByName("Teacher 1").iterator().next();
-
-        Iterable<Subject> subjects = subjectRepository.findAll();
-        for(Subject s: subjects){
-            System.out.println("Teacher added");
-            s.addTeacher(t);
-            subjectRepository.save(s);
-        }
-    }
 
     private void addTeachers() {
         Teacher t = new Teacher("Teacher 1");
         Teacher t1 = new Teacher("Teacher 2");
         Teacher t2 = new Teacher("Teacher 3");
+
+        Subject subject = subjectRepository.findByName("Subject 1").iterator().next();
+        Subject subject1 = subjectRepository.findByName("Subject 2").iterator().next();
+
+        t.addSubject(subject);
+        t.addSubject(subject1);
+
+        t1.addSubject(subject);
+
+        t2.addSubject(subject1);
 
         teacherRepository.save(t);
         teacherRepository.save(t1);
@@ -63,7 +66,7 @@ public class DataInit implements ApplicationRunner {
     private void addSubjects() {
         Subject s = new Subject("Subject 1", 3);
         Subject s1 = new Subject("Subject 2", 4);
-        Subject s2= new Subject("Subject 3", 7);
+        Subject s2 = new Subject("Subject 3", 7);
 
         subjectRepository.save(s);
         subjectRepository.save(s1);
@@ -92,5 +95,24 @@ public class DataInit implements ApplicationRunner {
             //specialtyRepository.findAll();
         }
     }
+
+    private void addLessons(){
+
+        Subject s = subjectRepository.findByName("Subject 1").iterator().next();
+        Subject s2 = subjectRepository.findByName("Subject 2").iterator().next();
+
+        Teacher t1 = teacherRepository.findByName("Teacher 1").iterator().next();
+        Teacher t2 = teacherRepository.findByName("Teacher 2").iterator().next();
+        Teacher t3 = teacherRepository.findByName("Teacher 3").iterator().next();
+
+        Lesson l1 = new Lesson(Lesson.Time.TIME1, s, t1, new SubjectType(0), "1-15", new Room("215"), DayOfWeek.MONDAY);
+        Lesson l2 = new Lesson(Lesson.Time.TIME2, s, t2, new SubjectType(1), "1-15", new Room("216"), DayOfWeek.MONDAY);
+        Lesson l3 = new Lesson(Lesson.Time.TIME3, s2, t3, new SubjectType(2), "1-15", new Room("216"), DayOfWeek.MONDAY);
+
+        lessonRepository.save(l1);
+        lessonRepository.save(l2);
+        lessonRepository.save(l3);
+    }
+
 
 }

@@ -3,6 +3,8 @@ package com.sbproject.schedule.controllers;
 import com.sbproject.schedule.services.implementations.SpecialtyServiceImpl;
 import com.sbproject.schedule.services.implementations.SubjectServiceImpl;
 import com.sbproject.schedule.services.interfaces.LessonService;
+import com.sbproject.schedule.services.interfaces.SpecialtyService;
+import com.sbproject.schedule.services.interfaces.SubjectService;
 import com.sbproject.schedule.services.interfaces.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,11 +18,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class MainController {
 
-
     @Autowired
-    private SpecialtyServiceImpl specialtyService;
+    private SpecialtyService specialtyService;
     @Autowired
-    private SubjectServiceImpl subjectService;
+    private SubjectService subjectService;
     @Autowired
     private LessonService lessonService;
     @Autowired

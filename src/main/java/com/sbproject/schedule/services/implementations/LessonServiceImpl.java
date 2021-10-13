@@ -1,8 +1,6 @@
 package com.sbproject.schedule.services.implementations;
 
-import com.sbproject.schedule.models.Lesson;
-import com.sbproject.schedule.models.Subject;
-import com.sbproject.schedule.models.Teacher;
+import com.sbproject.schedule.models.*;
 import com.sbproject.schedule.repositories.LessonRepository;
 import com.sbproject.schedule.services.interfaces.LessonService;
 import com.sbproject.schedule.utils.Utils;
@@ -31,7 +29,7 @@ public class LessonServiceImpl implements LessonService {
     }
 
     @Override
-    public boolean addLesson(Lesson.Time time, Subject subject, Teacher teacher, Lesson.SubjectType group, String weeks, Lesson.Room room, DayOfWeek dayOfWeek) {
+    public boolean addLesson(Lesson.Time time, Subject subject, Teacher teacher, SubjectType group, String weeks, Room room, DayOfWeek dayOfWeek) {
         lessonRepository.save(new Lesson(utils.getUniqueId(),time,subject,teacher,group,weeks,room,dayOfWeek));
         return true;
     }
@@ -42,7 +40,7 @@ public class LessonServiceImpl implements LessonService {
     }
 
     @Override
-    public boolean updateLesson(Long id, Lesson.Time time, Subject subject, Teacher teacher, Lesson.SubjectType group, String weeks, Lesson.Room room, DayOfWeek dayOfWeek) {
+    public boolean updateLesson(Long id, Lesson.Time time, Subject subject, Teacher teacher, SubjectType group, String weeks, Room room, DayOfWeek dayOfWeek) {
         lessonRepository.save(new Lesson(id,time,subject,teacher,group,weeks,room,dayOfWeek));
         return true;
     }

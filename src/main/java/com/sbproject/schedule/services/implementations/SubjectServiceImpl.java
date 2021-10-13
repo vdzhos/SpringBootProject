@@ -8,6 +8,7 @@ import com.sbproject.schedule.services.interfaces.SubjectService;
 import com.sbproject.schedule.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -37,6 +38,7 @@ public class SubjectServiceImpl implements SubjectService {
         return true;
     }
 
+    @Transactional
     @Override
     public void deleteSubject(Long id) {
         subjectRepository.deleteById(id);
@@ -51,6 +53,12 @@ public class SubjectServiceImpl implements SubjectService {
     @Override
     public Iterable<Subject> getAll() {
         return subjectRepository.findAll();
+    }
+
+
+    @Transactional
+    public String countTeachers(long subjectId){
+        return subjectRepository.findById(subjectId).get().getTeachers().toString();
     }
 
 }
