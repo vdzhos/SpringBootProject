@@ -1,4 +1,7 @@
 package com.sbproject.schedule.models;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
@@ -18,13 +21,10 @@ public class Specialty {
     @Column(nullable = false)
     private int year;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "specialties_subjects",
-            joinColumns = @JoinColumn(name = "specialty_id", nullable = false),
-            inverseJoinColumns = @JoinColumn(name = "subject_id", nullable = false)
-    )
-    private List<Subject> subjects;
+
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @ManyToMany(mappedBy = "specialties", fetch = FetchType.LAZY)
+    private Set<Subject> subjects;
 
     public Specialty() {
     }
@@ -67,15 +67,12 @@ public class Specialty {
         this.year = year;
     }
 
-    public List<Subject> getSubjects() {
+    public Set<Subject> getSubjects() {
         return subjects;
     }
 
-    public void setSubjects(List<Subject> subjects) {
+    public void setSubjects(Set<Subject> subjects) {
         this.subjects = subjects;
     }
 
-    public void addSubject(Subject s) {
-        subjects.add(s);
-    }
 }

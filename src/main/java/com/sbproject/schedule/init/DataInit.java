@@ -39,7 +39,6 @@ public class DataInit implements ApplicationRunner {
         addSubjects();
         addTeachers();
         addLessons();
-        //assignSubjects();
     }
 
 
@@ -68,50 +67,48 @@ public class DataInit implements ApplicationRunner {
         Subject s1 = new Subject("Subject 2", 4);
         Subject s2 = new Subject("Subject 3", 7);
 
+        Specialty sp1 = specialtyRepository.findByNameAndYear("IPZ", 3).iterator().next();
+        Specialty sp2 = specialtyRepository.findByNameAndYear("IPZ", 4).iterator().next();
+        Specialty sp3 = specialtyRepository.findByNameAndYear("KN", 3).iterator().next();
+
+        s.addSpecialty(sp2);
+        s.addSpecialty(sp1);
+        s1.addSpecialty(sp2);
+        s1.addSpecialty(sp3);
+        s2.addSpecialty(sp3);
+
         subjectRepository.save(s);
         subjectRepository.save(s1);
         subjectRepository.save(s2);
     }
 
     private void addSpecialties(){
-        if (specialtyRepository.count() == 0) {
-            Specialty s1 =  new Specialty("IPZ",3);
-            Specialty s2 =  new Specialty("IPZ",4);
-            Specialty s3 =  new Specialty("KN",3);
+        Specialty sp1 =  new Specialty("IPZ",3);
+        Specialty sp2 =  new Specialty("IPZ",4);
+        Specialty sp3 =  new Specialty("KN",3);
 
-            specialtyRepository.save(s1);
-            specialtyRepository.save(s2);
-            specialtyRepository.save(s3);
-            //specialtyRepository.findAll();
-        }
+        specialtyRepository.save(sp1);
+        specialtyRepository.save(sp2);
+        specialtyRepository.save(sp3);
+        //specialtyRepository.findAll();
     }
 
     private void addLessons(){
 
         Subject s = subjectRepository.findByName("Subject 1").iterator().next();
+        Subject s2 = subjectRepository.findByName("Subject 2").iterator().next();
 
-        Lesson l1 = new Lesson(Lesson.Time.TIME1, s, new SubjectType(0), "1-15", new Room("215"), DayOfWeek.MONDAY);
-        Lesson l2 = new Lesson(Lesson.Time.TIME2, s, new SubjectType(1), "1-15", new Room("216"), DayOfWeek.MONDAY);
-        Lesson l3 = new Lesson(Lesson.Time.TIME3, s, new SubjectType(2), "1-15", new Room("216"), DayOfWeek.MONDAY);
+        Teacher t1 = teacherRepository.findByName("Teacher 1").iterator().next();
+        Teacher t2 = teacherRepository.findByName("Teacher 2").iterator().next();
+        Teacher t3 = teacherRepository.findByName("Teacher 3").iterator().next();
+
+        Lesson l1 = new Lesson(Lesson.Time.TIME1, s, t1, new SubjectType(0), "1-15", new Room("215"), DayOfWeek.MONDAY);
+        Lesson l2 = new Lesson(Lesson.Time.TIME2, s, t2, new SubjectType(1), "1-15", new Room("216"), DayOfWeek.MONDAY);
+        Lesson l3 = new Lesson(Lesson.Time.TIME3, s2, t3, new SubjectType(2), "1-15", new Room("216"), DayOfWeek.MONDAY);
 
         lessonRepository.save(l1);
         lessonRepository.save(l2);
         lessonRepository.save(l3);
-    }
-
-    private void assignSubjects() {
-
-//        Subject s = subjectRepository.findByName("Subject 1").iterator().next();
-//
-//        Iterable<Specialty> specialties = specialtyRepository.findAll();
-//        for(Specialty sp: specialties){
-//            sp.addSubject(s);
-//            specialtyRepository.save(sp);
-//        }
-//
-//        Specialty sp1 = specialtyRepository.findByNameAndYear("IPZ", 3).iterator().next();
-//        sp1.addSubject(subjectRepository.findByName("Subject 2").iterator().next());
-//        specialtyRepository.save(sp1);
     }
 
 
