@@ -28,7 +28,6 @@ public class Subject {
     @ManyToMany(mappedBy = "subjects", fetch = FetchType.LAZY)
     private Set<Teacher> teachers;
 
-
     @ManyToMany(mappedBy = "subjects")
     private List<Specialty> specialties;
 
@@ -104,6 +103,10 @@ public class Subject {
 
     public void addTeacher(Teacher t) {
         teachers.add(t);
+    }
+
+    public void addSpecialty(Specialty s){
+        specialties.add(s);
     }
 
 }
