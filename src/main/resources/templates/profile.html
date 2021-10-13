@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile Page</title>
+</head>
+<body>
+
+<h2>Profile</h2>
+
+<form action="/profile/passUpdate" method="post">
+    <label>Login:   </label> <label th:text="${ulogin}"></label>
+    <br>
+    <p></p>
+    <label>Password: <input name="password" type="password" th:value="${upassword}"/></label>
+    <br>
+    <p></p>
+    <label>User role:   </label> <label th:text="${urole}"></label>
+    <br>
+    <p></p>
+    <button type="submit">Change password</button>
+    <br>
+    <p></p>
+    <button type="submit" formaction="/profile/back">Back</button>
+</form>
+<br>
+<p style="color: orangered;" th:text="${errorMessage}"></p>
+</body>
+</html>
