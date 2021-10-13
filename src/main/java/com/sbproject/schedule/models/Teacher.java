@@ -1,11 +1,11 @@
 package com.sbproject.schedule.models;
 
-import org.hibernate.annotations.Generated;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
-
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Teacher {
@@ -16,13 +16,19 @@ public class Teacher {
     private String name;
 
 
-    @ManyToMany(mappedBy = "teachers")
-    private List<Subject> subjects;
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "teachers_subjects",
+            joinColumns = @JoinColumn(name = "teacher_id", nullable = false),
+            inverseJoinColumns = @JoinColumn(name = "subject_id", nullable = false)
+    )
+    private Set<Subject> subjects;
 
 
     public Teacher(String name) {
         this.name = name;
-        subjects = new ArrayList<>();
+        subjects = new HashSet<>();
     }
 
 
@@ -34,7 +40,7 @@ public class Teacher {
         this.name = name;
     }
 
-    public Teacher(String name, List<Subject> subjects) {
+    public Teacher(String name, Set<Subject> subjects) {
         this.subjects = subjects;
         this.name = name;
     }
@@ -68,8 +74,11 @@ public class Teacher {
         this.name = name;
     }
 
-    public List<Subject> getSubjects() {
+    public Set<Subject> getSubjects() {
         return subjects;
     }
 
+    public void addSubject(Subject subject) {
+        subjects.add(subject);
+    }
 }

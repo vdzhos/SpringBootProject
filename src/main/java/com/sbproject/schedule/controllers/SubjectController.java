@@ -3,9 +3,11 @@ package com.sbproject.schedule.controllers;
 import com.sbproject.schedule.models.Specialty;
 import com.sbproject.schedule.models.Teacher;
 import com.sbproject.schedule.services.implementations.SubjectServiceImpl;
+import com.sbproject.schedule.services.interfaces.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -47,5 +49,12 @@ public class SubjectController {
 //        SubjectService.updateSubject(newName,newQuantOfSubjects, newTeachers, newSpecialties);
         //put info about success/failure into the model
         return "redirect:/";
+    }
+
+
+    @GetMapping("/get")
+    public String getSubjects(){
+        System.out.println(subjectService.countTeachers(4L));
+        return "main";
     }
 }
