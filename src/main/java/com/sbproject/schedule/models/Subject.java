@@ -32,6 +32,8 @@ public class Subject {
     @ManyToMany(mappedBy = "subjects")
     private List<Specialty> specialties;
 
+    @OneToMany(mappedBy = "subject", cascade = CascadeType.ALL)
+    private List<Lesson> lessons;
 
     public Subject() {
     }

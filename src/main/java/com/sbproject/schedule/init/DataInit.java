@@ -1,8 +1,7 @@
 package com.sbproject.schedule.init;
 
-import com.sbproject.schedule.models.Specialty;
-import com.sbproject.schedule.models.Subject;
-import com.sbproject.schedule.models.Teacher;
+import com.sbproject.schedule.models.*;
+import com.sbproject.schedule.repositories.LessonRepository;
 import com.sbproject.schedule.repositories.SpecialtyRepository;
 import com.sbproject.schedule.repositories.SubjectRepository;
 import com.sbproject.schedule.repositories.TeacherRepository;
@@ -11,16 +10,19 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
+import java.time.DayOfWeek;
+
 @Component
 public class DataInit implements ApplicationRunner {
 
     @Autowired
     private SpecialtyRepository specialtyRepository;
-
     @Autowired
     private SubjectRepository subjectRepository;
     @Autowired
     private TeacherRepository teacherRepository;
+    @Autowired
+    private LessonRepository lessonRepository;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
@@ -36,6 +38,7 @@ public class DataInit implements ApplicationRunner {
         addSpecialties();
         addSubjects();
         addTeachers();
+        addLessons();
         //assignSubjects();
     }
 
@@ -83,19 +86,32 @@ public class DataInit implements ApplicationRunner {
         }
     }
 
-    private void assignSubjects() {
+    private void addLessons(){
 
         Subject s = subjectRepository.findByName("Subject 1").iterator().next();
 
-        Iterable<Specialty> specialties = specialtyRepository.findAll();
-        for(Specialty sp: specialties){
-            sp.addSubject(s);
-            specialtyRepository.save(sp);
-        }
+        Lesson l1 = new Lesson(Lesson.Time.TIME1, s, new SubjectType(0), "1-15", new Room("215"), DayOfWeek.MONDAY);
+        Lesson l2 = new Lesson(Lesson.Time.TIME2, s, new SubjectType(1), "1-15", new Room("216"), DayOfWeek.MONDAY);
+        Lesson l3 = new Lesson(Lesson.Time.TIME3, s, new SubjectType(2), "1-15", new Room("216"), DayOfWeek.MONDAY);
 
-        Specialty sp1 = specialtyRepository.findByNameAndYear("IPZ", 3).iterator().next();
-        sp1.addSubject(subjectRepository.findByName("Subject 2").iterator().next());
-        specialtyRepository.save(sp1);
+        lessonRepository.save(l1);
+        lessonRepository.save(l2);
+        lessonRepository.save(l3);
+    }
+
+    private void assignSubjects() {
+
+//        Subject s = subjectRepository.findByName("Subject 1").iterator().next();
+//
+//        Iterable<Specialty> specialties = specialtyRepository.findAll();
+//        for(Specialty sp: specialties){
+//            sp.addSubject(s);
+//            specialtyRepository.save(sp);
+//        }
+//
+//        Specialty sp1 = specialtyRepository.findByNameAndYear("IPZ", 3).iterator().next();
+//        sp1.addSubject(subjectRepository.findByName("Subject 2").iterator().next());
+//        specialtyRepository.save(sp1);
     }
 
 
