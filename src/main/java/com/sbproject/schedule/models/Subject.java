@@ -27,8 +27,6 @@ public class Subject {
     )
     private List<Teacher> teachers;
 
-
-
     @ManyToMany(mappedBy = "subjects")
     private List<Specialty> specialties;
 
@@ -103,4 +101,5 @@ public class Subject {
     public void addTeacher(Teacher t) {
         teachers.add(t);
     }
+
 }

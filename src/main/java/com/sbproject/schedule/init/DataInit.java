@@ -14,34 +14,17 @@ import org.springframework.stereotype.Component;
 @Component
 public class DataInit implements ApplicationRunner {
 
+    @Autowired
     private SpecialtyRepository specialtyRepository;
-
-
     @Autowired
     private SubjectRepository subjectRepository;
     @Autowired
     private TeacherRepository teacherRepository;
 
-    @Autowired
-    public DataInit(SpecialtyRepository specialtyRepository) {
-        this.specialtyRepository = specialtyRepository;
-    }
-
     @Override
     public void run(ApplicationArguments args) throws Exception {
-
-        long count = specialtyRepository.count();
 //        long countUsers = userRepository.count();
-        if (count == 0) {
-            Specialty s1 =  new Specialty("IPZ",3);
-            Specialty s2 =  new Specialty("IPZ",4);
-            Specialty s3 =  new Specialty("KN",3);
 
-            specialtyRepository.save(s1);
-            specialtyRepository.save(s2);
-            specialtyRepository.save(s3);
-            //specialtyRepository.findAll();
-        }
 //        if(countUsers == 0) {
 //        	User u1 = new User("vovan", "1234", Role.ADMIN);
 //        	User u2 = new User("illya", "4321", Role.REGULAR);
@@ -49,11 +32,11 @@ public class DataInit implements ApplicationRunner {
 //        	userRepository.save(u2);
 //        }
 
-
+        addSpecialties();
         addSubjects();
         addTeachers();
         assignTeachers();
-
+        //assignSubjects();
     }
 
     private void assignTeachers() {
@@ -88,7 +71,33 @@ public class DataInit implements ApplicationRunner {
         subjectRepository.save(s2);
     }
 
+    private void addSpecialties(){
+        if (specialtyRepository.count() == 0) {
+            Specialty s1 =  new Specialty("IPZ",3);
+            Specialty s2 =  new Specialty("IPZ",4);
+            Specialty s3 =  new Specialty("KN",3);
 
+            specialtyRepository.save(s1);
+            specialtyRepository.save(s2);
+            specialtyRepository.save(s3);
+            //specialtyRepository.findAll();
+        }
+    }
+
+    private void assignSubjects() {
+
+        Subject s = subjectRepository.findByName("Subject 1").iterator().next();
+
+        Iterable<Specialty> specialties = specialtyRepository.findAll();
+        for(Specialty sp: specialties){
+            sp.addSubject(s);
+            specialtyRepository.save(sp);
+        }
+
+        Specialty sp1 = specialtyRepository.findByNameAndYear("IPZ", 3).iterator().next();
+        sp1.addSubject(subjectRepository.findByName("Subject 2").iterator().next());
+        specialtyRepository.save(sp1);
+    }
 
 
 }
