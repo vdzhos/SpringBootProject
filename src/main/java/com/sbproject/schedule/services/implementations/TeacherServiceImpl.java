@@ -1,11 +1,14 @@
 package com.sbproject.schedule.services.implementations;
 
+import com.sbproject.schedule.models.Subject;
 import com.sbproject.schedule.models.Teacher;
 import com.sbproject.schedule.repositories.TeacherRepository;
 import com.sbproject.schedule.services.interfaces.TeacherService;
 import com.sbproject.schedule.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Set;
 
 @Service
 public class TeacherServiceImpl implements TeacherService {
@@ -22,8 +25,8 @@ public class TeacherServiceImpl implements TeacherService {
 
     //TO DO - need to add name check probably
     @Override
-    public boolean addTeacher(String name) {
-        teacherRepository.save(new Teacher(utils.getUniqueId(), name));
+    public boolean addTeacher(String name, Set<Subject> subjects) {
+        teacherRepository.save(new Teacher(name, subjects));
         return true;
     }
 

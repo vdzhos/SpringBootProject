@@ -1,5 +1,6 @@
 package com.sbproject.schedule.controllers;
 
+import com.sbproject.schedule.models.Subject;
 import com.sbproject.schedule.services.implementations.TeacherServiceImpl;
 import com.sbproject.schedule.services.interfaces.LessonService;
 import com.sbproject.schedule.services.interfaces.TeacherService;
@@ -9,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.Set;
 
 @Controller
 @RequestMapping("/teacher")
@@ -22,8 +25,8 @@ public class TeacherController {
     }
 
     @PostMapping("/add")
-    public String addTeacher(@RequestParam String name, Model model){
-        teacherService.addTeacher(name);
+    public String addTeacher(@RequestParam String name, @RequestParam Set<Subject> subjects, Model model){
+        teacherService.addTeacher(name, subjects);
         //put info about success/failure into the model
         return "redirect:/";
     }

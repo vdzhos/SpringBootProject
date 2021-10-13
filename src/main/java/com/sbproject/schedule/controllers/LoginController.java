@@ -1,5 +1,7 @@
 package com.sbproject.schedule.controllers;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,10 +33,11 @@ public class LoginController {
 	}
 
 	@PostMapping("/new")
-	public String newUser(@RequestParam String login, @RequestParam String password, @RequestParam String role,/*@RequestParam(value = "isAdmin", required = false) String checkboxValue,*/ Model model){
+	public String newUser(@RequestParam String login, @RequestParam String password, @RequestParam String role, Model model, HttpSession session){
 		boolean isSuccessfull = true;
 		try {
 			loginService.addUser(login, password, role);
+			session.setAttribute("logged", login);
 		} catch (Exception e) {
 			this.errorMessage = e.getMessage();
 			isSuccessfull = false;
@@ -43,13 +46,15 @@ public class LoginController {
 	}
 	
 	@PostMapping("/validate")
-	public String validateUser(@RequestParam String login, @RequestParam String password, Model model){
+	public String validateUser(@RequestParam String login, @RequestParam String password, Model model, HttpSession session){
 		boolean res = loginService.validateUser(login, password);
 		System.out.println("Validated, Result = " + res);
 		if(!res)
 			this.errorMessage = "Failed to login";
-		else
+		else {
 			this.errorMessage = "";
+			session.setAttribute("logged", login);
+		}
         return res? "redirect:/" : "redirect:/login";
     }
 	

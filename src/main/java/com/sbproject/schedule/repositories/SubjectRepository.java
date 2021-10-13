@@ -8,5 +8,6 @@ import org.springframework.stereotype.Repository;
 public interface SubjectRepository extends CrudRepository<Subject,Long> {
 
     Iterable<Subject> findByName(String name);
+    boolean existsByName(String name);
 
 }

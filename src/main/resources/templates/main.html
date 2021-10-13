@@ -54,6 +54,17 @@
     <!--    </form>-->
 </div>
 
+<br><br>
+<form action="/subject/add" method="post">
+    <label>Name: <input name="name" type="text" placeholder="Enter the name"/></label>
+    <label>Quantity of groups: <input name="quantOfGroups" type="number" min="1" max="20"/></label>
+    <label>Specialties: <input name="specialties" th:each="specialty: ${specialties}" th:value="${specialty.id}" th:text="${specialty.name}+'-'+${specialty.year}"
+                           type="checkbox"/></label>
+    <button type="submit">Add</button>
+    <button type="reset">Clear</button>
+</form>
+<br/>
+
 <div>
     <table border="1px">
         <caption>Added subjects</caption>
@@ -83,6 +94,46 @@
 </div>
 
 <p></p>
+
+<br><br>
+<form action="/lesson/add" method="post">
+    <label>Day: <select name="day">
+        <option value="1">MONDAY</option>
+        <option value="2">TUESDAY</option>
+        <option value="3">WEDNESDAY</option>
+        <option value="4">THURSDAY</option>
+        <option value="5">FRIDAY</option>
+        <option value="6">SATURDAY</option>
+        <option value="7">SUNDAY</option>
+    </select></label>
+    <label>Time: <select name="time">
+        <option value="0">8:30-9:50</option>
+        <option value="1">10:00-11:20</option>
+        <option value="2">11:40-13:00</option>
+        <option value="3">13:30-14:50</option>
+        <option value="4">15:00-16:20</option>
+        <option value="5">16:30-17:50</option>
+        <option value="6">18:00-19:20</option>
+    </select></label>
+    <label>Subject: <select name="subjId">
+        <option th:each="subject: ${subjects}" th:text="${subject.name}" th:value="${subject.id}"></option>
+    </select></label>
+    <label>Teacher: <select name="teachId">
+        <option th:each="teacher: ${teachers}" th:text="${teacher.name}" th:value="${teacher.id}"></option>
+    </select></label>
+    <label>Group: <select name="group">
+        <option value="0">Lecture</option>
+        <option value="1">Group</option>
+    </select></label>
+    <label>Weeks: <input name="weeks" type="text"/></label>
+    <label>Room: <select name="room">
+        <option value="214">Room</option>
+        <option value="remotely">Remotely</option>
+    </select></label>
+    <button type="submit">Add</button>
+    <button type="reset">Clear</button>
+</form>
+<br/>
 
 <div>
     <table border="1px">
@@ -121,6 +172,8 @@
 <br><br>
 <form action="/teacher/add" method="post">
     <label>Name: <input name="name" type="text" placeholder="Enter the name"/></label>
+    <label>Subjects: <input name="subjects" th:each="subject: ${subjects}" th:value="${subject.id}" th:text="${subject.name}"
+                            type="checkbox"/></label>
     <button type="submit">Add</button>
     <button type="reset">Clear</button>
 </form>
@@ -131,12 +184,14 @@
     <table border="1px">
         <caption>Added teachers</caption>
         <tr>
-            <!--            <th>Id</th>-->
+            <th>Id</th>
             <th>Name</th>
+            <th>Subjects</th>
         </tr>
         <tr th:each="teacher: ${teachers}">
-            <!--            <td th:text="${teacher.id}"></td>-->
+            <td th:text="${teacher.id}"></td>
             <td th:text="${teacher.name}"></td>
+            <td th:text="${teacher.subjects}"></td>
             <td><form action="teacher/delete/" method="post">
                 <input name="id" type="hidden" th:value="${teacher.id}">
                 <button type="submit">Delete</button>
@@ -148,7 +203,11 @@
         </tr>
     </table>
 </div>
-
+<br>
 <p></p>
+<button onclick="location.href = '/profile';">User Profile</button>
+<p></p>
+
+
 </body>
 </html>
