@@ -29,7 +29,6 @@ public class UserProfileController {
 	
 	@GetMapping
 	public String showProfile(Model model, HttpSession session) {
-		errorMessage = "";
 		User loggedUser = userService.getUserByLogin((String)session.getAttribute("logged"));
 		this.currentUser = loggedUser;
 		System.out.println(loggedUser);
@@ -54,6 +53,7 @@ public class UserProfileController {
 	
 	@RequestMapping("/back")
 	public String returnToMainPage() {
+		errorMessage = "";
 		return "redirect:/";
 	}
 	
