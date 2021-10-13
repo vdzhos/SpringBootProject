@@ -10,6 +10,7 @@ import com.sbproject.schedule.utils.Utils;
 import com.sbproject.schedule.utils.Values;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -44,8 +45,7 @@ public class SpecialtyServiceImpl implements SpecialtyService {
         specialtyRepository.save(new Specialty(name,year));
     }
 
-    //@ResponseBody
-    //@RequestMapping("/")
+    @Transactional
     @Override
     public void deleteSpecialty(Long id) {
         specialtyRepository.deleteById(id);
@@ -68,22 +68,9 @@ public class SpecialtyServiceImpl implements SpecialtyService {
         }
     }
 
-    //@ResponseBody
-    //@RequestMapping("/")
     @Override
     public Iterable<Specialty> getAll() {
         return specialtyRepository.findAll();
     }
 
-    /*@ResponseBody
-    @RequestMapping("/")
-    public String index() {
-        Iterable<Specialty> all = specialtyRepository.findAll();
-
-        StringBuilder sb = new StringBuilder();
-
-        all.forEach(p -> sb.append(p.getName() + "<br>"));
-
-        return sb.toString();
-    }*/
 }

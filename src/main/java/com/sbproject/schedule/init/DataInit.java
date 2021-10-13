@@ -37,7 +37,6 @@ public class DataInit implements ApplicationRunner {
 
         addSpecialties();
         addSubjects();
-        addSpecialties();
         addTeachers();
         addLessons();
     }
@@ -68,32 +67,30 @@ public class DataInit implements ApplicationRunner {
         Subject s1 = new Subject("Subject 2", 4);
         Subject s2 = new Subject("Subject 3", 7);
 
+        Specialty sp1 = specialtyRepository.findByNameAndYear("IPZ", 3).iterator().next();
+        Specialty sp2 = specialtyRepository.findByNameAndYear("IPZ", 4).iterator().next();
+        Specialty sp3 = specialtyRepository.findByNameAndYear("KN", 3).iterator().next();
+
+        s.addSpecialty(sp2);
+        s.addSpecialty(sp1);
+        s1.addSpecialty(sp2);
+        s1.addSpecialty(sp3);
+        s2.addSpecialty(sp3);
+
         subjectRepository.save(s);
         subjectRepository.save(s1);
         subjectRepository.save(s2);
     }
 
     private void addSpecialties(){
-        if (specialtyRepository.count() == 0) {
-            Specialty sp1 =  new Specialty("IPZ",3);
-            Specialty sp2 =  new Specialty("IPZ",4);
-            Specialty sp3 =  new Specialty("KN",3);
+        Specialty sp1 =  new Specialty("IPZ",3);
+        Specialty sp2 =  new Specialty("IPZ",4);
+        Specialty sp3 =  new Specialty("KN",3);
 
-            Subject s1 = subjectRepository.findByName("Subject 1").iterator().next();
-            Subject s2 = subjectRepository.findByName("Subject 2").iterator().next();
-            Subject s3 = subjectRepository.findByName("Subject 3").iterator().next();
-
-            sp1.addSubject(s1);
-            sp1.addSubject(s2);
-            sp2.addSubject(s2);
-            sp2.addSubject(s3);
-            sp3.addSubject(s3);
-
-            specialtyRepository.save(sp1);
-            specialtyRepository.save(sp2);
-            specialtyRepository.save(sp3);
-            //specialtyRepository.findAll();
-        }
+        specialtyRepository.save(sp1);
+        specialtyRepository.save(sp2);
+        specialtyRepository.save(sp3);
+        //specialtyRepository.findAll();
     }
 
     private void addLessons(){

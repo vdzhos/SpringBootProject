@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class SubjectServiceImpl implements SubjectService {
@@ -29,7 +30,7 @@ public class SubjectServiceImpl implements SubjectService {
     }
 
     @Override
-    public boolean addSubject(String name, int quantOfGroups, List<Teacher> teachers, List<Specialty> specialties) {
+    public boolean addSubject(String name, int quantOfGroups, Set<Teacher> teachers, Set<Specialty> specialties) {
         //must not use existsByNameAndSpecialties
 //        if(subjectRepository.existsByNameAndSpecialties(name, specialties))
 //            return false;
@@ -45,7 +46,7 @@ public class SubjectServiceImpl implements SubjectService {
     }
 
     @Override
-    public boolean updateSubject(String name, int quantOfGroups, List<Teacher> teachers, List<Specialty> specialties) {
+    public boolean updateSubject(String name, int quantOfGroups, Set<Teacher> teachers, Set<Specialty> specialties) {
         subjectRepository.save(new Subject(processor.getUniqueId(), processor.processName(name), quantOfGroups, teachers, specialties));
         return false;
     }

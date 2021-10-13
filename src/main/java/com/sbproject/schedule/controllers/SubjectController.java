@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * controls manipulations with subjects
@@ -30,8 +31,8 @@ public class SubjectController {
 
     @PostMapping("/add")
     public String addSubject(@RequestParam String name, @RequestParam int quantOfGroups,
-                             @RequestParam List<Teacher> teachers,
-                             @RequestParam List<Specialty> specialties, Model model){
+                             @RequestParam Set<Teacher> teachers,
+                             @RequestParam Set<Specialty> specialties, Model model){
         subjectService.addSubject(name, quantOfGroups, teachers, specialties);
         //put info about success/failure into the model
         return "redirect:/";

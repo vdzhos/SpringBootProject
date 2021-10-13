@@ -29,8 +29,15 @@ public class Subject {
     private Set<Teacher> teachers;
 
 
-    @ManyToMany(mappedBy = "subjects")
-    private List<Specialty> specialties;
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "specialties_subjects",
+            joinColumns = @JoinColumn(name = "specialty_id", nullable = false),
+            inverseJoinColumns = @JoinColumn(name = "subject_id", nullable = false)
+    )
+    private Set<Specialty> specialties;
+
 
     @OneToMany(mappedBy = "subject", cascade = CascadeType.ALL)
     private List<Lesson> lessons;
@@ -42,11 +49,11 @@ public class Subject {
         this.name = name;
         this.quantOfGroups = quantOfGroups;
         teachers = new HashSet<>();
-        specialties = new ArrayList<>();
+        specialties = new HashSet<>();
     }
 
 
-    public Subject(long id, String name, int quantOfGroups, List<Teacher> teachers, List<Specialty> specialties) {
+    public Subject(long id, String name, int quantOfGroups, Set<Teacher> teachers, Set<Specialty> specialties) {
         this.name = name;
         this.quantOfGroups = quantOfGroups;
     }
@@ -94,16 +101,20 @@ public class Subject {
         this.teachers = teachers;
     }
 
-    public List<Specialty> getSpecialties() {
+    public Set<Specialty> getSpecialties() {
         return specialties;
     }
 
-    public void setSpecialties(List<Specialty> specialties) {
+    public void setSpecialties(Set<Specialty> specialties) {
         this.specialties = specialties;
     }
 
     public void addTeacher(Teacher t) {
         teachers.add(t);
+    }
+
+    public void addSpecialty(Specialty sp) {
+        specialties.add(sp);
     }
 
 }
