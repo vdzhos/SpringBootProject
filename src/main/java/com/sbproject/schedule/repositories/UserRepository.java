@@ -1,14 +1,15 @@
-package com.sbproject.schedule.repositories;//package com.sbproject.schedule.repositories_fakes.interfaces;
+package com.sbproject.schedule.repositories;
 
-import com.sbproject.schedule.models.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import com.sbproject.schedule.models.User;
+import com.sbproject.schedule.utils.Role;
+
 @Repository
-public interface UserRepository extends CrudRepository<User,Long> {
+public interface UserRepository extends CrudRepository<User, String>{
 
-
-	//User findById(Long id);
-	Iterable<User> findByLogin(String login);
+	User findByLogin(String login);
+    Iterable<User> findByRole(Role role);
 
 }

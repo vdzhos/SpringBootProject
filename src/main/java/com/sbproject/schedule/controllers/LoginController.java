@@ -32,12 +32,13 @@ public class LoginController {
 
 	@PostMapping("/new")
 	public String newUser(@RequestParam String login, @RequestParam String password, @RequestParam String role,/*@RequestParam(value = "isAdmin", required = false) String checkboxValue,*/ Model model){
-		String res = loginService.addUser(login, password, role);
-		boolean isSuccessfull = res.equals("SUCCESS");
-		if(!isSuccessfull)
-			this.errorMessage = res;
-		else
-			this.errorMessage = "";
+		boolean isSuccessfull = true;
+		try {
+			loginService.addUser(login, password, role);
+		} catch (Exception e) {
+			this.errorMessage = e.getMessage();
+			isSuccessfull = false;
+		}
 		return isSuccessfull? "redirect:/" : "redirect:/login";
 	}
 	

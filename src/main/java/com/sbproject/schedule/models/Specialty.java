@@ -4,21 +4,21 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name = "SPECIALTY")
+@Table
 public class Specialty {
 
     @Id
-    @GeneratedValue
-    @Column(name = "Id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(nullable = false)
     private Long id;
 
-    @Column(name = "Name", nullable = false)
+    @Column(nullable = false)
     private String name;
 
-    @Column(name = "Year", nullable = false)
+    @Column(nullable = false)
     private int year;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name = "specialties_subjects",
             joinColumns = @JoinColumn(name = "specialty_id", nullable = false),
@@ -69,5 +69,13 @@ public class Specialty {
 
     public List<Subject> getSubjects() {
         return subjects;
+    }
+
+    public void setSubjects(List<Subject> subjects) {
+        this.subjects = subjects;
+    }
+
+    public void addSubject(Subject s) {
+        subjects.add(s);
     }
 }
