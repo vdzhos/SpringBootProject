@@ -1,5 +1,7 @@
 package com.sbproject.schedule.models;
 import javax.persistence.*;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table
@@ -15,6 +17,14 @@ public class Specialty {
 
     @Column(nullable = false)
     private int year;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "specialties_subjects",
+            joinColumns = @JoinColumn(name = "specialty_id", nullable = false),
+            inverseJoinColumns = @JoinColumn(name = "subject_id", nullable = false)
+    )
+    private List<Subject> subjects;
 
     public Specialty() {
     }
@@ -55,5 +65,9 @@ public class Specialty {
 
     public void setYear(int year) {
         this.year = year;
+    }
+
+    public List<Subject> getSubjects() {
+        return subjects;
     }
 }
