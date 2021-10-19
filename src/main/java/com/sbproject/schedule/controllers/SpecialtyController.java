@@ -1,9 +1,9 @@
 package com.sbproject.schedule.controllers;
 
 import com.sbproject.schedule.services.implementations.SpecialtyServiceImpl;
-import com.sbproject.schedule.utils.Markers;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.ThreadContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,12 +38,12 @@ public class SpecialtyController {
         boolean success = true;
         try{
             specialtyService.addSpecialty(name, year);
-            logger.info("Specialty {}-{} added",name,year);
-            logger.info(Markers.IMPORTANT_MARKER,"Specialty {}-{} added",name,year);
+//            logger.info("Specialty {}-{} added",name,year);
+//            logger.info(Markers.IMPORTANT_MARKER,"Specialty {}-{} added",name,year);
         } catch (Exception e) {
             success = false;
             notification = e.getMessage();
-            logger.error("Specialty {}-{} not added",name,year,e);
+//            logger.error("Specialty {}-{} not added",name,year,e);
         }
         redir.addFlashAttribute("showNotification", true);
         redir.addFlashAttribute("success", success);
@@ -52,8 +52,10 @@ public class SpecialtyController {
     }
 
     @PostMapping("/delete")
-    public RedirectView deleteSpecialty(@RequestParam Long id, Model model, RedirectAttributes redir){
+    public RedirectView deleteSpecialty(@RequestParam Long id, Model model, @RequestParam String specialtyToString, RedirectAttributes redir){
+        ThreadContext.put("specialty",specialtyToString);
         specialtyService.deleteSpecialty(id);
+        ThreadContext.clearAll();
         RedirectView redirectView= new RedirectView("/",true);
         String notification = "Спеціальність було успішно видалено!";
         redir.addFlashAttribute("showNotification", true);

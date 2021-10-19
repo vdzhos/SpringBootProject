@@ -7,6 +7,11 @@
             <MarkerFilter marker="DELETE_LESSON" onMatch="ACCEPT" onMismatch="DENY"/>
         </File>
 
+        <File name="DeletedSpecialtiesToFile" fileName="DeletedSpecialties.log" append="false">
+            <PatternLayout pattern="%d [%t] %-5level %-50c{1.} - %msg - %X{specialty} %n"/>
+            <MarkerFilter marker="DELETE_SPECIALTY" onMatch="ACCEPT" onMismatch="DENY"/>
+        </File>
+
         <File name="File" fileName="Shopme.log">
             <PatternLayout pattern="%d [%t] %-5level %-50c{1.} - %msg %n"/>
             <MarkerFilter marker="IMPORTANT" onMatch="ACCEPT" onMismatch="DENY"/>
@@ -14,7 +19,7 @@
 
         <CustomAppender name="Custom">
             <CustomLayout/>
-            <PatternLayout pattern="%d{yyyy-mmm-dd HH:mm:ss} [%t] %-5level %-50c{1.} %n"/>
+<!--            <PatternLayout pattern="%d{yyyy-mmm-dd HH:mm:ss} [%t] %-5level %-50c{1.} %n"/>-->
         </CustomAppender>
 
     </Appenders>
@@ -24,6 +29,7 @@
             <AppenderRef ref="File"/>
             <AppenderRef ref="Custom"/>
             <AppenderRef ref="DeletedLessonsToFile"/>
+            <AppenderRef ref="DeletedSpecialtiesToFile"/>
         </Root>
     </Loggers>
 </Configuration>
