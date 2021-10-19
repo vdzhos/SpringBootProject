@@ -2,6 +2,8 @@ package com.sbproject.schedule.controllers;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sbproject.schedule.models.User;
+import com.sbproject.schedule.services.implementations.UserProfileServiceImpl;
 import com.sbproject.schedule.services.interfaces.UserProfileService;
+import com.sbproject.schedule.utils.Markers;
 
 @Controller
 @RequestMapping("/profile")
@@ -20,6 +24,7 @@ public class UserProfileController {
 	private UserProfileService userService;
 	private String errorMessage;
 	private User currentUser;
+	private static Logger logger = LogManager.getLogger(UserProfileController.class);
 	
 	@Autowired
 	public UserProfileController(UserProfileService userService) {
@@ -29,6 +34,8 @@ public class UserProfileController {
 	
 	@GetMapping
 	public String showProfile(Model model, HttpSession session) {
+		if(session.getAttribute("logged") == null)
+			logger.fatal(Markers.USER_MARKER, "Unauthorized session!");
 		User loggedUser = userService.getUserByLogin((String)session.getAttribute("logged"));
 		this.currentUser = loggedUser;
 		System.out.println(loggedUser);

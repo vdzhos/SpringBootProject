@@ -10,7 +10,8 @@ public class Markers {
             .setParents(IMPORTANT_MARKER);
     public static final Marker DELETE_LESSON_MARKER = MarkerManager.getMarker("DELETE_LESSON")
             .setParents(ALTERING_LESSON_TABLE_MARKER);
-
+    public static final Marker USER_MARKER = MarkerManager.getMarker("USER_ACT")
+    		.setParents(IMPORTANT_MARKER);
 
 
     public static final Marker ALTERING_SPECIALTY_TABLE_MARKER = MarkerManager.getMarker("ALTERING_SPECIALTY_TABLE")
@@ -21,8 +22,5 @@ public class Markers {
             .setParents(ALTERING_SPECIALTY_TABLE_MARKER);
     public static final Marker SAVE_SPECIALTY_MARKER = MarkerManager.getMarker("SAVE_SPECIALTY")
             .setParents(ALTERING_SPECIALTY_TABLE_MARKER);
-
-
-
 
 }
