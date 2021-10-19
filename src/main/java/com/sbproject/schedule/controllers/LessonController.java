@@ -5,6 +5,9 @@ import com.sbproject.schedule.models.Room;
 import com.sbproject.schedule.models.Subject;
 import com.sbproject.schedule.models.SubjectType;
 import com.sbproject.schedule.services.interfaces.LessonService;
+import com.sbproject.schedule.utils.Markers;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +23,8 @@ public class LessonController {
 
     private LessonService lessonService;
 
+    private static Logger logger = LogManager.getLogger(LessonController.class);
+
     @Autowired
     public LessonController(LessonService lessonService) {
         this.lessonService = lessonService;
@@ -32,7 +37,13 @@ public class LessonController {
         Room r;
         if(room.equals("remotely")) r = new Room();
         else r = new Room(room);
-        lessonService.addLesson(Lesson.Time.values()[time],subjId,teachId,new SubjectType(group), weeks, r, DayOfWeek.of(day));
+        boolean result;
+        if(weeks.isEmpty()) result = false;
+        else{
+            result = lessonService.addLesson(Lesson.Time.values()[time],subjId,teachId,new SubjectType(group), weeks, r, DayOfWeek.of(day));
+        }
+        if(result) logger.info(Markers.ALTERING_LESSON_TABLE_MARKER,"Lesson successfully added!");
+        else logger.error(Markers.ALTERING_LESSON_TABLE_MARKER,"Lesson not added!");
         //put info about success/failure into the model
         return "redirect:/";
     }
@@ -40,14 +51,16 @@ public class LessonController {
     @PostMapping("/delete")
     public String deleteLesson(@RequestParam Long id, Model model){
         lessonService.deleteLesson(id);
+        logger.info(Markers.ALTERING_LESSON_TABLE_MARKER,"Lesson successfully deleted!");
         //put info about success/failure into the model
         return "redirect:/";
     }
 
     @PostMapping("/update")
     public String updateSpecialty(Model model){
-//        lessonService.updateLesson();
-        //put info about success/failure into the model
+//        boolean result = lessonService.updateLesson();
+//        if(result) logger.info(Markers.ALTERING_LESSON_TABLE_MARKER,"Lesson successfully updated!");
+//        else logger.error(Markers.ALTERING_LESSON_TABLE_MARKER,"Lesson not updated!");
         return "redirect:/";
     }
 

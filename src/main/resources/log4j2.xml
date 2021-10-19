@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration xmlns="http://logging.apache.org/log4j/2.0/config" status="WARN" packages="com.sbproject.schedule.utils">
     <Appenders>
-        <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout pattern="%highlight{%d{yyyy-mmm-dd HH:mm:ss} [%t] %-5level %-50c{1.} - %msg %n}"/>
-        </Console>
 
         <File name="File" fileName="Shopme.log">
             <PatternLayout pattern="%d [%t] %-5level %-50c{1.} - %msg %n"/>
+            <MarkerFilter marker="IMPORTANT" onMatch="ACCEPT" onMismatch="DENY"/>
         </File>
 
         <CustomAppender name="Custom">
@@ -15,15 +13,12 @@
 
         </CustomAppender>
 
-        
     </Appenders>
 
     <Loggers>
         <Root level="info">
-            <AppenderRef ref="Console"/>
             <AppenderRef ref="File"/>
             <AppenderRef ref="Custom"/>
-
         </Root>
     </Loggers>
 </Configuration>
