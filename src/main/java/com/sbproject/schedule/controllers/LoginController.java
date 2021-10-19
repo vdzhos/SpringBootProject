@@ -48,7 +48,7 @@ public class LoginController {
 	@PostMapping("/validate")
 	public String validateUser(@RequestParam String login, @RequestParam String password, Model model, HttpSession session){
 		boolean res = loginService.validateUser(login, password);
-		System.out.println("Validated, Result = " + res);
+		//System.out.println("Validated, Result = " + res);
 		if(!res)
 			this.errorMessage = "Failed to login";
 		else {

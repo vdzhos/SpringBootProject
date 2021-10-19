@@ -10,4 +10,6 @@ public class Markers {
             .setParents(IMPORTANT_MARKER);
     public static final Marker DELETE_LESSON_MARKER = MarkerManager.getMarker("DELETE_LESSON")
             .setParents(ALTERING_LESSON_TABLE_MARKER);
+    public static final Marker USER_MARKER = MarkerManager.getMarker("USER_ACT")
+    		.setParents(IMPORTANT_MARKER);
 }

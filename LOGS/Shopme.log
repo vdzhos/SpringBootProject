@@ -1,0 +1,21 @@
+2021-10-19 18:07:11,984 [Thread-2] INFO  c.s.s.s.i.LessonServiceImpl                        - Lesson successfully deleted! 
+2021-10-19 18:07:48,214 [Thread-2] INFO  c.s.s.s.i.LessonServiceImpl                        - Lesson successfully deleted! 
+2021-10-19 18:11:40,657 [Thread-2] INFO  c.s.s.s.i.LessonServiceImpl                        - Lesson successfully deleted! 
+2021-10-19 18:12:52,844 [Thread-2] INFO  c.s.s.s.i.LessonServiceImpl                        - Lesson successfully deleted! 
+2021-10-19 18:16:00,054 [Thread-2] INFO  c.s.s.s.i.LessonServiceImpl                        - Lesson successfully deleted! 
+2021-10-19 18:38:29,819 [Thread-2] INFO  c.s.s.s.i.LessonServiceImpl                        - Lesson successfully deleted! 
+2021-10-19 18:39:19,466 [Thread-2] INFO  c.s.s.s.i.LessonServiceImpl                        - Lesson successfully deleted! 
+2021-10-19 22:44:12,609 [http-nio-8081-exec-2] INFO  c.s.s.s.i.LoginServiceImpl                         - User logged in: vovan : 1234 
+2021-10-19 22:45:35,799 [http-nio-8081-exec-7] INFO  c.s.s.s.i.UserProfileServiceImpl                   - User password changed: vovan : New password = 123423 
+2021-10-19 22:45:41,685 [http-nio-8081-exec-9] ERROR c.s.s.s.i.UserProfileServiceImpl                   - Error: Invalid password:  
+2021-10-19 22:46:11,823 [http-nio-8081-exec-4] INFO  c.s.s.s.i.LoginServiceImpl                         - User registrated:gleb : 1234 : ADMIN 
+2021-10-19 22:46:45,574 [http-nio-8081-exec-8] ERROR c.s.s.s.i.LoginServiceImpl                         - Error: Login is already in use: gleb 
+2021-10-19 22:50:38,998 [http-nio-8081-exec-2] INFO  c.s.s.s.i.LoginServiceImpl                         - User logged in: vovan : 1234 
+2021-10-19 22:50:50,245 [http-nio-8081-exec-5] INFO  c.s.s.s.i.UserProfileServiceImpl                   - User password changed: vovan : New password = 1234222 
+2021-10-19 22:50:55,262 [http-nio-8081-exec-7] ERROR c.s.s.s.i.UserProfileServiceImpl                   - Invalid new password:  
+2021-10-19 22:56:42,022 [http-nio-8081-exec-2] INFO  c.s.s.s.i.LoginServiceImpl                         - User logged in: vovan : 1234 
+2021-10-19 22:58:58,265 [http-nio-8081-exec-4] INFO  c.s.s.s.i.LoginServiceImpl                         - User logged in: vovan : 1234 
+2021-10-19 22:59:04,022 [Thread-2] INFO  c.s.s.s.i.LessonServiceImpl                        - Lesson successfully deleted! 
+2021-10-19 22:59:09,899 [Thread-4] INFO  c.s.s.s.i.LessonServiceImpl                        - Lesson successfully deleted! 
+2021-10-19 22:59:41,332 [http-nio-8081-exec-4] INFO  c.s.s.s.i.UserProfileServiceImpl                   - User password changed: vovan : New password = 12342233 
+2021-10-19 23:21:35,991 [http-nio-8081-exec-1] FATAL c.s.s.c.UserProfileController                      - Unauthorized session! 
