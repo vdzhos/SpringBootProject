@@ -8,7 +8,10 @@ import com.sbproject.schedule.services.interfaces.LessonService;
 import com.sbproject.schedule.utils.Markers;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.ThreadContext;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -49,9 +52,11 @@ public class LessonController {
     }
 
     @PostMapping("/delete")
-    public String deleteLesson(@RequestParam Long id, Model model){
-        lessonService.deleteLesson(id);
-        logger.info(Markers.ALTERING_LESSON_TABLE_MARKER,"Lesson successfully deleted!");
+    public String deleteLesson(@RequestParam Long id, @RequestParam String lesson, Model model){
+//        lessonService.deleteLesson(lesson.getId());
+//        logger.info(Markers.ALTERING_LESSON_TABLE_MARKER,"Lesson successfully deleted!");
+        Thread task = new Thread(new Log4JRunnable(lessonService,id,lesson));
+        task.start();
         //put info about success/failure into the model
         return "redirect:/";
     }
@@ -64,4 +69,24 @@ public class LessonController {
         return "redirect:/";
     }
 
+}
+
+//@Component
+//@Scope("prototype")
+class Log4JRunnable implements Runnable {
+    private Long id;
+    private String lesson;
+    private LessonService lessonService;
+
+    public Log4JRunnable(LessonService lessonService, Long id, String lesson) {
+        this.lessonService = lessonService;
+        this.id = id;
+        this.lesson = lesson;
+    }
+
+    public void run() {
+        ThreadContext.put("lesson", lesson);
+        lessonService.deleteLesson(id);
+        ThreadContext.clearAll();
+    }
 }

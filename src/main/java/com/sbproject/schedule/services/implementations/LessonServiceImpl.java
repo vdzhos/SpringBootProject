@@ -1,11 +1,15 @@
 package com.sbproject.schedule.services.implementations;
 
+import com.sbproject.schedule.controllers.LessonController;
 import com.sbproject.schedule.models.*;
 import com.sbproject.schedule.repositories.LessonRepository;
 import com.sbproject.schedule.repositories.SubjectRepository;
 import com.sbproject.schedule.repositories.TeacherRepository;
 import com.sbproject.schedule.services.interfaces.LessonService;
+import com.sbproject.schedule.utils.Markers;
 import com.sbproject.schedule.utils.Utils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,6 +37,8 @@ public class LessonServiceImpl implements LessonService {
 //        this.processor = processor;
 //    }
 
+    private static Logger logger = LogManager.getLogger(LessonServiceImpl.class);
+
 
     @Override
     public boolean addLesson(Lesson.Time time, Long subjId, Long teachId, SubjectType subjectType, String weeks, Room r, DayOfWeek dayOfWeek) {
@@ -51,6 +57,7 @@ public class LessonServiceImpl implements LessonService {
     @Override
     public void deleteLesson(Long id) {
         lessonRepository.deleteById(id);
+        logger.info(Markers.DELETE_LESSON_MARKER,"Lesson successfully deleted!");
     }
 
     @Override

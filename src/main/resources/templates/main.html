@@ -238,6 +238,7 @@
                                     <td th:text="${lesson.room}"></td>
                                     <td><form action="lesson/delete/" method="post">
                                         <input name="id" type="hidden" th:value="${lesson.id}">
+                                        <input name="lesson" type="hidden" th:value="${lesson.toString()}">
                                         <button type="submit">Delete</button>
                                     </form></td>
                                     <td><form action="lesson/update/" method="post">

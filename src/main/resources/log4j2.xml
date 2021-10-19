@@ -2,6 +2,11 @@
 <Configuration xmlns="http://logging.apache.org/log4j/2.0/config" status="WARN" packages="com.sbproject.schedule.utils">
     <Appenders>
 
+        <File name="DeletedLessonsToFile" fileName="DeletedLessons.log">
+            <PatternLayout pattern="%d [%t] %-5level %-50c{1.} - %msg - %X{lesson} %n"/>
+            <MarkerFilter marker="DELETE_LESSON" onMatch="ACCEPT" onMismatch="DENY"/>
+        </File>
+
         <File name="File" fileName="Shopme.log">
             <PatternLayout pattern="%d [%t] %-5level %-50c{1.} - %msg %n"/>
             <MarkerFilter marker="IMPORTANT" onMatch="ACCEPT" onMismatch="DENY"/>
@@ -10,7 +15,6 @@
         <CustomAppender name="Custom">
             <CustomLayout/>
             <PatternLayout pattern="%d{yyyy-mmm-dd HH:mm:ss} [%t] %-5level %-50c{1.} %n"/>
-
         </CustomAppender>
 
     </Appenders>
@@ -19,6 +23,7 @@
         <Root level="info">
             <AppenderRef ref="File"/>
             <AppenderRef ref="Custom"/>
+            <AppenderRef ref="DeletedLessonsToFile"/>
         </Root>
     </Loggers>
 </Configuration>

@@ -73,7 +73,7 @@ public class Lesson {
                 .append("weeks=").append(weeks).append(',')
                 .append("room=").append(room).append(',')
                 .append("dayOfWeek=").append(dayOfWeek).append('}');
-        return super.toString();
+        return sb.toString();
     }
 
     public Long getId() {
