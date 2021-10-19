@@ -56,16 +56,23 @@ public class SpecialtyServiceImpl implements SpecialtyService {
     public void updateSpecialty(long id, String name, int year) throws InvalidSpecialtyNameException, SpecialtyInstanceAlreadyExistsException {
         name = processor.processName(name);
         processor.checkName(name);
-        if(specialtyRepository.existsByNameAndYear(name,year)){
+        if(specialtyRepository.existsByNameAndYearAndId(id,name,year)){
             throw new SpecialtyInstanceAlreadyExistsException(Values.SPECIALTY_ALREADY_EXISTS);
         }
         Optional<Specialty> specialtyOp = specialtyRepository.findById(id);//.orElseThrow();
         if (specialtyOp.isPresent()){
             Specialty specialty = specialtyOp.get();
+
+            if(nothingChanged(specialty,name,year)) return;
+
             specialty.setName(name);
             specialty.setYear(year);
             specialtyRepository.save(specialty);
         }
+    }
+
+    private boolean nothingChanged(Specialty specialty, String name, int year) {
+        return specialty.getName().equals(name)&&specialty.getYear()==year;
     }
 
     @Override
