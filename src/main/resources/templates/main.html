@@ -166,6 +166,7 @@
                                     <td th:text="${teacher.subjects}"></td>
                                     <td><form action="teacher/delete/" method="post">
                                         <input name="id" type="hidden" th:value="${teacher.id}">
+                                        <input name="teacherToString" type="hidden" th:value="${teacher.toString()}">
                                         <button type="submit">Delete</button>
                                     </form></td>
                                     <td><form action="teacher/update/" method="post">

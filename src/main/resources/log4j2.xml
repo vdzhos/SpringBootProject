@@ -22,6 +22,11 @@
             <MarkerFilter marker="DELETE_SUBJECT" onMatch="ACCEPT" onMismatch="DENY"/>
         </File>
 
+        <File name="DeletedTeachersToFile" fileName="LOGS/DeletedTeachers.log">
+            <PatternLayout pattern="%d [%t] %-5level %-50c{1.} - %msg - %X{teacher} %n"/>
+            <MarkerFilter marker="DELETE_TEACHER" onMatch="ACCEPT" onMismatch="DENY"/>
+        </File>
+
         <File name="File" fileName="LOGS/Shopme.log">
             <PatternLayout pattern="%d [%t] %-5level %-50c{1.} - %msg %n"/>
             <MarkerFilter marker="IMPORTANT" onMatch="ACCEPT" onMismatch="DENY"/>
@@ -42,6 +47,7 @@
             <AppenderRef ref="Users"/>
             <AppenderRef ref="DeletedSpecialtiesToFile"/>
             <AppenderRef ref="DeletedSubjectsToFile"/>
+            <AppenderRef ref="DeletedTeachersToFile"/>
         </Root>
     </Loggers>
 </Configuration>

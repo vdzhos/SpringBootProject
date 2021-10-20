@@ -4,7 +4,10 @@ import com.sbproject.schedule.models.Subject;
 import com.sbproject.schedule.models.Teacher;
 import com.sbproject.schedule.repositories.TeacherRepository;
 import com.sbproject.schedule.services.interfaces.TeacherService;
+import com.sbproject.schedule.utils.Markers;
 import com.sbproject.schedule.utils.Utils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +17,7 @@ import java.util.Set;
 public class TeacherServiceImpl implements TeacherService {
 
     private TeacherRepository teacherRepository;
+    private static Logger logger = LogManager.getLogger(TeacherServiceImpl.class);
 
     @Autowired
     private Utils utils;
@@ -34,6 +38,7 @@ public class TeacherServiceImpl implements TeacherService {
     @Override
     public void deleteTeacher(Long id) {
         teacherRepository.deleteById(id);
+        logger.info(Markers.DELETE_TEACHER_MARKER,"Teacher has been successfully deleted!");
     }
 
     @Override
