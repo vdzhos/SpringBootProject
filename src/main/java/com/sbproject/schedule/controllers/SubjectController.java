@@ -4,6 +4,9 @@ import com.sbproject.schedule.models.Specialty;
 import com.sbproject.schedule.models.Teacher;
 import com.sbproject.schedule.services.implementations.SubjectServiceImpl;
 import com.sbproject.schedule.services.interfaces.SubjectService;
+import com.sbproject.schedule.utils.Markers;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +28,7 @@ import java.util.Set;
 public class SubjectController {
 
     private SubjectServiceImpl subjectService;
+    private static Logger logger = LogManager.getLogger(SubjectController.class);
 
     @Autowired
     public SubjectController(SubjectServiceImpl subjectService) {
@@ -34,15 +38,18 @@ public class SubjectController {
     @PostMapping("/add")
     public RedirectView addSubject(@RequestParam String name, @RequestParam int quantOfGroups,
                              @RequestParam Set<Specialty> specialties, Model model, RedirectAttributes redir){
-        subjectService.addSubject(name, quantOfGroups, specialties);
         //put info about success/failure into the model
         //return "redirect:/";
         RedirectView redirectView= new RedirectView("/",true);
-        //String notification = "Предмет '"+name+"' було успішно додано!";
+        String notification = "Предмет '"+name+"' було успішно додано!";
         boolean success = subjectService.addSubject(name, quantOfGroups, specialties);
-        //if (!success) notification = "Предмет не було додано!";
-        //redir.addFlashAttribute("success", success);
-        //redir.addFlashAttribute("notification",notification);
+        if(success) logger.info(Markers.ALTERING_SUBJECT_TABLE_MARKER,"Subject {} with {} groups has been successfully added!", name, quantOfGroups);
+        else {
+            notification = "Предмет не було додано!";
+            logger.error(Markers.ALTERING_SUBJECT_TABLE_MARKER,"Subject {} with {} groups has not been added!", name, quantOfGroups);
+        }
+        redir.addFlashAttribute("success", success);
+        redir.addFlashAttribute("notification", notification);
         return redirectView;
     }
 
@@ -50,6 +57,7 @@ public class SubjectController {
     @PostMapping("/delete")
     public String deleteSubject(@RequestParam Long id, Model model){
         subjectService.deleteSubject(id);
+        logger.info(Markers.DELETE_SUBJECT_MARKER,"Subject has been successfully deleted!");
         //put info about success/failure into the model
         return "redirect:/";
     }

@@ -21,3 +21,11 @@
 2021-10-19 23:21:35,991 [http-nio-8081-exec-1] FATAL c.s.s.c.UserProfileController                      - Unauthorized session! 
 2021-10-20 00:08:30,424 [http-nio-8081-exec-6] INFO  c.s.s.c.LessonController                           - Specialty has been successfully deleted! 
 2021-10-20 00:08:34,483 [http-nio-8081-exec-8] INFO  c.s.s.c.LessonController                           - Specialty has been successfully deleted! 
+2021-10-20 13:45:50,749 [http-nio-8081-exec-10] INFO  c.s.s.c.LessonController                           - Specialty 'IPZ'-'1' has been successfully added! 
+2021-10-20 13:46:24,221 [http-nio-8081-exec-7] FATAL c.s.s.c.UserProfileController                      - Unauthorized session! 
+2021-10-20 14:18:07,478 [http-nio-8081-exec-10] INFO  c.s.s.c.LessonController                           - Lesson successfully added! 
+2021-10-20 16:02:08,444 [http-nio-8081-exec-7] INFO  c.s.s.c.SubjectController                          - Subject has been successfully deleted! 
+2021-10-20 16:03:05,149 [http-nio-8081-exec-2] INFO  c.s.s.c.SubjectController                          - Subject Shos with 2 groups has been successfully added! 
+2021-10-20 16:04:59,034 [Thread-2] INFO  c.s.s.s.i.LessonServiceImpl                        - Lesson successfully deleted! 
+2021-10-20 16:18:07,643 [http-nio-8081-exec-7] INFO  c.s.s.c.LessonController                           - Specialty has been successfully updated to 'IPZ'-'3'! 
+2021-10-20 16:18:17,852 [http-nio-8081-exec-2] ERROR c.s.s.c.LessonController                           - Specialty 'IPZ'-'4' already exists. Specialty has not been updated! 
