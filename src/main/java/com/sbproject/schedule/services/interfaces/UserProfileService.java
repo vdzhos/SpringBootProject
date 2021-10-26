@@ -6,6 +6,6 @@ import com.sbproject.schedule.models.User;
 
 public interface UserProfileService {
 
-	void updatePassword(String login, String newpassord) throws UserNotFoundException, InvalidPasswordException;
+	void updatePassword(String login, String oldpassword, String newpassord) throws UserNotFoundException, InvalidPasswordException;
 	User getUserByLogin(String login);
 }

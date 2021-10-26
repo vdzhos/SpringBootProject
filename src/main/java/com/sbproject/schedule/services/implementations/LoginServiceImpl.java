@@ -2,6 +2,8 @@ package com.sbproject.schedule.services.implementations;
 
 import com.sbproject.schedule.repositories.UserRepository;
 
+import java.util.Optional;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.sbproject.schedule.exceptions.user.LoginUsedException;
+import com.sbproject.schedule.exceptions.user.UserNotFoundException;
 import com.sbproject.schedule.exceptions.user.WrongRoleCodeException;
 import com.sbproject.schedule.models.User;
 import com.sbproject.schedule.services.interfaces.LoginService;
@@ -39,7 +42,7 @@ public class LoginServiceImpl implements LoginService {
 			logger.error(Markers.USER_MARKER, "Wrong role code: " + roleCode);
 			throw new WrongRoleCodeException("Wrong role code!");
 		}
-		if(userRepo.findByLogin(login) != null) {
+		if(!userRepo.findById(login).isEmpty()) {
 			logger.error(Markers.USER_MARKER, "Login is already in use: " + login);
 			throw new LoginUsedException("This login is already in use!");
 		}
@@ -48,10 +51,6 @@ public class LoginServiceImpl implements LoginService {
 		userRepo.save(new User(login, password, role));
 	}
 
-	/*@Override
-	public void deleteUser(Long id) {
-		userRepo.deleteById(id);
-	}*/
 
 	/*@Override
 	public Iterable<User> getAll() {
@@ -60,10 +59,37 @@ public class LoginServiceImpl implements LoginService {
 
 	@Override
 	public boolean validateUser(String login, String password) {
-		User user = userRepo.findByLogin(login);
-		if(user == null || !user.getPassword().equals(password))
+		Optional<User> opt = userRepo.findById(login);
+		if(opt.isEmpty())
+			return false;
+		if(!opt.get().getPassword().equals(password))
 			return false;
 		logger.info(Markers.USER_MARKER, "User logged in: " + login + " : " + password);
+		return true;
+	}
+	
+///////////////////////testing rest///////////////////////
+	@Override
+	public User getUser(String login) throws UserNotFoundException {
+		Optional<User> opt = userRepo.findById(login);
+		if(opt.isEmpty()) {
+			logger.error(Markers.USER_MARKER, "User not found: " + login);
+			throw new UserNotFoundException("User not found!");
+		}
+		return opt.get();
+	}
+
+	@Override
+	public boolean deleteUser(String login, String password) throws UserNotFoundException {
+		Optional<User> opt = userRepo.findById(login);
+		if(opt.isEmpty()) {
+			logger.error(Markers.USER_MARKER, "User not found: " + login);
+			throw new UserNotFoundException("User not found!");
+		}
+		if(!password.equals(opt.get().getPassword()))
+			return false;
+		userRepo.deleteById(login);
+		logger.info(Markers.USER_MARKER, "User deleted: " + login + " : " + password);
 		return true;
 	}
 
