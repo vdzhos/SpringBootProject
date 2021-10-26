@@ -6,10 +6,14 @@ import java.time.DayOfWeek;
 
 public interface LessonService {
 
-    void deleteLesson(Long id);
+    Lesson getLessonById(Long id) throws Exception;
+    Iterable<Lesson> getAll();
     boolean updateLesson(Long id, Lesson.Time time, Subject subject, Teacher teacher, SubjectType group,
                          String weeks, Room room, DayOfWeek dayOfWeek);
-    Iterable<Lesson> getAll();
-
+    Lesson updateLesson(Lesson lesson) throws Exception;
     boolean addLesson(Lesson.Time value, Long subjId, Long teachId, SubjectType subjectType, String weeks, Room r, DayOfWeek of);
+    Lesson addLesson(Lesson lesson);
+    boolean lessonExistsById(Long id);
+    void deleteLesson(Long id) throws Exception;
+
 }

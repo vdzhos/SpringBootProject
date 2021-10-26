@@ -55,7 +55,18 @@ public class LessonServiceImpl implements LessonService {
     }
 
     @Override
-    public void deleteLesson(Long id) {
+    public Lesson addLesson(Lesson lesson) {
+        return lessonRepository.save(lesson);
+    }
+
+    @Override
+    public boolean lessonExistsById(Long id) {
+        return lessonRepository.existsById(id);
+    }
+
+    @Override
+    public void deleteLesson(Long id) throws Exception{
+        if(!lessonExistsById(id)) throw new Exception("Lesson with id '"+ id +"' not found!");
         lessonRepository.deleteById(id);
         logger.info(Markers.DELETE_LESSON_MARKER,"Lesson successfully deleted!");
     }
@@ -64,6 +75,17 @@ public class LessonServiceImpl implements LessonService {
     public boolean updateLesson(Long id, Lesson.Time time, Subject subject, Teacher teacher, SubjectType group, String weeks, Room room, DayOfWeek dayOfWeek) {
         lessonRepository.save(new Lesson(id,time,subject,teacher,group,weeks,room,dayOfWeek));
         return true;
+    }
+
+    @Override
+    public Lesson updateLesson(Lesson lesson) throws Exception {
+        if(!lessonExistsById(lesson.getId())) throw new Exception("Lesson with id '"+ lesson.getId() +"' not found!");
+        return lessonRepository.save(lesson);
+    }
+
+    @Override
+    public Lesson getLessonById(Long id) throws Exception{
+        return lessonRepository.findById(id).orElseThrow(() -> new Exception("Lesson with id '"+ id +"' not found!"));
     }
 
     @Override
