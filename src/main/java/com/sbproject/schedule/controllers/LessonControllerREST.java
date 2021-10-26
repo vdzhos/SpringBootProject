@@ -5,8 +5,11 @@ import com.sbproject.schedule.exceptions.lesson.NoLessonWithSuchIdToUpdate;
 import com.sbproject.schedule.models.Lesson;
 import com.sbproject.schedule.services.interfaces.LessonService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -34,12 +37,12 @@ public class LessonControllerREST {
     }
 
     @PostMapping("/add")
-    public Lesson addLesson(@RequestBody Lesson lesson){
+    public Lesson addLesson(@Valid @RequestBody Lesson lesson){
         return lessonService.addLesson(lesson);
     }
 
     @PutMapping("/{id}")
-    public Lesson updateLesson(@PathVariable(value = "id") Long id, @RequestBody Lesson lesson) throws NoLessonWithSuchIdToUpdate {
+    public Lesson updateLesson(@PathVariable(value = "id") Long id, @Valid @RequestBody Lesson lesson) throws NoLessonWithSuchIdToUpdate {
         lesson.setId(id);
         return lessonService.updateLesson(lesson);
     }
@@ -54,7 +57,7 @@ public class LessonControllerREST {
 
     @ExceptionHandler(NoLessonWithSuchIdToDelete.class)
     public Map<String, String> handleException(NoLessonWithSuchIdToDelete ex){
-        Map<String, String> result = new LinkedHashMap<>();
+        Map<String, String> result = new HashMap<>();
         result.put("deleted", "false");
         result.put("error", ex.getMessage());
         return result;
@@ -62,9 +65,20 @@ public class LessonControllerREST {
 
     @ExceptionHandler(NoLessonWithSuchIdToUpdate.class)
     public Map<String, String> handleException(NoLessonWithSuchIdToUpdate ex){
-        Map<String, String> result = new LinkedHashMap<>();
+        Map<String, String> result = new HashMap<>();
         result.put("updated", "false");
         result.put("error", ex.getMessage());
+        return result;
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public Map<String, String> handleException(MethodArgumentNotValidException ex){
+        Map<String, String> result = new HashMap<>();
+        ex.getBindingResult().getAllErrors().forEach(error -> {
+            String fieldName = ((FieldError) error).getField();
+            String errorMessage = error.getDefaultMessage();
+            result.put(fieldName, errorMessage);
+        });
         return result;
     }
 
