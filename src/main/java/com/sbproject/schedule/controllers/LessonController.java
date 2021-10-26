@@ -86,7 +86,9 @@ class Log4JRunnable implements Runnable {
 
     public void run() {
         ThreadContext.put("lesson", lesson);
-        lessonService.deleteLesson(id);
+        try{
+            lessonService.deleteLesson(id);
+        }catch (Exception ignored){}
         ThreadContext.clearAll();
     }
 }

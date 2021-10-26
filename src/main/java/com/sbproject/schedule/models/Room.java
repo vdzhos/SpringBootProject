@@ -1,7 +1,10 @@
 package com.sbproject.schedule.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.io.Serializable;
 
+@JsonIgnoreProperties(value={ "type" }, allowGetters=true)
 public class Room implements Serializable {
 
     private String room;
