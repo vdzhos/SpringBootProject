@@ -8,6 +8,7 @@ import com.sbproject.schedule.models.Teacher;
 import com.sbproject.schedule.services.implementations.SpecialtyServiceImpl;
 import com.sbproject.schedule.services.implementations.SubjectServiceImpl;
 import com.sbproject.schedule.services.implementations.TeacherServiceImpl;
+import com.sbproject.schedule.utils.Markers;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,18 +29,6 @@ public class SubjectRestController {
     private SubjectServiceImpl subjectService;
     private static Logger logger = LogManager.getLogger(SubjectRestController.class);
 
-    /* @GetMapping(value = "/{id}")
-    public Foo findById(@PathVariable("id") Long id, HttpServletResponse response) {
-        try {
-            Foo resourceById = RestPreconditions.checkFound(service.findOne(id));
-            eventPublisher.publishEvent(new SingleResourceRetrievedEvent(this, response));
-            return resourceById;
-        }
-        catch (MyResourceNotFoundException exc) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Foo Not Found", exc);
-        }
-    } */
-
     @GetMapping("/get")
     public Iterable<Subject> getSubjects(){
         return subjectService.getAll();
@@ -58,17 +47,22 @@ public class SubjectRestController {
     @DeleteMapping("/delete/{id}")
     public void deleteSubject(@PathVariable("id") Long id) throws NoSubjectWithSuchIdToDelete {
         subjectService.deleteSubject(id);
+        logger.info(Markers.DELETE_SUBJECT_MARKER,"Subject has been successfully deleted!");
     }
 
     @PostMapping("/add")
     public Subject addSubject(@Valid @RequestBody Subject subject){
-        return subjectService.addSubject(subject);
+        Subject s = subjectService.addSubject(subject);
+        logger.info(Markers.ALTERING_SUBJECT_TABLE_MARKER,"Subject {} with {} groups has been successfully added!", subject.getName(), subject.getQuantOfGroups());
+        return s;
     }
 
     @PutMapping("/update/{id}")
     public Subject updateSubject(@PathVariable("id") Long id, @Valid @RequestBody Subject subject) throws NoSubjectWithSuchIdToUpdate {
         subject.setId(id);
-        return subjectService.updateSubject(subject);
+        Subject s = subjectService.updateSubject(subject);
+        logger.info(Markers.UPDATE_SUBJECT_MARKER,"Subject has been successfully deleted!");
+        return s;
     }
 
     @ExceptionHandler(NoSubjectWithSuchIdToDelete.class)
