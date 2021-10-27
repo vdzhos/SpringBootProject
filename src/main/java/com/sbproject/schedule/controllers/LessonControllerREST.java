@@ -71,15 +71,4 @@ public class LessonControllerREST {
         return result;
     }
 
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    public Map<String, String> handleException(MethodArgumentNotValidException ex){
-        Map<String, String> result = new HashMap<>();
-        ex.getBindingResult().getAllErrors().forEach(error -> {
-            String fieldName = ((FieldError) error).getField();
-            String errorMessage = error.getDefaultMessage();
-            result.put(fieldName, errorMessage);
-        });
-        return result;
-    }
-
 }

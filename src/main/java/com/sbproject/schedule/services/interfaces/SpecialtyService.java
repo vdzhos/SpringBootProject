@@ -15,5 +15,4 @@ public interface SpecialtyService {
     void updateSpecialty(long id, String name, int year) throws InvalidSpecialtyNameException, SpecialtyInstanceAlreadyExistsException;
     Iterable<Specialty> getAll();
 
-    Set<Specialty> getSpecialtiesByIds(List<Long> specialtiesIds);
 }

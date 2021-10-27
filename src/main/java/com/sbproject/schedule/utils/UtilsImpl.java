@@ -1,7 +1,12 @@
 package com.sbproject.schedule.utils;
 
 import com.sbproject.schedule.exceptions.specialty.InvalidSpecialtyNameException;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 public class UtilsImpl  implements Utils {

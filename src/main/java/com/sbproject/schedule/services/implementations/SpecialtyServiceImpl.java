@@ -93,9 +93,4 @@ public class SpecialtyServiceImpl implements SpecialtyService {
         return specialtyRepository.findAll();
     }
 
-    @Override
-    public Set<Specialty> getSpecialtiesByIds(List<Long> specialtiesIds) {
-        return (Set<Specialty>) specialtyRepository.findAllById(specialtiesIds);
-    }
-
 }

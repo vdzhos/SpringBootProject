@@ -14,5 +14,4 @@ public interface TeacherService {
     boolean updateTeacher(Long id, String name);
     Iterable<Teacher> getAll();
 
-    Set<Teacher> getTeachersByIds(List<Long> teachersIds);
 }

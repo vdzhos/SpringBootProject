@@ -53,8 +53,4 @@ public class TeacherServiceImpl implements TeacherService {
         return teacherRepository.findAll();
     }
 
-    @Override
-    public Set<Teacher> getTeachersByIds(List<Long> teachersIds) {
-        return (Set<Teacher>) teacherRepository.findAllById(teachersIds);
-    }
 }
