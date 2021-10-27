@@ -57,6 +57,7 @@ public class LessonServiceImpl implements LessonService {
 
     @Override
     public Lesson addLesson(Lesson lesson) {
+        lesson.setId(-1L);
         return lessonRepository.save(lesson);
     }
 
