@@ -51,4 +51,5 @@ class SpecialtyRestController {
     public void deleteAll(){
         specialtyService.deleteAll();
     }
+
 }

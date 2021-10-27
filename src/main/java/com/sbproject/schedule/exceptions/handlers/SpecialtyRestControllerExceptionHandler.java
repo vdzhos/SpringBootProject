@@ -22,6 +22,7 @@ public class SpecialtyRestControllerExceptionHandler {
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)
     public ResponseEntity<Map<String,String>> handleInvalidObjectsExceptions(MethodArgumentNotValidException e){
         Map<String,String> map = new HashMap<>();
+        map.put("success","false");
         for(FieldError error: e.getFieldErrors()){
             map.put(error.getField(),error.getDefaultMessage());
         }
@@ -32,6 +33,7 @@ public class SpecialtyRestControllerExceptionHandler {
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)
     public ResponseEntity<Map<String,String>> handleInvalidParamsExceptions(ConstraintViolationException e){
         Map<String,String> map = new HashMap<>();
+        map.put("success","false");
         for(ConstraintViolation<?> violation: e.getConstraintViolations()){
             map.put(violation.getPropertyPath().toString(),violation.getMessage());
         }
@@ -39,14 +41,18 @@ public class SpecialtyRestControllerExceptionHandler {
     }
 
     @ExceptionHandler(value = {SpecialtyInstanceAlreadyExistsException.class})
-    public ResponseEntity<String> handleOtherExceptions(SpecialtyInstanceAlreadyExistsException e){
-        String s = e.getMessage();
-        return new ResponseEntity<>(s,HttpStatus.BAD_REQUEST);
+    public ResponseEntity<Map<String,String>> handleOtherExceptions(SpecialtyInstanceAlreadyExistsException e){
+        Map<String,String> map = new HashMap<>();
+        map.put("success","false");
+        map.put("error",e.getMessage());
+        return new ResponseEntity<>(map,HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(value = {SpecialtyNotFoundException.class})
-    public ResponseEntity<String> handleOtherExceptions(SpecialtyNotFoundException e){
-        String s = e.getMessage();
-        return new ResponseEntity<>(s,HttpStatus.BAD_REQUEST);
+    public ResponseEntity<Map<String,String>> handleOtherExceptions(SpecialtyNotFoundException e){
+        Map<String,String> map = new HashMap<>();
+        map.put("success","false");
+        map.put("error",e.getMessage());
+        return new ResponseEntity<>(map,HttpStatus.BAD_REQUEST);
     }
 }
