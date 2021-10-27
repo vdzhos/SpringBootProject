@@ -1,7 +1,13 @@
 package com.sbproject.schedule.models;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.sbproject.schedule.utils.EntityIdResolver;
+
 import javax.persistence.*;
-import java.io.Serializable;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.time.DayOfWeek;
 
 @Entity
@@ -12,28 +18,48 @@ public class Lesson {
     private Long id;
 
     @Column(nullable = false)
+    @NotNull(message = "Mandatory field!")
     private Time time;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "subject_id", nullable = false)
+    @JsonIdentityInfo(
+            generator = ObjectIdGenerators.PropertyGenerator.class,
+            property = "id",
+            scope = Subject.class,
+            resolver = EntityIdResolver.class)
+    @JsonIdentityReference(alwaysAsId = true)
+    @NotNull(message = "Mandatory field!")
     private Subject subject;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "teacher_id", nullable = false)
+    @JsonIdentityInfo(
+            generator = ObjectIdGenerators.PropertyGenerator.class,
+            property = "id",
+            scope = Teacher.class,
+            resolver = EntityIdResolver.class)
+    @JsonIdentityReference(alwaysAsId = true)
+    @NotNull(message = "Mandatory field!")
     private Teacher teacher;
 
     @Lob
     @Column(name = "groupValue", nullable = false)
+    @NotNull(message = "Mandatory field!")
     private SubjectType group;
 
+    @NotNull(message = "Mandatory field!")
+    @Pattern(regexp = "^([1-9][0-9]*(-[1-9][0-9]*)?)(,([1-9][0-9]*(-[1-9][0-9]*)?))*$", message = "Value doesn't match the pattern!")
     @Column(nullable = false)
     private String weeks;
 
     @Lob
     @Column(nullable = false)
+    @NotNull(message = "Mandatory field!")
     private Room room;
 
     @Column(nullable = false)
+    @NotNull(message = "Mandatory field!")
     private DayOfWeek dayOfWeek;
 
     public Lesson() { }

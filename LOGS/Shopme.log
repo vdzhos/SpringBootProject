@@ -45,9 +45,9 @@
 2021-10-20 21:58:28,186 [http-nio-8081-exec-4] INFO  c.s.s.c.TeacherController                          - Teacher Illia Kuznets with [Subject 1] subjects has been successfully added! 
 2021-10-20 21:58:39,571 [http-nio-8081-exec-8] INFO  c.s.s.c.TeacherController                          - Teacher has been successfully deleted! 
 2021-10-20 22:00:31,087 [http-nio-8081-exec-3] INFO  c.s.s.s.i.TeacherServiceImpl                       - Teacher has been successfully deleted! 
-2021-10-26 19:46:28,719 [http-nio-8081-exec-8] INFO  c.s.s.c.LessonController                           - Specialty 'Some'-'1' has been successfully added! 
-2021-10-26 19:46:44,064 [http-nio-8081-exec-7] INFO  c.s.s.c.LessonController                           - Specialty has been successfully updated to 'IPZ'-'1'! 
-2021-10-26 19:46:51,231 [http-nio-8081-exec-9] FATAL c.s.s.c.UserProfileController                      - Unauthorized session! 
-2021-10-26 19:47:04,432 [http-nio-8081-exec-6] INFO  c.s.s.c.LessonController                           - Specialty has been successfully deleted! 
-2021-10-26 20:42:20,848 [http-nio-8081-exec-2] INFO  c.s.s.c.SubjectController                          - Subject Subject with 2 groups has been successfully added! 
-2021-10-26 21:32:46,737 [http-nio-8081-exec-10] INFO  c.s.s.c.SubjectController                          - Subject Subject with 1 groups has been successfully added! 
+2021-10-26 19:46:28,719 [http-nio-8081-exec-8] INFO  c.s.s.c.LessonController                           - Specialty 'Some'-'1' has been successfully added!
+2021-10-26 19:46:44,064 [http-nio-8081-exec-7] INFO  c.s.s.c.LessonController                           - Specialty has been successfully updated to 'IPZ'-'1'!
+2021-10-26 19:46:51,231 [http-nio-8081-exec-9] FATAL c.s.s.c.UserProfileController                      - Unauthorized session!
+2021-10-26 19:47:04,432 [http-nio-8081-exec-6] INFO  c.s.s.c.LessonController                           - Specialty has been successfully deleted!
+2021-10-26 20:42:20,848 [http-nio-8081-exec-2] INFO  c.s.s.c.SubjectController                          - Subject Subject with 2 groups has been successfully added!
+2021-10-26 21:32:46,737 [http-nio-8081-exec-10] INFO  c.s.s.c.SubjectController                          - Subject Subject with 1 groups has been successfully added!

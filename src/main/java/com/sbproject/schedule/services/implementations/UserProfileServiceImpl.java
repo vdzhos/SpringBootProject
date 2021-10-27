@@ -1,5 +1,7 @@
 package com.sbproject.schedule.services.implementations;
 
+import java.util.Optional;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,15 +27,20 @@ public class UserProfileServiceImpl implements UserProfileService {
 	}
 	
 	@Override
-	public void updatePassword(String login, String newpassword) throws UserNotFoundException, InvalidPasswordException {
-		User user = userRepo.findByLogin(login);
-		if(user == null) {
+	public void updatePassword(String login, String oldpassword, String newpassword) throws UserNotFoundException, InvalidPasswordException {
+		Optional<User> opt = userRepo.findById(login);
+		if(opt.isEmpty()) {
 			logger.error(Markers.USER_MARKER, "User doesn`t exist: " + login);
 			throw new UserNotFoundException("User doesn`t exist");
 		}
 		if(newpassword == null || newpassword.equals("")) {
 			logger.error(Markers.USER_MARKER, "Invalid new password: " + newpassword);
 			throw new InvalidPasswordException("Invalid password!");
+		}
+		User user = opt.get();
+		if(!user.getPassword().equals(oldpassword)) {
+			logger.error(Markers.USER_MARKER, "Wrong previous password: " + oldpassword);
+			throw new InvalidPasswordException("Wrong previous password");
 		}
 		if(!user.getPassword().equals(newpassword)) {
 			user.setPassword(newpassword);
@@ -44,7 +51,8 @@ public class UserProfileServiceImpl implements UserProfileService {
 
 	@Override
 	public User getUserByLogin(String login) {
-		return userRepo.findByLogin(login);
+		Optional<User> opt = userRepo.findById(login);
+		return opt.isEmpty() ? null : opt.get();
 	}
 
 }
