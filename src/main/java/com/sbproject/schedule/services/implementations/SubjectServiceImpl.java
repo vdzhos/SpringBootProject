@@ -50,6 +50,7 @@ public class SubjectServiceImpl implements SubjectService {
 
     @Override
     public Subject addSubject(Subject subject) {
+        subject.setId(-1L);
         return subjectRepository.save(subject);
     }
 
