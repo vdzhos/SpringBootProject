@@ -1,5 +1,6 @@
 package com.sbproject.schedule.controllers;
 
+import com.sbproject.schedule.exceptions.teacher.NoTeacherWithSuchIdException;
 import com.sbproject.schedule.models.Subject;
 import com.sbproject.schedule.services.implementations.TeacherServiceImpl;
 import com.sbproject.schedule.services.interfaces.LessonService;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.util.List;
 import java.util.Set;
 
 @Controller
@@ -32,7 +34,7 @@ public class TeacherController {
     }
 
     @PostMapping("/add")
-    public RedirectView addTeacher(@RequestParam String name, @RequestParam Set<Subject> subjects, Model model, RedirectAttributes redir){
+    public RedirectView addTeacher(@RequestParam String name, @RequestParam List<Subject> subjects, Model model, RedirectAttributes redir){
         RedirectView redirectView= new RedirectView("/",true);
         String notification = "Вчитель '"+name+"' був успішно доданий!";
         boolean success =  teacherService.addTeacher(name, subjects);
@@ -47,11 +49,11 @@ public class TeacherController {
     }
 
     @PostMapping("/delete")
-    public String deleteTeacher(@RequestParam Long id, @RequestParam String teacherToString, Model model){
+    public String deleteTeacher(@RequestParam Long id, @RequestParam String teacherToString, Model model) throws NoTeacherWithSuchIdException {
         ThreadContext.put("teacher",teacherToString);
         teacherService.deleteTeacher(id);
         ThreadContext.clearAll();
-
+        logger.info(Markers.DELETE_TEACHER_MARKER,"Teacher has been successfully deleted!");
         //put info about success/failure into the model
         return "redirect:/";
     }

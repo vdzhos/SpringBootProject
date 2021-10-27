@@ -8,8 +8,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TeacherRepository extends CrudRepository<Teacher,Long> {
 
-
-    Iterable<Teacher> findByName(String name);
-
-
+    Iterable<Teacher> findByName(String s);
 }

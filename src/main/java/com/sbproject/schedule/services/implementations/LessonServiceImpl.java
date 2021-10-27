@@ -1,6 +1,7 @@
 package com.sbproject.schedule.services.implementations;
 
-import com.sbproject.schedule.controllers.LessonController;
+import com.sbproject.schedule.exceptions.lesson.NoLessonWithSuchIdToDelete;
+import com.sbproject.schedule.exceptions.lesson.NoLessonWithSuchIdToUpdate;
 import com.sbproject.schedule.models.*;
 import com.sbproject.schedule.repositories.LessonRepository;
 import com.sbproject.schedule.repositories.SubjectRepository;
@@ -55,7 +56,19 @@ public class LessonServiceImpl implements LessonService {
     }
 
     @Override
-    public void deleteLesson(Long id) {
+    public Lesson addLesson(Lesson lesson) {
+        lesson.setId(-1L);
+        return lessonRepository.save(lesson);
+    }
+
+    @Override
+    public boolean lessonExistsById(Long id) {
+        return lessonRepository.existsById(id);
+    }
+
+    @Override
+    public void deleteLesson(Long id) throws NoLessonWithSuchIdToDelete {
+        if(!lessonExistsById(id)) throw new NoLessonWithSuchIdToDelete(id);
         lessonRepository.deleteById(id);
         logger.info(Markers.DELETE_LESSON_MARKER,"Lesson successfully deleted!");
     }
@@ -64,6 +77,17 @@ public class LessonServiceImpl implements LessonService {
     public boolean updateLesson(Long id, Lesson.Time time, Subject subject, Teacher teacher, SubjectType group, String weeks, Room room, DayOfWeek dayOfWeek) {
         lessonRepository.save(new Lesson(id,time,subject,teacher,group,weeks,room,dayOfWeek));
         return true;
+    }
+
+    @Override
+    public Lesson updateLesson(Lesson lesson) throws NoLessonWithSuchIdToUpdate {
+        if(!lessonExistsById(lesson.getId())) throw new NoLessonWithSuchIdToUpdate(lesson.getId());
+        return lessonRepository.save(lesson);
+    }
+
+    @Override
+    public Lesson getLessonById(Long id) throws Exception{
+        return lessonRepository.findById(id).orElseThrow(() -> new Exception("Lesson with id '"+ id +"' not found!"));
     }
 
     @Override

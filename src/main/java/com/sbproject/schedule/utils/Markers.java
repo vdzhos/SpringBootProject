@@ -26,6 +26,8 @@ public class Markers {
 
     public static final Marker ALTERING_SUBJECT_TABLE_MARKER = MarkerManager.getMarker("ALTERING_SUBJECT_TABLE")
             .setParents(IMPORTANT_MARKER);
+    public static final Marker UPDATE_SUBJECT_MARKER = MarkerManager.getMarker("UPDATE_SUBJECT")
+            .setParents(ALTERING_SUBJECT_TABLE_MARKER);
     public static final Marker DELETE_SUBJECT_MARKER = MarkerManager.getMarker("DELETE_SUBJECT")
             .setParents(ALTERING_SUBJECT_TABLE_MARKER);
 

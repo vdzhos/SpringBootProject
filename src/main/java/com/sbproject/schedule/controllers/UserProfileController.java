@@ -5,15 +5,18 @@ import javax.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.sbproject.schedule.models.User;
-import com.sbproject.schedule.services.implementations.UserProfileServiceImpl;
 import com.sbproject.schedule.services.interfaces.UserProfileService;
 import com.sbproject.schedule.utils.Markers;
 
@@ -50,7 +53,7 @@ public class UserProfileController {
 	@PostMapping("/passUpdate")
 	public String updatePassword(@RequestParam String password) {
 		try {
-			userService.updatePassword(currentUser.getLogin(), password);
+			userService.updatePassword(currentUser.getLogin(), currentUser.getPassword(), password);
 			errorMessage = "";
 		} catch(Exception e) {
 			errorMessage = e.getMessage();
@@ -64,4 +67,16 @@ public class UserProfileController {
 		return "redirect:/";
 	}
 	
+///////////////rest method ///////////////
+	
+	@PutMapping("rest/passupdate")
+	@ResponseBody
+	public String restPasswordUpdate(@RequestParam String login, @RequestParam String password, @RequestParam String newPassword) {
+		try {
+			userService.updatePassword(login, password, newPassword);
+		} catch(Exception e) {
+			throw new ResponseStatusException(HttpStatus.FORBIDDEN, e.getMessage(), e);
+		}
+		return HttpStatus.OK.toString();
+	}
 }
