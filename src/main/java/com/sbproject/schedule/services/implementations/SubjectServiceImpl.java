@@ -56,7 +56,7 @@ public class SubjectServiceImpl implements SubjectService {
 
     @Transactional
     @Override
-    public void deleteSubject(Long id) throws NoSubjectWithSuchIdToDelete {
+    public void deleteSubject(Long id) {
         if(!subjectExistsById(id)) throw new NoSubjectWithSuchIdToDelete(id);
         subjectRepository.deleteById(id);
     }
@@ -81,7 +81,7 @@ public class SubjectServiceImpl implements SubjectService {
     }
 
     @Override
-    public Subject updateSubject(Subject subject) throws NoSubjectWithSuchIdToUpdate {
+    public Subject updateSubject(Subject subject) {
         if(!subjectExistsById(subject.getId())) throw new NoSubjectWithSuchIdToUpdate(subject.getId());
         return subjectRepository.save(subject);
     }

@@ -1,5 +1,6 @@
 package com.sbproject.schedule.controllers;
 
+import com.sbproject.schedule.exceptions.specialty.SpecialtyNotFoundException;
 import com.sbproject.schedule.exceptions.subject.NoSubjectWithSuchIdToDelete;
 import com.sbproject.schedule.exceptions.subject.NoSubjectWithSuchIdToUpdate;
 import com.sbproject.schedule.models.Specialty;
@@ -12,6 +13,8 @@ import com.sbproject.schedule.utils.Markers;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -45,7 +48,7 @@ public class SubjectRestController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public void deleteSubject(@PathVariable("id") Long id) throws NoSubjectWithSuchIdToDelete {
+    public void deleteSubject(@PathVariable("id") Long id) {
         subjectService.deleteSubject(id);
         logger.info(Markers.DELETE_SUBJECT_MARKER,"Subject has been successfully deleted!");
     }
@@ -58,7 +61,7 @@ public class SubjectRestController {
     }
 
     @PutMapping("/update/{id}")
-    public Subject updateSubject(@PathVariable("id") Long id, @Valid @RequestBody Subject subject) throws NoSubjectWithSuchIdToUpdate {
+    public Subject updateSubject(@PathVariable("id") Long id, @Valid @RequestBody Subject subject) {
         subject.setId(id);
         Subject s = subjectService.updateSubject(subject);
         logger.info(Markers.UPDATE_SUBJECT_MARKER,"Subject has been successfully deleted!");
@@ -66,19 +69,19 @@ public class SubjectRestController {
     }
 
     @ExceptionHandler(NoSubjectWithSuchIdToDelete.class)
-    public Map<String, String> handleException(NoSubjectWithSuchIdToDelete ex){
+    public ResponseEntity<Map<String,String>> handleException(NoSubjectWithSuchIdToDelete ex){
         Map<String, String> result = new HashMap<>();
         result.put("deleted", "false");
         result.put("error", ex.getMessage());
-        return result;
+        return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(NoSubjectWithSuchIdToUpdate.class)
-    public Map<String, String> handleException(NoSubjectWithSuchIdToUpdate ex){
+    public ResponseEntity<Map<String,String>> handleException(NoSubjectWithSuchIdToUpdate ex){
         Map<String, String> result = new HashMap<>();
         result.put("updated", "false");
         result.put("error", ex.getMessage());
-        return result;
+        return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
     }
 
 }
