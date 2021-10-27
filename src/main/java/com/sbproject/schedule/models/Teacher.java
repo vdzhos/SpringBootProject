@@ -1,9 +1,16 @@
 package com.sbproject.schedule.models;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.sbproject.schedule.utils.EntityIdResolver;
+import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -16,23 +23,31 @@ public class Teacher {
     private Long id;
 
     @Column(nullable = false)
+    @NotNull
     private String name;
 
 
     @OnDelete(action = OnDeleteAction.CASCADE)
     @ManyToMany(fetch = FetchType.LAZY)
+    @JsonIdentityInfo(
+            generator = ObjectIdGenerators.PropertyGenerator.class,
+            property = "id",
+            scope = Subject.class,
+            resolver = EntityIdResolver.class)
+    @JsonIdentityReference(alwaysAsId = true)
     @JoinTable(
             name = "teachers_subjects",
             joinColumns = @JoinColumn(name = "teacher_id", nullable = false),
             inverseJoinColumns = @JoinColumn(name = "subject_id", nullable = false))
-    private Set<Subject> subjects;
+    @NotNull
+    private List<Subject> subjects;
 
     @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL)
     private List<Lesson> lessons;
 
     public Teacher(String name) {
         this.name = name;
-        subjects = new HashSet<>();
+        subjects = new ArrayList<>();
     }
 
 
@@ -44,7 +59,7 @@ public class Teacher {
         this.name = name;
     }
 
-    public Teacher(String name, Set<Subject> subjects) {
+    public Teacher(String name, List<Subject> subjects) {
         this.subjects = subjects;
         this.name = name;
     }
@@ -78,7 +93,7 @@ public class Teacher {
         this.name = name;
     }
 
-    public Set<Subject> getSubjects() {
+    public List<Subject> getSubjects() {
         return subjects;
     }
 

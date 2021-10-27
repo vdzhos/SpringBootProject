@@ -1,0 +1,4 @@
+2021-10-27 09:39:54,862 [http-nio-8081-exec-5] INFO  c.s.s.s.i.TeacherServiceImpl                       - Teacher has been successfully deleted! - Illia Kuznets 
+2021-10-27 13:30:57,052 [http-nio-8081-exec-7] INFO  c.s.s.c.TeacherController                          - Teacher has been successfully deleted! -  
+2021-10-27 13:31:03,758 [http-nio-8081-exec-9] INFO  c.s.s.c.TeacherController                          - Teacher has been successfully deleted! -  
+2021-10-27 13:31:18,765 [http-nio-8081-exec-1] INFO  c.s.s.c.TeacherController                          - Teacher has been successfully deleted! -  
