@@ -4,7 +4,6 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -23,18 +22,16 @@ public class Subject {
     @Column(nullable = false)
     private int quantOfGroups;
 
-
     @OnDelete(action = OnDeleteAction.CASCADE)
     @ManyToMany(mappedBy = "subjects", fetch = FetchType.LAZY)
     private Set<Teacher> teachers;
 
-
     @OnDelete(action = OnDeleteAction.CASCADE)
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
-            name = "specialties_subjects",
-            joinColumns = @JoinColumn(name = "specialty_id", nullable = false),
-            inverseJoinColumns = @JoinColumn(name = "subject_id", nullable = false)
+            name = "subjects_specialties",
+            joinColumns = @JoinColumn(name = "subject_id", nullable = false),
+            inverseJoinColumns = @JoinColumn(name = "specialty_id", nullable = false)
     )
     private Set<Specialty> specialties;
 

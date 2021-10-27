@@ -1,13 +1,10 @@
 package com.sbproject.schedule.controllers;
 
-import com.sbproject.schedule.services.implementations.SpecialtyServiceImpl;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import com.sbproject.schedule.services.interfaces.SpecialtyService;
 import org.apache.logging.log4j.ThreadContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,14 +19,13 @@ import org.springframework.web.servlet.view.RedirectView;
 public class SpecialtyController {
 
 
-    private SpecialtyServiceImpl specialtyService;
+    private SpecialtyService specialtyService;
 
     @Autowired
-    public SpecialtyController(SpecialtyServiceImpl specialtyService) {
+    public SpecialtyController(SpecialtyService specialtyService) {
         this.specialtyService = specialtyService;
     }
 
-    private static Logger logger = LogManager.getLogger(SpecialtyController.class);
 
     @PostMapping("/add")
     public RedirectView addSpecialty(@RequestParam String name, @RequestParam int year, Model model, RedirectAttributes redir){
@@ -38,12 +34,9 @@ public class SpecialtyController {
         boolean success = true;
         try{
             specialtyService.addSpecialty(name, year);
-//            logger.info("Specialty {}-{} added",name,year);
-//            logger.info(Markers.IMPORTANT_MARKER,"Specialty {}-{} added",name,year);
         } catch (Exception e) {
             success = false;
             notification = e.getMessage();
-//            logger.error("Specialty {}-{} not added",name,year,e);
         }
         redir.addFlashAttribute("showNotification", true);
         redir.addFlashAttribute("success", success);
@@ -65,7 +58,7 @@ public class SpecialtyController {
     }
 
 
-    @PostMapping("/update")//@RequestParam Long id,@RequestParam String newName,@RequestParam int newYear,
+    @PostMapping("/update")
     public RedirectView updateSpecialty(@RequestParam Long id,@RequestParam String specName,@RequestParam int specYear, RedirectAttributes redir){
         RedirectView redirectView= new RedirectView("/",true);
         String notification = "Спеціальність було успішно оновлено на '"+specName+" - "+specYear+"'!";
@@ -82,28 +75,6 @@ public class SpecialtyController {
         return redirectView;
     }
 
-
-
-
-
-
-//    @PostMapping("/delete")
-//    public String deleteSpecialty(@RequestParam Long id, Model model){
-//        specialtyService.deleteSpecialty(id);
-//        //put info about success/failure into the model
-//        return "redirect:/";
-//    }
-//
-//    @PostMapping("/update")//@RequestParam Long id,@RequestParam String newName,@RequestParam int newYear,
-//    public String updateSpecialty(Model model){
-////        specialtyService.updateSpecialty(newName,newYear);
-//        //put info about success/failure into the model
-//        return "redirect:/";
-//    }
-
-    @GetMapping("/get")
-    public String getSpecialties(){
-
-        return "main";
-    }
 }
+
+

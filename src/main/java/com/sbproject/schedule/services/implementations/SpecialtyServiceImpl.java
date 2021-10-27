@@ -3,6 +3,7 @@ package com.sbproject.schedule.services.implementations;
 import com.sbproject.schedule.controllers.LessonController;
 import com.sbproject.schedule.exceptions.specialty.InvalidSpecialtyNameException;
 import com.sbproject.schedule.exceptions.specialty.SpecialtyInstanceAlreadyExistsException;
+import com.sbproject.schedule.exceptions.specialty.SpecialtyNotFoundException;
 import com.sbproject.schedule.models.Specialty;
 
 import com.sbproject.schedule.repositories.SpecialtyRepository;
@@ -25,9 +26,9 @@ public class SpecialtyServiceImpl implements SpecialtyService {
 
     private SpecialtyRepository specialtyRepository;
 
+
     private static Logger logger = LogManager.getLogger(LessonController.class);
 
-    @Autowired
     private Utils processor;
 
     @Autowired
@@ -43,15 +44,17 @@ public class SpecialtyServiceImpl implements SpecialtyService {
     //@ResponseBody
     //@RequestMapping("/")
     @Override
-    public void addSpecialty(String name, int year) throws SpecialtyInstanceAlreadyExistsException, InvalidSpecialtyNameException {
+    public Specialty addSpecialty(String name, int year) {
         name = processor.processName(name);
         processor.checkName(name);
+        processor.checkYear(year);
         if(specialtyRepository.existsByNameAndYear(name, year)) {
             logger.error(Markers.SAVE_SPECIALTY_MARKER,"Specialty '{}'-'{}' already exists. Specialty has not been added!",name,year);
             throw new SpecialtyInstanceAlreadyExistsException(Values.SPECIALTY_ALREADY_EXISTS);
         }
-        specialtyRepository.save(new Specialty(name,year));
+        Specialty s = specialtyRepository.save(new Specialty(name,year));
         logger.info(Markers.SAVE_SPECIALTY_MARKER,"Specialty '{}'-'{}' has been successfully added!",name,year);
+        return s;
     }
 
     @Transactional
@@ -62,25 +65,50 @@ public class SpecialtyServiceImpl implements SpecialtyService {
     }
 
 
+
     @Override
-    public void updateSpecialty(long id, String name, int year) throws InvalidSpecialtyNameException, SpecialtyInstanceAlreadyExistsException {
+    public Specialty updateSpecialty(long id, String name, int year) {
         name = processor.processName(name);
         processor.checkName(name);
+        processor.checkYear(year);
         if(specialtyRepository.existsByNameAndYearAndId(id,name,year)){
             logger.error(Markers.UPDATE_SPECIALTY_MARKER,"Specialty '{}'-'{}' already exists. Specialty has not been updated!",name,year);
             throw new SpecialtyInstanceAlreadyExistsException(Values.SPECIALTY_ALREADY_EXISTS);
         }
-        Optional<Specialty> specialtyOp = specialtyRepository.findById(id);//.orElseThrow();
-        if (specialtyOp.isPresent()){
-            Specialty specialty = specialtyOp.get();
-            logger.info(Markers.UPDATE_SPECIALTY_MARKER,"Specialty has been successfully updated to '{}'-'{}'!",name,year);
-            if(nothingChanged(specialty,name,year)) return;
-
-            specialty.setName(name);
+        String finalName = name;
+        return specialtyRepository.findById(id).map((specialty) -> {
+            if(nothingChanged(specialty,finalName,year)) {
+                logger.info(Markers.UPDATE_SPECIALTY_MARKER,"Specialty has not been changed as the new specialty is the exact old specialty!");
+                return specialty;
+            }
+            specialty.setName(finalName);
             specialty.setYear(year);
-            specialtyRepository.save(specialty);
-        }
+            Specialty s = specialtyRepository.save(specialty);
+            logger.info(Markers.UPDATE_SPECIALTY_MARKER,"Specialty has been successfully updated to '{}'-'{}'!", finalName,year);
+            return s;
+        }).orElseGet(() -> {
+            return specialtyRepository.save(new Specialty(id,finalName,year));
+        });
     }
+//    @Override
+//    public Specialty updateSpecialty(long id, String name, int year) {
+//        name = processor.processName(name);
+//        processor.checkName(name);
+//        processor.checkYear(year);
+//        if(specialtyRepository.existsByNameAndYearAndId(id,name,year)){
+//            logger.error(Markers.UPDATE_SPECIALTY_MARKER,"Specialty '{}'-'{}' already exists. Specialty has not been updated!",name,year);
+//            throw new SpecialtyInstanceAlreadyExistsException(Values.SPECIALTY_ALREADY_EXISTS);
+//        }
+//        Optional<Specialty> specialtyOp = specialtyRepository.findById(id);
+//        Specialty specialty = specialtyOp.orElseThrow(() -> new SpecialtyNotFoundException(id));
+//        logger.info(Markers.UPDATE_SPECIALTY_MARKER,"Specialty has not been changed as the new specialty is the exact old specialty!");
+//        if(nothingChanged(specialty,name,year)) return new Specialty(id,name,year);
+//        specialty.setName(name);
+//        specialty.setYear(year);
+//        Specialty s = specialtyRepository.save(specialty);
+//        logger.info(Markers.UPDATE_SPECIALTY_MARKER,"Specialty has been successfully updated to '{}'-'{}'!",name,year);
+//        return s;
+//    }
 
     private boolean nothingChanged(Specialty specialty, String name, int year) {
         return specialty.getName().equals(name)&&specialty.getYear()==year;
@@ -90,5 +118,17 @@ public class SpecialtyServiceImpl implements SpecialtyService {
     public Iterable<Specialty> getAll() {
         return specialtyRepository.findAll();
     }
+
+    @Override
+    public Specialty getSpecialty(Long id) {
+        return specialtyRepository.findById(id).orElseThrow(() -> new SpecialtyNotFoundException(id));
+    }
+
+
+    @Override
+    public void deleteAll() {
+        specialtyRepository.deleteAll();
+    }
+
 
 }

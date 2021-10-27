@@ -1,14 +1,19 @@
 package com.sbproject.schedule.models;
+import com.fasterxml.jackson.annotation.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
-import java.util.List;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table
 public class Specialty {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -16,18 +21,29 @@ public class Specialty {
     private Long id;
 
     @Column(nullable = false)
+    @NotBlank(message = "Specialty name must not be blank")
     private String name;
 
     @Column(nullable = false)
+    @Min(1)
+    @Max(6)
     private int year;
 
-
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    @JsonIdentityReference(alwaysAsId = true)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @ManyToMany(mappedBy = "specialties", fetch = FetchType.LAZY)
-    private Set<Subject> subjects;
+    private Set<Subject> subjects = new HashSet<>();
 
     public Specialty() {
     }
+
+    public Specialty(Long id, String name, int year) {
+        this.name = name;
+        this.id = id;
+        this.year = year;
+    }
+
 
     public Specialty(String name, int year) {
         this.name = name;

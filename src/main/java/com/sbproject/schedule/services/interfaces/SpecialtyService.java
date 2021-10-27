@@ -6,10 +6,12 @@ import com.sbproject.schedule.models.Specialty;
 
 public interface SpecialtyService {
 
-    void addSpecialty(String name, int year) throws SpecialtyInstanceAlreadyExistsException, InvalidSpecialtyNameException;
+    Specialty addSpecialty(String name, int year);
     void deleteSpecialty(Long id);
 //    boolean deleteSpecialty(String name, int year);
-    void updateSpecialty(long id, String name, int year) throws InvalidSpecialtyNameException, SpecialtyInstanceAlreadyExistsException;
+    Specialty updateSpecialty(long id, String name, int year);
     Iterable<Specialty> getAll();
+    Specialty getSpecialty(Long id);
+    void deleteAll();
 
 }

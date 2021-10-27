@@ -1,46 +1,45 @@
-2021-10-19 18:07:11,984 [Thread-2] INFO  c.s.s.s.i.LessonServiceImpl                        - Lesson successfully deleted! 
-2021-10-19 18:07:48,214 [Thread-2] INFO  c.s.s.s.i.LessonServiceImpl                        - Lesson successfully deleted! 
-2021-10-19 18:11:40,657 [Thread-2] INFO  c.s.s.s.i.LessonServiceImpl                        - Lesson successfully deleted! 
-2021-10-19 18:12:52,844 [Thread-2] INFO  c.s.s.s.i.LessonServiceImpl                        - Lesson successfully deleted! 
-2021-10-19 18:16:00,054 [Thread-2] INFO  c.s.s.s.i.LessonServiceImpl                        - Lesson successfully deleted! 
-2021-10-19 18:38:29,819 [Thread-2] INFO  c.s.s.s.i.LessonServiceImpl                        - Lesson successfully deleted! 
-2021-10-19 18:39:19,466 [Thread-2] INFO  c.s.s.s.i.LessonServiceImpl                        - Lesson successfully deleted! 
-2021-10-19 22:44:12,609 [http-nio-8081-exec-2] INFO  c.s.s.s.i.LoginServiceImpl                         - User logged in: vovan : 1234 
-2021-10-19 22:45:35,799 [http-nio-8081-exec-7] INFO  c.s.s.s.i.UserProfileServiceImpl                   - User password changed: vovan : New password = 123423 
-2021-10-19 22:45:41,685 [http-nio-8081-exec-9] ERROR c.s.s.s.i.UserProfileServiceImpl                   - Error: Invalid password:  
-2021-10-19 22:46:11,823 [http-nio-8081-exec-4] INFO  c.s.s.s.i.LoginServiceImpl                         - User registrated:gleb : 1234 : ADMIN 
-2021-10-19 22:46:45,574 [http-nio-8081-exec-8] ERROR c.s.s.s.i.LoginServiceImpl                         - Error: Login is already in use: gleb 
-2021-10-19 22:50:38,998 [http-nio-8081-exec-2] INFO  c.s.s.s.i.LoginServiceImpl                         - User logged in: vovan : 1234 
-2021-10-19 22:50:50,245 [http-nio-8081-exec-5] INFO  c.s.s.s.i.UserProfileServiceImpl                   - User password changed: vovan : New password = 1234222 
-2021-10-19 22:50:55,262 [http-nio-8081-exec-7] ERROR c.s.s.s.i.UserProfileServiceImpl                   - Invalid new password:  
-2021-10-19 22:56:42,022 [http-nio-8081-exec-2] INFO  c.s.s.s.i.LoginServiceImpl                         - User logged in: vovan : 1234 
-2021-10-19 22:58:58,265 [http-nio-8081-exec-4] INFO  c.s.s.s.i.LoginServiceImpl                         - User logged in: vovan : 1234 
-2021-10-19 22:59:04,022 [Thread-2] INFO  c.s.s.s.i.LessonServiceImpl                        - Lesson successfully deleted! 
-2021-10-19 22:59:09,899 [Thread-4] INFO  c.s.s.s.i.LessonServiceImpl                        - Lesson successfully deleted! 
-2021-10-19 22:59:41,332 [http-nio-8081-exec-4] INFO  c.s.s.s.i.UserProfileServiceImpl                   - User password changed: vovan : New password = 12342233 
-2021-10-19 23:21:35,991 [http-nio-8081-exec-1] FATAL c.s.s.c.UserProfileController                      - Unauthorized session! 
-2021-10-20 00:08:30,424 [http-nio-8081-exec-6] INFO  c.s.s.c.LessonController                           - Specialty has been successfully deleted! 
-2021-10-20 00:08:34,483 [http-nio-8081-exec-8] INFO  c.s.s.c.LessonController                           - Specialty has been successfully deleted! 
-2021-10-20 13:45:50,749 [http-nio-8081-exec-10] INFO  c.s.s.c.LessonController                           - Specialty 'IPZ'-'1' has been successfully added! 
-2021-10-20 13:46:24,221 [http-nio-8081-exec-7] FATAL c.s.s.c.UserProfileController                      - Unauthorized session! 
-2021-10-20 14:18:07,478 [http-nio-8081-exec-10] INFO  c.s.s.c.LessonController                           - Lesson successfully added! 
-2021-10-20 16:02:08,444 [http-nio-8081-exec-7] INFO  c.s.s.c.SubjectController                          - Subject has been successfully deleted! 
-2021-10-20 16:03:05,149 [http-nio-8081-exec-2] INFO  c.s.s.c.SubjectController                          - Subject Shos with 2 groups has been successfully added! 
-2021-10-20 16:04:59,034 [Thread-2] INFO  c.s.s.s.i.LessonServiceImpl                        - Lesson successfully deleted! 
-2021-10-20 16:18:07,643 [http-nio-8081-exec-7] INFO  c.s.s.c.LessonController                           - Specialty has been successfully updated to 'IPZ'-'3'! 
-2021-10-20 16:18:17,852 [http-nio-8081-exec-2] ERROR c.s.s.c.LessonController                           - Specialty 'IPZ'-'4' already exists. Specialty has not been updated! 
-2021-10-20 21:18:55,582 [http-nio-8081-exec-2] FATAL c.s.s.c.UserProfileController                      - Unauthorized session! 
-2021-10-20 21:19:16,403 [http-nio-8081-exec-3] FATAL c.s.s.c.UserProfileController                      - Unauthorized session! 
-2021-10-20 21:19:47,670 [http-nio-8081-exec-5] ERROR c.s.s.s.i.LoginServiceImpl                         - Wrong role code: 123123 
-2021-10-20 21:20:05,034 [http-nio-8081-exec-7] ERROR c.s.s.s.i.LoginServiceImpl                         - Wrong role code: prodadmincode 
-2021-10-20 21:20:34,525 [http-nio-8081-exec-7] ERROR c.s.s.s.i.LoginServiceImpl                         - Wrong role code: prodadmincode 
-2021-10-20 21:03:36,875 [http-nio-8081-exec-5] INFO  c.s.s.c.TeacherController                          - Teacher Illia Kuznets with [Subject 1, Subject 2, Subject 3] subjects has been successfully added! 
-2021-10-20 21:06:31,164 [http-nio-8081-exec-9] FATAL c.s.s.c.UserProfileController                      - Unauthorized session! 
-2021-10-20 21:06:50,315 [http-nio-8081-exec-3] FATAL c.s.s.c.UserProfileController                      - Unauthorized session!
-2021-10-20 21:20:50,612 [http-nio-8081-exec-2] INFO  c.s.s.c.TeacherController                          - Teacher has been successfully deleted! 
-2021-10-20 21:22:39,018 [http-nio-8081-exec-2] INFO  c.s.s.c.TeacherController                          - Teacher has been successfully deleted! 
-2021-10-20 21:23:14,037 [http-nio-8081-exec-4] INFO  c.s.s.c.TeacherController                          - Teacher Illia Kuznets with [Subject 1, Subject 2, Subject 3] subjects has been successfully added! 
-2021-10-20 21:23:45,784 [http-nio-8081-exec-2] INFO  c.s.s.c.TeacherController                          - Teacher Illia Kuznets with [Subject 1, Subject 2, Subject 3] subjects has been successfully added! 
-2021-10-20 21:58:28,186 [http-nio-8081-exec-4] INFO  c.s.s.c.TeacherController                          - Teacher Illia Kuznets with [Subject 1] subjects has been successfully added! 
-2021-10-20 21:58:39,571 [http-nio-8081-exec-8] INFO  c.s.s.c.TeacherController                          - Teacher has been successfully deleted! 
-2021-10-20 22:00:31,087 [http-nio-8081-exec-3] INFO  c.s.s.s.i.TeacherServiceImpl                       - Teacher has been successfully deleted! 
+2021-10-27 16:45:17,696 [http-nio-8081-exec-2] INFO  c.s.s.c.LessonController                           - Specialty 'Сітьков Ілля'-'1' has been successfully added! 
+2021-10-27 16:47:39,882 [http-nio-8081-exec-4] INFO  c.s.s.c.LessonController                           - Specialty 'New Specialty'-'4' has been successfully added! 
+2021-10-27 16:49:19,743 [http-nio-8081-exec-1] INFO  c.s.s.c.LessonController                           - Specialty 'New Specialty'-'4' has been successfully added! 
+2021-10-27 16:49:28,008 [http-nio-8081-exec-3] ERROR c.s.s.c.LessonController                           - Specialty 'New Specialty'-'4' already exists. Specialty has not been added! 
+2021-10-27 16:50:04,512 [http-nio-8081-exec-9] INFO  c.s.s.c.LessonController                           - Specialty 'jkjkjk'-'4' has been successfully added! 
+2021-10-27 16:52:07,852 [http-nio-8081-exec-1] INFO  c.s.s.c.LessonController                           - Specialty 'jkjkjk'-'4' has been successfully added! 
+2021-10-27 16:52:25,452 [http-nio-8081-exec-3] INFO  c.s.s.c.LessonController                           - Specialty has not been changed as the new specialty is the exact old specialty! 
+2021-10-27 16:52:37,136 [http-nio-8081-exec-4] ERROR c.s.s.c.LessonController                           - Specialty 'IPZ'-'4' already exists. Specialty has not been updated! 
+2021-10-27 16:52:44,428 [http-nio-8081-exec-6] INFO  c.s.s.c.LessonController                           - Specialty has not been changed as the new specialty is the exact old specialty! 
+2021-10-27 16:52:48,653 [http-nio-8081-exec-7] ERROR c.s.s.c.LessonController                           - Specialty 'IPZ'-'4' already exists. Specialty has not been updated! 
+2021-10-27 17:51:05,638 [http-nio-8081-exec-8] INFO  c.s.s.c.SubjectController                          - Subject My Paint with 2 groups has been successfully added! 
+2021-10-27 17:55:54,419 [http-nio-8081-exec-5] INFO  c.s.s.c.SubjectController                          - Subject My Paint with 5 groups has been successfully added! 
+2021-10-27 17:56:05,894 [http-nio-8081-exec-7] ERROR c.s.s.c.SubjectController                          - Subject My Paint with 4 groups has not been added! 
+2021-10-27 17:56:30,752 [http-nio-8081-exec-9] ERROR c.s.s.c.SubjectController                          - Subject My Paint with 6 groups has not been added! 
+2021-10-27 17:56:48,706 [http-nio-8081-exec-1] ERROR c.s.s.c.SubjectController                          - Subject My Paint with 10 groups has not been added! 
+2021-10-27 17:57:43,779 [http-nio-8081-exec-2] INFO  c.s.s.c.SubjectController                          - Subject My Paint with 2 groups has been successfully added! 
+2021-10-27 18:00:14,602 [http-nio-8081-exec-1] INFO  c.s.s.c.LessonController                           - Specialty 'My Paint'-'1' has been successfully added! 
+2021-10-27 18:11:23,390 [http-nio-8081-exec-4] INFO  c.s.s.c.SubjectController                          - Subject My Paint with 3 groups has been successfully added! 
+2021-10-27 18:11:39,885 [http-nio-8081-exec-6] INFO  c.s.s.c.LessonController                           - Specialty 'My Paint'-'1' has been successfully added! 
+2021-10-27 18:14:49,803 [http-nio-8081-exec-9] ERROR c.s.s.c.SubjectController                          - Subject My Paint with 9 groups has not been added! 
+2021-10-27 18:16:26,214 [http-nio-8081-exec-8] INFO  c.s.s.c.SubjectController                          - Subject Сітьков Ілля with 8 groups has been successfully added! 
+2021-10-27 18:17:11,733 [http-nio-8081-exec-3] INFO  c.s.s.c.LessonController                           - Specialty 'Sitkov Illia'-'1' has been successfully added! 
+2021-10-27 18:23:58,336 [http-nio-8081-exec-2] INFO  c.s.s.c.LessonController                           - Specialty 'new spec'-'1' has been successfully added! 
+2021-10-27 18:27:51,467 [http-nio-8081-exec-2] INFO  c.s.s.c.LessonController                           - Specialty 'My Paint'-'1' has been successfully added! 
+2021-10-27 18:29:59,440 [http-nio-8081-exec-6] INFO  c.s.s.c.SubjectController                          - Subject Subj 4 with 8 groups has been successfully added! 
+2021-10-27 18:30:13,075 [http-nio-8081-exec-8] INFO  c.s.s.c.LessonController                           - Specialty 'new spec'-'1' has been successfully added! 
+2021-10-27 18:30:13,086 [http-nio-8081-exec-8] INFO  c.s.s.c.LessonController                           - Specialty has been successfully deleted! 
+2021-10-27 18:31:47,331 [http-nio-8081-exec-2] INFO  c.s.s.c.SubjectController                          - Subject Subj 4 with 7 groups has been successfully added! 
+2021-10-27 18:32:06,541 [http-nio-8081-exec-4] INFO  c.s.s.c.LessonController                           - Specialty 'new spec'-'1' has been successfully added! 
+2021-10-27 18:32:06,558 [http-nio-8081-exec-4] INFO  c.s.s.c.LessonController                           - Specialty has been successfully deleted! 
+2021-10-27 19:08:14,435 [http-nio-8081-exec-2] INFO  c.s.s.c.SubjectController                          - Subject My Paint with 8 groups has been successfully added! 
+2021-10-27 19:12:04,986 [http-nio-8081-exec-2] INFO  c.s.s.c.SubjectController                          - Subject My Paint with 7 groups has been successfully added! 
+2021-10-27 19:13:08,162 [http-nio-8081-exec-2] INFO  c.s.s.c.SubjectController                          - Subject My Paint with 8 groups has been successfully added! 
+2021-10-27 19:17:37,339 [http-nio-8081-exec-1] ERROR c.s.s.c.LessonController                           - Specialty 'IPZ'-'4' already exists. Specialty has not been updated! 
+2021-10-27 19:18:01,665 [http-nio-8081-exec-4] INFO  c.s.s.c.LessonController                           - Specialty has not been changed as the new specialty is the exact old specialty! 
+2021-10-27 19:18:01,684 [http-nio-8081-exec-4] INFO  c.s.s.c.LessonController                           - Specialty has been successfully updated to 'new spec'-'4'! 
+2021-10-27 19:18:13,140 [http-nio-8081-exec-5] ERROR c.s.s.c.LessonController                           - Specialty 'new spec'-'4' already exists. Specialty has not been updated! 
+2021-10-27 19:31:14,960 [http-nio-8081-exec-1] INFO  c.s.s.c.LessonController                           - Specialty has been successfully updated to 'new spec 1'-'4'! 
+2021-10-27 19:32:12,010 [http-nio-8081-exec-3] ERROR c.s.s.c.LessonController                           - Specialty 'new spec 1'-'4' already exists. Specialty has not been updated! 
+2021-10-27 19:33:18,852 [http-nio-8081-exec-8] ERROR c.s.s.c.LessonController                           - Specialty 'new spec 2'-'4' already exists. Specialty has not been updated! 
+2021-10-27 19:34:35,296 [http-nio-8081-exec-2] INFO  c.s.s.c.LessonController                           - Specialty has been successfully updated to 'new spec 2'-'3'! 
+2021-10-27 19:34:39,194 [http-nio-8081-exec-3] INFO  c.s.s.c.LessonController                           - Specialty has not been changed as the new specialty is the exact old specialty! 
+2021-10-27 19:34:43,337 [http-nio-8081-exec-4] ERROR c.s.s.c.LessonController                           - Specialty 'new spec 2'-'3' already exists. Specialty has not been updated! 
+2021-10-27 19:42:12,294 [http-nio-8081-exec-3] ERROR c.s.s.c.LessonController                           - Specialty 'new spec 7'-'3' already exists. Specialty has not been updated! 
+2021-10-27 19:59:55,304 [http-nio-8081-exec-3] ERROR c.s.s.c.LessonController                           - Specialty 'new spec 9'-'3' already exists. Specialty has not been updated! 

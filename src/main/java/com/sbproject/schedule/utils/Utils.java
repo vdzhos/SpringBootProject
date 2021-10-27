@@ -11,4 +11,6 @@ public interface Utils {
     void checkName(String name) throws InvalidSpecialtyNameException;
 
     public Long getUniqueId();
+
+    void checkYear(int year);
 }
