@@ -10,7 +10,12 @@ import java.util.Set;
 public interface SubjectService {
 
     boolean addSubject(String name, int quantOfGroups, Set<Specialty> specialties);
-    void deleteSubject(Long id);
-    boolean updateSubject(String name, int quantOfGroups, Set<Teacher> teachers,  Set<Specialty> specialties);
+    Subject addSubject(Subject subject);
+    void deleteSubject(Long id) throws Exception;
+    boolean updateSubject(Long id, String name, int quantOfGroups, Set<Teacher> teachers,  Set<Specialty> specialties);
+    Subject updateSubject(Subject subject) throws Exception;
     Iterable<Subject> getAll();
+    Subject getSubjectByName(String name);
+    Subject getSubjectById(Long id) throws Exception;
+    boolean subjectExistsById(Long id);
 }

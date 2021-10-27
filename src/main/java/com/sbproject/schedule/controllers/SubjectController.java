@@ -55,7 +55,7 @@ public class SubjectController {
 
 
     @PostMapping("/delete")
-    public String deleteSubject(@RequestParam Long id, Model model){
+    public String deleteSubject(@RequestParam Long id, Model model) throws Exception{
         subjectService.deleteSubject(id);
         logger.info(Markers.DELETE_SUBJECT_MARKER,"Subject has been successfully deleted!");
         //put info about success/failure into the model

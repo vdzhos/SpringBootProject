@@ -10,3 +10,4 @@
 2021-10-20 21:20:34,525 [http-nio-8081-exec-7] ERROR c.s.s.s.i.LoginServiceImpl                         - Wrong role code: prodadmincode 
 2021-10-20 21:06:31,164 [http-nio-8081-exec-9] FATAL c.s.s.c.UserProfileController                      - Unauthorized session! 
 2021-10-20 21:06:50,315 [http-nio-8081-exec-3] FATAL c.s.s.c.UserProfileController                      - Unauthorized session! 
+2021-10-26 19:46:51,231 [http-nio-8081-exec-9] FATAL c.s.s.c.UserProfileController                      - Unauthorized session! 

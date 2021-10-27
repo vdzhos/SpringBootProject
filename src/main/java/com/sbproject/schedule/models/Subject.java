@@ -1,5 +1,8 @@
 package com.sbproject.schedule.models;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -24,11 +27,15 @@ public class Subject {
     private int quantOfGroups;
 
 
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    @JsonIdentityReference(alwaysAsId = true)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @ManyToMany(mappedBy = "subjects", fetch = FetchType.LAZY)
     private Set<Teacher> teachers;
 
 
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    @JsonIdentityReference(alwaysAsId = true)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
@@ -39,6 +46,8 @@ public class Subject {
     private Set<Specialty> specialties;
 
 
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    @JsonIdentityReference(alwaysAsId = true)
     @OneToMany(mappedBy = "subject", cascade = CascadeType.ALL)
     private List<Lesson> lessons;
 

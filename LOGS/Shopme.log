@@ -29,12 +29,13 @@
 2021-10-20 16:04:59,034 [Thread-2] INFO  c.s.s.s.i.LessonServiceImpl                        - Lesson successfully deleted! 
 2021-10-20 16:18:07,643 [http-nio-8081-exec-7] INFO  c.s.s.c.LessonController                           - Specialty has been successfully updated to 'IPZ'-'3'! 
 2021-10-20 16:18:17,852 [http-nio-8081-exec-2] ERROR c.s.s.c.LessonController                           - Specialty 'IPZ'-'4' already exists. Specialty has not been updated! 
-2021-10-20 21:18:55,582 [http-nio-8081-exec-2] FATAL c.s.s.c.UserProfileController                      - Unauthorized session! 
-2021-10-20 21:19:16,403 [http-nio-8081-exec-3] FATAL c.s.s.c.UserProfileController                      - Unauthorized session! 
-2021-10-20 21:19:47,670 [http-nio-8081-exec-5] ERROR c.s.s.s.i.LoginServiceImpl                         - Wrong role code: 123123 
-2021-10-20 21:20:05,034 [http-nio-8081-exec-7] ERROR c.s.s.s.i.LoginServiceImpl                         - Wrong role code: prodadmincode 
-2021-10-20 21:20:34,525 [http-nio-8081-exec-7] ERROR c.s.s.s.i.LoginServiceImpl                         - Wrong role code: prodadmincode 
-2021-10-20 21:03:36,875 [http-nio-8081-exec-5] INFO  c.s.s.c.TeacherController                          - Teacher Illia Kuznets with [Subject 1, Subject 2, Subject 3] subjects has been successfully added! 
+2021-10-20 16:31:09,484 [http-nio-8081-exec-2] INFO  c.s.s.c.SubjectController                          - Subject Subject with 3 groups has been successfully added!
+2021-10-20 21:18:55,582 [http-nio-8081-exec-2] FATAL c.s.s.c.UserProfileController                      - Unauthorized session!
+2021-10-20 21:19:16,403 [http-nio-8081-exec-3] FATAL c.s.s.c.UserProfileController                      - Unauthorized session!
+2021-10-20 21:19:47,670 [http-nio-8081-exec-5] ERROR c.s.s.s.i.LoginServiceImpl                         - Wrong role code: 123123
+2021-10-20 21:20:05,034 [http-nio-8081-exec-7] ERROR c.s.s.s.i.LoginServiceImpl                         - Wrong role code: prodadmincode
+2021-10-20 21:20:34,525 [http-nio-8081-exec-7] ERROR c.s.s.s.i.LoginServiceImpl                         - Wrong role code: prodadmincode
+2021-10-20 21:03:36,875 [http-nio-8081-exec-5] INFO  c.s.s.c.TeacherController                          - Teacher Illia Kuznets with [Subject 1, Subject 2, Subject 3] subjects has been successfully added!
 2021-10-20 21:06:31,164 [http-nio-8081-exec-9] FATAL c.s.s.c.UserProfileController                      - Unauthorized session! 
 2021-10-20 21:06:50,315 [http-nio-8081-exec-3] FATAL c.s.s.c.UserProfileController                      - Unauthorized session!
 2021-10-20 21:20:50,612 [http-nio-8081-exec-2] INFO  c.s.s.c.TeacherController                          - Teacher has been successfully deleted! 
@@ -44,3 +45,9 @@
 2021-10-20 21:58:28,186 [http-nio-8081-exec-4] INFO  c.s.s.c.TeacherController                          - Teacher Illia Kuznets with [Subject 1] subjects has been successfully added! 
 2021-10-20 21:58:39,571 [http-nio-8081-exec-8] INFO  c.s.s.c.TeacherController                          - Teacher has been successfully deleted! 
 2021-10-20 22:00:31,087 [http-nio-8081-exec-3] INFO  c.s.s.s.i.TeacherServiceImpl                       - Teacher has been successfully deleted! 
+2021-10-26 19:46:28,719 [http-nio-8081-exec-8] INFO  c.s.s.c.LessonController                           - Specialty 'Some'-'1' has been successfully added! 
+2021-10-26 19:46:44,064 [http-nio-8081-exec-7] INFO  c.s.s.c.LessonController                           - Specialty has been successfully updated to 'IPZ'-'1'! 
+2021-10-26 19:46:51,231 [http-nio-8081-exec-9] FATAL c.s.s.c.UserProfileController                      - Unauthorized session! 
+2021-10-26 19:47:04,432 [http-nio-8081-exec-6] INFO  c.s.s.c.LessonController                           - Specialty has been successfully deleted! 
+2021-10-26 20:42:20,848 [http-nio-8081-exec-2] INFO  c.s.s.c.SubjectController                          - Subject Subject with 2 groups has been successfully added! 
+2021-10-26 21:32:46,737 [http-nio-8081-exec-10] INFO  c.s.s.c.SubjectController                          - Subject Subject with 1 groups has been successfully added! 

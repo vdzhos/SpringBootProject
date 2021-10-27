@@ -11,6 +11,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -50,5 +51,10 @@ public class TeacherServiceImpl implements TeacherService {
     @Override
     public Iterable<Teacher> getAll() {
         return teacherRepository.findAll();
+    }
+
+    @Override
+    public Set<Teacher> getTeachersByIds(List<Long> teachersIds) {
+        return (Set<Teacher>) teacherRepository.findAllById(teachersIds);
     }
 }
