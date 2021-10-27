@@ -5,6 +5,7 @@ import com.sbproject.schedule.exceptions.lesson.NoLessonWithSuchIdToUpdate;
 import com.sbproject.schedule.models.Lesson;
 import com.sbproject.schedule.services.interfaces.LessonService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
@@ -56,6 +57,7 @@ public class LessonControllerREST {
     }
 
     @ExceptionHandler(NoLessonWithSuchIdToDelete.class)
+    @ResponseStatus(code = HttpStatus.BAD_REQUEST)
     public Map<String, String> handleException(NoLessonWithSuchIdToDelete ex){
         Map<String, String> result = new HashMap<>();
         result.put("deleted", "false");
@@ -64,6 +66,7 @@ public class LessonControllerREST {
     }
 
     @ExceptionHandler(NoLessonWithSuchIdToUpdate.class)
+    @ResponseStatus(code = HttpStatus.BAD_REQUEST)
     public Map<String, String> handleException(NoLessonWithSuchIdToUpdate ex){
         Map<String, String> result = new HashMap<>();
         result.put("updated", "false");
