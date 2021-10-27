@@ -5,6 +5,7 @@ import com.sbproject.schedule.exceptions.teacher.NoTeacherWithSuchIdException;
 import com.sbproject.schedule.models.Teacher;
 import com.sbproject.schedule.services.interfaces.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
@@ -56,6 +57,7 @@ public class TeacherControllerREST {
     }
 
     @ExceptionHandler(NoTeacherWithSuchIdException.class)
+    @ResponseStatus(code = HttpStatus.BAD_REQUEST)
     public Map<String, String> handleException(NoTeacherWithSuchIdException ex){
         Map<String, String> result = new HashMap<>();
         result.put(ex.getDelOrUpd(), "false");
@@ -64,6 +66,7 @@ public class TeacherControllerREST {
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
+    @ResponseStatus(code = HttpStatus.BAD_REQUEST)
     public Map<String, String> handleException(MethodArgumentNotValidException ex){
         Map<String, String> result = new HashMap<>();
         ex.getBindingResult().getAllErrors().forEach(error -> {
