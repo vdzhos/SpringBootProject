@@ -28,12 +28,12 @@ public class TeacherControllerREST {
     }
 
     @GetMapping("/all")
-    public List<Teacher> getAllLessons() {
+    public List<Teacher> getAllTeachers() {
         return (List<Teacher>) teacherService.getAll();
     }
 
     @GetMapping("/{id}")
-    public Teacher getLessonById(@PathVariable(value = "id") Long id) throws Exception {
+    public Teacher getTeacherById(@PathVariable(value = "id") Long id) throws Exception {
         return teacherService.getTeacherById(id);
     }
 
