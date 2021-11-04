@@ -1,5 +1,6 @@
 package com.sbproject.schedule.exceptions.handlers;
 
+import com.sbproject.schedule.exceptions.specialty.IncorrectRequestBodyException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -22,9 +23,11 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Map<String,String>> handleInvalidObjectsExceptions(MethodArgumentNotValidException e){
         Map<String,String> map = new HashMap<>();
         map.put("success","false");
+        StringBuilder s = new StringBuilder();
         for(FieldError error: e.getFieldErrors()){
-            map.put(error.getField(),error.getDefaultMessage());
+            s.append(error.getDefaultMessage()).append('\n');
         }
+        map.put("error",s.toString());
         return new ResponseEntity<Map<String,String>>(map,HttpStatus.BAD_REQUEST);
     }
 
@@ -33,10 +36,21 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Map<String,String>> handleInvalidParamsExceptions(ConstraintViolationException e){
         Map<String,String> map = new HashMap<>();
         map.put("success","false");
+        StringBuilder s = new StringBuilder();
         for(ConstraintViolation<?> violation: e.getConstraintViolations()){
-            map.put(violation.getPropertyPath().toString(),violation.getMessage());
+            s.append(violation.getMessage()).append('\n');
         }
+        map.put("error",s.toString());
         return new ResponseEntity<Map<String,String>>(map,HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(value = {IncorrectRequestBodyException.class})
+    @ResponseStatus(code = HttpStatus.BAD_REQUEST)
+    public ResponseEntity<Map<String,String>> handleIncorrectRequestBodyException(IncorrectRequestBodyException e){
+        Map<String,String> map = new HashMap<>();
+        map.put("success","false");
+        map.put("error",e.getMessage());
+        return new ResponseEntity<>(map,HttpStatus.BAD_REQUEST);
     }
 }
 

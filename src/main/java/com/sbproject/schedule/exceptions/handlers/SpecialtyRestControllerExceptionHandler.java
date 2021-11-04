@@ -2,6 +2,7 @@ package com.sbproject.schedule.exceptions.handlers;
 
 import com.sbproject.schedule.exceptions.specialty.SpecialtyInstanceAlreadyExistsException;
 import com.sbproject.schedule.exceptions.specialty.SpecialtyNotFoundException;
+import com.sbproject.schedule.exceptions.subject.SubjectNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -32,5 +33,13 @@ public class SpecialtyRestControllerExceptionHandler {
         map.put("success","false");
         map.put("error",e.getMessage());
         return new ResponseEntity<>(map,HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(SubjectNotFoundException.class)
+    public ResponseEntity<Map<String,String>> handleSubjectNotFoundException(SubjectNotFoundException ex){
+        Map<String, String> result = new HashMap<>();
+        result.put("success", "false");
+        result.put("error", ex.getMessage());
+        return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
     }
 }
