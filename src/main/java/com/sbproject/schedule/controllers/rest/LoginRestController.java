@@ -53,14 +53,14 @@ public class LoginRestController {
 	public ResponseEntity<String> registrateUser(@Valid @RequestBody UserData userData) throws WrongRoleCodeException, LoginUsedException
 	{
 		loginService.addUser(userData.getLogin(), userData.getPassword(), userData.getRoleCode());
-		return new ResponseEntity<>("Success: New user registered", HttpStatus.OK);
+		return new ResponseEntity<>("Success: New user registered", HttpStatus.CREATED);
 	}
 	
 	@DeleteMapping("deleteuser")
 	public ResponseEntity<String> deleteUser(@Valid @RequestBody UserData userData) throws UserNotFoundException
 	{
 		boolean succ = loginService.deleteUser(userData.getLogin(), userData.getPassword());
-		return succ ? new ResponseEntity<>("Success: User deleted", HttpStatus.OK) : new ResponseEntity<>("Incorrect password: ", HttpStatus.FORBIDDEN);
+		return succ ? new ResponseEntity<>("Success: User deleted", HttpStatus.OK) : new ResponseEntity<>("Failure: Incorrect password", HttpStatus.FORBIDDEN);
 	}
 	
 	@PutMapping("passupdate")
