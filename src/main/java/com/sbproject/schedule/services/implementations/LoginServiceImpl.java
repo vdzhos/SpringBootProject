@@ -68,7 +68,7 @@ public class LoginServiceImpl implements LoginService {
 		return true;
 	}
 	
-///////////////////////testing rest///////////////////////
+
 	@Override
 	public User getUser(String login) throws UserNotFoundException {
 		Optional<User> opt = userRepo.findById(login);
