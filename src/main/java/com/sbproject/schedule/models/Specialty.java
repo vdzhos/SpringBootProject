@@ -8,6 +8,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -91,4 +92,18 @@ public class Specialty {
         this.subjects = subjects;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Specialty)) return false;
+        Specialty specialty = (Specialty) o;
+        return getYear() == specialty.getYear() &&
+                getId().equals(specialty.getId()) &&
+                getName().equals(specialty.getName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getName(), getYear());
+    }
 }

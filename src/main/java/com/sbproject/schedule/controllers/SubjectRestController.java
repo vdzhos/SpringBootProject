@@ -3,6 +3,7 @@ package com.sbproject.schedule.controllers;
 import com.sbproject.schedule.exceptions.specialty.SpecialtyNotFoundException;
 import com.sbproject.schedule.exceptions.subject.NoSubjectWithSuchIdToDelete;
 import com.sbproject.schedule.exceptions.subject.NoSubjectWithSuchIdToUpdate;
+import com.sbproject.schedule.exceptions.subject.SubjectNotFoundException;
 import com.sbproject.schedule.models.Specialty;
 import com.sbproject.schedule.models.Subject;
 import com.sbproject.schedule.models.Teacher;
@@ -83,5 +84,6 @@ public class SubjectRestController {
         result.put("error", ex.getMessage());
         return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
     }
+
 
 }
