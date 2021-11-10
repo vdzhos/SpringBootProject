@@ -2,16 +2,16 @@ package com.sbproject.schedule.exceptions.teacher;
 
 public class NoTeacherWithSuchIdException extends Exception {
 
-    private String delOrUpd;
+    private String delOrUpdOrGet;
 
 
-    public NoTeacherWithSuchIdException(Long id, String delOrUpd) {
+    public NoTeacherWithSuchIdException(Long id, String delOrUpdOrGet) {
         super("Teacher with id '"+ id +"' doesn't exist!");
-        this.delOrUpd = delOrUpd;
+        this.delOrUpdOrGet = delOrUpdOrGet;
     }
 
-    public String getDelOrUpd() {
-        return delOrUpd;
+    public String getDelOrUpdOrGet() {
+        return delOrUpdOrGet;
     }
 
 }

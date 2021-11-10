@@ -1,6 +1,5 @@
 package com.sbproject.schedule.controllers;
 
-import com.sbproject.schedule.exceptions.lesson.NoLessonWithSuchIdToUpdate;
 import com.sbproject.schedule.exceptions.teacher.NoTeacherWithSuchIdException;
 import com.sbproject.schedule.models.Teacher;
 import com.sbproject.schedule.services.interfaces.TeacherService;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.awt.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -49,8 +47,6 @@ public class TeacherControllerREST {
             @ApiResponse(responseCode = "200", description = "Found the teacher.",
                     content = { @Content(mediaType = "application/json",
                             schema = @Schema(implementation = Teacher.class)) }),
-            @ApiResponse(responseCode = "400", description = "Invalid id supplied.",
-                    content = @Content),
             @ApiResponse(responseCode = "404", description = "Teacher not found.",
                     content = @Content) })
     @GetMapping("/{id}")
@@ -89,8 +85,6 @@ public class TeacherControllerREST {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Deleted the teacher.",
                     content =  @Content),
-            @ApiResponse(responseCode = "400", description = "Invalid teacher id.",
-                    content = @Content),
             @ApiResponse(responseCode = "404", description = "Teacher not found.",
                     content = @Content) })
     @DeleteMapping("/{id}")
@@ -102,10 +96,10 @@ public class TeacherControllerREST {
     }
 
     @ExceptionHandler(NoTeacherWithSuchIdException.class)
-    @ResponseStatus(code = HttpStatus.BAD_REQUEST)
+    @ResponseStatus(code = HttpStatus.NOT_FOUND)
     public Map<String, String> handleException(NoTeacherWithSuchIdException ex){
         Map<String, String> result = new HashMap<>();
-        result.put(ex.getDelOrUpd(), "false");
+        result.put(ex.getDelOrUpdOrGet(), "false");
         result.put("error", ex.getMessage());
         return result;
     }
