@@ -43,13 +43,6 @@
 2021-10-27 19:34:43,337 [http-nio-8081-exec-4] ERROR c.s.s.c.LessonController                           - Specialty 'new spec 2'-'3' already exists. Specialty has not been updated! 
 2021-10-27 19:42:12,294 [http-nio-8081-exec-3] ERROR c.s.s.c.LessonController                           - Specialty 'new spec 7'-'3' already exists. Specialty has not been updated! 
 2021-10-27 19:59:55,304 [http-nio-8081-exec-3] ERROR c.s.s.c.LessonController                           - Specialty 'new spec 9'-'3' already exists. Specialty has not been updated! 
-2021-11-09 19:40:59,779 [http-nio-8081-exec-6] INFO  c.s.s.c.SubjectRestController                      - Subject BD with 5 groups has been successfully added! 
-2021-11-09 19:41:36,674 [http-nio-8081-exec-8] INFO  c.s.s.c.SubjectRestController                      - Subject has been successfully deleted! 
-2021-11-09 19:41:50,291 [http-nio-8081-exec-10] INFO  c.s.s.c.SubjectRestController                      - Subject has been successfully deleted! 
-2021-11-09 20:09:55,300 [http-nio-8081-exec-3] INFO  c.s.s.c.SubjectRestController                      - Subject has been successfully deleted! 
-2021-11-09 20:24:05,719 [http-nio-8081-exec-1] ERROR c.s.s.c.SubjectController                          - Subject BD with 5 groups has not been added! 
-2021-11-09 20:25:30,486 [http-nio-8081-exec-9] INFO  c.s.s.c.SubjectRestController                      - Subject BD with 5 groups has been successfully added! 
-2021-11-09 20:26:05,843 [http-nio-8081-exec-2] INFO  c.s.s.c.SubjectRestController                      - Subject has been successfully deleted! 
 2021-10-31 23:09:01,329 [http-nio-8081-exec-2] INFO  c.s.s.c.LessonController                           - Specialty 'Specialty New'-'3' has been successfully added! 
 2021-10-31 23:11:03,982 [http-nio-8081-exec-1] INFO  c.s.s.c.LessonController                           - Specialty 'Specialty New'-'3' has been successfully added! 
 2021-10-31 23:12:12,893 [http-nio-8081-exec-5] ERROR c.s.s.c.LessonController                           - Specialty 'Specialty New'-'3' already exists. Specialty has not been added! 
@@ -136,6 +129,7 @@
 2021-11-10 11:29:21,170 [http-nio-8081-exec-1] INFO  c.s.s.c.LessonController                           - Specialty has been successfully updated to 'My New Specialty'-'3'! 
 2021-11-10 11:29:21,218 [http-nio-8081-exec-4] ERROR c.s.s.c.LessonController                           - Specialty 'IPZ'-'3' already exists. Specialty has not been updated! 
 2021-11-10 11:29:21,339 [http-nio-8081-exec-7] INFO  c.s.s.c.LessonController                           - Specialty has been successfully deleted! 
-2021-11-10 20:32:50,012 [http-nio-8081-exec-2] INFO  c.s.s.c.SubjectRestController                      - Subject BD with 5 groups has been successfully added! 
-2021-11-10 20:33:47,109 [http-nio-8081-exec-4] INFO  c.s.s.c.SubjectRestController                      - Subject BD with 5 groups has been successfully added! 
-2021-11-10 20:37:23,411 [http-nio-8081-exec-1] INFO  c.s.s.c.SubjectRestController                      - Subject has been successfully deleted! 
+2021-11-10 20:37:06,309 [http-nio-8081-exec-6] INFO  c.s.s.s.i.LessonServiceImpl                        - Lesson successfully deleted! 
+2021-11-10 20:38:05,748 [http-nio-8081-exec-1] INFO  c.s.s.s.i.LessonServiceImpl                        - Lesson successfully deleted! 
+2021-11-10 20:38:45,093 [http-nio-8081-exec-2] INFO  c.s.s.s.i.LessonServiceImpl                        - Lesson successfully deleted! 
+2021-11-10 20:40:19,683 [http-nio-8081-exec-2] INFO  c.s.s.s.i.LessonServiceImpl                        - Lesson successfully deleted! 
