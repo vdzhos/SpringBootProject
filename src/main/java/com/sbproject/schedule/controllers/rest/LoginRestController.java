@@ -28,6 +28,11 @@ import com.sbproject.schedule.models.UserData;
 import com.sbproject.schedule.services.interfaces.LoginService;
 import com.sbproject.schedule.services.interfaces.UserProfileService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.media.Schema;
 @RestController
 @RequestMapping("/restLogin")
 public class LoginRestController {
@@ -42,6 +47,16 @@ public class LoginRestController {
 		this.userService = userService;
 	}
 	
+	
+	@Operation(summary = "Get user by login")
+	@ApiResponses(value = { 
+			  @ApiResponse(responseCode = "200", description = "Found the user", 
+			    content = { @Content(mediaType = "application/json", 
+			      schema = @Schema(implementation = User.class)) }),
+			  @ApiResponse(responseCode = "400", description = "Invalid login supplied", 
+			    content = @Content), 
+			  @ApiResponse(responseCode = "404", description = "User not found", 
+			    content = @Content) })
 	@GetMapping("getuser/{login}")
 	public ResponseEntity<User> getUser(@PathVariable @NotBlank String login) throws UserNotFoundException
 	{
@@ -49,6 +64,15 @@ public class LoginRestController {
 		return ResponseEntity.ok(user);
 	}
 	
+	
+	@Operation(summary = "Registrate new user")
+	@ApiResponses(value = { 
+			  @ApiResponse(responseCode = "201", description = "User successfully registered", 
+			    content = @Content),
+			  @ApiResponse(responseCode = "400", description = "Invalid user data", 
+			    content = @Content), 
+			  @ApiResponse(responseCode = "403", description = "Violation of registration rules", 
+			    content = @Content) })
 	@PostMapping("newuser")
 	public ResponseEntity<String> registrateUser(@Valid @RequestBody UserData userData) throws WrongRoleCodeException, LoginUsedException
 	{
@@ -56,6 +80,16 @@ public class LoginRestController {
 		return new ResponseEntity<>("Success: New user registered", HttpStatus.CREATED);
 	}
 	
+	@Operation(summary = "Delete existing user")
+	@ApiResponses(value = { 
+			  @ApiResponse(responseCode = "200", description = "User successfully deleted", 
+			    content = @Content),
+			  @ApiResponse(responseCode = "404", description = "User not found", 
+			    content = @Content), 
+			  @ApiResponse(responseCode = "403", description = "Incorrect user password", 
+			    content = @Content),
+			  @ApiResponse(responseCode = "400", description = "Invalid user data",
+			  	content = @Content)})
 	@DeleteMapping("deleteuser")
 	public ResponseEntity<String> deleteUser(@Valid @RequestBody UserData userData) throws UserNotFoundException
 	{
@@ -63,6 +97,17 @@ public class LoginRestController {
 		return succ ? new ResponseEntity<>("Success: User deleted", HttpStatus.OK) : new ResponseEntity<>("Failure: Incorrect password", HttpStatus.FORBIDDEN);
 	}
 	
+	
+	@Operation(summary = "Change user password")
+	@ApiResponses(value = { 
+			  @ApiResponse(responseCode = "200", description = "User password successfully changed", 
+			    content = @Content),
+			  @ApiResponse(responseCode = "404", description = "User not found", 
+			    content = @Content), 
+			  @ApiResponse(responseCode = "403", description = "Incorrect user password", 
+			    content = @Content),
+			  @ApiResponse(responseCode = "400", description = "Invalid user data",
+			  	content = @Content)})
 	@PutMapping("passupdate")
 	public ResponseEntity<String> updatePassword(@Valid @RequestBody UserData userData) throws UserNotFoundException, InvalidPasswordException {
 		userService.updatePassword(userData.getLogin(), userData.getPassword(), userData.getNewPassword());
