@@ -105,7 +105,9 @@ public class SubjectServiceImpl implements SubjectService {
 
     @Override
     public Subject getSubjectByName(String name) {
-        return subjectRepository.findByName(name).iterator().next();
+        Iterable<Subject> res = subjectRepository.findByName(name);
+        if (!res.iterator().hasNext()) throw new SubjectNotFoundException("Subject with name '"+ name +"' has not been found!");
+        return res.iterator().next();
     }
 
     @Override
