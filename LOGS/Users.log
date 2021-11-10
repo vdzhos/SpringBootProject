@@ -11,3 +11,8 @@
 2021-10-20 21:06:31,164 [http-nio-8081-exec-9] FATAL c.s.s.c.UserProfileController                      - Unauthorized session! 
 2021-10-20 21:06:50,315 [http-nio-8081-exec-3] FATAL c.s.s.c.UserProfileController                      - Unauthorized session! 
 2021-10-20 22:40:23,316 [http-nio-8081-exec-3] FATAL c.s.s.c.UserProfileController                      - Unauthorized session! 
+2021-11-10 22:45:15,356 [http-nio-8081-exec-5] ERROR c.s.s.s.i.LoginServiceImpl                         - User not found: v 
+2021-11-10 22:45:15,420 [http-nio-8081-exec-6] INFO  c.s.s.s.i.LoginServiceImpl                         - User registrated: gleb : 5555 : ADMIN 
+2021-11-10 22:45:15,517 [http-nio-8081-exec-8] INFO  c.s.s.s.i.LoginServiceImpl                         - User deleted: ilya : 4321 
+2021-11-10 22:45:15,581 [http-nio-8081-exec-2] INFO  c.s.s.s.i.UserProfileServiceImpl                   - User password changed: vovan : New password = 6666 
+2021-11-10 22:45:15,615 [http-nio-8081-exec-1] ERROR c.s.s.s.i.UserProfileServiceImpl                   - Wrong previous password: 1234 

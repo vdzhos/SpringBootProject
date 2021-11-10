@@ -1,1 +1,1722 @@
-{"openapi":"3.0.1","info":{"title":"OpenAPI definition","version":"v0"},"servers":[{"url":"http://localhost:8081","description":"Generated server url"}],"paths":{"/subjects/update/{id}":{"put":{"tags":["subject-rest-controller"],"summary":"Update the subject","operationId":"updateSubject","parameters":[{"name":"id","in":"path","required":true,"schema":{"type":"integer","format":"int64"}}],"requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/Subject"}}},"required":true},"responses":{"400":{"description":"Incorrect subject object passed","content":{"application/json":{"schema":{"$ref":"#/components/schemas/ErrorMessage"}}}},"403":{"description":"Forbidden","content":{"*/*":{"schema":{"type":"string"}}}},"404":{"description":"Subject with the id not found","content":{"application/json":{"schema":{"$ref":"#/components/schemas/ErrorMessage"}}}},"200":{"description":"Subject updated","content":{"application/json":{"schema":{"$ref":"#/components/schemas/Specialty"}}}}}}},"/specialties/{id}":{"get":{"tags":["specialty-rest-controller"],"summary":"Get a specialty by its id","operationId":"getSpecialty","parameters":[{"name":"id","in":"path","description":"id of the specialty to be searched","required":true,"schema":{"minimum":1,"type":"integer","format":"int64"}}],"responses":{"400":{"description":"Bad Request","content":{"*/*":{"schema":{"type":"object","additionalProperties":{"type":"string"}}}}},"403":{"description":"Forbidden","content":{"*/*":{"schema":{"type":"string"}}}},"404":{"description":"Specialty not found","content":{"application/json":{"schema":{"$ref":"#/components/schemas/ErrorMessage"}}}},"200":{"description":"Found the specialty","content":{"application/json":{"schema":{"$ref":"#/components/schemas/Specialty"}}}}}},"put":{"tags":["specialty-rest-controller"],"summary":"Update a specialty by its id","operationId":"updateSpecialty","parameters":[{"name":"id","in":"path","description":"id of the specialty to be updated","required":true,"schema":{"minimum":1,"type":"integer","format":"int64"}}],"requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/Specialty"}}},"required":true},"responses":{"400":{"description":"Incorrect request body","content":{"application/json":{"schema":{"$ref":"#/components/schemas/ErrorMessage"}}}},"403":{"description":"Forbidden","content":{"*/*":{"schema":{"type":"string"}}}},"404":{"description":"Not Found","content":{"*/*":{"schema":{"type":"object","additionalProperties":{"type":"string"}}}}},"200":{"description":"Updated the specialty","content":{"application/json":{"schema":{"$ref":"#/components/schemas/Specialty"}}}}}},"delete":{"tags":["specialty-rest-controller"],"summary":"Delete a specialty by its id","operationId":"deleteSpecialty","parameters":[{"name":"id","in":"path","description":"id of the specialty to be deleted","required":true,"schema":{"minimum":1,"type":"integer","format":"int64"}}],"responses":{"400":{"description":"Bad Request","content":{"*/*":{"schema":{"type":"object","additionalProperties":{"type":"string"}}}}},"403":{"description":"Forbidden","content":{"*/*":{"schema":{"type":"string"}}}},"404":{"description":"Specialty with the id not found","content":{"application/json":{"schema":{"$ref":"#/components/schemas/ErrorMessage"}}}},"200":{"description":"Deleted the specialty"}}}},"/restLogin/passupdate":{"put":{"tags":["login-rest-controller"],"summary":"Change user password","operationId":"updatePassword","requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/UserData"}}},"required":true},"responses":{"400":{"description":"Invalid user data","content":{}},"403":{"description":"Incorrect user password","content":{}},"404":{"description":"User not found","content":{}},"200":{"description":"User password successfully changed"}}}},"/REST/teachers/{id}":{"get":{"tags":["teacher-controller-rest"],"summary":"Get teacher by id.","operationId":"getTeacherById","parameters":[{"name":"id","in":"path","required":true,"schema":{"type":"integer","format":"int64"}}],"responses":{"400":{"description":"Invalid id supplied.","content":{}},"403":{"description":"Forbidden","content":{"*/*":{"schema":{"type":"string"}}}},"404":{"description":"Teacher not found.","content":{}},"200":{"description":"Found the teacher.","content":{"application/json":{"schema":{"$ref":"#/components/schemas/Teacher"}}}}}},"put":{"tags":["teacher-controller-rest"],"summary":"Update teacher by id.","operationId":"updateTeacher","parameters":[{"name":"id","in":"path","required":true,"schema":{"type":"integer","format":"int64"}}],"requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/Teacher"}}},"required":true},"responses":{"400":{"description":"Invalid teacher object passed.","content":{}},"403":{"description":"Forbidden","content":{"*/*":{"schema":{"type":"string"}}}},"404":{"description":"Teacher not found.","content":{}},"200":{"description":"Updated the teacher.","content":{"application/json":{"schema":{"$ref":"#/components/schemas/Teacher"}}}}}},"delete":{"tags":["teacher-controller-rest"],"summary":"Delete teacher by id.","operationId":"deleteTeacher","parameters":[{"name":"id","in":"path","required":true,"schema":{"type":"integer","format":"int64"}}],"responses":{"400":{"description":"Invalid teacher id.","content":{}},"403":{"description":"Forbidden","content":{"*/*":{"schema":{"type":"string"}}}},"404":{"description":"Teacher not found.","content":{}},"200":{"description":"Deleted the teacher."}}}},"/REST/lessons/{id}":{"get":{"tags":["lesson-controller-rest"],"summary":"Get a lesson by its id","operationId":"getLessonById","parameters":[{"name":"id","in":"path","required":true,"schema":{"type":"integer","format":"int64"}}],"responses":{"400":{"description":"Invalid id supplied","content":{}},"403":{"description":"Forbidden","content":{"*/*":{"schema":{"type":"string"}}}},"404":{"description":"Lesson not found","content":{}},"200":{"description":"Found the lesson","content":{"application/json":{"schema":{"$ref":"#/components/schemas/Lesson"}}}}}},"put":{"tags":["lesson-controller-rest"],"summary":"Update the lesson","operationId":"updateLesson","parameters":[{"name":"id","in":"path","required":true,"schema":{"type":"integer","format":"int64"}}],"requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/Lesson"}}},"required":true},"responses":{"400":{"description":"Invalid lesson object passed","content":{}},"403":{"description":"Forbidden","content":{"*/*":{"schema":{"type":"string"}}}},"404":{"description":"Lesson not found","content":{}},"200":{"description":"Lesson updated","content":{"application/json":{"schema":{"$ref":"#/components/schemas/Lesson"}}}}}},"delete":{"tags":["lesson-controller-rest"],"summary":"Delete the lesson","operationId":"deleteLesson","parameters":[{"name":"id","in":"path","required":true,"schema":{"type":"integer","format":"int64"}}],"responses":{"400":{"description":"Invalid id supplied","content":{}},"403":{"description":"Forbidden","content":{"*/*":{"schema":{"type":"string"}}}},"404":{"description":"Lesson not found","content":{}},"200":{"description":"Lesson deleted"}}}},"/subjects/add":{"post":{"tags":["subject-rest-controller"],"summary":"Add new subject","operationId":"addSubject","requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/Subject"}}},"required":true},"responses":{"400":{"description":"Invalid subject object passed","content":{}},"403":{"description":"Forbidden","content":{"*/*":{"schema":{"type":"string"}}}},"404":{"description":"Not Found","content":{"*/*":{"schema":{"type":"object","additionalProperties":{"type":"string"}}}}},"200":{"description":"New subject added","content":{"application/json":{"schema":{"$ref":"#/components/schemas/Subject"}}}}}}},"/specialties":{"get":{"tags":["specialty-rest-controller"],"summary":"Get all specialties","operationId":"getAllSpecialties","responses":{"400":{"description":"Bad Request","content":{"*/*":{"schema":{"type":"object","additionalProperties":{"type":"string"}}}}},"403":{"description":"Forbidden","content":{"*/*":{"schema":{"type":"string"}}}},"404":{"description":"Not Found","content":{"*/*":{"schema":{"type":"object","additionalProperties":{"type":"string"}}}}},"200":{"description":"Found the specialties","content":{"application/json":{"schema":{"$ref":"#/components/schemas/Specialty"}}}}}},"post":{"tags":["specialty-rest-controller"],"summary":"Add new specialty","operationId":"addSpecialty","requestBody":{"content":{"application/json":{"schema":{"type":"string"}}},"required":true},"responses":{"400":{"description":"Incorrect request body","content":{"application/json":{"schema":{"$ref":"#/components/schemas/ErrorMessage"}}}},"403":{"description":"Forbidden","content":{"*/*":{"schema":{"type":"string"}}}},"404":{"description":"Not Found","content":{"*/*":{"schema":{"type":"object","additionalProperties":{"type":"string"}}}}},"201":{"description":"Added the specialty","content":{"application/json":{"schema":{"$ref":"#/components/schemas/Specialty"}}}}}},"delete":{"tags":["specialty-rest-controller"],"summary":"Delete all specialties","operationId":"deleteAll","responses":{"400":{"description":"Bad Request","content":{"*/*":{"schema":{"type":"object","additionalProperties":{"type":"string"}}}}},"403":{"description":"Forbidden","content":{"*/*":{"schema":{"type":"string"}}}},"404":{"description":"Not Found","content":{"*/*":{"schema":{"type":"object","additionalProperties":{"type":"string"}}}}},"200":{"description":"All specialties deleted"}}}},"/restLogin/newuser":{"post":{"tags":["login-rest-controller"],"summary":"Registrate new user","operationId":"registrateUser","requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/UserData"}}},"required":true},"responses":{"400":{"description":"Invalid user data","content":{}},"403":{"description":"Violation of registration rules","content":{}},"404":{"description":"Not Found","content":{"*/*":{"schema":{"type":"object","additionalProperties":{"type":"string"}}}}},"201":{"description":"User successfully registered"}}}},"/REST/teachers/add":{"post":{"tags":["teacher-controller-rest"],"summary":"Add teacher.","operationId":"addTeacher","requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/Teacher"}}},"required":true},"responses":{"400":{"description":"Invalid teacher object passed.","content":{}},"403":{"description":"Forbidden","content":{"*/*":{"schema":{"type":"string"}}}},"404":{"description":"Not Found","content":{"*/*":{"schema":{"type":"object","additionalProperties":{"type":"string"}}}}},"200":{"description":"Added the teacher.","content":{"application/json":{"schema":{"$ref":"#/components/schemas/Teacher"}}}}}}},"/REST/lessons/add":{"post":{"tags":["lesson-controller-rest"],"summary":"Add new lesson","operationId":"addLesson","requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/Lesson"}}},"required":true},"responses":{"400":{"description":"Invalid lesson object passed","content":{}},"403":{"description":"Forbidden","content":{"*/*":{"schema":{"type":"string"}}}},"404":{"description":"Not Found","content":{"*/*":{"schema":{"type":"object","additionalProperties":{"type":"string"}}}}},"200":{"description":"Lesson added","content":{"application/json":{"schema":{"$ref":"#/components/schemas/Lesson"}}}}}}},"/subjects/get":{"get":{"tags":["subject-rest-controller"],"summary":"Get all subjects","operationId":"getSubjects","responses":{"400":{"description":"Bad Request","content":{"*/*":{"schema":{"type":"object","additionalProperties":{"type":"string"}}}}},"403":{"description":"Forbidden","content":{"*/*":{"schema":{"type":"string"}}}},"404":{"description":"Not Found","content":{"*/*":{"schema":{"type":"object","additionalProperties":{"type":"string"}}}}},"200":{"description":"Found subjects","content":{"application/json":{"schema":{"type":"array","items":{"$ref":"#/components/schemas/Subject"}}}}}}}},"/subjects/getByName/{name}":{"get":{"tags":["subject-rest-controller"],"operationId":"getSubject","parameters":[{"name":"name","in":"path","required":true,"schema":{"type":"string"}}],"responses":{"400":{"description":"Bad Request","content":{"*/*":{"schema":{"type":"object","additionalProperties":{"type":"string"}}}}},"403":{"description":"Forbidden","content":{"*/*":{"schema":{"type":"string"}}}},"404":{"description":"Subject with the name not found","content":{"application/json":{"schema":{"$ref":"#/components/schemas/ErrorMessage"}}}},"200":{"description":"Found the subject by name","content":{"application/json":{"schema":{"$ref":"#/components/schemas/Subject"}}}}}}},"/subjects/get/{id}":{"get":{"tags":["subject-rest-controller"],"operationId":"getSubject_1","parameters":[{"name":"id","in":"path","required":true,"schema":{"type":"integer","format":"int64"}}],"responses":{"400":{"description":"Bad Request","content":{"*/*":{"schema":{"type":"object","additionalProperties":{"type":"string"}}}}},"403":{"description":"Forbidden","content":{"*/*":{"schema":{"type":"string"}}}},"404":{"description":"Subject with the id not found","content":{"application/json":{"schema":{"$ref":"#/components/schemas/ErrorMessage"}}}},"200":{"description":"Found the subject by id","content":{"application/json":{"schema":{"$ref":"#/components/schemas/Subject"}}}}}}},"/restLogin/getuser/{login}":{"get":{"tags":["login-rest-controller"],"summary":"Get user by login","operationId":"getUser","parameters":[{"name":"login","in":"path","required":true,"schema":{"type":"string"}}],"responses":{"400":{"description":"Invalid login supplied","content":{}},"403":{"description":"Forbidden","content":{"*/*":{"schema":{"type":"string"}}}},"404":{"description":"User not found","content":{}},"200":{"description":"Found the user","content":{"application/json":{"schema":{"$ref":"#/components/schemas/User"}}}}}}},"/REST/teachers/all":{"get":{"tags":["teacher-controller-rest"],"summary":"Get all teachers.","operationId":"getAllTeachers","responses":{"400":{"description":"Bad Request","content":{"*/*":{"schema":{"type":"object","additionalProperties":{"type":"string"}}}}},"403":{"description":"Forbidden","content":{"*/*":{"schema":{"type":"string"}}}},"404":{"description":"Not Found","content":{"*/*":{"schema":{"type":"object","additionalProperties":{"type":"string"}}}}},"200":{"description":"Found the teachers.","content":{"application/json":{"schema":{"type":"array","items":{"$ref":"#/components/schemas/Teacher"}}}}}}}},"/REST/lessons/all":{"get":{"tags":["lesson-controller-rest"],"summary":"Get all lessons","operationId":"getAllLessons","responses":{"400":{"description":"Bad Request","content":{"*/*":{"schema":{"type":"object","additionalProperties":{"type":"string"}}}}},"403":{"description":"Forbidden","content":{"*/*":{"schema":{"type":"string"}}}},"404":{"description":"Not Found","content":{"*/*":{"schema":{"type":"object","additionalProperties":{"type":"string"}}}}},"200":{"description":"Found lessons","content":{"application/json":{"schema":{"type":"array","items":{"$ref":"#/components/schemas/Lesson"}}}}}}}},"/subjects/delete/{id}":{"delete":{"tags":["subject-rest-controller"],"summary":"Delete a subject by its id","operationId":"deleteSubject","parameters":[{"name":"id","in":"path","required":true,"schema":{"type":"integer","format":"int64"}}],"responses":{"400":{"description":"Bad Request","content":{"*/*":{"schema":{"type":"object","additionalProperties":{"type":"string"}}}}},"403":{"description":"Forbidden","content":{"*/*":{"schema":{"type":"string"}}}},"404":{"description":"Subject with the id not found","content":{"application/json":{"schema":{"$ref":"#/components/schemas/ErrorMessage"}}}},"200":{"description":"Subject deleted","content":{"application/json":{"schema":{"$ref":"#/components/schemas/Subject"}}}}}}},"/restLogin/deleteuser":{"delete":{"tags":["login-rest-controller"],"summary":"Delete existing user","operationId":"deleteUser","requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/UserData"}}},"required":true},"responses":{"400":{"description":"Invalid user data","content":{}},"403":{"description":"Incorrect user password","content":{}},"404":{"description":"User not found","content":{}},"200":{"description":"User successfully deleted"}}}}},"components":{"schemas":{"Specialty":{"required":["name"],"type":"object","properties":{"id":{"type":"integer","format":"int64"},"name":{"type":"string"},"year":{"maximum":6,"minimum":1,"type":"integer","format":"int32"},"subjects":{"uniqueItems":true,"type":"array","items":{"$ref":"#/components/schemas/Subject"}}}},"Subject":{"required":["name","quantOfGroups","specialties"],"type":"object","properties":{"id":{"type":"integer","format":"int64"},"name":{"type":"string"},"quantOfGroups":{"maximum":30,"minimum":1,"type":"integer","format":"int32"},"teachers":{"uniqueItems":true,"type":"array","items":{"$ref":"#/components/schemas/Teacher"}},"specialties":{"uniqueItems":true,"type":"array","items":{"$ref":"#/components/schemas/Specialty"}}}},"Teacher":{"required":["name","subjects"],"type":"object","properties":{"id":{"type":"integer","format":"int64"},"name":{"type":"string"},"subjects":{"type":"array","items":{"$ref":"#/components/schemas/Subject"}}}},"ErrorMessage":{"type":"object","properties":{"success":{"type":"string"},"error":{"type":"string"}}},"UserData":{"required":["login","password"],"type":"object","properties":{"login":{"pattern":"^(?=.{4,15}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$","type":"string"},"password":{"pattern":"^(?=.{4,10}$)[a-zA-Z0-9._]+$","type":"string"},"roleCode":{"type":"string"},"newPassword":{"pattern":"^(?=.{4,10}$)[a-zA-Z0-9._]+$","type":"string"}}},"Lesson":{"required":["dayOfWeek","group","room","subject","teacher","time","weeks"],"type":"object","properties":{"id":{"type":"integer","format":"int64"},"time":{"type":"string","enum":["8:30-9:50","10:00-11:20","11:40-13:00","13:30-14:50","15:00-16:20","16:30-17:50","18:00-19:20"]},"subject":{"type":"integer","format":"int64"},"teacher":{"type":"integer","format":"int64"},"group":{"$ref":"#/components/schemas/SubjectType"},"weeks":{"pattern":"^([1-9][0-9]*(-[1-9][0-9]*)?)(,([1-9][0-9]*(-[1-9][0-9]*)?))*$","type":"string"},"room":{"$ref":"#/components/schemas/Room"},"dayOfWeek":{"type":"string","enum":["MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY","SATURDAY","SUNDAY"]}}},"Room":{"type":"object","properties":{"room":{"type":"string"}}},"SubjectType":{"type":"object","properties":{"group":{"type":"string"}}},"User":{"type":"object","properties":{"login":{"type":"string"},"password":{"type":"string"},"role":{"type":"string","enum":["ADMIN","REGULAR"]}}}}}}
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "OpenAPI definition",
+    "version": "v0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8081",
+      "description": "Generated server url"
+    }
+  ],
+  "paths": {
+    "/subjects/update/{id}": {
+      "put": {
+        "tags": [
+          "subject-rest-controller"
+        ],
+        "summary": "Update the subject",
+        "operationId": "updateSubject",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Subject"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Subject updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Subject"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Incorrect subject object passed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Subject with the id not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/specialties/{id}": {
+      "get": {
+        "tags": [
+          "specialty-rest-controller"
+        ],
+        "summary": "Get a specialty by its id",
+        "operationId": "getSpecialty",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id of the specialty to be searched",
+            "required": true,
+            "schema": {
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Found the specialty",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Specialty"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Specialty not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "specialty-rest-controller"
+        ],
+        "summary": "Update a specialty by its id",
+        "operationId": "updateSpecialty",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id of the specialty to be updated",
+            "required": true,
+            "schema": {
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Specialty"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Updated the specialty",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Specialty"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Incorrect request body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "specialty-rest-controller"
+        ],
+        "summary": "Delete a specialty by its id",
+        "operationId": "deleteSpecialty",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id of the specialty to be deleted",
+            "required": true,
+            "schema": {
+              "minimum": 1,
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deleted the specialty"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Specialty with the id not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/restLogin/passupdate": {
+      "put": {
+        "tags": [
+          "login-rest-controller"
+        ],
+        "summary": "Change user password",
+        "operationId": "updatePassword",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserData"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "User password successfully changed"
+          },
+          "400": {
+            "description": "Invalid user data",
+            "content": {}
+          },
+          "403": {
+            "description": "Incorrect user password",
+            "content": {}
+          },
+          "404": {
+            "description": "User not found",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/REST/teachers/{id}": {
+      "get": {
+        "tags": [
+          "teacher-controller-rest"
+        ],
+        "summary": "Get teacher by id.",
+        "operationId": "getTeacherById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Found the teacher.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Teacher"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Teacher not found.",
+            "content": {}
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "teacher-controller-rest"
+        ],
+        "summary": "Update teacher by id.",
+        "operationId": "updateTeacher",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Teacher"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Updated the teacher.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Teacher"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid teacher object passed.",
+            "content": {}
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Teacher not found.",
+            "content": {}
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "teacher-controller-rest"
+        ],
+        "summary": "Delete teacher by id.",
+        "operationId": "deleteTeacher",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deleted the teacher."
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Teacher not found.",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/REST/lessons/{id}": {
+      "get": {
+        "tags": [
+          "lesson-controller-rest"
+        ],
+        "summary": "Get a lesson by its id",
+        "operationId": "getLessonById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Found the lesson",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Lesson"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Lesson not found",
+            "content": {}
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "lesson-controller-rest"
+        ],
+        "summary": "Update the lesson",
+        "operationId": "updateLesson",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Lesson"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Lesson updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Lesson"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid lesson object passed",
+            "content": {}
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Lesson not found",
+            "content": {}
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "lesson-controller-rest"
+        ],
+        "summary": "Delete the lesson",
+        "operationId": "deleteLesson",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lesson deleted"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Lesson not found",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/subjects/add": {
+      "post": {
+        "tags": [
+          "subject-rest-controller"
+        ],
+        "summary": "Add new subject",
+        "operationId": "addSubject",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Subject"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "New subject added",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Subject"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid subject object passed",
+            "content": {}
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/specialties": {
+      "get": {
+        "tags": [
+          "specialty-rest-controller"
+        ],
+        "summary": "Get all specialties",
+        "operationId": "getAllSpecialties",
+        "responses": {
+          "200": {
+            "description": "Found the specialties",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Specialty"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "specialty-rest-controller"
+        ],
+        "summary": "Add new specialty",
+        "operationId": "addSpecialty",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Added the specialty",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Specialty"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Incorrect request body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "specialty-rest-controller"
+        ],
+        "summary": "Delete all specialties",
+        "operationId": "deleteAll",
+        "responses": {
+          "200": {
+            "description": "All specialties deleted"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/restLogin/newuser": {
+      "post": {
+        "tags": [
+          "login-rest-controller"
+        ],
+        "summary": "Registrate new user",
+        "operationId": "registrateUser",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserData"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "User successfully registered"
+          },
+          "400": {
+            "description": "Invalid user data",
+            "content": {}
+          },
+          "403": {
+            "description": "Violation of registration rules",
+            "content": {}
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/REST/teachers/add": {
+      "post": {
+        "tags": [
+          "teacher-controller-rest"
+        ],
+        "summary": "Add teacher.",
+        "operationId": "addTeacher",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Teacher"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Added the teacher.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Teacher"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid teacher object passed.",
+            "content": {}
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/REST/lessons/add": {
+      "post": {
+        "tags": [
+          "lesson-controller-rest"
+        ],
+        "summary": "Add new lesson",
+        "operationId": "addLesson",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Lesson"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Lesson added",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Lesson"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid lesson object passed",
+            "content": {}
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/subjects/get": {
+      "get": {
+        "tags": [
+          "subject-rest-controller"
+        ],
+        "summary": "Get all subjects",
+        "operationId": "getSubjects",
+        "responses": {
+          "200": {
+            "description": "Found subjects",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Subject"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/subjects/getByName/{name}": {
+      "get": {
+        "tags": [
+          "subject-rest-controller"
+        ],
+        "summary": "Get a subject by its name",
+        "operationId": "getSubject",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Found the subject by name",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Subject"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Subject with the name not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/subjects/get/{id}": {
+      "get": {
+        "tags": [
+          "subject-rest-controller"
+        ],
+        "summary": "Get a subject by its id",
+        "operationId": "getSubject_1",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Found the subject by id",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Subject"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Subject with the id not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/restLogin/getuser/{login}": {
+      "get": {
+        "tags": [
+          "login-rest-controller"
+        ],
+        "summary": "Get user by login",
+        "operationId": "getUser",
+        "parameters": [
+          {
+            "name": "login",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Found the user",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid login supplied",
+            "content": {}
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/REST/teachers/all": {
+      "get": {
+        "tags": [
+          "teacher-controller-rest"
+        ],
+        "summary": "Get all teachers.",
+        "operationId": "getAllTeachers",
+        "responses": {
+          "200": {
+            "description": "Found the teachers.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Teacher"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/REST/lessons/all": {
+      "get": {
+        "tags": [
+          "lesson-controller-rest"
+        ],
+        "summary": "Get all lessons",
+        "operationId": "getAllLessons",
+        "responses": {
+          "200": {
+            "description": "Found lessons",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Lesson"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/subjects/delete/{id}": {
+      "delete": {
+        "tags": [
+          "subject-rest-controller"
+        ],
+        "summary": "Delete a subject by its id",
+        "operationId": "deleteSubject",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Subject deleted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Subject"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Subject with the id not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/restLogin/deleteuser": {
+      "delete": {
+        "tags": [
+          "login-rest-controller"
+        ],
+        "summary": "Delete existing user",
+        "operationId": "deleteUser",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserData"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "User successfully deleted"
+          },
+          "400": {
+            "description": "Invalid user data",
+            "content": {}
+          },
+          "403": {
+            "description": "Incorrect user password",
+            "content": {}
+          },
+          "404": {
+            "description": "User not found",
+            "content": {}
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Specialty": {
+        "required": [
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          },
+          "year": {
+            "maximum": 6,
+            "minimum": 1,
+            "type": "integer",
+            "format": "int32"
+          },
+          "subjects": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Subject"
+            }
+          }
+        }
+      },
+      "Subject": {
+        "required": [
+          "name",
+          "quantOfGroups",
+          "specialties"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          },
+          "quantOfGroups": {
+            "maximum": 30,
+            "minimum": 1,
+            "type": "integer",
+            "format": "int32"
+          },
+          "teachers": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Teacher"
+            }
+          },
+          "specialties": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Specialty"
+            }
+          }
+        }
+      },
+      "Teacher": {
+        "required": [
+          "name",
+          "subjects"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          },
+          "subjects": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Subject"
+            }
+          }
+        }
+      },
+      "ErrorMessage": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "string"
+          },
+          "error": {
+            "type": "string"
+          }
+        }
+      },
+      "UserData": {
+        "required": [
+          "login",
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "login": {
+            "pattern": "^(?=.{4,15}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$",
+            "type": "string"
+          },
+          "password": {
+            "pattern": "^(?=.{4,10}$)[a-zA-Z0-9._]+$",
+            "type": "string"
+          },
+          "roleCode": {
+            "type": "string"
+          },
+          "newPassword": {
+            "pattern": "^(?=.{4,10}$)[a-zA-Z0-9._]+$",
+            "type": "string"
+          }
+        }
+      },
+      "Lesson": {
+        "required": [
+          "dayOfWeek",
+          "group",
+          "room",
+          "subject",
+          "teacher",
+          "time",
+          "weeks"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "time": {
+            "type": "string",
+            "enum": [
+              "8:30-9:50",
+              "10:00-11:20",
+              "11:40-13:00",
+              "13:30-14:50",
+              "15:00-16:20",
+              "16:30-17:50",
+              "18:00-19:20"
+            ]
+          },
+          "subject": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "teacher": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "group": {
+            "$ref": "#/components/schemas/SubjectType"
+          },
+          "weeks": {
+            "pattern": "^([1-9][0-9]*(-[1-9][0-9]*)?)(,([1-9][0-9]*(-[1-9][0-9]*)?))*$",
+            "type": "string"
+          },
+          "room": {
+            "$ref": "#/components/schemas/Room"
+          },
+          "dayOfWeek": {
+            "type": "string",
+            "enum": [
+              "MONDAY",
+              "TUESDAY",
+              "WEDNESDAY",
+              "THURSDAY",
+              "FRIDAY",
+              "SATURDAY",
+              "SUNDAY"
+            ]
+          }
+        }
+      },
+      "Room": {
+        "type": "object",
+        "properties": {
+          "room": {
+            "type": "string"
+          }
+        }
+      },
+      "SubjectType": {
+        "type": "object",
+        "properties": {
+          "group": {
+            "type": "string"
+          }
+        }
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "login": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "ADMIN",
+              "REGULAR"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

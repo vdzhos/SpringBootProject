@@ -3,9 +3,6 @@ package com.sbproject.schedule.controllers;
 import com.sbproject.schedule.exceptions.handlers.ErrorMessage;
 import com.sbproject.schedule.exceptions.subject.NoSubjectWithSuchIdToDelete;
 import com.sbproject.schedule.exceptions.subject.NoSubjectWithSuchIdToUpdate;
-import com.sbproject.schedule.exceptions.subject.SubjectNotFoundException;
-import com.sbproject.schedule.models.Lesson;
-import com.sbproject.schedule.models.Specialty;
 import com.sbproject.schedule.models.Subject;
 import com.sbproject.schedule.services.implementations.SubjectServiceImpl;
 import com.sbproject.schedule.utils.Markers;
@@ -44,6 +41,7 @@ public class SubjectRestController {
         return subjectService.getAll();
     }
 
+    @Operation(summary = "Get a subject by its name")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Found the subject by name",
                     content = { @Content(mediaType = "application/json",
@@ -55,6 +53,7 @@ public class SubjectRestController {
         return subjectService.getSubjectByName(name);
     }
 
+    @Operation(summary = "Get a subject by its id")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Found the subject by id",
                     content = { @Content(mediaType = "application/json",
@@ -97,7 +96,7 @@ public class SubjectRestController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Subject updated",
                     content = { @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = Specialty.class))}),
+                            schema = @Schema(implementation = Subject.class))}),
             @ApiResponse(responseCode = "400", description = "Incorrect subject object passed",
                     content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
             @ApiResponse(responseCode = "404", description = "Subject with the id not found",

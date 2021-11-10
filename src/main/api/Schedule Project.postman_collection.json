@@ -1,0 +1,2235 @@
+{
+	"info": {
+		"_postman_id": "eb52970e-bf61-46f7-ab08-1400bd7cc3da",
+		"name": "Schedule Project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Subject",
+			"item": [
+				{
+					"name": "GET_ALL_SUBJECTS",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"GET subjects - status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.be.ok;\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/subjects/get",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"subjects",
+								"get"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET_SUBJECT_BY_ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Check subject's id of GET request\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.id).to.eql(5);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/subjects/get/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"subjects",
+								"get",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET_SUBJECT_BY_NAME",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"GET subject by existing name\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.name).to.eql('Subject 1');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/subjects/getByName/Subject 1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"subjects",
+								"getByName",
+								"Subject 1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET_SUBJECT_BY_WRONG_NAME",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"GET subject by unexisting name - status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"    pm.response.to.be.notFound;\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/subjects/getByName/NoName",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"subjects",
+								"getByName",
+								"NoName"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST_SUBJECT",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"POST subject contains correct name and no teachers\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"BD\");\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.teachers).to.eql(null);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"BD\",\r\n  \"quantOfGroups\": 5,\r\n  \"specialties\": [1, 2]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/subjects/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"subjects",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST_INVALID_SUBJECT",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Incorrect POST requst doesn't contain quantOfGroups\", function () {\r",
+									"    pm.response.to.have.jsonBody(\"success\", \"false\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"OKA\",\r\n  \"specialties\": [2, 3]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/subjects/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"subjects",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT_SUBJECT",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"PUT subject-status code is 200 and response includes OKA\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.be.ok;\r",
+									"    pm.expect(pm.response.text()).to.include(\"OKA\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"OKA\",\r\n  \"quantOfGroups\": 5,\r\n  \"teachersIds\": [7, 8],\r\n  \"specialties\": [1, 2]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/subjects/update/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"subjects",
+								"update",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT_INVALID_SUBJECT",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Incorrect PUT requst doesn't contain specialties\", function () {\r",
+									"    pm.response.to.have.jsonBody(\"error\", \"Mandatory field!\\n\")\r",
+									"    .and.have.jsonBody(\"success\", \"false\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"BD\",\r\n  \"quantOfGroups\": 5,\r\n  \"teachersIds\": [7, 8]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/subjects/update/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"subjects",
+								"update",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE_SUBJECT",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"DELETE subject - response time is less than 300ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/subjects/delete/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"subjects",
+								"delete",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE_SUBJECT_WITH_WRONG_ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Subject with id '10' has not been found!\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/subjects/delete/10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"subjects",
+								"delete",
+								"10"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "GET_USER_BY_LOGIN",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Found user and returned JSON object\", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.be.ok;\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.login).to.eql(\"vovan\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/restLogin/getuser/vovan",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"restLogin",
+								"getuser",
+								"vovan"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET_UNEXISTING_USER",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"User with such login not found\", function(){\r",
+									"    pm.response.to.be.notFound;\r",
+									"     pm.expect(pm.response.text()).to.include(\"Error: User not found!\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/restLogin/getuser/v",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"restLogin",
+								"getuser",
+								"v"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ADD_USER",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"New user created - Status 201\", function(){\r",
+									"    pm.response.to.have.status(201);\r",
+									"    pm.expect(pm.response.text()).to.include(\"Success: New user registered\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"login\" : \"gleb\",\r\n    \"password\" : \"5555\",\r\n    \"roleCode\" : \"devadmincode\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/restLogin/newuser",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"restLogin",
+								"newuser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "INVALID_REQUEST_BODY",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Invalid request body - Status 400\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"    pm.expect(pm.response.text()).to.include(\"Field error in object 'userData' on field 'login'\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"login\" : \"\",\r\n    \"password\" : \"5555\",\r\n    \"roleCode\" : \"devadmincode\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/restLogin/newuser",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"restLogin",
+								"newuser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE_EXISTING_USER",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"User deleted - Status 200\", function(){\r",
+									"    pm.response.to.be.ok;\r",
+									"    pm.expect(pm.response.text()).to.include(\"Success: User deleted\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"login\" : \"ilya\",\r\n    \"password\" : \"4321\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/restLogin/deleteuser",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"restLogin",
+								"deleteuser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE_WITH_WRONG_PASSWORD",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"User not deleted - Status FORBIDDEN\", function(){\r",
+									"    pm.response.to.have.status(403);\r",
+									"    pm.expect(pm.response.text()).to.include(\"Incorrect password\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"login\" : \"vovan\",\r\n    \"password\" : \"0000\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/restLogin/deleteuser",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"restLogin",
+								"deleteuser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE_EXISTING_ACCOUNT",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Password updated - Status 200\", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.expect(pm.response.text()).to.include(\"Success: Password changed\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"login\" : \"vovan\",\r\n    \"password\" : \"1234\",\r\n    \"newPassword\" : \"6666\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/restLogin/passupdate",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"restLogin",
+								"passupdate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "WRONG_PREVIOUS_PASSWORD",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Password not updated - Status FORBIDDEN\", function(){\r",
+									"    pm.response.to.have.status(403);\r",
+									"    pm.expect(pm.response.text()).to.include(\"Error: Wrong previous password\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"login\" : \"vovan\",\r\n    \"password\" : \"1234\",\r\n    \"newPassword\" : \"6666\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/restLogin/passupdate",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"restLogin",
+								"passupdate"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Teacher",
+			"item": [
+				{
+					"name": "GET_TEACHERS_ALL",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Reply is JSON and has body\", function () {\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/REST/teachers/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"REST",
+								"teachers",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET_TEACHER",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Reply is JSON and has body\", function () {\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"pm.test(\"ID coincides\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.id).to.eql(7);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/REST/teachers/7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"REST",
+								"teachers",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET_WRONG_TEACHER",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404 (Not Found)\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/REST/teachers/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"REST",
+								"teachers",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ADD_TEACHER",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Reply is JSON and has body\", function () {\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"pm.test(\"Name and subjects coincide\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    const requestJson = JSON.parse(pm.request.body.raw);\r",
+									"    pm.expect(responseJson.name).to.eql(requestJson.name);\r",
+									"    pm.expect(responseJson.subjects).to.eql(requestJson.subjects);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"New Teacher\",\r\n    \"subjects\": [\r\n        5\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/REST/teachers/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"REST",
+								"teachers",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ADD_WRONG_TEACHER",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"New Teacher\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/REST/teachers/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"REST",
+								"teachers",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE_TEACHER",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Reply is JSON and has body\", function () {\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"pm.test(\"ID, name and subjects coincide\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    const requestJson = JSON.parse(pm.request.body.raw);\r",
+									"    pm.expect(responseJson.name).to.eql(requestJson.name);\r",
+									"    pm.expect(responseJson.subjects).to.eql(requestJson.subjects);\r",
+									"    pm.expect(responseJson.id).to.eql(7);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Updated Teacher\",\r\n    \"subjects\": [\r\n        5\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/REST/teachers/7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"REST",
+								"teachers",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE_WRONG_TEACHER_400",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    return pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"    \r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Updated Teacher\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/REST/teachers/7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"REST",
+								"teachers",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE_WRONG_TEACHER_404",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    return pm.response.to.have.status(404);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Updated Teacher\",\r\n    \"subjects\": [\r\n        5\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/REST/teachers/999",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"REST",
+								"teachers",
+								"999"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE_TEACHER",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/REST/teachers/7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"REST",
+								"teachers",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE_WRONG_TEACHER",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/REST/teachers/999",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"REST",
+								"teachers",
+								"999"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Lesson",
+			"item": [
+				{
+					"name": "GET_ALL_SUCCESS",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Found all lessons\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.be.ok;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Returned JSON object\", function () {\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/REST/lessons/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"REST",
+								"lessons",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET_BY_ID_SUCCESS",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Found lesson\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.be.ok;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Returned correct JSON object\", function () {\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.id).to.eql(12);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/REST/lessons/12",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"REST",
+								"lessons",
+								"12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET_BY_ID_FAILURE_404",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Lesson with such id not found\", function(){\r",
+									"    pm.response.to.have.status(404);\r",
+									"    pm.response.to.be.notFound;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Returned correct JSON error object\", function(){\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.get).to.eql(\"false\");\r",
+									"    pm.expect(responseJson.error).to.eql(\"Lesson with id '1' not found!\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/REST/lessons/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"REST",
+								"lessons",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ADD_SUCCESS",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Lesson added\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.be.ok;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Returned correct JSON lesson object\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    const requestJson = JSON.parse(pm.request.body.raw);\r",
+									"    pm.expect(responseJson.time).to.eql(requestJson.time);\r",
+									"    pm.expect(responseJson.subject).to.eql(requestJson.subject);\r",
+									"    pm.expect(responseJson.teacher).to.eql(requestJson.teacher);\r",
+									"    pm.expect(responseJson.group.group).to.eql(requestJson.group+\"\");\r",
+									"    pm.expect(responseJson.weeks).to.eql(requestJson.weeks);\r",
+									"    pm.expect(responseJson.room.room).to.eql(requestJson.room);\r",
+									"    pm.expect(responseJson.dayOfWeek).to.eql(requestJson.dayOfWeek);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"time\": \"TIME6\",\r\n        \"subject\": 5,\r\n        \"teacher\": 9,\r\n        \"group\": 3,\r\n        \"weeks\": \"1-12\",\r\n        \"room\": \"0\",\r\n        \"dayOfWeek\": \"MONDAY\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/REST/lessons/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"REST",
+								"lessons",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ADD_FAILURE_400",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Lesson not added\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"    pm.response.to.be.badRequest;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Returned correct JSON error object\", function(){\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.success).to.eql(\"false\");\r",
+									"    pm.expect(responseJson.weeks).to.eql(\"Value doesn't match the pattern!\");\r",
+									"    pm.expect(responseJson.group).to.eql(\"Mandatory field!\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"time\": \"TIME7\",\r\n        \"subject\": 5,\r\n        \"teacher\": 9,\r\n        \"weeks\": \"1-12 123\",\r\n        \"room\": \"0\",\r\n        \"dayOfWeek\": \"MONDAY\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/REST/lessons/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"REST",
+								"lessons",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE_SUCCESS",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Lesson added\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.be.ok;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Returned correct JSON lesson object\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    const requestJson = JSON.parse(pm.request.body.raw);\r",
+									"    pm.expect(responseJson.time).to.eql(requestJson.time);\r",
+									"    pm.expect(responseJson.subject).to.eql(requestJson.subject);\r",
+									"    pm.expect(responseJson.teacher).to.eql(requestJson.teacher);\r",
+									"    pm.expect(responseJson.group.group).to.eql(requestJson.group+\"\");\r",
+									"    pm.expect(responseJson.weeks).to.eql(requestJson.weeks);\r",
+									"    pm.expect(responseJson.room.room).to.eql(requestJson.room);\r",
+									"    pm.expect(responseJson.dayOfWeek).to.eql(requestJson.dayOfWeek);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"time\": \"TIME6\",\r\n    \"subject\": 6,\r\n    \"teacher\": 8,\r\n    \"group\": 5,\r\n    \"weeks\": \"1-12,14\",\r\n    \"room\": \"224\",\r\n    \"dayOfWeek\": \"FRIDAY\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/REST/lessons/12",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"REST",
+								"lessons",
+								"12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE_FAILURE_400",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Lesson not added\", function(){\r",
+									"    pm.response.to.have.status(400);\r",
+									"    pm.response.to.be.badRequest;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Returned correct JSON error object\", function(){\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.success).to.eql(\"false\");\r",
+									"    pm.expect(responseJson.weeks).to.eql(\"Value doesn't match the pattern!\");\r",
+									"    pm.expect(responseJson.group).to.eql(\"Mandatory field!\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"time\": \"TIME7\",\r\n        \"subject\": 5,\r\n        \"teacher\": 9,\r\n        \"weeks\": \"1-12 123\",\r\n        \"room\": \"0\",\r\n        \"dayOfWeek\": \"MONDAY\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/REST/lessons/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"REST",
+								"lessons",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE_FAILURE_404",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Lesson with such id not found\", function(){\r",
+									"    pm.response.to.have.status(404);\r",
+									"    pm.response.to.be.notFound;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Returned correct JSON error object\", function(){\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.updated).to.eql(\"false\");\r",
+									"    pm.expect(responseJson.error).to.eql(\"Lesson with id '5' not found!\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"time\": \"TIME6\",\r\n    \"subject\": 6,\r\n    \"teacher\": 8,\r\n    \"group\": 5,\r\n    \"weeks\": \"1-12,14\",\r\n    \"room\": \"224\",\r\n    \"dayOfWeek\": \"FRIDAY\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/REST/lessons/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"REST",
+								"lessons",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE_SUCCESS",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Found lesson\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.be.ok;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Returned correct JSON object\", function () {\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.deleted).to.eql(true);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/REST/lessons/12",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"REST",
+								"lessons",
+								"12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE_FAILURE_404",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Lesson with such id not found\", function(){\r",
+									"    pm.response.to.have.status(404);\r",
+									"    pm.response.to.be.notFound;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Returned correct JSON error object\", function(){\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.deleted).to.eql(\"false\");\r",
+									"    pm.expect(responseJson.error).to.eql(\"Lesson with id '3' not found!\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/REST/lessons/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"REST",
+								"lessons",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Specialty",
+			"item": [
+				{
+					"name": "Get all specialties",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/specialties",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"specialties"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get specialty by its correct id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Correct name test\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.name).to.eql('IPZ');",
+									"});",
+									"pm.test(\"Correct year test\", function () {",
+									"    var jsonData = pm.response.json();",
+									"        pm.expect(jsonData.year).to.eql(3);",
+									"});",
+									"pm.test(\"Correct id test\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.id).to.eql(1);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/specialties/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"specialties",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get specialty by its incorrect id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"pm.test(\"The specialty with the specified id does not exist\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.success).to.eql('false');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/specialties/123123",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"specialties",
+								"123123"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add a new specialty",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);",
+									"});",
+									"",
+									"pm.test(\"Correct name test\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.name).to.eql('New Specialty');",
+									"});",
+									"pm.test(\"Correct year test\", function () {",
+									"    var jsonData = pm.response.json();",
+									"        pm.expect(jsonData.year).to.eql(3);",
+									"});",
+									"pm.test(\"Correct id test\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.subjects).to.eql([]);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"New Specialty\",\n    \"year\": 3,\n    \"subjects\": []\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/specialties",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"specialties"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Unsuccessful attempt to add a new specialty (already exixts)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"pm.test(\"The specialty with the specified params already exists test\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.success).to.eql('false');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"IPZ\",\n    \"year\": 3,\n    \"subjects\": []\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/specialties",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"specialties"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Unsuccessful attempt to add a new specialty (subjects do not exist)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"pm.test(\"The specified subject id doesn't exist\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.success).to.eql('false');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"New Specialty 1\",\n    \"year\": 3,\n    \"subjects\": [1000,2000,3000]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/specialties",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"specialties"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Unsuccessful attempt to add a new specialty (insufficient params)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"pm.test(\"Insufficient params in body specified\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.success).to.eql('false');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"New Specialty 1\",\n    \"year\": 3\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/specialties",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"specialties"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Unsuccessful attempt to add a new specialty (year is too large)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"pm.test(\"Insufficient params in body specified\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.success).to.eql('false');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"New Specialty 1\",\n    \"year\": 3\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/specialties",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"specialties"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a specialty",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Correct name test\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.name).to.eql('My New Specialty');",
+									"});",
+									"pm.test(\"Correct year test\", function () {",
+									"    var jsonData = pm.response.json();",
+									"        pm.expect(jsonData.year).to.eql(3);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"My New Specialty\",\n    \"year\": 3\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/specialties/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"specialties",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Unsuccessful attempt to update a specialty (incorrect body)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"pm.test(\"The specialty with the specified params already exists test\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.success).to.eql('false');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"IPZ\",\n    \"year\": 3\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/specialties/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"specialties",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Unsuccessful attempt to update a specialty (insufficient params)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"pm.test(\"Insufficient params in body specified\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.success).to.eql('false');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"My New Spec\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/specialties/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"specialties",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a specialty by its id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/specialties/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"specialties",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete all the specialties",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/specialties",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"specialties"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Unsuccessful attempt to delete a specialty by its id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/specialties/1123123",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"specialties",
+								"1123123"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
