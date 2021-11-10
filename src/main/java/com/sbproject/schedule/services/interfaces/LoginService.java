@@ -8,7 +8,7 @@ import com.sbproject.schedule.models.User;
 public interface LoginService {
 
 	void addUser(String login, String password, String roleCode) throws LoginUsedException, WrongRoleCodeException;
-	// void deleteUser(String login);
+	
 	boolean validateUser(String login, String password);
 	
 	User getUser(String login) throws UserNotFoundException;
