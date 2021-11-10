@@ -1,6 +1,5 @@
 package com.sbproject.schedule.controllers;
 
-import com.sbproject.schedule.exceptions.lesson.NoLessonWithSuchIdToUpdate;
 import com.sbproject.schedule.exceptions.teacher.NoTeacherWithSuchIdException;
 import com.sbproject.schedule.models.Teacher;
 import com.sbproject.schedule.services.interfaces.TeacherService;

@@ -6,3 +6,7 @@
 2021-10-26 21:41:26,150 [http-nio-8081-exec-4] INFO  c.s.s.s.i.LessonServiceImpl                        - Lesson successfully deleted! -  
 2021-10-26 21:41:31,495 [http-nio-8081-exec-5] INFO  c.s.s.s.i.LessonServiceImpl                        - Lesson successfully deleted! -  
 2021-10-26 21:43:10,485 [http-nio-8081-exec-3] INFO  c.s.s.s.i.LessonServiceImpl                        - Lesson successfully deleted! -  
+2021-11-10 20:37:06,309 [http-nio-8081-exec-6] INFO  c.s.s.s.i.LessonServiceImpl                        - Lesson successfully deleted! -  
+2021-11-10 20:38:05,748 [http-nio-8081-exec-1] INFO  c.s.s.s.i.LessonServiceImpl                        - Lesson successfully deleted! -  
+2021-11-10 20:38:45,093 [http-nio-8081-exec-2] INFO  c.s.s.s.i.LessonServiceImpl                        - Lesson successfully deleted! -  
+2021-11-10 20:40:19,683 [http-nio-8081-exec-2] INFO  c.s.s.s.i.LessonServiceImpl                        - Lesson successfully deleted! -  

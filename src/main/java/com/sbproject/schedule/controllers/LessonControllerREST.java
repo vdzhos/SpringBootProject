@@ -1,7 +1,6 @@
 package com.sbproject.schedule.controllers;
 
-import com.sbproject.schedule.exceptions.lesson.NoLessonWithSuchIdToDelete;
-import com.sbproject.schedule.exceptions.lesson.NoLessonWithSuchIdToUpdate;
+import com.sbproject.schedule.exceptions.lesson.NoLessonWithSuchIdFound;
 import com.sbproject.schedule.models.Lesson;
 import com.sbproject.schedule.services.interfaces.LessonService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -12,6 +11,8 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.HashMap;
@@ -44,8 +45,6 @@ public class LessonControllerREST {
             @ApiResponse(responseCode = "200", description = "Found the lesson",
                     content = { @Content(mediaType = "application/json",
                             schema = @Schema(implementation = Lesson.class)) }),
-            @ApiResponse(responseCode = "400", description = "Invalid id supplied",
-                    content = @Content),
             @ApiResponse(responseCode = "404", description = "Lesson not found",
                     content = @Content) })
     @GetMapping("/{id}")
@@ -75,7 +74,7 @@ public class LessonControllerREST {
             @ApiResponse(responseCode = "404", description = "Lesson not found",
                     content = @Content) })
     @PutMapping("/{id}")
-    public Lesson updateLesson(@PathVariable(value = "id") Long id, @Valid @RequestBody Lesson lesson) throws NoLessonWithSuchIdToUpdate {
+    public Lesson updateLesson(@PathVariable(value = "id") Long id, @Valid @RequestBody Lesson lesson) throws NoLessonWithSuchIdFound {
         lesson.setId(id);
         return lessonService.updateLesson(lesson);
     }
@@ -84,33 +83,35 @@ public class LessonControllerREST {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Lesson deleted",
                     content = @Content),
-            @ApiResponse(responseCode = "400", description = "Invalid id supplied",
-                    content = @Content),
             @ApiResponse(responseCode = "404", description = "Lesson not found",
                     content = @Content) })
     @DeleteMapping("/{id}")
-    public Map<String, Boolean> deleteLesson(@PathVariable(value = "id") Long id) throws NoLessonWithSuchIdToDelete {
+    public Map<String, Boolean> deleteLesson(@PathVariable(value = "id") Long id) throws NoLessonWithSuchIdFound {
         lessonService.deleteLesson(id);
         Map<String, Boolean> result = new HashMap<>();
         result.put("deleted",true);
         return result;
     }
 
-    @ExceptionHandler(NoLessonWithSuchIdToDelete.class)
-    @ResponseStatus(code = HttpStatus.BAD_REQUEST)
-    public Map<String, String> handleException(NoLessonWithSuchIdToDelete ex){
+    @ExceptionHandler(NoLessonWithSuchIdFound.class)
+    @ResponseStatus(code = HttpStatus.NOT_FOUND)
+    public Map<String, String> handleException(NoLessonWithSuchIdFound ex){
         Map<String, String> result = new HashMap<>();
-        result.put("deleted", "false");
+        result.put(ex.getAction(), "false");
         result.put("error", ex.getMessage());
         return result;
     }
 
-    @ExceptionHandler(NoLessonWithSuchIdToUpdate.class)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)
-    public Map<String, String> handleException(NoLessonWithSuchIdToUpdate ex){
+    public Map<String, String> handleException(MethodArgumentNotValidException ex){
         Map<String, String> result = new HashMap<>();
-        result.put("updated", "false");
-        result.put("error", ex.getMessage());
+        result.put("success", "false");
+        ex.getBindingResult().getAllErrors().forEach(error -> {
+            String fieldName = ((FieldError) error).getField();
+            String errorMessage = error.getDefaultMessage();
+            result.put(fieldName, errorMessage);
+        });
         return result;
     }
 
