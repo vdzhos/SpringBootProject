@@ -1,11 +1,9 @@
 package com.sbproject.schedule.services.implementations;
 
 import com.sbproject.schedule.controllers.LessonController;
-import com.sbproject.schedule.exceptions.specialty.InvalidSpecialtyNameException;
 import com.sbproject.schedule.exceptions.specialty.SpecialtyInstanceAlreadyExistsException;
 import com.sbproject.schedule.exceptions.specialty.SpecialtyNotFoundException;
 import com.sbproject.schedule.models.Specialty;
-
 import com.sbproject.schedule.models.Subject;
 import com.sbproject.schedule.repositories.SpecialtyRepository;
 import com.sbproject.schedule.services.interfaces.SpecialtyService;
@@ -20,13 +18,8 @@ import org.springframework.boot.configurationprocessor.json.JSONArray;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.validation.Valid;
 import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 @Service
