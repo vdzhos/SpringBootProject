@@ -89,3 +89,43 @@
 2021-11-01 15:50:14,902 [http-nio-8081-exec-3] INFO  c.s.s.c.LessonController                           - Specialty has been successfully updated to 'My New Specialty'-'3'! 
 2021-11-01 15:50:14,947 [http-nio-8081-exec-4] ERROR c.s.s.c.LessonController                           - Specialty 'IPZ'-'3' already exists. Specialty has not been updated! 
 2021-11-01 15:50:15,047 [http-nio-8081-exec-8] INFO  c.s.s.c.LessonController                           - Specialty has been successfully deleted! 
+2021-11-04 09:39:30,531 [http-nio-8081-exec-10] INFO  c.s.s.c.LessonController                           - Specialty 'New Specialty'-'3' has been successfully added! 
+2021-11-04 09:39:30,599 [http-nio-8081-exec-1] ERROR c.s.s.c.LessonController                           - Specialty 'IPZ'-'3' already exists. Specialty has not been added! 
+2021-11-04 09:39:38,295 [http-nio-8081-exec-9] INFO  c.s.s.c.LessonController                           - Specialty has been successfully updated to 'My New Specialty'-'3'! 
+2021-11-04 09:39:38,347 [http-nio-8081-exec-10] ERROR c.s.s.c.LessonController                           - Specialty 'IPZ'-'3' already exists. Specialty has not been updated! 
+2021-11-04 09:39:43,816 [http-nio-8081-exec-4] INFO  c.s.s.c.LessonController                           - Specialty has been successfully deleted! 
+2021-11-04 09:43:00,343 [http-nio-8081-exec-5] INFO  c.s.s.c.LessonController                           - Specialty 'New Specialty'-'3' has been successfully added! 
+2021-11-04 09:43:00,391 [http-nio-8081-exec-6] ERROR c.s.s.c.LessonController                           - Specialty 'IPZ'-'3' already exists. Specialty has not been added! 
+2021-11-04 09:43:00,670 [http-nio-8081-exec-4] INFO  c.s.s.c.LessonController                           - Specialty has been successfully updated to 'My New Specialty'-'3'! 
+2021-11-04 09:43:00,734 [http-nio-8081-exec-5] ERROR c.s.s.c.LessonController                           - Specialty 'IPZ'-'3' already exists. Specialty has not been updated! 
+2021-11-04 09:43:00,847 [http-nio-8081-exec-9] INFO  c.s.s.c.LessonController                           - Specialty has been successfully deleted! 
+2021-11-04 09:44:21,641 [http-nio-8081-exec-5] INFO  c.s.s.c.LessonController                           - Specialty 'New Specialty'-'3' has been successfully added! 
+2021-11-04 09:44:21,676 [http-nio-8081-exec-6] ERROR c.s.s.c.LessonController                           - Specialty 'IPZ'-'3' already exists. Specialty has not been added! 
+2021-11-04 09:44:21,924 [http-nio-8081-exec-4] INFO  c.s.s.c.LessonController                           - Specialty has been successfully updated to 'My New Specialty'-'3'! 
+2021-11-04 09:44:21,964 [http-nio-8081-exec-5] ERROR c.s.s.c.LessonController                           - Specialty 'IPZ'-'3' already exists. Specialty has not been updated! 
+2021-11-04 09:44:22,068 [http-nio-8081-exec-9] INFO  c.s.s.c.LessonController                           - Specialty has been successfully deleted! 
+2021-11-04 09:45:23,008 [http-nio-8081-exec-5] INFO  c.s.s.c.LessonController                           - Specialty 'New Specialty'-'3' has been successfully added! 
+2021-11-04 09:45:23,039 [http-nio-8081-exec-6] ERROR c.s.s.c.LessonController                           - Specialty 'IPZ'-'3' already exists. Specialty has not been added! 
+2021-11-04 09:45:23,303 [http-nio-8081-exec-4] INFO  c.s.s.c.LessonController                           - Specialty has been successfully updated to 'My New Specialty'-'3'! 
+2021-11-04 09:45:23,351 [http-nio-8081-exec-5] ERROR c.s.s.c.LessonController                           - Specialty 'IPZ'-'3' already exists. Specialty has not been updated! 
+2021-11-04 09:45:23,465 [http-nio-8081-exec-8] INFO  c.s.s.c.LessonController                           - Specialty has been successfully deleted! 
+2021-11-10 11:23:57,877 [http-nio-8081-exec-5] INFO  c.s.s.c.LessonController                           - Specialty 'New Specialty'-'3' has been successfully added! 
+2021-11-10 11:23:57,923 [http-nio-8081-exec-6] ERROR c.s.s.c.LessonController                           - Specialty 'IPZ'-'3' already exists. Specialty has not been added! 
+2021-11-10 11:23:58,264 [http-nio-8081-exec-3] INFO  c.s.s.c.LessonController                           - Specialty has been successfully updated to 'My New Specialty'-'3'! 
+2021-11-10 11:23:58,303 [http-nio-8081-exec-4] ERROR c.s.s.c.LessonController                           - Specialty 'IPZ'-'3' already exists. Specialty has not been updated! 
+2021-11-10 11:23:58,418 [http-nio-8081-exec-8] INFO  c.s.s.c.LessonController                           - Specialty has been successfully deleted! 
+2021-11-10 11:25:14,472 [http-nio-8081-exec-5] INFO  c.s.s.c.LessonController                           - Specialty 'New Specialty'-'3' has been successfully added! 
+2021-11-10 11:25:14,515 [http-nio-8081-exec-6] ERROR c.s.s.c.LessonController                           - Specialty 'IPZ'-'3' already exists. Specialty has not been added! 
+2021-11-10 11:25:14,828 [http-nio-8081-exec-3] INFO  c.s.s.c.LessonController                           - Specialty has been successfully updated to 'My New Specialty'-'3'! 
+2021-11-10 11:25:14,891 [http-nio-8081-exec-3] ERROR c.s.s.c.LessonController                           - Specialty 'IPZ'-'3' already exists. Specialty has not been updated! 
+2021-11-10 11:25:14,997 [http-nio-8081-exec-6] INFO  c.s.s.c.LessonController                           - Specialty has been successfully deleted! 
+2021-11-10 11:27:18,549 [http-nio-8081-exec-5] INFO  c.s.s.c.LessonController                           - Specialty 'New Specialty'-'3' has been successfully added! 
+2021-11-10 11:27:18,594 [http-nio-8081-exec-6] ERROR c.s.s.c.LessonController                           - Specialty 'IPZ'-'3' already exists. Specialty has not been added! 
+2021-11-10 11:27:18,887 [http-nio-8081-exec-3] INFO  c.s.s.c.LessonController                           - Specialty has been successfully updated to 'My New Specialty'-'3'! 
+2021-11-10 11:27:18,925 [http-nio-8081-exec-4] ERROR c.s.s.c.LessonController                           - Specialty 'IPZ'-'3' already exists. Specialty has not been updated! 
+2021-11-10 11:27:19,016 [http-nio-8081-exec-8] INFO  c.s.s.c.LessonController                           - Specialty has been successfully deleted! 
+2021-11-10 11:29:20,837 [http-nio-8081-exec-5] INFO  c.s.s.c.LessonController                           - Specialty 'New Specialty'-'3' has been successfully added! 
+2021-11-10 11:29:20,887 [http-nio-8081-exec-6] ERROR c.s.s.c.LessonController                           - Specialty 'IPZ'-'3' already exists. Specialty has not been added! 
+2021-11-10 11:29:21,170 [http-nio-8081-exec-1] INFO  c.s.s.c.LessonController                           - Specialty has been successfully updated to 'My New Specialty'-'3'! 
+2021-11-10 11:29:21,218 [http-nio-8081-exec-4] ERROR c.s.s.c.LessonController                           - Specialty 'IPZ'-'3' already exists. Specialty has not been updated! 
+2021-11-10 11:29:21,339 [http-nio-8081-exec-7] INFO  c.s.s.c.LessonController                           - Specialty has been successfully deleted! 

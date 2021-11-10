@@ -20,15 +20,6 @@ public class CustomAppender extends AbstractAppender {
         super(name, filter, layout, ignoreExceptions, properties);
     }
 
-
-//    Note that the packages attribute should reference the package that contains your custom appender.
-
-
-//    @PluginFactory
-//    public static CustomAppender createAppender(@PluginAttribute("name") String name, @PluginElement("Filter") Filter filter) {
-//        return new CustomAppender(name, filter);
-//    }
-
     @PluginFactory
     public static CustomAppender createAppender(@PluginAttribute("name") String name,
                                                 @PluginElement("Filter") Filter filter,
@@ -42,10 +33,6 @@ public class CustomAppender extends AbstractAppender {
         }
         return new CustomAppender(name, filter,layout,false,null);
     }
-
-
-    //private ConcurrentMap<String, LogEvent> eventMap = new ConcurrentHashMap<>();
-// eventMap.put(Instant.now().toString(), event);
 
     @Override
     public void append(LogEvent event) {
