@@ -1,32 +1,34 @@
 package com.sbproject.schedule.services.implementations;
 
 import com.sbproject.schedule.controllers.LessonController;
-import com.sbproject.schedule.exceptions.specialty.InvalidSpecialtyNameException;
 import com.sbproject.schedule.exceptions.specialty.SpecialtyInstanceAlreadyExistsException;
 import com.sbproject.schedule.exceptions.specialty.SpecialtyNotFoundException;
 import com.sbproject.schedule.models.Specialty;
-
+import com.sbproject.schedule.models.Subject;
 import com.sbproject.schedule.repositories.SpecialtyRepository;
 import com.sbproject.schedule.services.interfaces.SpecialtyService;
+import com.sbproject.schedule.services.interfaces.SubjectService;
 import com.sbproject.schedule.utils.Markers;
 import com.sbproject.schedule.utils.Utils;
 import com.sbproject.schedule.utils.Values;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.configurationprocessor.json.JSONArray;
+import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.HashSet;
 import java.util.Set;
 
 @Service
 public class SpecialtyServiceImpl implements SpecialtyService {
 
     private SpecialtyRepository specialtyRepository;
+
+    @Autowired
+    private SubjectService subjectService;
 
 
     private static Logger logger = LogManager.getLogger(LessonController.class);
@@ -62,8 +64,11 @@ public class SpecialtyServiceImpl implements SpecialtyService {
     @Transactional
     @Override
     public void deleteSpecialty(Long id) {
-        specialtyRepository.deleteById(id);
-        logger.info(Markers.DELETE_SPECIALTY_MARKER,"Specialty has been successfully deleted!");
+        if(specialtyRepository.existsById(id)) {
+            specialtyRepository.deleteById(id);
+            logger.info(Markers.DELETE_SPECIALTY_MARKER, "Specialty has been successfully deleted!");
+        }
+        else throw new SpecialtyNotFoundException(id);
     }
 
 
@@ -130,6 +135,22 @@ public class SpecialtyServiceImpl implements SpecialtyService {
     @Override
     public void deleteAll() {
         specialtyRepository.deleteAll();
+    }
+
+    @Override
+    public Specialty addSpecialty(String name, int year, JSONArray subjectIds) {
+        Set<Subject> subjects = new HashSet<>();
+        for(int i = 0; i < subjectIds.length(); i++){
+            try {
+                subjects.add(subjectService.getSubjectById(subjectIds.getLong(i)));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        Specialty specialty = addSpecialty(name,year);
+        subjects.forEach(s -> {s.addSpecialty(specialty); subjectService.updateSubjectNoCheck(s);});
+        specialty.setSubjects(subjects);
+        return specialty;
     }
 
 

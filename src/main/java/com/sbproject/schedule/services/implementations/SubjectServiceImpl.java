@@ -2,6 +2,7 @@ package com.sbproject.schedule.services.implementations;
 
 import com.sbproject.schedule.exceptions.subject.NoSubjectWithSuchIdToDelete;
 import com.sbproject.schedule.exceptions.subject.NoSubjectWithSuchIdToUpdate;
+import com.sbproject.schedule.exceptions.subject.SubjectNotFoundException;
 import com.sbproject.schedule.models.Specialty;
 import com.sbproject.schedule.models.Subject;
 import com.sbproject.schedule.models.Teacher;
@@ -87,6 +88,11 @@ public class SubjectServiceImpl implements SubjectService {
     }
 
     @Override
+    public Subject updateSubjectNoCheck(Subject subject) {
+        return subjectRepository.save(subject);
+    }
+
+    @Override
     public Iterable<Subject> getAll() {
         return subjectRepository.findAll();
     }
@@ -103,8 +109,8 @@ public class SubjectServiceImpl implements SubjectService {
     }
 
     @Override
-    public Subject getSubjectById(Long id) throws Exception{
-        return subjectRepository.findById(id).orElseThrow(() -> new Exception("Subject with id '"+ id +"' has not been found!"));
+    public Subject getSubjectById(Long id) {
+        return subjectRepository.findById(id).orElseThrow(() -> new SubjectNotFoundException("Subject with id '"+ id +"' has not been found!"));
     }
 
     @Override

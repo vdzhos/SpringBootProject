@@ -14,8 +14,9 @@ public interface SubjectService {
     void deleteSubject(Long id);
     boolean updateSubject(Long id, String name, int quantOfGroups, Set<Teacher> teachers,  Set<Specialty> specialties);
     Subject updateSubject(Subject subject);
+    Subject updateSubjectNoCheck(Subject subject);
     Iterable<Subject> getAll();
     Subject getSubjectByName(String name);
-    Subject getSubjectById(Long id) throws Exception;
+    Subject getSubjectById(Long id);
     boolean subjectExistsById(Long id);
 }
