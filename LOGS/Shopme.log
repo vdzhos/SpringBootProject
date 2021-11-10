@@ -129,3 +129,7 @@
 2021-11-10 11:29:21,170 [http-nio-8081-exec-1] INFO  c.s.s.c.LessonController                           - Specialty has been successfully updated to 'My New Specialty'-'3'! 
 2021-11-10 11:29:21,218 [http-nio-8081-exec-4] ERROR c.s.s.c.LessonController                           - Specialty 'IPZ'-'3' already exists. Specialty has not been updated! 
 2021-11-10 11:29:21,339 [http-nio-8081-exec-7] INFO  c.s.s.c.LessonController                           - Specialty has been successfully deleted! 
+2021-11-10 20:37:06,309 [http-nio-8081-exec-6] INFO  c.s.s.s.i.LessonServiceImpl                        - Lesson successfully deleted! 
+2021-11-10 20:38:05,748 [http-nio-8081-exec-1] INFO  c.s.s.s.i.LessonServiceImpl                        - Lesson successfully deleted! 
+2021-11-10 20:38:45,093 [http-nio-8081-exec-2] INFO  c.s.s.s.i.LessonServiceImpl                        - Lesson successfully deleted! 
+2021-11-10 20:40:19,683 [http-nio-8081-exec-2] INFO  c.s.s.s.i.LessonServiceImpl                        - Lesson successfully deleted! 
