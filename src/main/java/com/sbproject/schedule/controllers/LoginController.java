@@ -31,7 +31,8 @@ public class LoginController {
 		model.addAttribute("errorMessage", this.errorMessage);
 		return "login";
 	}
-
+	
+	//DEPRECATED 
 	@PostMapping("/new")
 	public String newUser(@RequestParam String login, @RequestParam String password, @RequestParam String role, Model model, HttpSession session){
 		boolean isSuccessfull = true;
@@ -45,15 +46,15 @@ public class LoginController {
 		return isSuccessfull? "redirect:/" : "redirect:/login";
 	}
 	
-	@PostMapping("/validate")
-	public String validateUser(@RequestParam String login, @RequestParam String password, Model model, HttpSession session){
-		boolean res = loginService.validateUser(login, password);
-		if(!res)
-			this.errorMessage = "Failed to login";
-		else {
-			this.errorMessage = "";
-			session.setAttribute("logged", login);
-		}
-        return res? "redirect:/" : "redirect:/login";
-    }
+//	@PostMapping("/validate")
+//	public String validateUser(@RequestParam String login, @RequestParam String password, Model model, HttpSession session){
+//		boolean res = loginService.validateUser(login, password);
+//		if(!res)
+//			this.errorMessage = "Failed to login";
+//		else {
+//			this.errorMessage = "";
+//			session.setAttribute("logged", login);
+//		}
+//        return res? "redirect:/" : "redirect:/login";
+//    }
 }

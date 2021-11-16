@@ -9,7 +9,7 @@
 <h2>LogIn</h2>
 
 <form action="/login/new" method="post">
-    <label>Login: <input name="login" type="text" placeholder="Enter the login"/></label>
+    <label>Login: <input name="username" type="text" placeholder="Enter the login"/></label>
     <br>
     <p></p>
     <label>Password: <input name="password" type="password" placeholder="Enter the password"/></label>
@@ -18,11 +18,13 @@
     <label>Role code: <input name="role" type="password" placeholder="Enter the role code"/></label>
     <br>
     <p></p>
-    <button type="submit" formaction="/login/validate">Log In</button>
+    <button type="submit" formaction="/login">Log In</button>
     <button type="submit">New Account</button>
-    <!--<label style="margin-left: 2em;">Is Admin: <input type="checkbox" name="isAdmin" /></label>-->
 </form>
 <br>
-<p style="color: orangered;" th:text="${errorMessage}"></p>
+<p style="color: orangered;" th:if="${param.error}">
+	Invalid login or password
+</p>
+<!--<p style="color: orangered;" th:text="${errorMessage}"></p>-->
 </body>
 </html>

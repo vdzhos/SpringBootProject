@@ -21,6 +21,12 @@ public class User {
 	
 	public User() {}
 	
+	public User(User that) {
+		this.login = that.getLogin();
+		this.password = that.getPassword();
+		this.role = that.getRole();
+	}
+	
 	public User(String login, String password, Role role) {
 		this.login = login;
 		this.password = password;

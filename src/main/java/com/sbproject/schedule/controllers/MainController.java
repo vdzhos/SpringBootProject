@@ -8,6 +8,7 @@ import com.sbproject.schedule.services.interfaces.SubjectService;
 import com.sbproject.schedule.services.interfaces.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +16,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 /**
  * loads all the data in all the tabs on the settings page
  */
+
 @Controller
+//I assume that main page is accessable only for admins 
+@PreAuthorize("hasAnyRole('ADMIN')")  
 public class MainController {
 
     @Autowired
