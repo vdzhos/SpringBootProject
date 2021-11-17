@@ -147,3 +147,5 @@
 2021-11-10 22:45:16,784 [http-nio-8081-exec-7] INFO  c.s.s.c.LessonController                           - Specialty has been successfully updated to 'My New Specialty'-'3'! 
 2021-11-10 22:45:16,838 [http-nio-8081-exec-8] ERROR c.s.s.c.LessonController                           - Specialty 'IPZ'-'3' already exists. Specialty has not been updated! 
 2021-11-10 22:45:16,933 [http-nio-8081-exec-1] INFO  c.s.s.c.LessonController                           - Specialty has been successfully deleted! 
+2021-11-17 13:52:37,426 [http-nio-8081-exec-6] FATAL c.s.s.c.UserProfileController                      - Unauthorized session! 
+2021-11-17 14:41:54,200 [http-nio-8081-exec-6] FATAL c.s.s.c.UserProfileController                      - Unauthorized session! 

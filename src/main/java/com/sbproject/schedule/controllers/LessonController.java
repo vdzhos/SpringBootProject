@@ -11,6 +11,7 @@ import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.ThreadContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,6 +35,7 @@ public class LessonController {
     }
 
     @PostMapping("/add")
+    @PreAuthorize("hasAnyRole('ADMIN')")
     public String addLesson(@RequestParam int day,      @RequestParam int time,  @RequestParam long subjId,
                             @RequestParam long teachId, @RequestParam int group, @RequestParam String weeks,
                             @RequestParam String room, Model model){
@@ -52,6 +54,7 @@ public class LessonController {
     }
 
     @PostMapping("/delete")
+    @PreAuthorize("hasAnyRole('ADMIN')")
     public String deleteLesson(@RequestParam Long id, @RequestParam String lesson, Model model){
 //        lessonService.deleteLesson(lesson.getId());
 //        logger.info(Markers.ALTERING_LESSON_TABLE_MARKER,"Lesson successfully deleted!");
@@ -62,7 +65,8 @@ public class LessonController {
     }
 
     @PostMapping("/update")
-    public String updateSpecialty(Model model){
+    @PreAuthorize("hasAnyRole('ADMIN')")
+    public String updateLesson(Model model){
 //        boolean result = lessonService.updateLesson();
 //        if(result) logger.info(Markers.ALTERING_LESSON_TABLE_MARKER,"Lesson successfully updated!");
 //        else logger.error(Markers.ALTERING_LESSON_TABLE_MARKER,"Lesson not updated!");
