@@ -9,6 +9,8 @@ import com.sbproject.schedule.services.interfaces.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +21,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 //I assume that main page is accessable only for admins 
-@PreAuthorize("hasAnyRole('ADMIN')")  
+//@PreAuthorize("hasAnyRole('ADMIN')")
 public class MainController {
 
     @Autowired
@@ -34,14 +36,31 @@ public class MainController {
     @Value("${spring.application.name}")
     private String appName;
 
-    @GetMapping
-    public String getAll(Model model){
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/admin")
+    public String getAllAdmin(Model model){
         model.addAttribute("appName",appName);
         model.addAttribute("specialties",specialtyService.getAll());
         model.addAttribute("subjects",subjectService.getAll());
         model.addAttribute("lessons", lessonService.getAll());
         model.addAttribute("teachers", teacherService.getAll());
         return "main";
+    }
+
+    @PreAuthorize("hasRole('REGULAR')")
+    @GetMapping("/user")
+    public String getAllRegular(Model model){
+        return "user";
+    }
+
+    @GetMapping
+    public String loginPage(Authentication authentication) {
+        if(authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
+            return "redirect:/admin";
+        } else if(authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_REGULAR"))) {
+            return "redirect:/user";
+        }
+        return "login";
     }
 
 }

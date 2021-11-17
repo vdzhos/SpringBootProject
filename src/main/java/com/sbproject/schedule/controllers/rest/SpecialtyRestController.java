@@ -15,6 +15,7 @@ import org.springframework.boot.configurationprocessor.json.JSONArray;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,6 +40,7 @@ class SpecialtyRestController {
             @ApiResponse(responseCode = "200", description = "Found the specialties",
                     content = { @Content(mediaType = "application/json",
                             schema = @Schema(implementation = Specialty.class)) })})
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_REGULAR')")
     @GetMapping
     public Iterable<Specialty> getAllSpecialties(){
         return specialtyService.getAll();
@@ -51,7 +53,7 @@ class SpecialtyRestController {
                             schema = @Schema(implementation = Specialty.class))}),
             @ApiResponse(responseCode = "404", description = "Specialty not found",
                     content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class)))})
-
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_REGULAR')")
     @GetMapping("/{id}")
     public Specialty getSpecialty(@Parameter(description = "id of the specialty to be searched") @Min(1) @PathVariable(name = "id") Long id){
         return specialtyService.getSpecialty(id);
@@ -64,7 +66,7 @@ class SpecialtyRestController {
                             schema = @Schema(implementation = Specialty.class))}),
             @ApiResponse(responseCode = "400", description = "Incorrect request body",
                     content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class)))})
-
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
     public Specialty addSpecialty(@RequestBody String json){
@@ -89,7 +91,7 @@ class SpecialtyRestController {
                             schema = @Schema(implementation = Specialty.class))}),
             @ApiResponse(responseCode = "400", description = "Incorrect request body",
                     content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class)))})
-
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PutMapping("/{id}")
     public Specialty updateSpecialty(@Valid @RequestBody Specialty newSpecialty, @Parameter(description = "id of the specialty to be updated") @Min(1) @PathVariable(name = "id") Long id) {
         return specialtyService.updateSpecialty(id,newSpecialty.getName(),newSpecialty.getYear());
@@ -101,7 +103,7 @@ class SpecialtyRestController {
                     content = @Content),
             @ApiResponse(responseCode = "404", description = "Specialty with the id not found",
                     content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class)))})
-
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping("/{id}")
     public void deleteSpecialty(@Parameter(description = "id of the specialty to be deleted") @PathVariable(name = "id") @Min(1) Long id){
         specialtyService.deleteSpecialty(id);
@@ -111,6 +113,7 @@ class SpecialtyRestController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "All specialties deleted",
                     content = @Content)})
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping
     public void deleteAll(){
         specialtyService.deleteAll();

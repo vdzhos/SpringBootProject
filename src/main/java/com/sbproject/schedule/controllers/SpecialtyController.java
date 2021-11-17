@@ -3,6 +3,7 @@ package com.sbproject.schedule.controllers;
 import com.sbproject.schedule.services.interfaces.SpecialtyService;
 import org.apache.logging.log4j.ThreadContext;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,6 +28,7 @@ public class SpecialtyController {
     }
 
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/add")
     public RedirectView addSpecialty(@RequestParam String name, @RequestParam int year, Model model, RedirectAttributes redir){
         RedirectView redirectView= new RedirectView("/",true);
@@ -44,6 +46,7 @@ public class SpecialtyController {
         return redirectView;
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/delete")
     public RedirectView deleteSpecialty(@RequestParam Long id, Model model, @RequestParam String specialtyToString, RedirectAttributes redir){
         ThreadContext.put("specialty",specialtyToString);
@@ -57,7 +60,7 @@ public class SpecialtyController {
         return redirectView;
     }
 
-
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/update")
     public RedirectView updateSpecialty(@RequestParam Long id,@RequestParam String specName,@RequestParam int specYear, RedirectAttributes redir){
         RedirectView redirectView= new RedirectView("/",true);
