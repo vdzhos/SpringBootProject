@@ -32,6 +32,11 @@
             <MarkerFilter marker="IMPORTANT" onMatch="ACCEPT" onMismatch="DENY"/>
         </File>
 
+        <File name="UserActivity" fileName="LOGS/UserActivity.log">
+            <PatternLayout pattern="%msg %n"/>
+            <MarkerFilter marker="USER_ACTIVITY" onMatch="ACCEPT" onMismatch="DENY"/>
+        </File>
+
         <CustomAppender name="Custom">
             <CustomLayout/>
 <!--            <PatternLayout pattern="%d{yyyy-mmm-dd HH:mm:ss} [%t] %-5level %-50c{1.} %n"/>-->
@@ -48,6 +53,7 @@
             <AppenderRef ref="DeletedSpecialtiesToFile"/>
             <AppenderRef ref="DeletedSubjectsToFile"/>
             <AppenderRef ref="DeletedTeachersToFile"/>
+            <AppenderRef ref="UserActivity"/>
         </Root>
     </Loggers>
 </Configuration>

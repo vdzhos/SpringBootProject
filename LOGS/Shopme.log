@@ -147,17 +147,5 @@
 2021-11-10 22:45:16,784 [http-nio-8081-exec-7] INFO  c.s.s.c.LessonController                           - Specialty has been successfully updated to 'My New Specialty'-'3'! 
 2021-11-10 22:45:16,838 [http-nio-8081-exec-8] ERROR c.s.s.c.LessonController                           - Specialty 'IPZ'-'3' already exists. Specialty has not been updated! 
 2021-11-10 22:45:16,933 [http-nio-8081-exec-1] INFO  c.s.s.c.LessonController                           - Specialty has been successfully deleted! 
-2021-11-11 08:50:11,361 [http-nio-8081-exec-3] INFO  c.s.s.c.SubjectRestController                      - Subject BD with 5 groups has been successfully added! 
-2021-11-11 08:50:11,572 [http-nio-8081-exec-6] INFO  c.s.s.c.SubjectRestController                      - Subject has been successfully deleted! 
-2021-11-11 08:50:11,719 [http-nio-8081-exec-9] INFO  c.s.s.c.SubjectRestController                      - Subject has been successfully deleted! 
-2021-11-11 08:50:11,981 [http-nio-8081-exec-2] ERROR c.s.s.s.i.LoginServiceImpl                         - User not found: v 
-2021-11-11 08:50:12,084 [http-nio-8081-exec-3] INFO  c.s.s.s.i.LoginServiceImpl                         - User registrated: gleb : 5555 : ADMIN 
-2021-11-11 08:50:12,285 [http-nio-8081-exec-6] INFO  c.s.s.s.i.LoginServiceImpl                         - User deleted: ilya : 4321 
-2021-11-11 08:50:12,452 [http-nio-8081-exec-8] INFO  c.s.s.s.i.UserProfileServiceImpl                   - User password changed: vovan : New password = 6666 
-2021-11-11 08:50:12,525 [http-nio-8081-exec-9] ERROR c.s.s.s.i.UserProfileServiceImpl                   - Wrong previous password: 1234 
-2021-11-11 08:50:14,136 [http-nio-8081-exec-2] INFO  c.s.s.s.i.LessonServiceImpl                        - Lesson successfully deleted! 
-2021-11-11 08:50:14,571 [http-nio-8081-exec-8] INFO  c.s.s.c.LessonController                           - Specialty 'New Specialty'-'3' has been successfully added! 
-2021-11-11 08:50:14,662 [http-nio-8081-exec-7] ERROR c.s.s.c.LessonController                           - Specialty 'IPZ'-'3' already exists. Specialty has not been added! 
-2021-11-11 08:50:14,958 [http-nio-8081-exec-5] INFO  c.s.s.c.LessonController                           - Specialty has been successfully updated to 'My New Specialty'-'3'! 
-2021-11-11 08:50:15,024 [http-nio-8081-exec-6] ERROR c.s.s.c.LessonController                           - Specialty 'IPZ'-'3' already exists. Specialty has not been updated! 
-2021-11-11 08:50:15,183 [http-nio-8081-exec-10] INFO  c.s.s.c.LessonController                           - Specialty has been successfully deleted! 
+2021-11-17 13:52:37,426 [http-nio-8081-exec-6] FATAL c.s.s.c.UserProfileController                      - Unauthorized session! 
+2021-11-17 14:41:54,200 [http-nio-8081-exec-6] FATAL c.s.s.c.UserProfileController                      - Unauthorized session! 

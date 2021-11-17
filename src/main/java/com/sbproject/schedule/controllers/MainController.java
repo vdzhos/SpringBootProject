@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 //I assume that main page is accessable only for admins 
-@PreAuthorize("hasAnyRole('ADMIN')")  
+@PreAuthorize("hasAnyRole('ADMIN')")
 public class MainController {
 
     @Autowired
