@@ -11,6 +11,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
@@ -38,6 +39,7 @@ public class TeacherControllerREST {
                     content = { @Content(mediaType = "application/json",
                             array = @ArraySchema(schema = @Schema(implementation = Teacher.class)))})})
     @GetMapping("/all")
+    @PreAuthorize("hasRole('REGULAR') or hasRole('ADMIN')")
     public List<Teacher> getAllTeachers() {
         return (List<Teacher>) teacherService.getAll();
     }
@@ -50,6 +52,7 @@ public class TeacherControllerREST {
             @ApiResponse(responseCode = "404", description = "Teacher not found.",
                     content = @Content) })
     @GetMapping("/{id}")
+    @PreAuthorize("hasRole('REGULAR') or hasRole('ADMIN')")
     public Teacher getTeacherById(@PathVariable(value = "id") Long id) throws Exception {
         return teacherService.getTeacherById(id);
     }
@@ -62,6 +65,7 @@ public class TeacherControllerREST {
             @ApiResponse(responseCode = "400", description = "Invalid teacher object passed.",
                     content = @Content)})
     @PostMapping("/add")
+    @PreAuthorize("hasRole('ADMIN')")
     public Teacher addTeacher(@Valid @RequestBody Teacher teacher){
         return teacherService.addTeacher(teacher);
     }
@@ -76,6 +80,7 @@ public class TeacherControllerREST {
             @ApiResponse(responseCode = "404", description = "Teacher not found.",
                     content = @Content) })
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public Teacher updateTeacher(@PathVariable(value = "id") Long id, @Valid @RequestBody Teacher teacher) throws NoTeacherWithSuchIdException {
         teacher.setId(id);
         return teacherService.updateTeacher(teacher);
@@ -88,6 +93,7 @@ public class TeacherControllerREST {
             @ApiResponse(responseCode = "404", description = "Teacher not found.",
                     content = @Content) })
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public Map<String, Boolean> deleteTeacher(@PathVariable(value = "id") Long id) throws NoTeacherWithSuchIdException {
         teacherService.deleteTeacher(id);
         Map<String, Boolean> result = new HashMap<>();

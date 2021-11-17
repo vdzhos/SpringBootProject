@@ -17,6 +17,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -37,6 +38,7 @@ public class SubjectRestController {
                     content = { @Content(mediaType = "application/json",
                             array = @ArraySchema(schema = @Schema(implementation = Subject.class))) })})
     @GetMapping("/get")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('REGULAR')")
     public Iterable<Subject> getSubjects(){
         return subjectService.getAll();
     }
@@ -49,6 +51,7 @@ public class SubjectRestController {
             @ApiResponse(responseCode = "404", description = "Subject with the name not found",
                     content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class)))})
     @GetMapping("/getByName/{name}")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('REGULAR')")
     public Subject getSubject(@PathVariable("name") String name){
         return subjectService.getSubjectByName(name);
     }
@@ -61,6 +64,7 @@ public class SubjectRestController {
             @ApiResponse(responseCode = "404", description = "Subject with the id not found",
                     content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class)))})
     @GetMapping("/get/{id}")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('REGULAR')")
     public Subject getSubject(@PathVariable("id") Long id) {
         return subjectService.getSubjectById(id);
     }
@@ -73,6 +77,7 @@ public class SubjectRestController {
             @ApiResponse(responseCode = "404", description = "Subject with the id not found",
                     content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class)))})
     @DeleteMapping("/delete/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public void deleteSubject(@PathVariable("id") Long id) {
         subjectService.deleteSubject(id);
         logger.info(Markers.DELETE_SUBJECT_MARKER,"Subject has been successfully deleted!");
@@ -86,6 +91,7 @@ public class SubjectRestController {
             @ApiResponse(responseCode = "400", description = "Invalid subject object passed",
                     content = @Content) })
     @PostMapping("/add")
+    @PreAuthorize("hasRole('ADMIN')")
     public Subject addSubject(@Valid @RequestBody Subject subject){
         Subject s = subjectService.addSubject(subject);
         logger.info(Markers.ALTERING_SUBJECT_TABLE_MARKER,"Subject {} with {} groups has been successfully added!", subject.getName(), subject.getQuantOfGroups());
@@ -103,6 +109,7 @@ public class SubjectRestController {
                     content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class)))})
 
     @PutMapping("/update/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public Subject updateSubject(@PathVariable("id") Long id, @Valid @RequestBody Subject subject) {
         subject.setId(id);
         Subject s = subjectService.updateSubject(subject);

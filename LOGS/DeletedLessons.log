@@ -11,6 +11,4 @@
 2021-11-10 20:38:45,093 [http-nio-8081-exec-2] INFO  c.s.s.s.i.LessonServiceImpl                        - Lesson successfully deleted! -  
 2021-11-10 20:40:19,683 [http-nio-8081-exec-2] INFO  c.s.s.s.i.LessonServiceImpl                        - Lesson successfully deleted! -  
 2021-11-10 22:45:16,372 [http-nio-8081-exec-5] INFO  c.s.s.s.i.LessonServiceImpl                        - Lesson successfully deleted! -  
-2021-11-17 17:13:25,286 [Thread-2] INFO  c.s.s.s.i.LessonServiceImpl                        - Lesson successfully deleted! - Lesson{id=10,time=8:30-9:50,subject=Subject 1,teacher=Teacher 1,group=lecture,weeks=1-15,room=215,dayOfWeek=MONDAY} 
-2021-11-17 17:13:28,711 [Thread-3] INFO  c.s.s.s.i.LessonServiceImpl                        - Lesson successfully deleted! - Lesson{id=11,time=10:00-11:20,subject=Subject 1,teacher=Teacher 2,group=1,weeks=1-15,room=216,dayOfWeek=MONDAY} 
-2021-11-17 17:13:31,434 [Thread-4] INFO  c.s.s.s.i.LessonServiceImpl                        - Lesson successfully deleted! - Lesson{id=12,time=11:40-13:00,subject=Subject 2,teacher=Teacher 3,group=2,weeks=1-15,room=216,dayOfWeek=MONDAY} 
+2021-11-11 08:50:14,136 [http-nio-8081-exec-2] INFO  c.s.s.s.i.LessonServiceImpl                        - Lesson successfully deleted! -  

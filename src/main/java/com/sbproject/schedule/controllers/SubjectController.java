@@ -8,6 +8,7 @@ import com.sbproject.schedule.utils.Markers;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,6 +36,7 @@ public class SubjectController {
         this.subjectService = subjectService;
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/add")
     public RedirectView addSubject(@RequestParam String name, @RequestParam int quantOfGroups,
                              @RequestParam Set<Specialty> specialties, Model model, RedirectAttributes redir){
@@ -53,7 +55,7 @@ public class SubjectController {
         return redirectView;
     }
 
-
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/delete")
     public String deleteSubject(@RequestParam Long id, Model model) throws Exception{
         subjectService.deleteSubject(id);
@@ -62,6 +64,7 @@ public class SubjectController {
         return "redirect:/";
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/update")//@RequestParam Long id,@RequestParam String newName,@RequestParam int newQuantOfGroups,@RequestParam List<Teacher> newTeachers, @RequestParam List<Specialty> newSpecialties
     public String updateSubject(Model model){
 //        SubjectService.updateSubject(newName,newQuantOfSubjects, newTeachers, newSpecialties);
@@ -69,7 +72,7 @@ public class SubjectController {
         return "redirect:/";
     }
 
-
+    @PreAuthorize("hasRole('ADMIN') or hasRole('REGULAR')")
     @GetMapping("/get")
     public String getSubjects(){
         System.out.println(subjectService.countTeachers(4L));

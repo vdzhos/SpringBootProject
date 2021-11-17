@@ -133,6 +133,9 @@
 2021-11-10 20:38:05,748 [http-nio-8081-exec-1] INFO  c.s.s.s.i.LessonServiceImpl                        - Lesson successfully deleted! 
 2021-11-10 20:38:45,093 [http-nio-8081-exec-2] INFO  c.s.s.s.i.LessonServiceImpl                        - Lesson successfully deleted! 
 2021-11-10 20:40:19,683 [http-nio-8081-exec-2] INFO  c.s.s.s.i.LessonServiceImpl                        - Lesson successfully deleted! 
+2021-11-10 21:11:19,830 [http-nio-8081-exec-6] INFO  c.s.s.c.SubjectRestController                      - Subject BD with 5 groups has been successfully added! 
+2021-11-10 21:13:29,394 [http-nio-8081-exec-9] INFO  c.s.s.c.SubjectRestController                      - Subject has been successfully deleted! 
+2021-11-10 21:14:09,957 [http-nio-8081-exec-1] INFO  c.s.s.c.SubjectRestController                      - Subject has been successfully deleted! 
 2021-11-10 22:45:14,902 [http-nio-8081-exec-6] INFO  c.s.s.c.SubjectRestController                      - Subject BD with 5 groups has been successfully added! 
 2021-11-10 22:45:15,123 [http-nio-8081-exec-8] INFO  c.s.s.c.SubjectRestController                      - Subject has been successfully deleted! 
 2021-11-10 22:45:15,221 [http-nio-8081-exec-1] INFO  c.s.s.c.SubjectRestController                      - Subject has been successfully deleted! 
@@ -147,28 +150,9 @@
 2021-11-10 22:45:16,784 [http-nio-8081-exec-7] INFO  c.s.s.c.LessonController                           - Specialty has been successfully updated to 'My New Specialty'-'3'! 
 2021-11-10 22:45:16,838 [http-nio-8081-exec-8] ERROR c.s.s.c.LessonController                           - Specialty 'IPZ'-'3' already exists. Specialty has not been updated! 
 2021-11-10 22:45:16,933 [http-nio-8081-exec-1] INFO  c.s.s.c.LessonController                           - Specialty has been successfully deleted! 
-2021-11-17 13:45:38,188 [http-nio-8081-exec-8] FATAL c.s.s.c.UserProfileController                      - Unauthorized session! 
-2021-11-17 14:14:09,764 [http-nio-8081-exec-5] INFO  c.s.s.c.LessonController                           - Specialty 'My Paint'-'1' has been successfully added! 
-2021-11-17 14:23:30,377 [http-nio-8081-exec-4] INFO  c.s.s.c.LessonController                           - Specialty 'My Paint'-'1' has been successfully added! 
-2021-11-17 14:24:26,918 [http-nio-8081-exec-5] INFO  c.s.s.c.LessonController                           - Specialty 'My Paint'-'1' has been successfully added! 
-2021-11-17 14:25:21,767 [http-nio-8081-exec-5] INFO  c.s.s.c.LessonController                           - Specialty 'My Paint'-'1' has been successfully added! 
-2021-11-17 14:25:29,307 [http-nio-8081-exec-7] INFO  c.s.s.c.LessonController                           - Specialty 'new spec'-'1' has been successfully added! 
-2021-11-17 14:30:06,635 [http-nio-8081-exec-5] INFO  c.s.s.c.LessonController                           - Specialty 'My Paint'-'1' has been successfully added! 
-2021-11-17 14:31:19,978 [http-nio-8081-exec-5] INFO  c.s.s.c.LessonController                           - Specialty 'My Paint'-'1' has been successfully added! 
-2021-11-17 14:32:10,154 [http-nio-8081-exec-5] INFO  c.s.s.c.LessonController                           - Specialty 'My Paint'-'1' has been successfully added! 
-2021-11-17 14:33:21,329 [http-nio-8081-exec-5] INFO  c.s.s.c.LessonController                           - Specialty 'My Paint'-'1' has been successfully added! 
-2021-11-17 14:33:34,870 [http-nio-8081-exec-7] INFO  c.s.s.c.LessonController                           - Specialty 'xsxs'-'1' has been successfully added! 
-2021-11-17 14:33:57,944 [http-nio-8081-exec-9] ERROR c.s.s.c.LessonController                           - Specialty 'xsxs'-'1' already exists. Specialty has not been added! 
-2021-11-17 14:34:21,512 [http-nio-8081-exec-2] INFO  c.s.s.c.LessonController                           - Specialty 'Sitkov Illia'-'1' has been successfully added! 
-2021-11-17 14:34:48,556 [http-nio-8081-exec-5] INFO  c.s.s.c.LessonController                           - Specialty 'rfrfr frrfrf'-'1' has been successfully added! 
-2021-11-17 14:36:10,637 [http-nio-8081-exec-8] INFO  c.s.s.c.LessonController                           - Specialty 'My Paint'-'1' has been successfully added! 
-2021-11-17 14:38:40,147 [http-nio-8081-exec-5] INFO  c.s.s.c.LessonController                           - Specialty 'My Paint'-'1' has been successfully added! 
-2021-11-17 14:40:18,301 [http-nio-8081-exec-5] INFO  c.s.s.c.LessonController                           - Specialty 'Сітьков Ілля'-'1' has been successfully added! 
-2021-11-17 14:44:34,260 [http-nio-8081-exec-5] INFO  c.s.s.c.LessonController                           - Specialty 'My Paint'-'1' has been successfully added! 
-2021-11-17 14:55:40,645 [http-nio-8081-exec-5] INFO  c.s.s.c.LessonController                           - Specialty 'My Paint'-'1' has been successfully added! 
-2021-11-17 14:55:46,682 [http-nio-8081-exec-8] FATAL c.s.s.c.UserProfileController                      - Unauthorized session! 
-2021-11-17 14:57:53,047 [http-nio-8081-exec-5] FATAL c.s.s.c.UserProfileController                      - Unauthorized session! 
-2021-11-17 17:12:51,757 [http-nio-8081-exec-6] INFO  c.s.s.c.LessonController                           - Specialty has been successfully deleted! 
-2021-11-17 17:13:25,286 [Thread-2] INFO  c.s.s.s.i.LessonServiceImpl                        - Lesson successfully deleted! 
-2021-11-17 17:13:28,711 [Thread-3] INFO  c.s.s.s.i.LessonServiceImpl                        - Lesson successfully deleted! 
-2021-11-17 17:13:31,434 [Thread-4] INFO  c.s.s.s.i.LessonServiceImpl                        - Lesson successfully deleted! 
+2021-11-17 13:52:37,426 [http-nio-8081-exec-6] FATAL c.s.s.c.UserProfileController                      - Unauthorized session! 
+2021-11-17 14:41:54,200 [http-nio-8081-exec-6] FATAL c.s.s.c.UserProfileController                      - Unauthorized session! 
+2021-11-17 16:31:55,308 [http-nio-8081-exec-13] FATAL c.s.s.c.UserProfileController                      - Unauthorized session! 
+2021-11-17 16:35:04,380 [http-nio-8081-exec-7] INFO  c.s.s.c.SubjectController                          - Subject has been successfully deleted! 
+2021-11-17 16:41:22,094 [http-nio-8081-exec-9] INFO  c.s.s.c.SubjectController                          - Subject has been successfully deleted! 
+2021-11-17 16:42:24,292 [http-nio-8081-exec-2] INFO  c.s.s.c.TeacherController                          - Teacher has been successfully deleted! 
