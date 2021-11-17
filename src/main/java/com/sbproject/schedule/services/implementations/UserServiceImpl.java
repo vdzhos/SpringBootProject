@@ -7,29 +7,22 @@ import java.util.Optional;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.sbproject.schedule.exceptions.user.LoginUsedException;
 import com.sbproject.schedule.exceptions.user.UserNotFoundException;
-import com.sbproject.schedule.exceptions.user.WrongRoleCodeException;
 import com.sbproject.schedule.models.User;
-import com.sbproject.schedule.services.interfaces.LoginService;
+import com.sbproject.schedule.models.UserDTO;
+import com.sbproject.schedule.services.interfaces.UserService;
 import com.sbproject.schedule.utils.Markers;
 import com.sbproject.schedule.utils.Role;
 
 @Service
-public class LoginServiceImpl implements LoginService {
+public class UserServiceImpl implements UserService {
 
-	private static Logger logger = LogManager.getLogger(LoginServiceImpl.class);
+	private static Logger logger = LogManager.getLogger(UserServiceImpl.class);
 	
 	private UserRepository userRepo;
-
-	@Value("${custom.admin-code}")
-	private String adminCode;
-
-	@Value("${custom.user-code}")
-	private String userCode;
 
 	@Autowired
 	public void setUserRepository(UserRepository repo) {
@@ -37,37 +30,18 @@ public class LoginServiceImpl implements LoginService {
 	}
 
 	@Override
-	public void addUser(String login, String password, String roleCode) throws LoginUsedException, WrongRoleCodeException {
-		if(!roleCode.equals(adminCode) && !roleCode.equals(userCode)) { // || userRepo.findByLogin(login) != null)
-			logger.error(Markers.USER_MARKER, "Wrong role code: " + roleCode);
-			throw new WrongRoleCodeException("Wrong role code!");
-		}
-		if(!userRepo.findById(login).isEmpty()) {
-			logger.error(Markers.USER_MARKER, "Login is already in use: " + login);
+	public User addUser(UserDTO dto) throws LoginUsedException {
+		if(!userRepo.findById(dto.getLogin()).isEmpty()) {
+			logger.error(Markers.USER_MARKER, "Login is already in use: " + dto.getLogin());
 			throw new LoginUsedException("This login is already in use!");
 		}
-		Role role = roleCode.equals(adminCode) ? Role.ADMIN : Role.REGULAR;
-		logger.info(Markers.USER_MARKER, "User registrated: " + login + " : " + password + " : " + role.name());
-		userRepo.save(new User(login, password, role));
+		Role role = dto.getRoleCode().equals(dto.getRoleCode()) ? Role.ADMIN : Role.REGULAR;
+		logger.info(Markers.USER_MARKER, "User registrated: " + dto.getLogin() + " : " + dto.getPassword() + " : " + role.name());
+		User u = new User(dto.getLogin(), dto.getPassword(), role);
+		userRepo.save(u);
+		return u;
 	}
 
-
-	/*@Override
-	public Iterable<User> getAll() {
-		return userRepo.findAll();
-	}*/
-
-	@Override
-	public boolean validateUser(String login, String password) {
-		Optional<User> opt = userRepo.findById(login);
-		if(opt.isEmpty())
-			return false;
-		if(!opt.get().getPassword().equals(password))
-			return false;
-		logger.info(Markers.USER_MARKER, "User logged in: " + login + " : " + password);
-		return true;
-	}
-	
 
 	@Override
 	public User getUser(String login) throws UserNotFoundException {

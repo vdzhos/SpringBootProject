@@ -1,8 +1,11 @@
 package com.sbproject.schedule.configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -47,13 +50,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		auth.userDetailsService(this.userDService).passwordEncoder(getPasswordEncoder());
 	}
 	
+	@Bean(name = BeanIds.AUTHENTICATION_MANAGER)
+	@Override
+	public AuthenticationManager authenticationManagerBean() throws Exception {
+		return super.authenticationManagerBean();
+	}
+	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable()
 		.logout()
 		.and()
 		.authorizeRequests()
-		.antMatchers("/login/**", "/h2-console/**").permitAll()
+		.antMatchers("/login/**", "/registration/**","/h2-console/**").permitAll()
 		.anyRequest().authenticated()
 //        .and().csrf().ignoringAntMatchers("/h2-console/**")
         .and().headers().frameOptions().sameOrigin()

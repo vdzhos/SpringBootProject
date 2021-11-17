@@ -2,14 +2,14 @@ package com.sbproject.schedule.services.interfaces;
 
 import com.sbproject.schedule.exceptions.user.LoginUsedException;
 import com.sbproject.schedule.exceptions.user.UserNotFoundException;
-import com.sbproject.schedule.exceptions.user.WrongRoleCodeException;
 import com.sbproject.schedule.models.User;
+import com.sbproject.schedule.models.UserDTO;
 
-public interface LoginService {
+public interface UserService {
 
-	void addUser(String login, String password, String roleCode) throws LoginUsedException, WrongRoleCodeException;
+	User addUser(UserDTO dto) throws LoginUsedException;
 	
-	boolean validateUser(String login, String password);
+	//boolean validateUser(String login, String password);
 	
 	User getUser(String login) throws UserNotFoundException;
 	

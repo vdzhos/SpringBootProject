@@ -22,10 +22,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.sbproject.schedule.exceptions.user.InvalidPasswordException;
 import com.sbproject.schedule.exceptions.user.LoginUsedException;
 import com.sbproject.schedule.exceptions.user.UserNotFoundException;
-import com.sbproject.schedule.exceptions.user.WrongRoleCodeException;
 import com.sbproject.schedule.models.User;
-import com.sbproject.schedule.models.UserData;
-import com.sbproject.schedule.services.interfaces.LoginService;
+import com.sbproject.schedule.models.UserDTO;
+import com.sbproject.schedule.services.interfaces.UserService;
 import com.sbproject.schedule.services.interfaces.UserProfileService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -37,11 +36,11 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @RequestMapping("/restLogin")
 public class LoginRestController {
 
-	private LoginService loginService;
+	private UserService loginService;
 	private UserProfileService userService;
 	
 	@Autowired
-	public LoginRestController(LoginService loginService, UserProfileService userService)
+	public LoginRestController(UserService loginService, UserProfileService userService)
 	{
 		this.loginService = loginService;
 		this.userService = userService;
@@ -74,9 +73,9 @@ public class LoginRestController {
 			  @ApiResponse(responseCode = "403", description = "Violation of registration rules", 
 			    content = @Content) })
 	@PostMapping("newuser")
-	public ResponseEntity<String> registrateUser(@Valid @RequestBody UserData userData) throws WrongRoleCodeException, LoginUsedException
+	public ResponseEntity<String> registrateUser(@Valid @RequestBody UserDTO userData) throws LoginUsedException
 	{
-		loginService.addUser(userData.getLogin(), userData.getPassword(), userData.getRoleCode());
+		loginService.addUser(userData);
 		return new ResponseEntity<>("Success: New user registered", HttpStatus.CREATED);
 	}
 	
@@ -91,7 +90,7 @@ public class LoginRestController {
 			  @ApiResponse(responseCode = "400", description = "Invalid user data",
 			  	content = @Content)})
 	@DeleteMapping("deleteuser")
-	public ResponseEntity<String> deleteUser(@Valid @RequestBody UserData userData) throws UserNotFoundException
+	public ResponseEntity<String> deleteUser(@Valid @RequestBody UserDTO userData) throws UserNotFoundException
 	{
 		boolean succ = loginService.deleteUser(userData.getLogin(), userData.getPassword());
 		return succ ? new ResponseEntity<>("Success: User deleted", HttpStatus.OK) : new ResponseEntity<>("Failure: Incorrect password", HttpStatus.FORBIDDEN);
@@ -109,8 +108,8 @@ public class LoginRestController {
 			  @ApiResponse(responseCode = "400", description = "Invalid user data",
 			  	content = @Content)})
 	@PutMapping("passupdate")
-	public ResponseEntity<String> updatePassword(@Valid @RequestBody UserData userData) throws UserNotFoundException, InvalidPasswordException {
-		userService.updatePassword(userData.getLogin(), userData.getPassword(), userData.getNewPassword());
+	public ResponseEntity<String> updatePassword(@Valid @RequestBody UserDTO userData) throws UserNotFoundException, InvalidPasswordException {
+	//	userService.updatePassword(userData.getLogin(), userData.getPassword(), userData.getNewPassword());
 		return new ResponseEntity<>("Success: Password changed", HttpStatus.OK);
 	}
 	
@@ -124,7 +123,7 @@ public class LoginRestController {
 		return new ResponseEntity<>("Error: " + e.getMessage(), HttpStatus.NOT_FOUND);
 	}
 	
-	@ExceptionHandler({WrongRoleCodeException.class, LoginUsedException.class, InvalidPasswordException.class})
+	@ExceptionHandler({LoginUsedException.class, InvalidPasswordException.class})
 	@ResponseStatus(HttpStatus.FORBIDDEN)
 	public ResponseEntity<String> handleMultiple(Exception e)
 	{
