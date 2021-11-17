@@ -10,6 +10,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.ThreadContext;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,6 +34,7 @@ public class TeacherController {
         this.teacherService = teacherService;
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/add")
     public RedirectView addTeacher(@RequestParam String name, @RequestParam List<Subject> subjects, Model model, RedirectAttributes redir){
         RedirectView redirectView= new RedirectView("/",true);
@@ -48,6 +50,7 @@ public class TeacherController {
         return redirectView;
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/delete")
     public String deleteTeacher(@RequestParam Long id, @RequestParam String teacherToString, Model model) throws NoTeacherWithSuchIdException {
         ThreadContext.put("teacher",teacherToString);
@@ -58,6 +61,7 @@ public class TeacherController {
         return "redirect:/";
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/update")
     public String updateTeacher(/*@RequestParam Long id, @RequestParam String newName, */Model model){
         logger.info(Markers.ALTERING_TEACHER_TABLE_MARKER,"Teacher has been successfully updated!");
