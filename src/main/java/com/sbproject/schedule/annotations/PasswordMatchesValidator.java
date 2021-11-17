@@ -1,4 +1,4 @@
-package annotations;
+package com.sbproject.schedule.annotations;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

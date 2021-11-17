@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.sbproject.schedule.exceptions.user.LoginUsedException;
@@ -24,6 +25,12 @@ public class UserServiceImpl implements UserService {
 	
 	private UserRepository userRepo;
 
+	@Value("${custom.admin-code}")
+	private String adminCode;
+
+	@Value("${custom.user-code}")
+	private String userCode;
+	
 	@Autowired
 	public void setUserRepository(UserRepository repo) {
 		this.userRepo = repo;
@@ -35,7 +42,7 @@ public class UserServiceImpl implements UserService {
 			logger.error(Markers.USER_MARKER, "Login is already in use: " + dto.getLogin());
 			throw new LoginUsedException("This login is already in use!");
 		}
-		Role role = dto.getRoleCode().equals(dto.getRoleCode()) ? Role.ADMIN : Role.REGULAR;
+		Role role = dto.getRoleCode().equals(adminCode) ? Role.ADMIN : Role.REGULAR;
 		logger.info(Markers.USER_MARKER, "User registrated: " + dto.getLogin() + " : " + dto.getPassword() + " : " + role.name());
 		User u = new User(dto.getLogin(), dto.getPassword(), role);
 		userRepo.save(u);

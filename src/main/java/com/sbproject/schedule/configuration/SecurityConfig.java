@@ -24,27 +24,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private CustomUserDetailsService userDService;
-	
-	//@Bean 
+
+	//@Bean
 	//public PasswordEncoder getPasswordEncoder() {
 	//	return new BCryptPasswordEncoder();
 	//}
-	
+
 	//temporary solution
 	private PasswordEncoder getPasswordEncoder() {
-        return new PasswordEncoder() {
-            @Override
-            public String encode(CharSequence charSequence) {
-                return charSequence.toString();
-            }
+		return new PasswordEncoder() {
+			@Override
+			public String encode(CharSequence charSequence) {
+				return charSequence.toString();
+			}
 
-            @Override
-            public boolean matches(CharSequence charSequence, String s) {
-                return s.contentEquals(charSequence);
-            }
-        };
-    }
-	
+			@Override
+			public boolean matches(CharSequence charSequence, String s) {
+				return s.contentEquals(charSequence);
+			}
+		};
+	}
+
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(this.userDService).passwordEncoder(getPasswordEncoder());
@@ -56,6 +56,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		return super.authenticationManagerBean();
 	}
 	
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable()
@@ -64,12 +65,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.authorizeRequests()
 		.antMatchers("/login/**", "/registration/**","/h2-console/**").permitAll()
 		.anyRequest().authenticated()
-//        .and().csrf().ignoringAntMatchers("/h2-console/**")
-        .and().headers().frameOptions().sameOrigin()
-        .and()
+//      .and().csrf().ignoringAntMatchers("/h2-console/**")
+		.and().headers().frameOptions().sameOrigin()
+		.and()
 		.formLogin()
 		.loginPage("/login")
 		.permitAll();
-		
+
 	}
 }

@@ -3,8 +3,8 @@ package com.sbproject.schedule.models;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
-import annotations.PasswordMatches;
-import annotations.RoleCodeMatches;
+import com.sbproject.schedule.annotations.PasswordMatches;
+import com.sbproject.schedule.annotations.RoleCodeMatches;
 
 
 @PasswordMatches
