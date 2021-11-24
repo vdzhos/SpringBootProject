@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>User page</title>
+    <title>Edit schedule</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -12,10 +12,14 @@
 <body>
 <div class="container">
     <div style="margin-top: 1em; display: flex; justify-content: end;">
+        <a th:if="${adminLoggedIn}" href="/admin" class="nav-link btn btn-info mr-3">Edit schedule</a>
         <a class="nav-link btn btn-info mr-3" href="/profile">User Profile</a>
         <a class="nav-link btn btn-secondary" href="/logout">Log out</a>
     </div>
-    <h1>Welcome to user page!</h1>
+    <header class="mb-5">
+        <h1 th:text="${appName}"></h1>
+    </header>
+    <h1>Welcome to the main page!</h1>
 </div>
 
 </body>

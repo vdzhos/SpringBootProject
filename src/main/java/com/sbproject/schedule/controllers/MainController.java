@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.GetMapping;
  */
 
 @Controller
-//I assume that main page is accessable only for admins 
+//I assume that main page is accessible only for admins
 //@PreAuthorize("hasAnyRole('ADMIN')")
 public class MainController {
 
@@ -44,23 +44,30 @@ public class MainController {
         model.addAttribute("subjects",subjectService.getAll());
         model.addAttribute("lessons", lessonService.getAll());
         model.addAttribute("teachers", teacherService.getAll());
-        return "main";
+        return "editSchedule";
     }
 
-    @PreAuthorize("hasRole('REGULAR')")
-    @GetMapping("/user")
-    public String getAllRegular(Model model){
-        return "user";
-    }
-
+//    @PreAuthorize("hasRole('REGULAR')")
     @GetMapping
-    public String loginPage(Authentication authentication) {
+    public String showAllSchedules(Model model,Authentication authentication){
+        model.addAttribute("appName",appName);
+        boolean adminLoggedIn = false;
         if(authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
-            return "redirect:/admin";
-        } else if(authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_REGULAR"))) {
-            return "redirect:/user";
+            adminLoggedIn = true;
         }
-        return "login";
+        model.addAttribute("adminLoggedIn",adminLoggedIn);
+        return "mainPage";
     }
+
+
+//    @GetMapping
+//    public String loginPage(Authentication authentication) {
+//        if(authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
+//            return "redirect:/admin";
+//        } else if(authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_REGULAR"))) {
+//            return "redirect:/user";
+//        }
+//        return "login";
+//    }
 
 }

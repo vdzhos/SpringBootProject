@@ -49,28 +49,28 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(this.userDService).passwordEncoder(getPasswordEncoder());
 	}
-	
+
 	@Bean(name = BeanIds.AUTHENTICATION_MANAGER)
 	@Override
 	public AuthenticationManager authenticationManagerBean() throws Exception {
 		return super.authenticationManagerBean();
 	}
-	
+
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable()
-		.logout()
-		.and()
-		.authorizeRequests()
-		.antMatchers("/login/**", "/registration/**","/h2-console/**").permitAll()
-		.anyRequest().authenticated()
+				.logout()
+				.and()
+				.authorizeRequests()
+				.antMatchers("/login/**", "/registration/**","/h2-console/**").permitAll()
+				.anyRequest().authenticated()
 //      .and().csrf().ignoringAntMatchers("/h2-console/**")
-		.and().headers().frameOptions().sameOrigin()
-		.and()
-		.formLogin()
-		.loginPage("/login")
-		.permitAll();
+				.and().headers().frameOptions().sameOrigin()
+				.and()
+				.formLogin()
+				.loginPage("/login")
+				.permitAll();
 
 	}
 }
