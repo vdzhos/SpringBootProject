@@ -2,24 +2,24 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Login Page</title>
+    <title th:text="#{login.title}">Login Page</title>
 </head>
 <body>
 
-<h2>LogIn</h2>
+<h2 th:text="#{login.h2}">LogIn</h2>
 
 <form action="/login" method="post">
-    <label>Login: <input name="username" type="text" placeholder="Enter the login"/></label>
+    <label th:text="#{login.login}">Login: <input name="username" type="text" th:placeholder="#{login.login.placeholder}"/></label>
     <br>
     <p></p>
-    <label>Password: <input name="password" type="password" placeholder="Enter the password"/></label>
+    <label th:text="#{login.password}">Password: <input name="password" type="password" th:placeholder="#{login.password.placeholder}"/></label>
     <br>
     <p></p>
-    <button type="submit">Log In</button>
-    <p><a href="/registration">Sign Up</a></p>
+    <button type="submit" th:placeholder="#{login.submit}">Log In</button>
+    <p><a href="/registration" th:placeholder="#{login.goToRegistration}">Sign Up</a></p>
 </form>
 <br>
-<p style="color: orangered;" th:if="${param.error}">
+<p style="color: orangered;" th:if="${param.error}" th:text="#{login.error}">
 	Invalid login or password
 </p>
 </body>

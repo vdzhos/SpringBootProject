@@ -2,22 +2,22 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Registration Form</title>
+    <title th:text="#{registration.title}">Registration Form</title>
 </head>
 <body>
 
-<h2>Sign Up</h2>
+<h2 th:text="#{registration.h2}">Sign Up</h2>
 
 <form action="/registration" th:object="${user}" method="post">
     <div>
-        <label>Login: <input type="text" th:field="*{login}" placeholder="Enter the login"/></label>
+        <label th:text="#{registration.login}">Login: <input type="text" th:field="*{login}" th:placeholder="#{registration.login.placeholder}"/></label>
         <ul>
            <li style="color: orangered;" th:each="err : ${#fields.errors('login')}" th:text="${err}"/>
         </ul>
     </div>
     <br>
     <div>
-        <label>Password: <input type="password" th:field="*{password}" placeholder="Enter the password"/></label>
+        <label th:text="#{registration.login}">Password: <input type="password" th:field="*{password}" placeholder="Enter the password"/></label>
         <ul>
             <li style="color: orangered;" th:each="err : ${#fields.errors('password')}" th:text="${err}"/>
         </ul>    
