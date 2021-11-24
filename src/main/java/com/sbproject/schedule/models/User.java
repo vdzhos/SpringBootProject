@@ -4,6 +4,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import com.sbproject.schedule.utils.Role;
 
@@ -14,6 +17,10 @@ public class User {
 	@Id
 	@Column(name = "Login", nullable = false)
 	private String login;
+	@NotBlank(message = "Password must not be blank")
+	@Size(min = 4, message = "Password must be at least 4 characters long!")
+	@Size(max = 20, message = "Password must be no longer than 4 characters!")
+	@Pattern(regexp = "^[a-zA-Z0-9._]+$", message = "Password must contain only digits, latin letters, dots and underscore characters!")
 	@Column(name = "Password", nullable = false)
 	private String password;
 	@Column(name = "Role", nullable = false)
