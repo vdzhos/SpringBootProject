@@ -10,35 +10,35 @@
 
 <form action="/registration" th:object="${user}" method="post">
     <div>
-        <label th:text="#{registration.login}">Login: <input type="text" th:field="*{login}" th:placeholder="#{registration.login.placeholder}"/></label>
+        <label><span th:text="#{registration.login}"></span><input type="text" th:field="*{login}" th:placeholder="#{registration.login.placeholder}"/></label>
         <ul>
            <li style="color: orangered;" th:each="err : ${#fields.errors('login')}" th:text="${err}"/>
         </ul>
     </div>
     <br>
     <div>
-        <label th:text="#{registration.login}">Password: <input type="password" th:field="*{password}" placeholder="Enter the password"/></label>
+        <label><span th:text="#{registration.password}"></span><input type="password" th:field="*{password}" th:placeholder="#{registration.password.placeholder}"/></label>
         <ul>
             <li style="color: orangered;" th:each="err : ${#fields.errors('password')}" th:text="${err}"/>
         </ul>    
     </div>
     <br>
     <div>
-        <label>Confirm password: <input type="password" th:field="*{matchingPassword}" placeholder="Confirm the password"/></label>
-   	    <ul>
+        <label><span th:text="#{registration.confirm}"></span><input type="password" th:field="*{matchingPassword}" th:placeholder="#{registration.confirm.placeholder}"/></label>
+        <ul>
            <li style="color: orangered;" th:each="err : ${#fields.errors('matchingPassword')}" th:text="${err}"/>
         </ul> 
     </div>
     <br>
     <div>
-	   <label>Role code: <input type="password" th:field="*{roleCode}" placeholder="Enter the role code"/></label>
+       <label><span th:text="#{registration.roleCode}"></span><input type="password" th:field="*{roleCode}" th:placeholder="#{registration.roleCode.placeholder}"/></label>
        <ul>
    	        <li style="color: orangered;" th:each="err : ${#fields.errors('roleCode')}" th:text="${err}"/>
        </ul>
    </div>
 	<br>
 	<p></p>
-	<button type="submit">Sign Up</button>
+	<button type="submit" th:text="#{registration.submit}">Sign Up</button>
 </form>
 <p style="color: orangered;" th:text="${message}"></p>
 </body>

@@ -9,13 +9,13 @@
 <h2 th:text="#{login.h2}">LogIn</h2>
 
 <form action="/login" method="post">
-    <label th:text="#{login.login}">Login: <input name="username" type="text" th:placeholder="#{login.login.placeholder}"/></label>
+    <label><span th:text="#{login.login}"></span><input name="username" type="text" th:placeholder="#{login.login.placeholder}"/></label>
     <br>
     <p></p>
-    <label th:text="#{login.password}">Password: <input name="password" type="password" th:placeholder="#{login.password.placeholder}"/></label>
+    <label><span th:text="#{login.password}"></span><input name="password" type="password" th:placeholder="#{login.password.placeholder}"/></label>
     <br>
     <p></p>
-    <button type="submit" th:placeholder="#{login.submit}">Log In</button>
+    <button type="submit" th:text="#{login.submit}">Log In</button>
     <p><a href="/registration" th:placeholder="#{login.goToRegistration}">Sign Up</a></p>
 </form>
 <br>
