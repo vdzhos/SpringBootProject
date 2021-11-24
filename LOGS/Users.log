@@ -19,3 +19,7 @@
 2021-11-17 13:52:37,426 [http-nio-8081-exec-6] FATAL c.s.s.c.UserProfileController                      - Unauthorized session! 
 2021-11-17 14:41:54,200 [http-nio-8081-exec-6] FATAL c.s.s.c.UserProfileController                      - Unauthorized session! 
 2021-11-17 16:31:55,308 [http-nio-8081-exec-13] FATAL c.s.s.c.UserProfileController                      - Unauthorized session! 
+2021-11-17 23:10:03,559 [http-nio-8081-exec-4] ERROR c.s.s.s.i.UserServiceImpl                          - Login is already in use: vovan 
+2021-11-17 23:10:13,422 [http-nio-8081-exec-5] INFO  c.s.s.s.i.UserServiceImpl                          - User registrated: vovan1 : 1234 : REGULAR 
+2021-11-17 23:10:29,516 [http-nio-8081-exec-3] FATAL c.s.s.c.UserProfileController                      - Unauthorized session! 
+2021-11-17 23:10:47,807 [http-nio-8081-exec-1] FATAL c.s.s.c.UserProfileController                      - Unauthorized session! 
