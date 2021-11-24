@@ -11,6 +11,7 @@ public class CustomProperties {
 
     private String adminCode;
     private String userCode;
+    private String fileUrl;
     private boolean useTestDatabase;
 
     public String getAdminCode() {
@@ -27,6 +28,14 @@ public class CustomProperties {
 
     public void setUserCode(String userCode) {
         this.userCode = userCode;
+    }
+
+    public String getFileUrl() {
+        return fileUrl;
+    }
+
+    public void setFileUrl(String fileUrl) {
+        this.fileUrl = fileUrl;
     }
 
     public boolean isUseTestDatabase() {
