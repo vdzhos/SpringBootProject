@@ -8,14 +8,21 @@
 
 <h2>Profile</h2>
 
-<form action="/profile/passUpdate" method="post">
-    <label>Login:   </label> <label th:text="${ulogin}"></label>
+<form action="/profile" th:object="${user}" method="post">
+	<div>
+    	<label>Login:   </label> <label th:text="*{login}"></label>
+    </div>
     <br>
-    <p></p>
-    <label>Password: <input name="password" type="password" th:value="${upassword}"/></label>
+    <div>
+	    <label>Password: <input name="password" type="password" th:value="*{password}" th:filed="*{password}"/></label>
+	    <ul>
+	        <li style="color: orangered;" th:each="err : ${#fields.errors('password')}" th:text="${err}"/>
+		</ul>
+    </div>   
     <br>
-    <p></p>
-    <label>User role:   </label> <label th:text="${urole}"></label>
+    <div>
+    	<label>User role:   </label> <label th:text="*{role.name}"></label>
+    </div>
     <br>
     <p></p>
     <button type="submit">Change password</button>
@@ -23,7 +30,7 @@
     <p></p>
     <button type="submit" formaction="/profile/back">Back</button>
 </form>
-<br>
-<p style="color: orangered;" th:text="${errorMessage}"></p>
+<p></p>
+<p style="color: green;" th:text="${message}"></p> 
 </body>
 </html>

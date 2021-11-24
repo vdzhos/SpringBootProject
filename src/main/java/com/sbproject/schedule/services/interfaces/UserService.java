@@ -9,11 +9,10 @@ public interface UserService {
 
 	User addUser(UserDTO dto) throws LoginUsedException;
 	
-	//boolean validateUser(String login, String password);
-	
 	User getUser(String login) throws UserNotFoundException;
 	
 	boolean deleteUser(String login, String password) throws UserNotFoundException;
-	// Iterable<User> getAll();
+	
+	void updateUser(User user);
 
 }

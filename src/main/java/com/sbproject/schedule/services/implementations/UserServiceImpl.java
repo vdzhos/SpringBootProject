@@ -74,4 +74,10 @@ public class UserServiceImpl implements UserService {
 		return true;
 	}
 
+	@Override
+	public void updateUser(User user) {
+		userRepo.deleteById(user.getLogin());
+		userRepo.save(user);
+	}
+
 }
