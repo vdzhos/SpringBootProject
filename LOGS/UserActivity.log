@@ -178,3 +178,14 @@ vovan (ROLE_ADMIN)  --- /
 vovan (ROLE_ADMIN)  --- /login 
 anonymousUser (ROLE_ANONYMOUS)  --- /login 
 anonymousUser (ROLE_ANONYMOUS)  --- /registration 
+anonymousUser (ROLE_ANONYMOUS)  --- /registration 
+anonymousUser (ROLE_ANONYMOUS)  --- /login 
+anonymousUser (ROLE_ANONYMOUS)  --- /login 
+vovan (ROLE_ADMIN)  --- / 
+vovan (ROLE_ADMIN)  --- /login 
+vovan (ROLE_ADMIN)  --- /download/ 
+anonymousUser (ROLE_ANONYMOUS)  --- /login 
+vovan (ROLE_ADMIN)  --- / 
+vovan (ROLE_ADMIN)  --- /login 
+vovan (ROLE_ADMIN)  --- /download/ 
+vovan (ROLE_ADMIN)  --- /admin 

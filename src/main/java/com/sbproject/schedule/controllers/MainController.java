@@ -74,7 +74,7 @@ public class MainController {
     @GetMapping("/download")
     @ResponseBody
     public void download(HttpServletResponse response){
-        String fileName1 = "Інженерія_програмного_забезпечення_БП-3_Осінь_2021–2022.xlsx";
+        String fileName1 = "Schedule_example.xlsx";
         String fileName2 = URLEncoder.encode(fileName1, StandardCharsets.UTF_8);
         response.setContentType("application/ms-excel; charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
