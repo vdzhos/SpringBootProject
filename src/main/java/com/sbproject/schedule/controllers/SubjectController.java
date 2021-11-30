@@ -31,6 +31,8 @@ public class SubjectController {
     private SubjectServiceImpl subjectService;
     private static Logger logger = LogManager.getLogger(SubjectController.class);
 
+    private final String REDIRECT_EDIT_PAGE_URL = "/admin";
+
     @Autowired
     public SubjectController(SubjectServiceImpl subjectService) {
         this.subjectService = subjectService;
@@ -42,7 +44,7 @@ public class SubjectController {
                              @RequestParam Set<Specialty> specialties, Model model, RedirectAttributes redir){
         //put info about success/failure into the model
         //return "redirect:/";
-        RedirectView redirectView= new RedirectView("/",true);
+        RedirectView redirectView= new RedirectView(REDIRECT_EDIT_PAGE_URL,true);
         String notification = "Предмет '"+name+"' було успішно додано!";
         boolean success = subjectService.addSubject(name, quantOfGroups, specialties);
         if(success) logger.info(Markers.ALTERING_SUBJECT_TABLE_MARKER,"Subject {} with {} groups has been successfully added!", name, quantOfGroups);
@@ -61,7 +63,7 @@ public class SubjectController {
         subjectService.deleteSubject(id);
         logger.info(Markers.DELETE_SUBJECT_MARKER,"Subject has been successfully deleted!");
         //put info about success/failure into the model
-        return "redirect:/";
+        return "redirect:"+REDIRECT_EDIT_PAGE_URL;
     }
 
     @PreAuthorize("hasRole('ADMIN')")
@@ -69,7 +71,7 @@ public class SubjectController {
     public String updateSubject(Model model){
 //        SubjectService.updateSubject(newName,newQuantOfSubjects, newTeachers, newSpecialties);
         //put info about success/failure into the model
-        return "redirect:/";
+        return "redirect:"+REDIRECT_EDIT_PAGE_URL;
     }
 
     @PreAuthorize("hasRole('ADMIN') or hasRole('REGULAR')")

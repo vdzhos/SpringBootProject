@@ -22,6 +22,8 @@ public class SpecialtyController {
 
     private SpecialtyService specialtyService;
 
+    private final String REDIRECT_EDIT_PAGE_URL = "/admin";
+
 
     @Autowired
     public SpecialtyController(SpecialtyService specialtyService) {
@@ -32,7 +34,7 @@ public class SpecialtyController {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/add")
     public RedirectView addSpecialty(@RequestParam String name, @RequestParam int year, Model model, RedirectAttributes redir){
-        RedirectView redirectView= new RedirectView("/",true);
+        RedirectView redirectView= new RedirectView(REDIRECT_EDIT_PAGE_URL,true);
         String notification = "Спеціальність '"+name+" - "+year+"' було успішно додано!";
         boolean success = true;
         try{
@@ -53,7 +55,7 @@ public class SpecialtyController {
         ThreadContext.put("specialty",specialtyToString);
         specialtyService.deleteSpecialty(id);
         ThreadContext.clearAll();
-        RedirectView redirectView= new RedirectView("/",true);
+        RedirectView redirectView= new RedirectView(REDIRECT_EDIT_PAGE_URL,true);
         String notification = "Спеціальність було успішно видалено!";
         redir.addFlashAttribute("showNotification", true);
         redir.addFlashAttribute("success", true);
@@ -64,7 +66,7 @@ public class SpecialtyController {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/update")
     public RedirectView updateSpecialty(@RequestParam Long id,@RequestParam String specName,@RequestParam int specYear, RedirectAttributes redir){
-        RedirectView redirectView= new RedirectView("/",true);
+        RedirectView redirectView= new RedirectView(REDIRECT_EDIT_PAGE_URL,true);
         String notification = "Спеціальність було успішно оновлено на '"+specName+" - "+specYear+"'!";
         boolean success = true;
         try{
