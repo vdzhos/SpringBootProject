@@ -15,6 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.sbproject.schedule.repositories.UserRepository;
 import com.sbproject.schedule.services.implementations.CustomUserDetailsService;
+import org.springframework.stereotype.Service;
 
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableWebSecurity

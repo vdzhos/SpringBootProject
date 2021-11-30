@@ -26,7 +26,7 @@ import java.util.Set;
 @RestController
 @Validated
 @RequestMapping("/specialties")
-class SpecialtyRestController {
+public class SpecialtyRestController {
 
     private SpecialtyService specialtyService;
 

@@ -22,6 +22,7 @@ public class SpecialtyController {
 
     private SpecialtyService specialtyService;
 
+
     @Autowired
     public SpecialtyController(SpecialtyService specialtyService) {
         this.specialtyService = specialtyService;
