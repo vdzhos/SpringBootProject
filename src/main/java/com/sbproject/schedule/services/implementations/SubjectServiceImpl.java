@@ -120,6 +120,10 @@ public class SubjectServiceImpl implements SubjectService {
         return subjectRepository.existsById(id);
     }
 
+    @Override
+    public boolean subjectExistsByName(String name) {
+        return subjectRepository.existsByName(name);
+    }
 
 
 }

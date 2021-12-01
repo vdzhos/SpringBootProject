@@ -19,4 +19,5 @@ public interface SubjectService {
     Subject getSubjectByName(String name);
     Subject getSubjectById(Long id);
     boolean subjectExistsById(Long id);
+    boolean subjectExistsByName(String name);
 }

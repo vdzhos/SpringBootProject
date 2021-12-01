@@ -26,7 +26,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 //@WebMvcTest(SpecialtyRestController.class)
 public class SpecialtySecurityTest {
 
-
+    @Autowired
     private MockMvc mockMvc;
 
     @Autowired
