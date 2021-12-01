@@ -361,6 +361,12 @@ public class ScheduleAnalyzer {
     }
 
     public static void main(String[] args) throws FileNotFoundException {
+//        String s = "Hello";
+//        System.out.println(s.toString());
+//
+//        Object o = s;
+//        System.out.println(o.toString());
+
         ScheduleAnalyzer analyzer = new ScheduleAnalyzer(new FileInputStream(new File("src/main/resources/download/Інженерія_програмного_забезпечення_БП-2_Осінь_2021–2022.xlsx")));
         analyzer.analyze();
         System.out.println(analyzer.getLessons());

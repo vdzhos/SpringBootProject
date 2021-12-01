@@ -42,4 +42,9 @@ public class Markers {
             .setParents(ALTERING_TEACHER_TABLE_MARKER);
     public static final Marker SAVE_TEACHER_MARKER = MarkerManager.getMarker("SAVE_TEACHER")
             .setParents(ALTERING_TEACHER_TABLE_MARKER);
+
+
+    public static final Marker ADD_METHOD_INVOKED_MARKER = MarkerManager.getMarker("ADD_METHOD_INVOKED")
+            .setParents(IMPORTANT_MARKER);
+
 }
