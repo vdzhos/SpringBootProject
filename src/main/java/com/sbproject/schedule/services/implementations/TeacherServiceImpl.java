@@ -50,6 +50,11 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
+    public boolean teacherExistsByName(String name) {
+        return teacherRepository.existsByName(name);
+    }
+
+    @Override
     public boolean deleteTeacher(Long id) throws NoTeacherWithSuchIdException{
         if(!teacherExistsById(id)) throw new NoTeacherWithSuchIdException(id, "deleted");
         teacherRepository.deleteById(id);
@@ -69,8 +74,18 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
+    public Teacher updateTeacherNoCheck(Teacher teacher) {
+        return teacherRepository.save(teacher);
+    }
+
+    @Override
     public Teacher getTeacherById(Long id) throws Exception{
         return teacherRepository.findById(id).orElseThrow(() -> new NoTeacherWithSuchIdException(id, "get"));
+    }
+
+    @Override
+    public Iterable<Teacher> getTeacherByPartName(String name) throws Exception {
+        return teacherRepository.findByPartName(name);
     }
 
     @Override

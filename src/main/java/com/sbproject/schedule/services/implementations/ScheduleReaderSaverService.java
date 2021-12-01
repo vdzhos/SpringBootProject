@@ -1,8 +1,7 @@
 package com.sbproject.schedule.services.implementations;
 
-import com.sbproject.schedule.models.Specialty;
-import com.sbproject.schedule.models.Subject;
-import com.sbproject.schedule.models.SubjectType;
+import com.sbproject.schedule.exceptions.schedule.ScheduleException;
+import com.sbproject.schedule.models.*;
 import com.sbproject.schedule.services.interfaces.LessonService;
 import com.sbproject.schedule.services.interfaces.SpecialtyService;
 import com.sbproject.schedule.services.interfaces.SubjectService;
@@ -12,9 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.InputStream;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Service
 public class ScheduleReaderSaverService {
@@ -33,26 +30,55 @@ public class ScheduleReaderSaverService {
 
 
 
-    public void readSaveSchedule(InputStream inputStream, long specialtyId) {
+    public void readSaveSchedule(InputStream inputStream, long specialtyId) throws Exception {
         List<ScheduleAnalyzer.LessonInfo> lessons = read(inputStream);
         Specialty s = specialtyService.getSpecialty(specialtyId);
         save(lessons, s);
     }
 
-    private void save(List<ScheduleAnalyzer.LessonInfo> lessons,Specialty s) {
+    private void save(List<ScheduleAnalyzer.LessonInfo> lessons,Specialty s) throws Exception {
         for (ScheduleAnalyzer.LessonInfo li: lessons) {
             save(li,s);
         }
     }
 
-    private void save(ScheduleAnalyzer.LessonInfo li, Specialty s) {
+    private void save(ScheduleAnalyzer.LessonInfo li, Specialty s) throws Exception {
         Subject subject = saveSubject(li,s);
-        saveTeacher(li,subject);
+        Teacher teacher = saveTeacher(li,subject);
 
+        Lesson lesson = new Lesson(li.getTime(),
+                subject,teacher,
+                li.getGroup(),
+                li.getWeeks(),
+                li.getRoom(),
+                li.getDay());
+        lessonService.addLesson(lesson);
     }
 
-    private void saveTeacher(ScheduleAnalyzer.LessonInfo li, Subject subject) {
+    private Teacher saveTeacher(ScheduleAnalyzer.LessonInfo li, Subject subject) throws Exception {
+        String teacherSurname = li.getTeacherSurname();
+        Teacher teacher = null;
 
+        Iterable<Teacher> teachers = teacherService.getTeacherByPartName(teacherSurname);
+
+        for (Teacher t: teachers) {
+            String[] name = t.getName().split("\\s+");
+            if (name.length != 3)
+                throw new ScheduleException("Incorrect teacher name: "+t.getName());
+            if (name[1].startsWith(li.getTeacherFirstName()) && name[2].startsWith(li.getTeacherLastName())) {
+                teacher = t;
+                break;
+            }
+        }
+
+        if (teacher != null){
+            teacher.addSubject(subject);
+            return teacherService.updateTeacherNoCheck(teacher);
+        } else {
+            teacher = new Teacher(teacherSurname+" "+li.getTeacherFirstName()+" "+li.getTeacherLastName());
+            teacher.addSubject(subject);
+            return teacherService.addTeacher(teacher);
+        }
     }
 
     private Subject saveSubject(ScheduleAnalyzer.LessonInfo li, Specialty s) {
