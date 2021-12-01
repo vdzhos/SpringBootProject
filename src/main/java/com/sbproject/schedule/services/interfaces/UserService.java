@@ -13,6 +13,6 @@ public interface UserService {
 	
 	boolean deleteUser(String login) throws UserNotFoundException;
 	
-	void updateUser(User user);
+	User updateUser(User user);
 
 }
