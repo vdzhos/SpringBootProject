@@ -41,7 +41,13 @@ public class GlobalAspect {
         logger.info(Markers.ADD_METHOD_INVOKED_MARKER,returnObject.toString());
     }
 
-
+    @AfterReturning(returning = "returnObject", value = "execution(* com.sbproject.schedule.services.implementations.*.update*(..))")
+    public void updateObjectAfterAdvice(JoinPoint joinPoint, Object returnObject){
+        logger.info(Markers.UPDATE_METHOD_INVOKED_MARKER, "UPDATE Method " + joinPoint.getSignature() + " invoked with arguments: "
+                + Arrays.toString(joinPoint.getArgs())
+                +". The returned value is: " +
+                returnObject.toString());
+    }
     @AfterReturning(returning = "returnObject", value = "execution(* com.sbproject.schedule.services.implementations.*.delete*(*))")
     public void deleteObjectByIdAfterAdvice(JoinPoint joinPoint, Object returnObject){
         logger.info(Markers.DELETE_METHOD_INVOKED_MARKER, "DELETE Method " + joinPoint.getSignature() + " invoked with arguments: "

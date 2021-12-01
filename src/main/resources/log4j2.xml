@@ -47,6 +47,11 @@
             <MarkerFilter marker="METHOD_INVOKE_TIME_MARKER" onMatch="ACCEPT" onMismatch="DENY"/>
         </File>
 
+        <File name="UPDATEMethodsToFile" fileName="LOGS/UPDATE_methods.log">
+            <PatternLayout pattern="%d [%t] %-5level %-50c{1.} - %msg %n"/>
+            <MarkerFilter marker="UPDATE_METHOD_INVOKED" onMatch="ACCEPT" onMismatch="DENY"/>
+        </File>
+
         <File name="DELETEMethodsToFile" fileName="LOGS/DELETE_methods.log">
             <PatternLayout pattern="%d [%t] %-5level %-50c{1.} - %msg %n"/>
             <MarkerFilter marker="DELETE_METHOD_INVOKED" onMatch="ACCEPT" onMismatch="DENY"/>
@@ -72,6 +77,9 @@
             <AppenderRef ref="Users"/>
             <AppenderRef ref="ADDMethodsToFile"/>
             <AppenderRef ref="GETMethodsToFile"/>
+            <AppenderRef ref="UPDATEMethodsToFile"/>
+            <AppenderRef ref="DELETEMethodsToFile"/>
+            <AppenderRef ref="MethodInvokeTimeToFile"/>
             <AppenderRef ref="DeletedSpecialtiesToFile"/>
             <AppenderRef ref="DeletedSubjectsToFile"/>
             <AppenderRef ref="DeletedTeachersToFile"/>

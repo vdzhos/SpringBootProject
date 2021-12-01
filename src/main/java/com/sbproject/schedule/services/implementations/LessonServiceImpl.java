@@ -73,8 +73,16 @@ public class LessonServiceImpl implements LessonService {
     }
 
     @Override
-    public boolean updateLesson(Long id, Lesson.Time time, Subject subject, Teacher teacher, SubjectType group, String weeks, Room room, DayOfWeek dayOfWeek) {
-        lessonRepository.save(new Lesson(id,time,subject,teacher,group,weeks,room,dayOfWeek));
+    public boolean updateLesson(Long id, Lesson.Time time, Long subjId, Long teachId, SubjectType subjectType, String weeks, Room room, DayOfWeek dayOfWeek) {
+
+        Optional<Teacher> t = teacherRepository.findById(teachId);
+        Optional<Subject> s = subjectRepository.findById(subjId);
+
+        if(s.isEmpty() || t.isEmpty()) return false;
+        Subject subject = s.get();
+        Teacher teacher = t.get();
+
+        lessonRepository.save(new Lesson(id,time,subject,teacher,subjectType,weeks,room,dayOfWeek));
         return true;
     }
 
