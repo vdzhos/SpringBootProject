@@ -50,4 +50,7 @@ public class Markers {
             .setParents(IMPORTANT_MARKER);
     public static final Marker DELETE_METHOD_INVOKED_MARKER = MarkerManager.getMarker("DELETE_METHOD_INVOKED")
             .setParents(IMPORTANT_MARKER);
+    public static final Marker METHOD_INVOKE_TIME_MARKER = MarkerManager.getMarker("METHOD_INVOKE_TIME_MARKER")
+            .setParents(IMPORTANT_MARKER);
+
 }
