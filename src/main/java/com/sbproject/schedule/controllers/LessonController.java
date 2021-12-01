@@ -43,12 +43,12 @@ public class LessonController {
         Room r;
         if(room.equals("remotely")) r = new Room();
         else r = new Room(room);
-        boolean result;
-        if(weeks.isEmpty()) result = false;
+        Lesson result;
+        if(weeks.isEmpty()) result = null;
         else{
             result = lessonService.addLesson(Lesson.Time.values()[time],subjId,teachId,new SubjectType(group), weeks, r, DayOfWeek.of(day));
         }
-        if(result) logger.info(Markers.ALTERING_LESSON_TABLE_MARKER,"Lesson successfully added!");
+        if(result != null) logger.info(Markers.ALTERING_LESSON_TABLE_MARKER,"Lesson successfully added!");
         else logger.error(Markers.ALTERING_LESSON_TABLE_MARKER,"Lesson not added!");
         //put info about success/failure into the model
         return "redirect:/admin";
@@ -77,8 +77,8 @@ public class LessonController {
         Room r;
         if(room.equals("remotely")) r = new Room();
         else r = new Room(room);
-        boolean result = lessonService.updateLesson(id,Lesson.Time.values()[time],subjId,teachId,new SubjectType(group),weeks,r,DayOfWeek.of(day));
-        if(result) logger.info(Markers.ALTERING_LESSON_TABLE_MARKER,"Lesson successfully updated!");
+        Lesson result = lessonService.updateLesson(id,Lesson.Time.values()[time],subjId,teachId,new SubjectType(group),weeks,r,DayOfWeek.of(day));
+        if(result != null) logger.info(Markers.ALTERING_LESSON_TABLE_MARKER,"Lesson successfully updated!");
         else logger.error(Markers.ALTERING_LESSON_TABLE_MARKER,"Lesson not updated!");
         return "redirect:/admin";
     }

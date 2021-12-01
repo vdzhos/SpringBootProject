@@ -41,17 +41,16 @@ public class LessonServiceImpl implements LessonService {
 
 
     @Override
-    public boolean addLesson(Lesson.Time time, Long subjId, Long teachId, SubjectType subjectType, String weeks, Room r, DayOfWeek dayOfWeek) {
+    public Lesson addLesson(Lesson.Time time, Long subjId, Long teachId, SubjectType subjectType, String weeks, Room r, DayOfWeek dayOfWeek) {
 
         Optional<Subject> s = subjectRepository.findById(subjId);
         Optional<Teacher> t = teacherRepository.findById(teachId);
 
-        if(s.isEmpty() || t.isEmpty()) return false;
+        if(s.isEmpty() || t.isEmpty()) return null;
         Subject subject = s.get();
         Teacher teacher = t.get();
 
-        lessonRepository.save(new Lesson(time,subject,teacher,subjectType,weeks,r,dayOfWeek));
-        return true;
+        return lessonRepository.save(new Lesson(time,subject,teacher,subjectType,weeks,r,dayOfWeek));
     }
 
     @Override
@@ -73,17 +72,16 @@ public class LessonServiceImpl implements LessonService {
     }
 
     @Override
-    public boolean updateLesson(Long id, Lesson.Time time, Long subjId, Long teachId, SubjectType subjectType, String weeks, Room room, DayOfWeek dayOfWeek) {
+    public Lesson updateLesson(Long id, Lesson.Time time, Long subjId, Long teachId, SubjectType subjectType, String weeks, Room room, DayOfWeek dayOfWeek) {
 
         Optional<Teacher> t = teacherRepository.findById(teachId);
         Optional<Subject> s = subjectRepository.findById(subjId);
 
-        if(s.isEmpty() || t.isEmpty()) return false;
+        if(s.isEmpty() || t.isEmpty()) return null;
         Subject subject = s.get();
         Teacher teacher = t.get();
 
-        lessonRepository.save(new Lesson(id,time,subject,teacher,subjectType,weeks,room,dayOfWeek));
-        return true;
+        return lessonRepository.save(new Lesson(id,time,subject,teacher,subjectType,weeks,room,dayOfWeek));
     }
 
     @Override

@@ -325,6 +325,58 @@ The returned value is: true
 2021-12-01 18:44:44,120 [http-nio-8081-exec-2] INFO  c.s.s.s.i.LessonServiceImpl                        - Lesson successfully deleted! 
 2021-12-01 18:44:44,121 [http-nio-8081-exec-2] INFO  c.s.s.a.GlobalAspect                               - void com.sbproject.schedule.services.implementations.LessonServiceImpl.deleteLesson(Long)	- Elapsed Time: 6 ms 
 2021-12-01 18:44:44,121 [http-nio-8081-exec-2] INFO  c.s.s.a.GlobalAspect                               - DELETE Method void com.sbproject.schedule.services.implementations.LessonServiceImpl.deleteLesson(Long) invoked with arguments: [10]. The returned value is: null 
-2021-12-01 19:39:11,592 [http-nio-8081-exec-3] INFO  c.s.s.a.GlobalAspect                               - UserDetails com.sbproject.schedule.services.implementations.CustomUserDetailsService.loadUserByUsername(String)	- Elapsed Time: 112 ms 
-2021-12-01 19:39:16,305 [http-nio-8081-exec-5] INFO  c.s.s.a.GlobalAspect                               - Subject com.sbproject.schedule.services.implementations.SubjectServiceImpl.getSubjectById(Long)	- Elapsed Time: 4 ms 
-2021-12-01 19:39:16,309 [http-nio-8081-exec-5] INFO  c.s.s.a.GlobalAspect                               - GET Method Subject com.sbproject.schedule.services.implementations.SubjectServiceImpl.getSubjectById(Long) invoked with arguments: [6]. The returned value is: Subject 3 
+2021-12-01 19:48:41,130 [main] INFO  c.s.s.a.GlobalAspect                               - GET Method Lesson com.sbproject.schedule.services.implementations.LessonServiceImpl.getLessonById(Long) invoked with arguments:  
+2021-12-01 19:48:41,132 [main] INFO  c.s.s.a.GlobalAspect                               - [1] 
+2021-12-01 19:48:41,151 [main] INFO  c.s.s.a.GlobalAspect                               - Lesson com.sbproject.schedule.services.implementations.LessonServiceImpl.getLessonById(Long)	- Elapsed Time: 13 ms 
+2021-12-01 19:48:41,160 [main] INFO  c.s.s.a.GlobalAspect                               - The returned value is:  
+2021-12-01 19:48:41,160 [main] INFO  c.s.s.a.GlobalAspect                               - null 
+2021-12-01 19:48:41,237 [main] INFO  c.s.s.a.GlobalAspect                               - GET Method Lesson com.sbproject.schedule.services.implementations.LessonServiceImpl.getLessonById(Long) invoked with arguments:  
+2021-12-01 19:48:41,253 [main] INFO  c.s.s.a.GlobalAspect                               - [100] 
+2021-12-01 19:48:41,254 [main] INFO  c.s.s.a.GlobalAspect                               - Lesson com.sbproject.schedule.services.implementations.LessonServiceImpl.getLessonById(Long)	- Elapsed Time: 0 ms 
+2021-12-01 19:48:41,257 [main] INFO  c.s.s.a.GlobalAspect                               - The returned value is:  
+2021-12-01 19:48:41,258 [main] INFO  c.s.s.a.GlobalAspect                               - null 
+2021-12-01 19:51:08,919 [main] INFO  c.s.s.a.GlobalAspect                               - GET Method Lesson com.sbproject.schedule.services.implementations.LessonServiceImpl.getLessonById(Long) invoked with arguments:  
+2021-12-01 19:51:08,921 [main] INFO  c.s.s.a.GlobalAspect                               - [1] 
+2021-12-01 19:51:08,939 [main] INFO  c.s.s.a.GlobalAspect                               - Lesson com.sbproject.schedule.services.implementations.LessonServiceImpl.getLessonById(Long)	- Elapsed Time: 13 ms 
+2021-12-01 19:51:08,946 [main] INFO  c.s.s.a.GlobalAspect                               - The returned value is:  
+2021-12-01 19:51:08,946 [main] INFO  c.s.s.a.GlobalAspect                               - null 
+2021-12-01 19:51:09,023 [main] INFO  c.s.s.a.GlobalAspect                               - GET Method Lesson com.sbproject.schedule.services.implementations.LessonServiceImpl.getLessonById(Long) invoked with arguments:  
+2021-12-01 19:51:09,023 [main] INFO  c.s.s.a.GlobalAspect                               - [1800] 
+2021-12-01 19:51:09,025 [main] INFO  c.s.s.a.GlobalAspect                               - Lesson com.sbproject.schedule.services.implementations.LessonServiceImpl.getLessonById(Long)	- Elapsed Time: 1 ms 
+2021-12-01 19:51:09,030 [main] INFO  c.s.s.a.GlobalAspect                               - The returned value is:  
+2021-12-01 19:51:09,031 [main] INFO  c.s.s.a.GlobalAspect                               - null 
+2021-12-01 19:51:52,013 [main] INFO  c.s.s.a.GlobalAspect                               - GET Method Lesson com.sbproject.schedule.services.implementations.LessonServiceImpl.getLessonById(Long) invoked with arguments:  
+2021-12-01 19:51:52,015 [main] INFO  c.s.s.a.GlobalAspect                               - [1800] 
+2021-12-01 19:51:52,036 [main] INFO  c.s.s.a.GlobalAspect                               - Lesson com.sbproject.schedule.services.implementations.LessonServiceImpl.getLessonById(Long)	- Elapsed Time: 14 ms 
+2021-12-01 19:51:52,041 [main] INFO  c.s.s.a.GlobalAspect                               - The returned value is:  
+2021-12-01 19:51:52,042 [main] INFO  c.s.s.a.GlobalAspect                               - null 
+2021-12-01 19:52:38,041 [main] INFO  c.s.s.a.GlobalAspect                               - GET Method Lesson com.sbproject.schedule.services.implementations.LessonServiceImpl.getLessonById(Long) invoked with arguments:  
+2021-12-01 19:52:38,043 [main] INFO  c.s.s.a.GlobalAspect                               - [1] 
+2021-12-01 19:52:38,062 [main] INFO  c.s.s.a.GlobalAspect                               - Lesson com.sbproject.schedule.services.implementations.LessonServiceImpl.getLessonById(Long)	- Elapsed Time: 13 ms 
+2021-12-01 19:52:38,068 [main] INFO  c.s.s.a.GlobalAspect                               - The returned value is:  
+2021-12-01 19:52:38,068 [main] INFO  c.s.s.a.GlobalAspect                               - null 
+2021-12-01 19:52:38,144 [main] INFO  c.s.s.a.GlobalAspect                               - GET Method Lesson com.sbproject.schedule.services.implementations.LessonServiceImpl.getLessonById(Long) invoked with arguments:  
+2021-12-01 19:52:38,145 [main] INFO  c.s.s.a.GlobalAspect                               - [100] 
+2021-12-01 19:52:38,146 [main] INFO  c.s.s.a.GlobalAspect                               - Lesson com.sbproject.schedule.services.implementations.LessonServiceImpl.getLessonById(Long)	- Elapsed Time: 0 ms 
+2021-12-01 19:52:38,158 [main] INFO  c.s.s.a.GlobalAspect                               - The returned value is:  
+2021-12-01 19:52:38,158 [main] INFO  c.s.s.a.GlobalAspect                               - null 
+2021-12-01 19:54:31,061 [main] INFO  c.s.s.a.GlobalAspect                               - GET Method Specialty com.sbproject.schedule.services.implementations.SpecialtyServiceImpl.getSpecialty(Long) invoked with arguments:  
+2021-12-01 19:54:31,064 [main] INFO  c.s.s.a.GlobalAspect                               - [100] 
+2021-12-01 19:54:31,091 [main] INFO  c.s.s.a.GlobalAspect                               - Specialty com.sbproject.schedule.services.implementations.SpecialtyServiceImpl.getSpecialty(Long)	- Elapsed Time: 17 ms 
+2021-12-01 19:54:31,098 [main] INFO  c.s.s.a.GlobalAspect                               - The returned value is:  
+2021-12-01 19:54:31,099 [main] INFO  c.s.s.a.GlobalAspect                               - null 
+2021-12-01 19:55:33,646 [main] INFO  c.s.s.a.GlobalAspect                               - GET Method Lesson com.sbproject.schedule.services.implementations.LessonServiceImpl.getLessonById(Long) invoked with arguments:  
+2021-12-01 19:55:33,648 [main] INFO  c.s.s.a.GlobalAspect                               - [1] 
+2021-12-01 19:55:33,667 [main] INFO  c.s.s.a.GlobalAspect                               - Lesson com.sbproject.schedule.services.implementations.LessonServiceImpl.getLessonById(Long)	- Elapsed Time: 13 ms 
+2021-12-01 19:55:33,672 [main] INFO  c.s.s.a.GlobalAspect                               - The returned value is:  
+2021-12-01 19:55:33,673 [main] INFO  c.s.s.a.GlobalAspect                               - null 
+2021-12-01 19:55:57,853 [main] INFO  c.s.s.a.GlobalAspect                               - GET Method Specialty com.sbproject.schedule.services.implementations.SpecialtyServiceImpl.getSpecialty(Long) invoked with arguments:  
+2021-12-01 19:55:57,855 [main] INFO  c.s.s.a.GlobalAspect                               - [100] 
+2021-12-01 19:55:57,875 [main] INFO  c.s.s.a.GlobalAspect                               - Specialty com.sbproject.schedule.services.implementations.SpecialtyServiceImpl.getSpecialty(Long)	- Elapsed Time: 14 ms 
+2021-12-01 19:55:57,885 [main] INFO  c.s.s.a.GlobalAspect                               - The returned value is:  
+2021-12-01 19:55:57,885 [main] INFO  c.s.s.a.GlobalAspect                               - null 
+2021-12-01 20:01:11,395 [main] INFO  c.s.s.a.GlobalAspect                               - GET Method Lesson com.sbproject.schedule.services.implementations.LessonServiceImpl.getLessonById(Long) invoked with arguments:  
+2021-12-01 20:01:11,398 [main] INFO  c.s.s.a.GlobalAspect                               - [1] 
+2021-12-01 20:01:11,417 [main] INFO  c.s.s.a.GlobalAspect                               - Lesson com.sbproject.schedule.services.implementations.LessonServiceImpl.getLessonById(Long)	- Elapsed Time: 13 ms 
+2021-12-01 20:01:11,422 [main] INFO  c.s.s.a.GlobalAspect                               - The returned value is:  
+2021-12-01 20:01:11,422 [main] INFO  c.s.s.a.GlobalAspect                               - null 
