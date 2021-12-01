@@ -46,5 +46,13 @@ public class Markers {
 
     public static final Marker ADD_METHOD_INVOKED_MARKER = MarkerManager.getMarker("ADD_METHOD_INVOKED")
             .setParents(IMPORTANT_MARKER);
+    public static final Marker GET_METHOD_INVOKED_MARKER = MarkerManager.getMarker("GET_METHOD_INVOKED")
+            .setParents(IMPORTANT_MARKER);
+    public static final Marker DELETE_METHOD_INVOKED_MARKER = MarkerManager.getMarker("DELETE_METHOD_INVOKED")
+            .setParents(IMPORTANT_MARKER);
+    public static final Marker METHOD_INVOKE_TIME_MARKER = MarkerManager.getMarker("METHOD_INVOKE_TIME_MARKER")
+            .setParents(IMPORTANT_MARKER);
+    public static final Marker UPDATE_METHOD_INVOKED_MARKER = MarkerManager.getMarker("UPDATE_METHOD_INVOKED")
+            .setParents(IMPORTANT_MARKER);
 
 }

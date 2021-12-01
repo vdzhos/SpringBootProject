@@ -1,5 +1,6 @@
 package com.sbproject.schedule.controllers;
 
+import com.sbproject.schedule.exceptions.lesson.NoLessonWithSuchIdFound;
 import com.sbproject.schedule.models.Lesson;
 import com.sbproject.schedule.models.Room;
 import com.sbproject.schedule.models.Subject;
@@ -42,57 +43,44 @@ public class LessonController {
         Room r;
         if(room.equals("remotely")) r = new Room();
         else r = new Room(room);
-        boolean result;
-        if(weeks.isEmpty()) result = false;
+        Lesson result;
+        if(weeks.isEmpty()) result = null;
         else{
             result = lessonService.addLesson(Lesson.Time.values()[time],subjId,teachId,new SubjectType(group), weeks, r, DayOfWeek.of(day));
         }
-        if(result) logger.info(Markers.ALTERING_LESSON_TABLE_MARKER,"Lesson successfully added!");
+        if(result != null) logger.info(Markers.ALTERING_LESSON_TABLE_MARKER,"Lesson successfully added!");
         else logger.error(Markers.ALTERING_LESSON_TABLE_MARKER,"Lesson not added!");
         //put info about success/failure into the model
-        return "redirect:/";
+        return "redirect:/admin";
     }
 
     @PostMapping("/delete")
     @PreAuthorize("hasAnyRole('ADMIN')")
     public String deleteLesson(@RequestParam Long id, @RequestParam String lesson, Model model){
-//        lessonService.deleteLesson(lesson.getId());
-//        logger.info(Markers.ALTERING_LESSON_TABLE_MARKER,"Lesson successfully deleted!");
-        Thread task = new Thread(new Log4JRunnable(lessonService,id,lesson));
-        task.start();
+        ThreadContext.put("lesson", lesson);
+        try {
+            lessonService.deleteLesson(id);
+        } catch (NoLessonWithSuchIdFound noLessonWithSuchIdFound) {
+            noLessonWithSuchIdFound.printStackTrace();
+            //print failure message
+        }
+        ThreadContext.clearAll();
         //put info about success/failure into the model
-        return "redirect:/";
+        return "redirect:/admin";
     }
 
     @PostMapping("/update")
     @PreAuthorize("hasAnyRole('ADMIN')")
-    public String updateLesson(Model model){
-//        boolean result = lessonService.updateLesson();
-//        if(result) logger.info(Markers.ALTERING_LESSON_TABLE_MARKER,"Lesson successfully updated!");
-//        else logger.error(Markers.ALTERING_LESSON_TABLE_MARKER,"Lesson not updated!");
-        return "redirect:/";
+    public String updateLesson(@RequestParam Long id, @RequestParam int day, @RequestParam int time,
+                               @RequestParam long subjId, @RequestParam long teachId, @RequestParam int group,
+                               @RequestParam String weeks, @RequestParam String room, Model model){
+        Room r;
+        if(room.equals("remotely")) r = new Room();
+        else r = new Room(room);
+        Lesson result = lessonService.updateLesson(id,Lesson.Time.values()[time],subjId,teachId,new SubjectType(group),weeks,r,DayOfWeek.of(day));
+        if(result != null) logger.info(Markers.ALTERING_LESSON_TABLE_MARKER,"Lesson successfully updated!");
+        else logger.error(Markers.ALTERING_LESSON_TABLE_MARKER,"Lesson not updated!");
+        return "redirect:/admin";
     }
 
-}
-
-//@Component
-//@Scope("prototype")
-class Log4JRunnable implements Runnable {
-    private Long id;
-    private String lesson;
-    private LessonService lessonService;
-
-    public Log4JRunnable(LessonService lessonService, Long id, String lesson) {
-        this.lessonService = lessonService;
-        this.id = id;
-        this.lesson = lesson;
-    }
-
-    public void run() {
-        ThreadContext.put("lesson", lesson);
-        try{
-            lessonService.deleteLesson(id);
-        }catch (Exception ignored){}
-        ThreadContext.clearAll();
-    }
 }

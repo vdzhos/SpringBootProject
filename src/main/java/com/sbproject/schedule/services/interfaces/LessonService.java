@@ -9,10 +9,9 @@ public interface LessonService {
 
     Lesson getLessonById(Long id) throws NoLessonWithSuchIdFound;
     Iterable<Lesson> getAll();
-    boolean updateLesson(Long id, Lesson.Time time, Subject subject, Teacher teacher, SubjectType group,
-                         String weeks, Room room, DayOfWeek dayOfWeek);
+    Lesson updateLesson(Long id, Lesson.Time value, Long subjId, Long teachId, SubjectType subjectType, String weeks, Room r, DayOfWeek of);
     Lesson updateLesson(Lesson lesson) throws NoLessonWithSuchIdFound;
-    boolean addLesson(Lesson.Time value, Long subjId, Long teachId, SubjectType subjectType, String weeks, Room r, DayOfWeek of);
+    Lesson addLesson(Lesson.Time value, Long subjId, Long teachId, SubjectType subjectType, String weeks, Room r, DayOfWeek of);
     Lesson addLesson(Lesson lesson);
     boolean lessonExistsById(Long id);
     void deleteLesson(Long id) throws NoLessonWithSuchIdFound;

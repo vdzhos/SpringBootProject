@@ -37,6 +37,26 @@
             <MarkerFilter marker="ADD_METHOD_INVOKED" onMatch="ACCEPT" onMismatch="DENY"/>
         </File>
 
+        <File name="GETMethodsToFile" fileName="LOGS/GET_methods.log">
+            <PatternLayout pattern="%d [%t] %-5level %-50c{1.} - %msg %n"/>
+            <MarkerFilter marker="GET_METHOD_INVOKED" onMatch="ACCEPT" onMismatch="DENY"/>
+        </File>
+
+        <File name="MethodInvokeTimeToFile" fileName="LOGS/Method_invoke_time.log">
+            <PatternLayout pattern="%d [%t] %-50c{1.} - %msg %n"/>
+            <MarkerFilter marker="METHOD_INVOKE_TIME_MARKER" onMatch="ACCEPT" onMismatch="DENY"/>
+        </File>
+
+        <File name="UPDATEMethodsToFile" fileName="LOGS/UPDATE_methods.log">
+            <PatternLayout pattern="%d [%t] %-5level %-50c{1.} - %msg %n"/>
+            <MarkerFilter marker="UPDATE_METHOD_INVOKED" onMatch="ACCEPT" onMismatch="DENY"/>
+        </File>
+
+        <File name="DELETEMethodsToFile" fileName="LOGS/DELETE_methods.log">
+            <PatternLayout pattern="%d [%t] %-5level %-50c{1.} - %msg %n"/>
+            <MarkerFilter marker="DELETE_METHOD_INVOKED" onMatch="ACCEPT" onMismatch="DENY"/>
+        </File>
+
         <File name="UserActivity" fileName="LOGS/UserActivity.log">
             <PatternLayout pattern="%msg %n"/>
             <MarkerFilter marker="USER_ACTIVITY" onMatch="ACCEPT" onMismatch="DENY"/>
@@ -56,6 +76,10 @@
             <AppenderRef ref="DeletedLessonsToFile"/>
             <AppenderRef ref="Users"/>
             <AppenderRef ref="ADDMethodsToFile"/>
+            <AppenderRef ref="GETMethodsToFile"/>
+            <AppenderRef ref="UPDATEMethodsToFile"/>
+            <AppenderRef ref="DELETEMethodsToFile"/>
+            <AppenderRef ref="MethodInvokeTimeToFile"/>
             <AppenderRef ref="DeletedSpecialtiesToFile"/>
             <AppenderRef ref="DeletedSubjectsToFile"/>
             <AppenderRef ref="DeletedTeachersToFile"/>
