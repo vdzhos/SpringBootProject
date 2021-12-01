@@ -19,7 +19,7 @@ import java.util.Arrays;
 public class GlobalAspect {
 
 
-    private static Logger logger = LogManager.getLogger(LessonController.class);
+    private static Logger logger = LogManager.getLogger(GlobalAspect.class);
 
 
     //Example

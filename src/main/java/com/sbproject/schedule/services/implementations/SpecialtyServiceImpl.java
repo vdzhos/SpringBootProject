@@ -30,7 +30,6 @@ public class SpecialtyServiceImpl implements SpecialtyService {
     @Autowired
     private SubjectService subjectService;
 
-
     private static Logger logger = LogManager.getLogger(LessonController.class);
 
     private Utils processor;
@@ -151,11 +150,6 @@ public class SpecialtyServiceImpl implements SpecialtyService {
         subjects.forEach(s -> {s.addSpecialty(specialty); subjectService.updateSubjectNoCheck(s);});
         specialty.setSubjects(subjects);
         return specialty;
-    }
-
-
-    public void doSome(){
-        System.out.println("ALERT: method do some");
     }
 
 }
