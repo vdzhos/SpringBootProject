@@ -57,7 +57,7 @@ public class LessonSecurityTest {
     @WithMockUser(username = "usr", password = "1111", roles = {"REGULAR", "ADMIN"})
     @Test
     public void givenLessonsURI_whenRoleAdminOrRegular_getLesson_thenResponseOK() throws Exception {
-        MvcResult result = mockMvc.perform(get("/REST/lessons/1")).andDo(print())
+        MvcResult result = mockMvc.perform(get("/REST/lessons/10")).andDo(print())
                 .andExpect(status().isOk()).andReturn();
         Assertions.assertEquals(200, result.getResponse().getStatus());
     }

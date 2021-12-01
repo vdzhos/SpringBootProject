@@ -50,30 +50,6 @@ public class SpecialtyJPATest {
     }
 
 
-//    @Test(expected = SpecialtyIllegalArgumentException.class)
-//    public void givenIncorrectSpecialtyObject_saveInDB_thenException() {
-//        Specialty s = new Specialty("New Specialty",10);
-//        specialtyRepository.save(s);
-//    }
-
-
-//    @Autowired
-//    private SpecialtyService specialtyService;
-//
-//    @Test
-//    public void givenSpecialtyObject_saveInDB_thenSpecialtyObject() {
-//        Specialty s = new Specialty("New Specialty",1);
-//        Specialty s1 = specialtyService.addSpecialty(s.getName(),s.getYear());
-//
-//        Assertions.assertEquals(s.getName(),s1.getName());
-//        Assertions.assertEquals(s.getYear(),s1.getYear());
-//    }
-//
-//    @Test(expected = SpecialtyIllegalArgumentException.class)
-//    public void givenIncorrectSpecialtyObject_saveInDB_thenException() {
-//        Specialty s = new Specialty("New Specialty",10);
-//        specialtyService.addSpecialty(s.getName(),s.getYear());
-//    }
 
 
 }

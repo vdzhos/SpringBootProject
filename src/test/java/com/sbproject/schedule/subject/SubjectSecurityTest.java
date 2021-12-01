@@ -26,9 +26,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 @AutoConfigureMockMvc
 public class SubjectSecurityTest {
 
-    //@MockBean
-    //private SubjectService subjectService;
-
     @Autowired
     private MockMvc mockMvc;
 
