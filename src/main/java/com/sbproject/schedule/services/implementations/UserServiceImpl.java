@@ -61,16 +61,14 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public boolean deleteUser(String login, String password) throws UserNotFoundException {
+	public boolean deleteUser(String login) throws UserNotFoundException {
 		Optional<User> opt = userRepo.findById(login);
 		if(opt.isEmpty()) {
 			logger.error(Markers.USER_MARKER, "User not found: " + login);
 			throw new UserNotFoundException("User not found!");
 		}
-		if(!password.equals(opt.get().getPassword()))
-			return false;
 		userRepo.deleteById(login);
-		logger.info(Markers.USER_MARKER, "User deleted: " + login + " : " + password);
+		logger.info(Markers.USER_MARKER, "User deleted: " + login);
 		return true;
 	}
 

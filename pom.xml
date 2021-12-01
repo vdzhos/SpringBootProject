@@ -16,7 +16,7 @@
 	<properties>
 		<java.version>11</java.version>
 		<!-- AspectJ -->
-		<aspectj.version>1.7.4</aspectj.version>
+		<aspectj.version>1.9.7</aspectj.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -104,7 +104,7 @@
 			<scope>test</scope>
 		</dependency>
 
-
+		<!-- AspectJ dependencies -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjrt</artifactId>
@@ -116,7 +116,6 @@
 			<artifactId>aspectjtools</artifactId>
 			<version>${aspectj.version}</version>
 		</dependency>
-
 
 
 
