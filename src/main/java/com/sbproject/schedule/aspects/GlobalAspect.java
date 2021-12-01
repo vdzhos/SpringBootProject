@@ -18,23 +18,16 @@ public class GlobalAspect {
 
     private static Logger logger = LogManager.getLogger(GlobalAspect.class);
 
-    @Around("execution(* com.sbproject.schedule.services.implementations.*.get*(*))")
-    public Object getObjectAroundAdvice(ProceedingJoinPoint proceedingJoinPoint){
-        Object value = null;
-        try {
-            value = proceedingJoinPoint.proceed();
-        } catch (Throwable e) {
-            e.printStackTrace();
-        }
-        logger.info(Markers.GET_METHOD_INVOKED_MARKER, "GET Method " + proceedingJoinPoint.getSignature() + " invoked with arguments: "
-                + Arrays.toString(proceedingJoinPoint.getArgs())
+    @AfterReturning(returning = "returnObject", value = "execution(* com.sbproject.schedule.services.implementations.*.get*(*))")
+    public void getObjectAfterAdvice(JoinPoint joinPoint, Object returnObject){
+        logger.info(Markers.GET_METHOD_INVOKED_MARKER, "GET Method " + joinPoint.getSignature() + " invoked with arguments: "
+                + Arrays.toString(joinPoint.getArgs())
                 +". The returned value is: " +
-                ((value == null) ? null : value.toString()));
-        return value;
+                returnObject);
     }
 
     @AfterReturning(returning = "returnObject", value = "execution(* com.sbproject.schedule.services.implementations.*.add*(..))")
-    public void addSpecialtyAfterAdvice(JoinPoint joinPoint, Object returnObject){
+    public void addObjectAfterAdvice(JoinPoint joinPoint, Object returnObject){
         logger.info(Markers.ADD_METHOD_INVOKED_MARKER,"ADD Method "+joinPoint.getSignature() + " invoked with arguments: ");
         logger.info(Markers.ADD_METHOD_INVOKED_MARKER,Arrays.toString(joinPoint.getArgs()));
         logger.info(Markers.ADD_METHOD_INVOKED_MARKER,"The returned value is: ");
