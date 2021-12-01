@@ -212,23 +212,23 @@
                             <label><span th:text="#{edit.teacher}"></span>: <select name="teachId">
                                 <option th:each="teacher: ${teachers}" th:text="${teacher.name}" th:value="${teacher.id}"></option>
                             </select></label>
-                            <label><span th:text="#{edit.group}"></span>: <select name="group">
-                                <option value="0">Lecture</option>
-                                <option value="1">Group</option>
-                            </select></label>
+                            <label><span th:text="#{edit.group}"></span> (0 = lecture):
+                                <input type="number" id="lessonGroup1" name="group" min="0" max="50" step="1" value="0">
+                            </label>
                             <label><span th:text="#{edit.weeks}"></span>: <input name="weeks" type="text"/></label>
-                            <label><span th:text="#{edit.room}"></span>: <select name="room">
-                                <option value="214">Room</option>
-                                <option value="remotely">Remotely</option>
-                            </select></label>
-                            <button type="submit" th:text="#{edit.add}">Add</button>
-                            <button type="reset" th:text="#{edit.clear}">Clear</button>
+                            <label><span th:text="#{edit.room}"></span>:
+                                <input type="text" name="room" list="lessonRoom1" value="remotely"/>
+                                <datalist id="lessonRoom1">
+                                    <option value="remotely"></option>
+                                </datalist>
+                            </label>
+                            <button class="btn btn-info mr-1" type="submit" th:text="#{edit.add}">Add</button>
+                            <button class="btn btn-secondary" type="reset" th:text="#{edit.clear}">Clear</button>
                         </form>
 
-
-                        <div>
-                            <table border="1px">
-                                <caption th:text="#{edit.added-lessons}">Added lessons</caption>
+                        <div class="mt-5">
+                            <h4 class="mb-4" th:text="#{edit.added-lessons}">Added lessons</h4>
+                            <table class="table">
                                 <tr>
                                     <th th:text="#{edit.day}">Day</th>
                                     <th th:text="#{edit.time}">Time</th>
@@ -237,8 +237,7 @@
                                     <th th:text="#{edit.group}">Group</th>
                                     <th th:text="#{edit.weeks}">Weeks</th>
                                     <th th:text="#{edit.room}">Room</th>
-                                    <th></th>
-                                    <th></th>
+                                    <th style="width: 10%;"></th>
                                 </tr>
                                 <tr th:each="lesson: ${lessons}">
                                     <td th:text="${lesson.dayOfWeek}"></td>
@@ -248,15 +247,9 @@
                                     <td th:text="${lesson.group}"></td>
                                     <td th:text="${lesson.weeks}"></td>
                                     <td th:text="${lesson.room}"></td>
-                                    <td><form action="lesson/delete/" method="post">
-                                        <input name="id" type="hidden" th:value="${lesson.id}">
-                                        <input name="lesson" type="hidden" th:value="${lesson.toString()}">
-                                        <button type="submit" th:text="#{edit.delete}">Delete</button>
-                                    </form></td>
-                                    <td><form action="lesson/update/" method="post">
-                                        <input name="id" type="hidden" th:value="${lesson.id}">
-                                        <button type="submit" th:text="#{edit.update}">Update</button>
-                                    </form></td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" th:attr="data-target='#modal'+${lesson.id}" th:text="#{edit.change}">Change</button>
+                                    </td>
                                 </tr>
                             </table>
                         </div>
@@ -318,6 +311,104 @@
                     <!--                    <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>-->
                     <!--                </div>-->
 
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div th:each="lesson: ${lessons}" class="modal fade" th:id="'modal'+${lesson.id}">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Lessons</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <div class="container">
+                            <div class="row align-items-center">
+                                <form class="col-12" action="/lesson/update/" method="post">
+                                    <input name="id" type="hidden" th:value="${lesson.id}">
+                                    <input name="lesson" type="hidden" th:value="${lesson.toString()}">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <label for="lessonDay">Day:</label>
+                                            <select required name="day" id="lessonDay" class="form-control">
+                                                <option th:selected="${lesson.dayOfWeek.getValue()==1}" value="1">MONDAY</option>
+                                                <option th:selected="${lesson.dayOfWeek.getValue()==2}" value="2">TUESDAY</option>
+                                                <option th:selected="${lesson.dayOfWeek.getValue()==3}" value="3">WEDNESDAY</option>
+                                                <option th:selected="${lesson.dayOfWeek.getValue()==4}" value="4">THURSDAY</option>
+                                                <option th:selected="${lesson.dayOfWeek.getValue()==5}" value="5">FRIDAY</option>
+                                                <option th:selected="${lesson.dayOfWeek.getValue()==6}" value="6">SATURDAY</option>
+                                                <option th:selected="${lesson.dayOfWeek.getValue()==7}" value="7">SUNDAY</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <label for="lessonTime" >Time:</label>
+                                            <select required name="time" id="lessonTime" class="form-control">
+                                                <option th:selected="${lesson.time.ordinal()==0}" value="0">8:30-9:50</option>
+                                                <option th:selected="${lesson.time.ordinal()==1}" value="1">10:00-11:20</option>
+                                                <option th:selected="${lesson.time.ordinal()==2}" value="2">11:40-13:00</option>
+                                                <option th:selected="${lesson.time.ordinal()==3}" value="3">13:30-14:50</option>
+                                                <option th:selected="${lesson.time.ordinal()==4}" value="4">15:00-16:20</option>
+                                                <option th:selected="${lesson.time.ordinal()==5}" value="5">16:30-17:50</option>
+                                                <option th:selected="${lesson.time.ordinal()==6}" value="6">18:00-19:20</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <label for="subjId">Subject:</label>
+                                            <select required name="subjId" id="subjId" class="form-control">
+                                                <option th:each="subject: ${subjects}" th:text="${subject.name}" th:value="${subject.id}" th:selected="${subject.id==lesson.subject.id}"></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <label for="teachId">Teacher:</label>
+                                            <select required name="teachId" id="teachId" class="form-control">
+                                                <option th:each="teacher: ${teachers}" th:text="${teacher.name}" th:value="${teacher.id}" th:selected="${teacher.id==lesson.teacher.id}"></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <label for="lessonGroup">Group (0 = lecture):</label>
+                                            <input required class="form-control" type="number" id="lessonGroup" name="group" min="0" max="50" step="1" th:value="${lesson.group.getValue()}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <label for="lessonWeeks">Weeks:</label>
+                                            <input required class="form-control" name="weeks" id="lessonWeeks" type="text" th:value="${lesson.weeks}"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <label for="lessonRoom">Room:</label>
+                                            <input required type="text" name="room" list="lessonRoom" class="form-control" th:value="${lesson.room.type.ordinal()==1} ? ${lesson.room.room} : 'remotely'"/>
+                                            <datalist id="lessonRoom">
+                                                <option value="remotely"></option>
+                                                <option th:value="${lesson.room.type.ordinal()==1} ? ${lesson.room.room} : ''"></option>
+                                            </datalist>
+                                        </div>
+                                    </div>
+                                    <div style="height: 15px;"></div>
+                                    <div class="form-group">
+                                        <button type="submit" class="col-3 btn btn-success" th:text="#{edit.update}">Update</button>
+                                        <button formaction="lesson/delete/" type="submit" class="ml-2 col-3 btn btn-danger" th:text="#{edit.delete}">Delete</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

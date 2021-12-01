@@ -26,6 +26,11 @@ public class SubjectType implements Serializable {
         return this;
     }
 
+    public int getValue(){
+        if (group.equals("lecture")) return 0;
+        else return Integer.parseInt(group);
+    }
+
     public SubjectTypeEnum getType() {
         return type;
     }
