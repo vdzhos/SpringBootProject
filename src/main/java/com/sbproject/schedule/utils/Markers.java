@@ -46,5 +46,7 @@ public class Markers {
 
     public static final Marker ADD_METHOD_INVOKED_MARKER = MarkerManager.getMarker("ADD_METHOD_INVOKED")
             .setParents(IMPORTANT_MARKER);
+    public static final Marker GET_METHOD_INVOKED_MARKER = MarkerManager.getMarker("GET_METHOD_INVOKED")
+            .setParents(IMPORTANT_MARKER);
 
 }

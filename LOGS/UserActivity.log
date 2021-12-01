@@ -386,3 +386,14 @@ vovan (ROLE_ADMIN)  --- /admin
 vovan (ROLE_ADMIN)  --- /login 
 vovan (ROLE_ADMIN)  --- /admin/subjects/get/6 
 vovan (ROLE_ADMIN)  --- /subjects/get/6 
+anonymousUser (ROLE_ANONYMOUS)  --- /login 
+anonymousUser (ROLE_ANONYMOUS)  --- /login 
+vovan (ROLE_ADMIN)  --- /admin 
+vovan (ROLE_ADMIN)  --- /login 
+vovan (ROLE_ADMIN)  --- / 
+vovan (ROLE_ADMIN)  --- /admin 
+vovan (ROLE_ADMIN)  --- /login 
+vovan (ROLE_ADMIN)  --- /admin/subjects/get/6 
+vovan (ROLE_ADMIN)  --- /subjects/get/6 
+vovan (ROLE_ADMIN)  --- /subject/add 
+vovan (ROLE_ADMIN)  --- /admin 

@@ -198,3 +198,12 @@
 2021-11-30 20:36:39,386 [main] INFO  c.s.s.c.LessonController                           - Specialty has been successfully updated to 'New spec7'-'2'! 
 2021-11-30 20:37:25,314 [main] INFO  c.s.s.c.LessonController                           - Specialty has been successfully deleted! 
 2021-11-30 20:37:25,517 [main] INFO  c.s.s.c.LessonController                           - Specialty 'New spec'-'2' has been successfully added! 
+2021-12-01 17:25:34,694 [http-nio-8081-exec-3] INFO  c.s.s.a.GlobalAspect                               - GET Method Subject com.sbproject.schedule.services.implementations.SubjectServiceImpl.getSubjectById(Long) invoked with arguments:  
+2021-12-01 17:25:34,694 [http-nio-8081-exec-3] INFO  c.s.s.a.GlobalAspect                               - [6] 
+2021-12-01 17:25:34,705 [http-nio-8081-exec-3] INFO  c.s.s.a.GlobalAspect                               - The returned value is:  
+2021-12-01 17:25:34,705 [http-nio-8081-exec-3] INFO  c.s.s.a.GlobalAspect                               - Subject 3 
+2021-12-01 17:27:39,496 [http-nio-8081-exec-6] INFO  c.s.s.a.GlobalAspect                               - ADD Method boolean com.sbproject.schedule.services.implementations.SubjectServiceImpl.addSubject(String,int,Set) invoked with arguments:  
+2021-12-01 17:27:39,498 [http-nio-8081-exec-6] INFO  c.s.s.a.GlobalAspect                               - [S, 3, [Specialty{id=1, name='IPZ', year=3}]] 
+2021-12-01 17:27:39,499 [http-nio-8081-exec-6] INFO  c.s.s.a.GlobalAspect                               - The returned value is:  
+2021-12-01 17:27:39,500 [http-nio-8081-exec-6] INFO  c.s.s.a.GlobalAspect                               - true 
+2021-12-01 17:27:39,500 [http-nio-8081-exec-6] INFO  c.s.s.c.SubjectController                          - Subject S with 3 groups has been successfully added! 
