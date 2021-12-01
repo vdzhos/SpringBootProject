@@ -17,6 +17,7 @@ public interface SpecialtyService {
     Iterable<Specialty> getAll();
     Specialty getSpecialty(Long id);
     void deleteAll();
+    void doSome();
 
     Specialty addSpecialty(String name, int year, JSONArray subjects);
 }

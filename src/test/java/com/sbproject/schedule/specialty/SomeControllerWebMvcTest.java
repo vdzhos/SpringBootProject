@@ -22,14 +22,14 @@
 ////@RunWith(SpringRunner.class)
 //@WebMvcTest(SomeController.class)
 //@Import(SecurityConfig.class)
-//
+////@WebAppConfiguration
 ////@ExtendWith(SpringExtension.class)
 ////@WebMvcTest(SomeController.class)
 ////@AutoConfigureMockMvc(addFilters = false)
 //public class SomeControllerWebMvcTest {
 //
-//    @MockBean
-//    private SecurityConfig se;
+////    @MockBean
+////    private SecurityConfig se;
 //
 //    @Autowired
 //    private MockMvc mockMvc;

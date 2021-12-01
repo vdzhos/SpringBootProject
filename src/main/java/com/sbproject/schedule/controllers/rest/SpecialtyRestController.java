@@ -72,7 +72,10 @@ public class SpecialtyRestController {
     public Specialty addSpecialty(@RequestBody String json){
         try {
             JSONObject specialty = new JSONObject(json);
-            return specialtyService.addSpecialty(specialty.getString("name"),specialty.getInt("year"),specialty.getJSONArray("subjects"));
+            String name = specialty.getString("name");
+            int year = specialty.getInt("year");
+            JSONArray array = specialty.getJSONArray("subjects");
+            return specialtyService.addSpecialty(name,year,array);
         } catch (JSONException e) {
             e.printStackTrace();
             System.out.println(e.getMessage());

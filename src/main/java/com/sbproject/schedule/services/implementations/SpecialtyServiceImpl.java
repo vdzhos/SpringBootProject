@@ -154,4 +154,8 @@ public class SpecialtyServiceImpl implements SpecialtyService {
     }
 
 
+    public void doSome(){
+        System.out.println("ALERT: method do some");
+    }
+
 }

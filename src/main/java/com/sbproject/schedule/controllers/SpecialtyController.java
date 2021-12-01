@@ -34,6 +34,7 @@ public class SpecialtyController {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/add")
     public RedirectView addSpecialty(@RequestParam String name, @RequestParam int year, Model model, RedirectAttributes redir){
+        specialtyService.doSome();
         RedirectView redirectView= new RedirectView(REDIRECT_EDIT_PAGE_URL,true);
         String notification = "Спеціальність '"+name+" - "+year+"' було успішно додано!";
         boolean success = true;

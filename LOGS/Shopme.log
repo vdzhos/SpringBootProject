@@ -163,3 +163,38 @@
 2021-11-17 23:10:13,422 [http-nio-8081-exec-5] INFO  c.s.s.s.i.UserServiceImpl                          - User registrated: vovan1 : 1234 : REGULAR 
 2021-11-17 23:10:29,516 [http-nio-8081-exec-3] FATAL c.s.s.c.UserProfileController                      - Unauthorized session! 
 2021-11-17 23:10:47,807 [http-nio-8081-exec-1] FATAL c.s.s.c.UserProfileController                      - Unauthorized session! 
+2021-11-30 13:54:05,255 [http-nio-8081-exec-5] INFO  c.s.s.c.LessonController                           - Specialty 'My Paint'-'1' has been successfully added! 
+2021-11-30 13:54:11,695 [http-nio-8081-exec-8] INFO  c.s.s.c.LessonController                           - Specialty has been successfully deleted! 
+2021-11-30 14:15:55,827 [http-nio-8081-exec-5] INFO  c.s.s.c.LessonController                           - Specialty has been successfully updated to 'IPZaascac'-'3'! 
+2021-11-30 14:33:36,752 [http-nio-8081-exec-6] INFO  c.s.s.c.LessonController                           - Specialty 'Сітьков Ілля'-'1' has been successfully added! 
+2021-11-30 14:34:40,479 [http-nio-8081-exec-5] INFO  c.s.s.c.LessonController                           - Specialty 'My Paint'-'1' has been successfully added! 
+2021-11-30 14:38:02,953 [http-nio-8081-exec-4] INFO  c.s.s.c.LessonController                           - Specialty 'My Paint'-'1' has been successfully added! 
+2021-11-30 14:48:24,096 [http-nio-8081-exec-5] INFO  c.s.s.c.LessonController                           - Specialty 'My Paint'-'1' has been successfully added! 
+2021-11-30 14:50:41,374 [http-nio-8081-exec-5] INFO  c.s.s.c.LessonController                           - Specialty 'My Paint'-'1' has been successfully added! 
+2021-11-30 14:51:32,347 [http-nio-8081-exec-5] INFO  c.s.s.c.LessonController                           - Specialty 'My Paint'-'1' has been successfully added! 
+2021-11-30 14:54:11,583 [http-nio-8081-exec-5] INFO  c.s.s.c.LessonController                           - Specialty 'My Paint'-'1' has been successfully added! 
+2021-11-30 14:56:41,270 [http-nio-8081-exec-5] INFO  c.s.s.c.LessonController                           - Specialty 'My Paint'-'1' has been successfully added! 
+2021-11-30 15:16:03,194 [http-nio-8081-exec-5] INFO  c.s.s.c.LessonController                           - Specialty 'My Paint'-'1' has been successfully added! 
+2021-11-30 15:23:13,910 [http-nio-8081-exec-5] INFO  c.s.s.c.LessonController                           - Specialty 'My Paint'-'1' has been successfully added! 
+2021-11-30 15:27:11,934 [http-nio-8081-exec-5] INFO  c.s.s.c.LessonController                           - Specialty 'My Paint'-'1' has been successfully added! 
+2021-11-30 15:28:07,011 [http-nio-8081-exec-5] INFO  c.s.s.c.LessonController                           - Specialty 'My Paint'-'1' has been successfully added! 
+2021-11-30 15:42:53,707 [http-nio-8081-exec-5] INFO  c.s.s.c.LessonController                           - Specialty 'My Paint'-'1' has been successfully added! 
+2021-11-30 15:43:42,967 [http-nio-8081-exec-7] INFO  c.s.s.c.LessonController                           - Specialty 'My Paint'-'1' has been successfully added! 
+2021-11-30 15:50:51,754 [http-nio-8081-exec-5] INFO  c.s.s.c.LessonController                           - Specialty 'My Paint'-'1' has been successfully added! 
+2021-11-30 19:18:24,870 [main] INFO  c.s.s.c.LessonController                           - Specialty 'New spec'-'2' has been successfully added! 
+2021-11-30 19:19:44,811 [main] INFO  c.s.s.c.LessonController                           - Specialty 'New spec'-'2' has been successfully added! 
+2021-11-30 19:34:12,725 [main] INFO  c.s.s.c.LessonController                           - Specialty 'New spec'-'2' has been successfully added! 
+2021-11-30 19:36:06,451 [main] INFO  c.s.s.c.LessonController                           - Specialty 'New spec'-'2' has been successfully added! 
+2021-11-30 19:38:33,422 [main] INFO  c.s.s.c.LessonController                           - Specialty 'New spec'-'2' has been successfully added! 
+2021-11-30 19:39:48,140 [main] INFO  c.s.s.c.LessonController                           - Specialty 'New spec'-'2' has been successfully added! 
+2021-11-30 19:42:11,866 [main] INFO  c.s.s.c.LessonController                           - Specialty 'New spec'-'2' has been successfully added! 
+2021-11-30 20:01:05,579 [main] INFO  c.s.s.c.LessonController                           - Specialty has been successfully deleted! 
+2021-11-30 20:01:05,747 [main] INFO  c.s.s.c.LessonController                           - Specialty 'New spec'-'2' has been successfully added! 
+2021-11-30 20:15:39,853 [main] INFO  c.s.s.c.LessonController                           - Specialty has been successfully updated to 'New spec'-'2'! 
+2021-11-30 20:34:09,551 [main] INFO  c.s.s.c.LessonController                           - Specialty has been successfully deleted! 
+2021-11-30 20:34:09,736 [main] INFO  c.s.s.c.LessonController                           - Specialty 'New spec'-'2' has been successfully added! 
+2021-11-30 20:34:09,942 [main] ERROR c.s.s.c.LessonController                           - Specialty 'New spec'-'2' already exists. Specialty has not been updated! 
+2021-11-30 20:35:49,725 [main] INFO  c.s.s.c.LessonController                           - Specialty has been successfully updated to 'New spec'-'2'! 
+2021-11-30 20:36:39,386 [main] INFO  c.s.s.c.LessonController                           - Specialty has been successfully updated to 'New spec7'-'2'! 
+2021-11-30 20:37:25,314 [main] INFO  c.s.s.c.LessonController                           - Specialty has been successfully deleted! 
+2021-11-30 20:37:25,517 [main] INFO  c.s.s.c.LessonController                           - Specialty 'New spec'-'2' has been successfully added! 
