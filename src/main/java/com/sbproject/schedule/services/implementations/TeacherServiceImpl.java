@@ -50,9 +50,10 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
-    public void deleteTeacher(Long id) throws NoTeacherWithSuchIdException{
+    public boolean deleteTeacher(Long id) throws NoTeacherWithSuchIdException{
         if(!teacherExistsById(id)) throw new NoTeacherWithSuchIdException(id, "deleted");
         teacherRepository.deleteById(id);
+        return true;
     }
 
     @Override

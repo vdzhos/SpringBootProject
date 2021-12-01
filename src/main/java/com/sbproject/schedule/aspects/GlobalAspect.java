@@ -42,8 +42,12 @@ public class GlobalAspect {
     }
 
 
-
-
-
+    @AfterReturning(returning = "returnObject", value = "execution(* com.sbproject.schedule.services.implementations.*.delete*(*))")
+    public void deleteObjectByIdAfterAdvice(JoinPoint joinPoint, Object returnObject){
+        logger.info(Markers.DELETE_METHOD_INVOKED_MARKER, "DELETE Method " + joinPoint.getSignature() + " invoked with arguments: "
+                + Arrays.toString(joinPoint.getArgs())
+                +". The returned value is: " +
+                returnObject);
+    }
 
 }

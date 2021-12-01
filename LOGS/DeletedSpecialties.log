@@ -1,0 +1,2 @@
+2021-12-01 18:34:22,141 [http-nio-8081-exec-6] INFO  c.s.s.c.LessonController                           - Specialty has been successfully deleted! - Specialty{id=1, name='IPZ', year=3} 
+2021-12-01 18:34:51,193 [http-nio-8081-exec-10] INFO  c.s.s.c.LessonController                           - Specialty has been successfully deleted! - Specialty{id=2, name='IPZ', year=4} 

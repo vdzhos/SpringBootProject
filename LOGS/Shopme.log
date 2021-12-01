@@ -207,3 +207,64 @@
 2021-12-01 17:27:39,499 [http-nio-8081-exec-6] INFO  c.s.s.a.GlobalAspect                               - The returned value is:  
 2021-12-01 17:27:39,500 [http-nio-8081-exec-6] INFO  c.s.s.a.GlobalAspect                               - true 
 2021-12-01 17:27:39,500 [http-nio-8081-exec-6] INFO  c.s.s.c.SubjectController                          - Subject S with 3 groups has been successfully added! 
+2021-12-01 17:44:20,217 [http-nio-8081-exec-1] INFO  c.s.s.c.TeacherController                          - Teacher has been successfully deleted! 
+2021-12-01 17:44:58,026 [http-nio-8081-exec-9] INFO  c.s.s.a.GlobalAspect                               - ADD Method boolean com.sbproject.schedule.services.implementations.TeacherServiceImpl.addTeacher(String,List) invoked with arguments:  
+2021-12-01 17:44:58,027 [http-nio-8081-exec-9] INFO  c.s.s.a.GlobalAspect                               - [Illia Kuznets, [Subject 1]] 
+2021-12-01 17:44:58,027 [http-nio-8081-exec-9] INFO  c.s.s.a.GlobalAspect                               - The returned value is:  
+2021-12-01 17:44:58,027 [http-nio-8081-exec-9] INFO  c.s.s.a.GlobalAspect                               - true 
+2021-12-01 17:44:58,027 [http-nio-8081-exec-9] INFO  c.s.s.c.TeacherController                          - Teacher Illia Kuznets with [Subject 1] subjects has been successfully added! 
+2021-12-01 17:49:44,590 [http-nio-8081-exec-10] INFO  c.s.s.a.GlobalAspect                               - DELETE Method void com.sbproject.schedule.services.implementations.TeacherServiceImpl.deleteTeacher(Long) invoked with arguments:  
+2021-12-01 17:49:44,591 [http-nio-8081-exec-10] INFO  c.s.s.a.GlobalAspect                               - [7] 
+2021-12-01 17:49:44,607 [http-nio-8081-exec-10] INFO  c.s.s.a.GlobalAspect                               - The returned value is:  
+2021-12-01 17:49:44,607 [http-nio-8081-exec-10] INFO  c.s.s.a.GlobalAspect                               - null 
+2021-12-01 17:49:44,607 [http-nio-8081-exec-10] INFO  c.s.s.c.TeacherController                          - Teacher has been successfully deleted! 
+2021-12-01 17:51:02,446 [http-nio-8081-exec-7] INFO  c.s.s.a.GlobalAspect                               - DELETE Method void com.sbproject.schedule.services.implementations.TeacherServiceImpl.deleteTeacher(Long) invoked with arguments:  
+2021-12-01 17:51:02,447 [http-nio-8081-exec-7] INFO  c.s.s.a.GlobalAspect                               - [7] 
+2021-12-01 17:58:06,356 [http-nio-8081-exec-7] INFO  c.s.s.a.GlobalAspect                               - The returned value is:  
+2021-12-01 17:58:06,395 [http-nio-8081-exec-7] INFO  c.s.s.a.GlobalAspect                               - null 
+2021-12-01 17:58:09,175 [http-nio-8081-exec-7] INFO  c.s.s.c.TeacherController                          - Teacher has been successfully deleted! 
+2021-12-01 18:04:42,613 [http-nio-8081-exec-5] INFO  c.s.s.a.GlobalAspect                               - DELETE Method boolean com.sbproject.schedule.services.implementations.TeacherServiceImpl.deleteTeacher(Long) invoked with arguments:  
+2021-12-01 18:04:42,613 [http-nio-8081-exec-5] INFO  c.s.s.a.GlobalAspect                               - [7] 
+2021-12-01 18:04:42,630 [http-nio-8081-exec-5] INFO  c.s.s.a.GlobalAspect                               - The returned value is:  
+2021-12-01 18:04:42,630 [http-nio-8081-exec-5] INFO  c.s.s.a.GlobalAspect                               - true 
+2021-12-01 18:04:42,630 [http-nio-8081-exec-5] INFO  c.s.s.c.TeacherController                          - Teacher has been successfully deleted! 
+2021-12-01 18:05:22,504 [http-nio-8081-exec-8] INFO  c.s.s.a.GlobalAspect                               - DELETE Method boolean com.sbproject.schedule.services.implementations.TeacherServiceImpl.deleteTeacher(Long) invoked with arguments:  
+2021-12-01 18:05:22,504 [http-nio-8081-exec-8] INFO  c.s.s.a.GlobalAspect                               - [8] 
+2021-12-01 18:05:22,508 [http-nio-8081-exec-8] INFO  c.s.s.a.GlobalAspect                               - The returned value is:  
+2021-12-01 18:05:22,508 [http-nio-8081-exec-8] INFO  c.s.s.a.GlobalAspect                               - true 
+2021-12-01 18:05:22,509 [http-nio-8081-exec-8] INFO  c.s.s.c.TeacherController                          - Teacher has been successfully deleted! 
+2021-12-01 18:05:25,299 [http-nio-8081-exec-1] INFO  c.s.s.a.GlobalAspect                               - DELETE Method boolean com.sbproject.schedule.services.implementations.TeacherServiceImpl.deleteTeacher(Long) invoked with arguments:  
+2021-12-01 18:05:25,299 [http-nio-8081-exec-1] INFO  c.s.s.a.GlobalAspect                               - [9] 
+2021-12-01 18:05:25,305 [http-nio-8081-exec-1] INFO  c.s.s.a.GlobalAspect                               - The returned value is:  
+2021-12-01 18:05:25,305 [http-nio-8081-exec-1] INFO  c.s.s.a.GlobalAspect                               - true 
+2021-12-01 18:05:25,305 [http-nio-8081-exec-1] INFO  c.s.s.c.TeacherController                          - Teacher has been successfully deleted! 
+2021-12-01 18:15:14,138 [http-nio-8081-exec-8] INFO  c.s.s.a.GlobalAspect                               - DELETE Method boolean com.sbproject.schedule.services.implementations.TeacherServiceImpl.deleteTeacher(Long) 
+invoked with arguments: [7]
+The returned value is: true 
+2021-12-01 18:15:14,140 [http-nio-8081-exec-8] INFO  c.s.s.c.TeacherController                          - Teacher has been successfully deleted! 
+2021-12-01 18:17:01,110 [http-nio-8081-exec-7] INFO  c.s.s.a.GlobalAspect                               - DELETE Method boolean com.sbproject.schedule.services.implementations.TeacherServiceImpl.deleteTeacher(Long) invoked with arguments: [7]. The returned value is: true 
+2021-12-01 18:17:01,111 [http-nio-8081-exec-7] INFO  c.s.s.c.TeacherController                          - Teacher has been successfully deleted! 
+2021-12-01 18:22:26,160 [http-nio-8081-exec-7] INFO  c.s.s.a.GlobalAspect                               - DELETE Method boolean com.sbproject.schedule.services.implementations.TeacherServiceImpl.deleteTeacher(Long) invoked with arguments: [7]. The returned value is: true 
+2021-12-01 18:22:26,161 [http-nio-8081-exec-7] INFO  c.s.s.c.TeacherController                          - Teacher has been successfully deleted! 
+2021-12-01 18:22:56,379 [Thread-2] INFO  c.s.s.s.i.LessonServiceImpl                        - Lesson successfully deleted! 
+2021-12-01 18:29:02,518 [http-nio-8081-exec-7] INFO  c.s.s.a.GlobalAspect                               - DELETE Method boolean com.sbproject.schedule.services.implementations.TeacherServiceImpl.deleteTeacher(Long) invoked with arguments: [7]. The returned value is: true 
+2021-12-01 18:29:02,518 [http-nio-8081-exec-7] INFO  c.s.s.c.TeacherController                          - Teacher has been successfully deleted! 
+2021-12-01 18:29:06,543 [Thread-2] INFO  c.s.s.s.i.LessonServiceImpl                        - Lesson successfully deleted! 
+2021-12-01 18:29:12,810 [http-nio-8081-exec-5] INFO  c.s.s.c.LessonController                           - Specialty has been successfully deleted! 
+2021-12-01 18:30:48,123 [http-nio-8081-exec-7] INFO  c.s.s.c.LessonController                           - Specialty has been successfully deleted! 
+2021-12-01 18:30:51,554 [http-nio-8081-exec-9] INFO  c.s.s.c.SubjectController                          - Subject has been successfully deleted! 
+2021-12-01 18:30:57,113 [http-nio-8081-exec-4] INFO  c.s.s.c.TeacherController                          - Teacher has been successfully deleted! 
+2021-12-01 18:31:36,263 [http-nio-8081-exec-8] INFO  c.s.s.c.LessonController                           - Specialty has been successfully deleted! 
+2021-12-01 18:32:17,347 [http-nio-8081-exec-5] INFO  c.s.s.c.LessonController                           - Specialty has been successfully deleted! 
+2021-12-01 18:33:52,357 [http-nio-8081-exec-4] INFO  c.s.s.c.LessonController                           - Specialty has been successfully deleted! 
+2021-12-01 18:33:52,364 [http-nio-8081-exec-4] INFO  c.s.s.a.GlobalAspect                               - DELETE Method void com.sbproject.schedule.services.implementations.SpecialtyServiceImpl.deleteSpecialty(Long) invoked with arguments: [1]. The returned value is: null 
+2021-12-01 18:34:22,141 [http-nio-8081-exec-6] INFO  c.s.s.c.LessonController                           - Specialty has been successfully deleted! 
+2021-12-01 18:34:22,157 [http-nio-8081-exec-6] INFO  c.s.s.a.GlobalAspect                               - DELETE Method void com.sbproject.schedule.services.implementations.SpecialtyServiceImpl.deleteSpecialty(Long) invoked with arguments: [1]. The returned value is: null 
+2021-12-01 18:34:51,193 [http-nio-8081-exec-10] INFO  c.s.s.c.LessonController                           - Specialty has been successfully deleted! 
+2021-12-01 18:34:51,194 [http-nio-8081-exec-10] INFO  c.s.s.a.GlobalAspect                               - DELETE Method void com.sbproject.schedule.services.implementations.SpecialtyServiceImpl.deleteSpecialty(Long) invoked with arguments: [2]. The returned value is: null 
+2021-12-01 18:34:59,295 [http-nio-8081-exec-4] INFO  c.s.s.a.GlobalAspect                               - DELETE Method void com.sbproject.schedule.services.implementations.SubjectServiceImpl.deleteSubject(Long) invoked with arguments: [4]. The returned value is: null 
+2021-12-01 18:34:59,298 [http-nio-8081-exec-4] INFO  c.s.s.c.SubjectController                          - Subject has been successfully deleted! 
+2021-12-01 18:35:03,459 [http-nio-8081-exec-6] INFO  c.s.s.a.GlobalAspect                               - DELETE Method boolean com.sbproject.schedule.services.implementations.TeacherServiceImpl.deleteTeacher(Long) invoked with arguments: [7]. The returned value is: true 
+2021-12-01 18:35:03,459 [http-nio-8081-exec-6] INFO  c.s.s.c.TeacherController                          - Teacher has been successfully deleted! 
+2021-12-01 18:35:10,756 [Thread-2] INFO  c.s.s.s.i.LessonServiceImpl                        - Lesson successfully deleted! 
+2021-12-01 18:35:10,757 [Thread-2] INFO  c.s.s.a.GlobalAspect                               - DELETE Method void com.sbproject.schedule.services.implementations.LessonServiceImpl.deleteLesson(Long) invoked with arguments: [12]. The returned value is: null 

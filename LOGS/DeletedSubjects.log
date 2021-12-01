@@ -7,3 +7,5 @@
 2021-11-11 08:50:11,719 [http-nio-8081-exec-9] INFO  c.s.s.c.SubjectRestController                      - Subject has been successfully deleted! -  
 2021-11-17 16:35:04,380 [http-nio-8081-exec-7] INFO  c.s.s.c.SubjectController                          - Subject has been successfully deleted! -  
 2021-11-17 16:41:22,094 [http-nio-8081-exec-9] INFO  c.s.s.c.SubjectController                          - Subject has been successfully deleted! -  
+2021-12-01 18:30:51,554 [http-nio-8081-exec-9] INFO  c.s.s.c.SubjectController                          - Subject has been successfully deleted! -  
+2021-12-01 18:34:59,298 [http-nio-8081-exec-4] INFO  c.s.s.c.SubjectController                          - Subject has been successfully deleted! -  
