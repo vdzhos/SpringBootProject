@@ -19,17 +19,17 @@ public class GlobalAspect {
     private static Logger logger = LogManager.getLogger(GlobalAspect.class);
 
     @Around("execution(* com.sbproject.schedule.services.implementations.*.get*(*))")
-    public Object getObjectByIdAroundAdvice(ProceedingJoinPoint proceedingJoinPoint){
-        logger.info(Markers.GET_METHOD_INVOKED_MARKER, "GET Method " + proceedingJoinPoint.getSignature() + " invoked with arguments: ");
-        logger.info(Markers.GET_METHOD_INVOKED_MARKER,Arrays.toString(proceedingJoinPoint.getArgs()));
+    public Object getObjectAroundAdvice(ProceedingJoinPoint proceedingJoinPoint){
         Object value = null;
         try {
             value = proceedingJoinPoint.proceed();
         } catch (Throwable e) {
             e.printStackTrace();
         }
-        logger.info(Markers.GET_METHOD_INVOKED_MARKER,"The returned value is: ");
-        logger.info(Markers.GET_METHOD_INVOKED_MARKER, (value == null) ? null : value.toString());
+        logger.info(Markers.GET_METHOD_INVOKED_MARKER, "GET Method " + proceedingJoinPoint.getSignature() + " invoked with arguments: "
+                + Arrays.toString(proceedingJoinPoint.getArgs())
+                +". The returned value is: " +
+                ((value == null) ? null : value.toString()));
         return value;
     }
 
