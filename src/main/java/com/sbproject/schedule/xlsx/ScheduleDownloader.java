@@ -129,18 +129,14 @@ public class ScheduleDownloader {
 	 			 int colCnt = 0;
 	 			 Cell cell1 = row.createCell(colCnt);
 				 cell1.setCellStyle(defaultStyle);
-				 for(Object str : lesson.getColumnArray()) {
+				 for(String str : lesson.getColumnArray())
+				 {
 					 Cell cell = row.createCell(++colCnt);
 					 cell.setCellStyle(defaultStyle);
-					 if(str instanceof String) 
-					 {
-						 int width = ((String)str).length() * 400;
-		                	if(sheet.getColumnWidth(colCnt) < width)
-		                		sheet.setColumnWidth(colCnt, ((String)str).length() * 400);
-						 cell.setCellValue((String)str);
-					 } 
-					 else if(str instanceof Integer)
-						 cell.setCellValue((Integer)str);
+					 int width = ((String)str).length() * 400;
+					 if(sheet.getColumnWidth(colCnt) < width)
+	                		sheet.setColumnWidth(colCnt, ((String)str).length() * 400);
+					 cell.setCellValue(str);
 				 }
 	 		}
 	 		if(rowCount != rowBegin)

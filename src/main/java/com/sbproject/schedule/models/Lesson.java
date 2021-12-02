@@ -168,9 +168,9 @@ public class Lesson {
         this.dayOfWeek = dayOfWeek;
     }
 
-    public Object[] getColumnArray()
+    public String[] getColumnArray()
     {
-    	Object[] res = new Object[6];
+    	String[] res = new String[6];
     	res[0] = this.time.toString();
     	res[1] = this.subject.getName();
     	res[2] = this.teacher.getName();
