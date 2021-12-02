@@ -28,12 +28,11 @@
 	                    <br>
 	                    <input type="password" name="password" id="password" class="form-control" th:placeholder="#{login.password.placeholder}">
                     </div>
-					<div class="form-group">		
+					<div class="form-group" style="width:100%">		
 				    	<button type="submit" th:text="#{login.submit}" class="btn btn-info btn-md" style="margin-top: 10px;">Log In</button>
+						<a href="/registration" style="margin-top: 10px; float: right;" th:placeholder="#{login.goToRegistration}">Sign Up</a>				    
 				    </div>
-				    <div class="form-group">
-				    	<a href="/registration" style="margin-top: 20px; padding-bottom: 20px;" th:placeholder="#{login.goToRegistration}">Sign Up</a>
-		    		</div>
+	
 		    		<div class="form-group">
     					<p style="color: orangered; margin-top: 20px;" th:if="${param.error}" th:text="#{login.error}"></p>
 					</div>
