@@ -6,6 +6,8 @@ import com.sbproject.schedule.services.interfaces.LessonService;
 import com.sbproject.schedule.services.interfaces.SpecialtyService;
 import com.sbproject.schedule.services.interfaces.SubjectService;
 import com.sbproject.schedule.services.interfaces.TeacherService;
+import com.sbproject.schedule.xlsx.ScheduleDownloader;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -20,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedOutputStream;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
@@ -82,13 +85,16 @@ public class MainController {
         response.setHeader("Content-Transfer-Encoding","binary");
         try{
             BufferedOutputStream bos =new BufferedOutputStream(response.getOutputStream());
-            FileInputStream fis = new FileInputStream(fileUrl + fileName1);
-            int len;
-            byte[] buf = new byte[1024];
-            while((len = fis.read(buf)) > 0){
-                bos.write(buf,0,len);
-            }
+//            FileInputStream fis = new FileInputStream(fileUrl + fileName1);
+//            int len;
+//            byte[] buf = new byte[1024];
+//            while((len = fos.read(buf)) > 0){
+//                bos.write(buf,0,len);
+//            }
+            ScheduleDownloader sd = new ScheduleDownloader("Schedule1");
+            sd.downloadSchedule(this.lessonService.getAll(), bos);
             bos.close();
+            
             response.flushBuffer();
         } catch (IOException e) {
             e.printStackTrace();
