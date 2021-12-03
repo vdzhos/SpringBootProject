@@ -1,5 +1,7 @@
 package com.sbproject.schedule.controllers;
 
+import com.sbproject.schedule.exceptions.schedule.ScheduleException;
+import com.sbproject.schedule.services.implementations.ScheduleReaderSaverService;
 import com.sbproject.schedule.services.implementations.SpecialtyServiceImpl;
 import com.sbproject.schedule.services.implementations.SubjectServiceImpl;
 import com.sbproject.schedule.services.interfaces.LessonService;
@@ -13,9 +15,10 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedOutputStream;
@@ -41,6 +44,8 @@ public class MainController {
     private LessonService lessonService;
     @Autowired
     private TeacherService teacherService;
+    @Autowired
+    private ScheduleReaderSaverService readerSaverService;
 
     @Value("${spring.application.name}")
     private String appName;
@@ -63,6 +68,7 @@ public class MainController {
     @GetMapping
     public String showAllSchedules(Model model,Authentication authentication){
         model.addAttribute("appName",appName);
+        model.addAttribute("specialties",specialtyService.getAll());
         boolean adminLoggedIn = false;
         if(authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
             adminLoggedIn = true;
@@ -70,6 +76,15 @@ public class MainController {
         model.addAttribute("adminLoggedIn",adminLoggedIn);
         return "mainPage";
     }
+
+//    @GetMapping("/schedule")
+//    public RedirectView showSchedule(@RequestParam Long specialtyId, RedirectAttributes redir) {
+//        RedirectView redirectView= new RedirectView("/",true);
+//
+//        redir.addFlashAttribute("specialtyIdToShow", specialtyId);
+//
+//        return redirectView;
+//    }
 
     @GetMapping("/download")
     @ResponseBody
@@ -93,6 +108,24 @@ public class MainController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+
+    @PostMapping("/uploadSchedule")
+    public RedirectView uploadSchedule(@RequestParam("file") MultipartFile file, @RequestParam Long specialtyId, RedirectAttributes redir) throws Exception {
+        RedirectView redirectView= new RedirectView("/",true);
+        String notification = "Розклад було успішно додано!";
+        boolean success = true;
+        try {
+            readerSaverService.readSaveSchedule(file.getInputStream(),specialtyId);
+        }catch (Exception e){
+            success = false;
+            notification = e.getMessage();
+        }
+        redir.addFlashAttribute("showNotification", true);
+        redir.addFlashAttribute("success", success);
+        redir.addFlashAttribute("notification",notification);
+        return redirectView;
     }
 
 

@@ -17,7 +17,7 @@ public interface TeacherRepository extends CrudRepository<Teacher,Long> {
     boolean existsByName(@Param("name") String name);
 
     @Query("select t from Teacher t where lower(t.name) like lower(concat('%', :name,'%'))")
-    Iterable<Teacher> findByPartName(String s);
+    Iterable<Teacher> findByPartName(@Param("name") String name);
 
 
 

@@ -64,7 +64,8 @@ public class ScheduleReaderSaverService {
         for (Teacher t: teachers) {
             String[] name = t.getName().split("\\s+");
             if (name.length != 3)
-                throw new ScheduleException("Incorrect teacher name: "+t.getName());
+                continue;
+//                throw new ScheduleException("Incorrect teacher name: "+t.getName());
             if (name[1].startsWith(li.getTeacherFirstName()) && name[2].startsWith(li.getTeacherLastName())) {
                 teacher = t;
                 break;
@@ -72,8 +73,11 @@ public class ScheduleReaderSaverService {
         }
 
         if (teacher != null){
-            teacher.addSubject(subject);
-            return teacherService.updateTeacherNoCheck(teacher);
+            if (!teacher.getSubjects().contains(subject)){
+                teacher.addSubject(subject);
+                return teacherService.updateTeacherNoCheck(teacher);
+            }
+            return teacher;
         } else {
             teacher = new Teacher(teacherSurname+" "+li.getTeacherFirstName()+" "+li.getTeacherLastName());
             teacher.addSubject(subject);
@@ -84,19 +88,23 @@ public class ScheduleReaderSaverService {
     private Subject saveSubject(ScheduleAnalyzer.LessonInfo li, Specialty s) {
         String subjectName = li.getSubject();
         SubjectType type = li.getGroup();
-        int quantityOfGroups = 0;
+        int quantityOfGroups = 1;
         if (type.getType() == SubjectType.SubjectTypeEnum.PRACTICE) {
             quantityOfGroups = Integer.parseInt(type.getGroup());
         }
         if (subjectService.subjectExistsByName(subjectName)) {
             Subject subject = subjectService.getSubjectByName(li.getSubject());
+            boolean changed = false;
             if (!subject.getSpecialties().contains(s)) {
                 subject.addSpecialty(s);
+                changed = true;
             }
             if (subject.getQuantOfGroups() < quantityOfGroups) {
                 subject.setQuantOfGroups(quantityOfGroups);
+                changed = true;
             }
-            return subjectService.updateSubjectNoCheck(subject);
+            if (changed) return subjectService.updateSubjectNoCheck(subject);
+            return subject;
         } else {
             Subject subject = new Subject(subjectName,quantityOfGroups);
             subject.addSpecialty(s);

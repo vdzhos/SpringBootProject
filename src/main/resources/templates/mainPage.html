@@ -19,12 +19,42 @@
     <header class="mb-5">
         <h1 th:text="${appName}"></h1>
     </header>
-    <h1>Welcome to the main page!</h1>
+    <div class="row align-items-center">
+        <div class="col-4">
+            <form action="/schedule" onchange="this.form.submit()">
+                <select name="schedules">
+                    <option th:each="specialty: ${specialties}" th:id="${specialty.getId()}" th:text="${specialty.getName()+'-'+specialty.getYear()}"></option>
+                </select>
+            </form>
+        </div>
+        <div class="col-4">
+            <form action="/download" method="get">
+                <button class="nav-link btn btn-info mr-3" type="submit" style="margin: 20px 0 0 20px;">Download</button>
+            </form>
+        </div>
+        <div class="col-4">
+            <form th:if="${adminLoggedIn}" action="/uploadSchedule" method="post" enctype="multipart/form-data">
+                <label><input name="file" type="file"></label>
+<!--                remove this input-->
+                <input name="specialtyId" value="1" type="hidden">
+                <button type="submit" class="nav-link btn btn-info">Upload Schedule</button>
+            </form>
+        </div>
+        <div class="col-12 mt-3">
+            <div th:if="${showNotification}" th:class="${success} ?'alert alert-success alert-dismissible': 'alert alert-danger alert-dismissible'">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <strong th:text="${success}? 'Success!':'Error!'"></strong>&nbsp;<span th:text="${notification}"/>
+            </div>
+        </div>
+
+        <hr class="col-12"/>
+    </div>
+
+
+<!--    <h1>Welcome to the main page!</h1>-->
 </div>
 
-<form action="download/" method="get">
-    <button class="nav-link btn btn-info mr-3" type="submit" style="margin: 20px 0 0 20px;">Download</button>
-</form>
+
 
 </body>
 </html>

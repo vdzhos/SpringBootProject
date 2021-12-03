@@ -16,7 +16,7 @@ public class InvokeTimeLoggingAspect {
 
 	private static Logger logger = LogManager.getLogger(GlobalAspect.class);
 	
-	@Around("execution(* com.sbproject.schedule.services.implementations.*.*(*))")
+	@Around("execution(* com.sbproject.schedule.services.implementations.*.*(..))")
 	public Object logInvokeTimeAroundAdvice(ProceedingJoinPoint proceedingJoinPoint) throws Throwable
 	{
 		StopWatch clock = new StopWatch(proceedingJoinPoint.toString());
