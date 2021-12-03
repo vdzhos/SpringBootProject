@@ -37,7 +37,7 @@ public class TeacherController {
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/add")
     public RedirectView addTeacher(@RequestParam String name, @RequestParam List<Subject> subjects, Model model, RedirectAttributes redir){
-        RedirectView redirectView= new RedirectView("/",true);
+        RedirectView redirectView= new RedirectView("/admin",true);
         String notification = "Вчитель '"+name+"' був успішно доданий!";
         boolean success =  teacherService.addTeacher(name, subjects);
         if(success) logger.info(Markers.ALTERING_TEACHER_TABLE_MARKER,"Teacher {} with {} subjects has been successfully added!", name, subjects);
@@ -47,18 +47,26 @@ public class TeacherController {
         }
         redir.addFlashAttribute("success", success);
         redir.addFlashAttribute("notification", notification);
+        redir.addFlashAttribute("tab",2);
         return redirectView;
     }
 
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/delete")
-    public String deleteTeacher(@RequestParam Long id, @RequestParam String teacherToString, Model model) throws NoTeacherWithSuchIdException {
-        ThreadContext.put("teacher",teacherToString);
-        teacherService.deleteTeacher(id);
-        ThreadContext.clearAll();
-        logger.info(Markers.DELETE_TEACHER_MARKER,"Teacher has been successfully deleted!");
-        //put info about success/failure into the model
-        return "redirect:/";
+    public RedirectView deleteTeacher(@RequestParam Long id, @RequestParam String teacherToString, Model model, RedirectAttributes redir) throws Exception {
+        RedirectView redirectView = new RedirectView("/admin",true);
+        String name = teacherService.getTeacherById(id).getName();
+        String notification = "Вчитель '"+ name +"' був успішно доданий!";
+        boolean success =  teacherService.deleteTeacher(id);
+        if(success) logger.info(Markers.DELETE_TEACHER_MARKER,"Teacher {} has been successfully deleted!", name);
+        else {
+            notification = "Вчитель не був видалений!";
+            logger.error(Markers.DELETE_TEACHER_MARKER,"Teacher {} has not been deleted!", name);
+        }
+        redir.addFlashAttribute("success", success);
+        redir.addFlashAttribute("notification", notification);
+        redir.addFlashAttribute("tab",2);
+        return redirectView;
     }
 
     @PreAuthorize("hasRole('ADMIN')")
