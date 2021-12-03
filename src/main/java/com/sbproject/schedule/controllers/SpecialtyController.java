@@ -46,6 +46,7 @@ public class SpecialtyController {
         redir.addFlashAttribute("showNotification", true);
         redir.addFlashAttribute("success", success);
         redir.addFlashAttribute("notification",notification);
+        redir.addFlashAttribute("tab",0);
         return redirectView;
     }
 
@@ -60,6 +61,7 @@ public class SpecialtyController {
         redir.addFlashAttribute("showNotification", true);
         redir.addFlashAttribute("success", true);
         redir.addFlashAttribute("notification",notification);
+        redir.addFlashAttribute("tab",0);
         return redirectView;
     }
 
@@ -78,6 +80,7 @@ public class SpecialtyController {
         redir.addFlashAttribute("showNotification", true);
         redir.addFlashAttribute("success", success);
         redir.addFlashAttribute("notification",notification);
+        redir.addFlashAttribute("tab",0);
         return redirectView;
     }
 

@@ -45,25 +45,25 @@
 
             <ul class="nav nav-tabs">
                 <li class="nav-item">
-                    <a class="nav-link active" href="#specialties" role="tab" data-toggle="tab" th:text="#{edit.specialties}">Specialties</a>
+                    <a th:class="${tab==0} ? 'nav-link active' : 'nav-link'" href="#specialties" role="tab" data-toggle="tab" th:text="#{edit.specialties}">Specialties</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#subjects" role="tab" data-toggle="tab" th:text="#{edit.subjects}">Subjects</a>
+                    <a th:class="${tab==1} ? 'nav-link active' : 'nav-link'" href="#subjects" role="tab" data-toggle="tab" th:text="#{edit.subjects}">Subjects</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#teachers" role="tab" data-toggle="tab" th:text="#{edit.teachers}">Teachers</a>
+                    <a th:class="${tab==2} ? 'nav-link active' : 'nav-link'" href="#teachers" role="tab" data-toggle="tab" th:text="#{edit.teachers}">Teachers</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#lessons" role="tab" data-toggle="tab" th:text="#{edit.lessons}">Lessons</a>
+                    <a th:class="${tab==3} ? 'nav-link active' : 'nav-link'" href="#lessons" role="tab" data-toggle="tab" th:text="#{edit.lessons}">Lessons</a>
                 </li>
             </ul>
 
             <div style="border-left: 1px solid lightgrey; border-right: 1px solid lightgrey; border-bottom: 1px solid lightgrey; padding: 50px;">
                 <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane fade show active" id="specialties">
+                    <div role="tabpanel" th:class="${tab==0} ? 'tab-pane fade show active' : 'tab-pane fade'" id="specialties">
                         <h3 class="mt-3 mb-4" th:text="#{edit.specialties}">Specialties</h3>
 
                         <form action="/specialty/add" method="post">
@@ -98,7 +98,7 @@
                         </div>
                     </div>
 
-                    <div role="tabpanel" class="tab-pane fade" id="subjects">
+                    <div role="tabpanel" th:class="${tab==1} ? 'tab-pane fade show active' : 'tab-pane fade'" id="subjects">
                         <h3 th:text="#{edit.subjects}">Subjects</h3>
 
                         <form action="/subject/add" method="post">
@@ -141,7 +141,7 @@
 
                     </div>
 
-                    <div role="tabpanel" class="tab-pane fade" id="teachers">
+                    <div role="tabpanel" th:class="${tab==2} ? 'tab-pane fade show active' : 'tab-pane fade'" id="teachers">
                         <h3 th:text="#{edit.teachers}">Teachers</h3>
 
                         <form action="/teacher/add" method="post">
@@ -182,13 +182,11 @@
 
                     </div>
 
-                    <div role="tabpanel" class="tab-pane fade" id="lessons">
+                    <div role="tabpanel" th:class="${tab==3} ? 'tab-pane fade show active' : 'tab-pane fade'" id="lessons">
                         <h3 th:text="#{edit.lessons}">Lessons</h3>
 
-
-
                         <form action="/lesson/add" method="post">
-                            <label><span th:text="#{edit.day}"></span>: <select name="day">
+                            <label><span th:text="#{edit.day}"></span>: <select required name="day">
                                 <option value="1">MONDAY</option>
                                 <option value="2">TUESDAY</option>
                                 <option value="3">WEDNESDAY</option>
@@ -197,7 +195,7 @@
                                 <option value="6">SATURDAY</option>
                                 <option value="7">SUNDAY</option>
                             </select></label>
-                            <label><span th:text="#{edit.time}"></span>: <select name="time">
+                            <label><span th:text="#{edit.time}"></span>: <select required name="time">
                                 <option value="0">8:30-9:50</option>
                                 <option value="1">10:00-11:20</option>
                                 <option value="2">11:40-13:00</option>
@@ -206,18 +204,18 @@
                                 <option value="5">16:30-17:50</option>
                                 <option value="6">18:00-19:20</option>
                             </select></label>
-                            <label><span th:text="#{edit.subject}"></span>: <select name="subjId">
+                            <label><span th:text="#{edit.subject}"></span>: <select required name="subjId">
                                 <option th:each="subject: ${subjects}" th:text="${subject.name}" th:value="${subject.id}"></option>
                             </select></label>
-                            <label><span th:text="#{edit.teacher}"></span>: <select name="teachId">
+                            <label><span th:text="#{edit.teacher}"></span>: <select required name="teachId">
                                 <option th:each="teacher: ${teachers}" th:text="${teacher.name}" th:value="${teacher.id}"></option>
                             </select></label>
                             <label><span th:text="#{edit.group}"></span> (0 = lecture):
-                                <input type="number" id="lessonGroup1" name="group" min="0" max="50" step="1" value="0">
+                                <input required type="number" id="lessonGroup1" name="group" min="0" max="50" step="1" value="0">
                             </label>
-                            <label><span th:text="#{edit.weeks}"></span>: <input name="weeks" type="text"/></label>
+                            <label><span th:text="#{edit.weeks}"></span>: <input required name="weeks" type="text"/></label>
                             <label><span th:text="#{edit.room}"></span>:
-                                <input type="text" name="room" list="lessonRoom1" value="remotely"/>
+                                <input required type="text" name="room" list="lessonRoom1" value="remotely"/>
                                 <datalist id="lessonRoom1">
                                     <option value="remotely"></option>
                                 </datalist>
