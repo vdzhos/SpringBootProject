@@ -14,7 +14,7 @@ import com.sbproject.schedule.utils.Markers;
 @Aspect
 public class InvokeTimeLoggingAspect {
 
-	private static Logger logger = LogManager.getLogger(GlobalAspect.class);
+	private static Logger logger = LogManager.getLogger(InvokeTimeLoggingAspect.class);
 	
 	@Around("execution(* com.sbproject.schedule.services.implementations.*.*(..))")
 	public Object logInvokeTimeAroundAdvice(ProceedingJoinPoint proceedingJoinPoint) throws Throwable

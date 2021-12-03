@@ -3,24 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="#{login.title}">Login Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
-<body>
 
-<h2 th:text="#{login.h2}">LogIn</h2>
+<body style="margin: 0; padding: 0; background-color: #17a2b8;">
+	<div style="margin-top: 120px; max-width: 600px;  height: auto; min-height: 100% !important; border: 1px solid #9C9C9C; background-color: #EAEAEA;" class = "container">
+		<div class="row justify-content-center align-items-center">
+			<div class="col-sm-11"> 
+				<form class="form" action="/login" method="post">
+					
+					<h3 style="margin-top: 20px;" class="text-center text-info">Login</h3>
+					
+				 	<div class="form-group">
+	                    <label for="username" class="text-info" th:text="#{login.login}"></label>
+	                    <br>
+	                    <input type="text" name="username" id="username" class="form-control" th:placeholder="#{login.login.placeholder}">
+                   	</div>
+			   	 	<div class="form-group">
+	                    <label for="password" class="text-info" th:text="#{login.password}"></label>
+	                    <br>
+	                    <input type="password" name="password" id="password" class="form-control" th:placeholder="#{login.password.placeholder}">
+                    </div>
+					<div class="form-group" style="width:100%">		
+				    	<button type="submit" th:text="#{login.submit}" class="btn btn-info btn-md" style="margin-top: 10px;">Log In</button>
+						<a href="/registration" style="margin-top: 10px; float: right;" th:placeholder="#{login.goToRegistration}">Sign Up</a>				    
+				    </div>
+	
+		    		<div class="form-group">
+    					<p style="color: orangered; margin-top: 20px;" th:if="${param.error}" th:text="#{login.error}"></p>
+					</div>
+					
+				</form>
+			</div>
+		</div>
+	</div>
 
-<form action="/login" method="post">
-    <label><span th:text="#{login.login}"></span><input name="username" type="text" th:placeholder="#{login.login.placeholder}"/></label>
-    <br>
-    <p></p>
-    <label><span th:text="#{login.password}"></span><input name="password" type="password" th:placeholder="#{login.password.placeholder}"/></label>
-    <br>
-    <p></p>
-    <button type="submit" th:text="#{login.submit}">Log In</button>
-    <p><a href="/registration" th:placeholder="#{login.goToRegistration}">Sign Up</a></p>
-</form>
-<br>
-<p style="color: orangered;" th:if="${param.error}" th:text="#{login.error}">
-	Invalid login or password
-</p>
 </body>
 </html>

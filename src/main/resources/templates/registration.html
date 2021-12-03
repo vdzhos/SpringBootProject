@@ -3,43 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="#{registration.title}">Registration Form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
-<body>
 
-<h2 th:text="#{registration.h2}">Sign Up</h2>
+<body style="margin: 0; padding: 0; background-color: #17a2b8;">
 
-<form action="/registration" th:object="${user}" method="post">
-    <div>
-        <label><span th:text="#{registration.login}"></span><input type="text" th:field="*{login}" th:placeholder="#{registration.login.placeholder}"/></label>
-        <ul>
-           <li style="color: orangered;" th:each="err : ${#fields.errors('login')}" th:text="${err}"/>
-        </ul>
-    </div>
-    <br>
-    <div>
-        <label><span th:text="#{registration.password}"></span><input type="password" th:field="*{password}" th:placeholder="#{registration.password.placeholder}"/></label>
-        <ul>
-            <li style="color: orangered;" th:each="err : ${#fields.errors('password')}" th:text="${err}"/>
-        </ul>    
-    </div>
-    <br>
-    <div>
-        <label><span th:text="#{registration.confirm}"></span><input type="password" th:field="*{matchingPassword}" th:placeholder="#{registration.confirm.placeholder}"/></label>
-        <ul>
-           <li style="color: orangered;" th:each="err : ${#fields.errors('matchingPassword')}" th:text="${err}"/>
-        </ul> 
-    </div>
-    <br>
-    <div>
-       <label><span th:text="#{registration.roleCode}"></span><input type="password" th:field="*{roleCode}" th:placeholder="#{registration.roleCode.placeholder}"/></label>
-       <ul>
-   	        <li style="color: orangered;" th:each="err : ${#fields.errors('roleCode')}" th:text="${err}"/>
-       </ul>
-   </div>
-	<br>
-	<p></p>
-	<button type="submit" th:text="#{registration.submit}">Sign Up</button>
-</form>
-<p style="color: orangered;" th:text="${message}"></p>
+<div style="margin-top: 50px; margin-bottom: 50px; max-width: 600px; height: auto; min-height: 100% !important; border: 1px solid #9C9C9C; background-color: #EAEAEA;" class = "container">
+
+	<div class="row justify-content-center align-items-center">
+		<div class="col-sm-11"> 
+			<form class="form" action="/registration" th:object="${user}" method="post">
+				<h3 style="margin-top: 20px;" class="text-center text-info" th:text="#{registration.h2}"></h3>
+			    <div class="form-group">
+			  
+			        <label for="username" class="text-info" th:text="#{registration.login}"></label>
+			        <br>
+			        <input type="text" class="form-control" th:field="*{login}" th:placeholder="#{registration.login.placeholder}"/>
+			        <ul>
+			           <li style="color: orangered;" th:each="err : ${#fields.errors('login')}" th:text="${err}"/>
+			        </ul>
+			    </div>
+			    
+			    <div class="form-group">
+			
+			       <label for="password" class="text-info" th:text="#{registration.password}"></label>
+			        <br>
+			        <input type="password" class="form-control" th:field="*{password}" th:placeholder="#{registration.password.placeholder}"/>
+			        <ul>
+			           <li style="color: orangered;" th:each="err : ${#fields.errors('password')}" th:text="${err}"/>
+			        </ul>  
+			    </div>
+			    
+			    <div class="form-group">
+			      
+			        <label for="matchingPassword" class="text-info" th:text="#{registration.confirm}"></label>
+			        <br>
+			        <input type="password" class="form-control" th:field="*{matchingPassword}" th:placeholder="#{registration.confirm.placeholder}"/>
+			        <ul>
+			           <li style="color: orangered;" th:each="err : ${#fields.errors('global')}" th:text="${err}"/>
+			        </ul>   
+			    </div>
+			    
+			    <div class="form-group">
+	
+			       	<label for="roleCode" class="text-info" th:text="#{registration.roleCode}"></label>
+			        <br>
+			        <input type="password" class="form-control" th:field="*{roleCode}" th:placeholder="#{registration.roleCode.placeholder}"/>
+			        <ul>
+			           <li style="color: orangered;" th:each="err : ${#fields.errors('roleCode')}" th:text="${err}"/>
+			        </ul> 
+	  		 	</div>
+				<div class="form-group" style="width:100%">
+					<button type="submit" th:text="#{registration.submit}" class="btn btn-info btn-md" style="margin-top: 10px;"></button>
+					<button type="submit" formaction="/" class="btn btn-info btn-md" style="margin-top: 10px; float: right;">Back</button>
+				</div>
+				
+				<div class="form-group">
+					<p style="color: orangered; margin-top: 20px;" th:text="${message}"></p>
+				</div>
+			</form>
+			
+		</div>
+	</div>
+</div>
 </body>
 </html>

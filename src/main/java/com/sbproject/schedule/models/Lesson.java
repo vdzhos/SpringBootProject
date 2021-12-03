@@ -3,6 +3,8 @@ package com.sbproject.schedule.models;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.sbproject.schedule.models.Room.RoomType;
+import com.sbproject.schedule.models.SubjectType.SubjectTypeEnum;
 import com.sbproject.schedule.utils.EntityIdResolver;
 
 import javax.persistence.*;
@@ -166,6 +168,18 @@ public class Lesson {
         this.dayOfWeek = dayOfWeek;
     }
 
+    public String[] getColumnArray()
+    {
+    	String[] res = new String[6];
+    	res[0] = this.time.toString();
+    	res[1] = this.subject.getName();
+    	res[2] = this.teacher.getName();
+    	res[3] = this.group.getType() == SubjectTypeEnum.LECTURE ? "LECTURE" : this.group.getGroup();
+    	res[4] = this.weeks;
+    	res[5] = this.room.getType() == RoomType.REMOTELY ? "REMOTELY" : this.room.getRoom();
+    	return res;
+    }
+    
     public enum Time {
 
         TIME1("8:30-9:50"), TIME2("10:00-11:20"), TIME3("11:40-13:00"), TIME4("13:30-14:50"),
