@@ -1,8 +1,7 @@
-package com.sbproject.schedule.controllers;
+package com.sbproject.schedule.controllers.rest;
 
 import com.sbproject.schedule.exceptions.handlers.ErrorMessage;
 import com.sbproject.schedule.exceptions.subject.NoSubjectWithSuchIdToDelete;
-import com.sbproject.schedule.exceptions.subject.NoSubjectWithSuchIdToUpdate;
 import com.sbproject.schedule.models.Subject;
 import com.sbproject.schedule.services.implementations.SubjectServiceImpl;
 import com.sbproject.schedule.utils.Markers;
@@ -113,7 +112,7 @@ public class SubjectRestController {
     public Subject updateSubject(@PathVariable("id") Long id, @Valid @RequestBody Subject subject) {
         subject.setId(id);
         Subject s = subjectService.updateSubject(subject);
-        logger.info(Markers.UPDATE_SUBJECT_MARKER,"Subject has been successfully deleted!");
+        logger.info(Markers.UPDATE_SUBJECT_MARKER,"Subject has been successfully updated!");
         return s;
     }
 
@@ -121,14 +120,6 @@ public class SubjectRestController {
     public ResponseEntity<Map<String,String>> handleException(NoSubjectWithSuchIdToDelete ex){
         Map<String, String> result = new HashMap<>();
         result.put("deleted", "false");
-        result.put("error", ex.getMessage());
-        return new ResponseEntity<>(result, HttpStatus.NOT_FOUND);
-    }
-
-    @ExceptionHandler(NoSubjectWithSuchIdToUpdate.class)
-    public ResponseEntity<Map<String,String>> handleException(NoSubjectWithSuchIdToUpdate ex){
-        Map<String, String> result = new HashMap<>();
-        result.put("updated", "false");
         result.put("error", ex.getMessage());
         return new ResponseEntity<>(result, HttpStatus.NOT_FOUND);
     }

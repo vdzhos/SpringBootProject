@@ -12,6 +12,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -91,16 +92,18 @@ public class Subject {
         this.specialties = specialties;
     }
 
-    public Subject(long id, String name, int quantOfGroups, Set<Teacher> teachers,Set<Specialty> specialties) {
+    public Subject(long id, String name, int quantOfGroups,
+                   //Set<Teacher> teachers,
+                   Set<Specialty> specialties) {
         this.name = name;
         this.quantOfGroups = quantOfGroups;
-        this.teachers = teachers;
+        this.teachers = new HashSet<>();
         this.specialties = specialties;
     }
 
     @Override
     public String toString() {
-        return name;
+        return name + '(' + getSpecialtiesToString() + ')';
     }
 
 //    @Override
@@ -150,6 +153,26 @@ public class Subject {
         return specialties;
     }
 
+    public String getSpecialtiesToString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        if (specialties.isEmpty()) return "";
+        for (Specialty s : specialties) {
+            stringBuilder.append(s).append(", ");
+        }
+        stringBuilder.deleteCharAt(stringBuilder.length() - 1).deleteCharAt(stringBuilder.length() - 1);
+        return stringBuilder.toString();
+    }
+
+    public String getTeachersToString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        if (teachers.isEmpty()) return "";
+        for (Teacher t : teachers) {
+            stringBuilder.append(t).append(", ");
+        }
+        stringBuilder.deleteCharAt(stringBuilder.length() - 1).deleteCharAt(stringBuilder.length() - 1);
+        return stringBuilder.toString();
+    }
+
     public void setSpecialties(Set<Specialty> specialties) {
         this.specialties = specialties;
     }
@@ -162,4 +185,19 @@ public class Subject {
         specialties.add(sp);
     }
 
+    public boolean hasSpecialty(Specialty sp) {
+        return specialties.contains(sp);
+    }
+
+    public boolean hasSpecialty(Long spId) {
+        for (Specialty s: specialties) {
+            if (s.getId().equals(spId))
+                return true;
+        }
+        return false;
+    }
+
+    public boolean hasOnlyOneSpecialty() {
+        return specialties.size() == 1;
+    }
 }

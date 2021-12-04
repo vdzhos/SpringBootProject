@@ -1,4 +1,4 @@
-package com.sbproject.schedule.controllers;
+package com.sbproject.schedule.controllers.rest;
 
 import com.sbproject.schedule.exceptions.lesson.NoLessonWithSuchIdFound;
 import com.sbproject.schedule.models.Lesson;

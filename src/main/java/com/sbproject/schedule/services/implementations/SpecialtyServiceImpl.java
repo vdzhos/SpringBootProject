@@ -60,11 +60,21 @@ public class SpecialtyServiceImpl implements SpecialtyService {
         return s;
     }
 
+    private void deleteSubjects(Long spId) {
+        Iterable<Subject> subjects = subjectService.getAll();
+        for (Subject s: subjects) {
+            if (s.hasOnlyOneSpecialty() && s.hasSpecialty(spId)) {
+                subjectService.deleteSubject(s.getId());
+            }
+        }
+    }
+
     @Transactional
     @Override
     public void deleteSpecialty(Long id) {
         if(specialtyRepository.existsById(id)) {
             specialtyRepository.deleteById(id);
+            deleteSubjects(id);
             logger.info(Markers.DELETE_SPECIALTY_MARKER, "Specialty has been successfully deleted!");
         }
         else throw new SpecialtyNotFoundException(id);
@@ -77,7 +87,7 @@ public class SpecialtyServiceImpl implements SpecialtyService {
         name = processor.processName(name);
         processor.checkName(name);
         processor.checkYear(year);
-        if(specialtyRepository.existsByNameAndYearAndId(id,name,year)){
+        if(specialtyRepository.existsByNameAndYearAndNotId(id,name,year)){
             logger.error(Markers.UPDATE_SPECIALTY_MARKER,"Specialty '{}'-'{}' already exists. Specialty has not been updated!",name,year);
             throw new SpecialtyInstanceAlreadyExistsException(Values.SPECIALTY_ALREADY_EXISTS);
         }
