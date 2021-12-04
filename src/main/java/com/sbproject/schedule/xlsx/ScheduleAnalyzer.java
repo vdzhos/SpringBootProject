@@ -9,16 +9,20 @@ import com.sbproject.schedule.utils.UtilsImpl;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.InputStream;
 import java.time.DayOfWeek;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ScheduleAnalyzer {
+public abstract class ScheduleAnalyzer {
 
-    private static final String LECTURE_STRING = "лекція";
+
+    protected static String LECTURE_STRING = "lecture";
+
+    protected enum ScheduleFormat {STD_F, OF}
 
     public static class LessonInfo {
         DayOfWeek day;
@@ -103,45 +107,47 @@ public class ScheduleAnalyzer {
         }
     }
 
+    protected Utils processor;
 
-    private Utils processor;
+    protected static ScheduleFormat FORMAT;
 
-    private static final String REMOTELY = "дистанційно";
-    private static final int COLS_NUMBER = 6;
+    protected static String REMOTELY;
+    protected static int COLS_NUMBER;
 
-    private static final int DAY_COL = 0;
-    private static final int TIME_COL = 1;
-    private static final int SUBJECT_TEACHER_COL = 2;
-    private static final int GROUP_COL = 3;
-    private static final int WEEKS_COL = 4;
-    private static final int ROOM_COL = 5;
+    protected static int DAY_COL;
+    protected static int TIME_COL;
+    protected static int SUBJECT_TEACHER_COL;
+    protected static int TEACHER_COL;
+    protected static int GROUP_COL;
+    protected static int WEEKS_COL;
+    protected static int ROOM_COL;
 
-    private static final int SHEET_START = 0;
-    private static final int ROW_START = 10;
-    private static final int COL_START = 0;
+    protected static int SHEET_START;
+    protected static int ROW_START;
+    protected static int COL_START;
 
-    private DayOfWeek dayOfWeek;
-    private Lesson.Time time;
+    protected DayOfWeek dayOfWeek;
+    protected Lesson.Time time;
 
-    private InputStream inputStream;
+    protected InputStream inputStream;
 
-    private List<LessonInfo> lessons;
+    protected List<LessonInfo> lessons;
 
-    private static final Map<String, DayOfWeek> STRING_DAY_OF_WEEK_MAP;
-    private static final Map<String, Lesson.Time> STRING_TIME_MAP;
-
-    static {
-        STRING_DAY_OF_WEEK_MAP = new HashMap<>();
-        STRING_DAY_OF_WEEK_MAP.put("понеділок",DayOfWeek.MONDAY);
-        STRING_DAY_OF_WEEK_MAP.put("вівторок",DayOfWeek.TUESDAY);
-        STRING_DAY_OF_WEEK_MAP.put("середа",DayOfWeek.WEDNESDAY);
-        STRING_DAY_OF_WEEK_MAP.put("четвер",DayOfWeek.THURSDAY);
-        STRING_DAY_OF_WEEK_MAP.put("п'ятниця",DayOfWeek.FRIDAY);
-        STRING_DAY_OF_WEEK_MAP.put("п`ятниця",DayOfWeek.FRIDAY);
-        STRING_DAY_OF_WEEK_MAP.put("субота",DayOfWeek.SATURDAY);
+    protected static final Map<String, DayOfWeek> STRING_DAY_OF_WEEK_MAP = new HashMap<>();
+    protected static final Map<String, Lesson.Time> STRING_TIME_MAP = new HashMap<>();
 
 
-        STRING_TIME_MAP = new HashMap<>();
+    public ScheduleAnalyzer(InputStream inputStream) {
+        this.inputStream = inputStream;
+        processor = new UtilsImpl();
+        lessons = new ArrayList<>();
+
+        dayOfWeek = null;
+        time = null;
+        init();
+    }
+
+    protected void init() {
         STRING_TIME_MAP.put(Lesson.Time.TIME1.getTime(), Lesson.Time.TIME1);
         STRING_TIME_MAP.put(Lesson.Time.TIME2.getTime(), Lesson.Time.TIME2);
         STRING_TIME_MAP.put(Lesson.Time.TIME3.getTime(), Lesson.Time.TIME3);
@@ -151,65 +157,88 @@ public class ScheduleAnalyzer {
         STRING_TIME_MAP.put(Lesson.Time.TIME7.getTime(), Lesson.Time.TIME7);
     }
 
-    public ScheduleAnalyzer(InputStream inputStream) {
-        this.inputStream = inputStream;
-        processor = new UtilsImpl();
-        lessons = new ArrayList<>();
-
-        dayOfWeek = null;
-        time = null;
-    }
-//    private void init(InputStream inputStream) {
-//        this.inputStream = inputStream;
-//        processor = new UtilsImpl();
-//        lessons = new ArrayList<>();
-//
-//        dayOfWeek = null;
-//        time = null;
-//    }
 
     public void analyze() {
         try {
             Workbook workbook = new XSSFWorkbook(inputStream);
             Sheet sheet = workbook.getSheetAt(SHEET_START);
-            Row row = sheet.getRow(ROW_START);
-            for(int i = ROW_START; !isEmptyRow(row); i++) {
-                row = sheet.getRow(i);
+//            Row row = sheet.getRow(ROW_START);
+            for(int i = ROW_START; ; i++) {
+                Row row = sheet.getRow(i);
+//                if (row == null) {
+//                    throw new ScheduleException("Incorrect standard format!");
+//                }
+                if (isEmptyRow(row)){
+                    break;
+                }
                 if (isWindow(row)){
                     tryGetDay(row);
                     continue;
                 }
                 processRow(row);
             }
+            workbook.close();
+            inputStream.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private boolean isWindow(Row row) {
+
+
+    protected abstract void processRow(Row row);
+
+    protected boolean isEmptyRow(Row row) {
+        if (row == null) {
+            if(FORMAT == ScheduleFormat.STD_F) {
+                throw new ScheduleException("Incorrect standard format!");
+            } else return true;
+        }
+        for (int i = COL_START; i < COL_START + COLS_NUMBER; i++) {
+            Cell cell = row.getCell(i);
+            if (cell != null && cell.getCellType() != CellType.BLANK){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    protected DayOfWeek deriveDayOfWeek(String d) {
+        d = processor.processName(d).toLowerCase();
+        DayOfWeek dayOfWeek = STRING_DAY_OF_WEEK_MAP.get(d);
+        if(dayOfWeek == null) {
+            throw new ScheduleException("Invalid day of the week: "+d);
+        }
+        return dayOfWeek;
+    }
+
+    protected boolean isWindow(Row row) {
         String subj = row.getCell(SUBJECT_TEACHER_COL).getStringCellValue();
         subj = subj.replaceAll("\\s+", "");
         return subj.isBlank();
     }
 
-    private void processRow(Row row) {
-        DayOfWeek day = tryGetDay(row);
-        Lesson.Time time = tryGetTime(row);
-        SubjectTeacher st = SubjectTeacher.getFrom(row);
-        String subject = st.getSubject();
-        String teacherFirstName = st.getFirstName();
-        String teacherLastName = st.getLastName();
-        String teacherSurname = st.getSurname();
-
-        SubjectType group = getGroup(row);
-        String weeks = getWeeks(row);
-        Room room = getRoom(row);
-
-        lessons.add(new LessonInfo(day,time,subject,teacherFirstName,teacherLastName,teacherSurname,group,weeks,room));
-        System.out.println(new LessonInfo(day,time,subject,teacherFirstName,teacherLastName,teacherSurname,group,weeks,room));
+    protected SubjectType getGroup(Row row) {
+        Cell cell = row.getCell(GROUP_COL);
+        int group = 0;
+        if (cell.getCellType() == CellType.NUMERIC) {
+            group = (int)Math.round(cell.getNumericCellValue());
+        }
+        return new SubjectType(group);
     }
 
-    private Room getRoom(Row row) {
+    protected String getWeeks(Row row) {
+        Cell cell = row.getCell(WEEKS_COL);
+        if (cell.getCellType() == CellType.NUMERIC) {
+            return Integer.toString((int)Math.round(cell.getNumericCellValue()));
+        }
+        if (cell.getCellType() == CellType.STRING) {
+            return cell.getStringCellValue().replaceAll("\\s*", "");
+        }
+        return row.getCell(WEEKS_COL).toString();
+    }
+
+    protected Room getRoom(Row row) {
         Cell cell = row.getCell(ROOM_COL);
         if (cell.getCellType() == CellType.NUMERIC) {
             return new Room(Long.toString(Math.round(cell.getNumericCellValue())));
@@ -226,43 +255,7 @@ public class ScheduleAnalyzer {
         throw new ScheduleException("Room is invalid: "+cell.toString());
     }
 
-
-    private String getWeeks(Row row) {
-        Cell cell = row.getCell(WEEKS_COL);
-        if (cell.getCellType() == CellType.NUMERIC) {
-            return Integer.toString((int)Math.round(cell.getNumericCellValue()));
-        }
-        if (cell.getCellType() == CellType.STRING) {
-            return cell.getStringCellValue().replaceAll("\\s*", "");
-        }
-        return row.getCell(WEEKS_COL).toString();
-    }
-
-    private SubjectType getGroup(Row row) {
-        Cell cell = row.getCell(GROUP_COL);
-        int group = 0;
-        if (cell.getCellType() == CellType.NUMERIC) {
-            group = (int)Math.round(cell.getNumericCellValue());
-        }
-        return new SubjectType(group);
-    }
-
-//    private SubjectType getGroup(Row row) {
-//        Cell cell = row.getCell(GROUP_COL);
-//        if (cell.getCellType() == CellType.NUMERIC) {
-//            return new SubjectType((int)Math.round(cell.getNumericCellValue()));
-//        }
-//        if (cell.getCellType() == CellType.STRING) {
-//            String groupString = processor.processName(cell.getStringCellValue()).toLowerCase();
-//            if (groupString.equals(LECTURE_STRING)) {
-//                return new SubjectType(0);
-//            }
-//            else return new SubjectType(groupString);
-//        }
-//    }
-
-
-    private Lesson.Time tryGetTime(Row row) {
+    protected Lesson.Time tryGetTime(Row row) {
         String time = row.getCell(TIME_COL).getStringCellValue();
         time = time.replaceAll("\\s+", "");
         if (time.isBlank()){
@@ -275,38 +268,18 @@ public class ScheduleAnalyzer {
         return this.time = t;
     }
 
-    private DayOfWeek tryGetDay(Row row) {
+    protected DayOfWeek tryGetDay(Row row) {
         String d = row.getCell(DAY_COL).getStringCellValue();
         if (d.isBlank()) return dayOfWeek;
         return dayOfWeek = deriveDayOfWeek(d);
     }
 
 
-
-
-    private DayOfWeek deriveDayOfWeek(String d) {
-        d = processor.processName(d).toLowerCase();
-        DayOfWeek dayOfWeek = STRING_DAY_OF_WEEK_MAP.get(d);
-        if(dayOfWeek == null) {
-            throw new ScheduleException("Invalid day of the week: "+d);
-        }
-        return dayOfWeek;
+    public List<ScheduleAnalyzer.LessonInfo> getLessons() {
+        return lessons;
     }
 
-
-
-    private boolean isEmptyRow(Row row) {
-        for (int i = COL_START; i < COL_START + COLS_NUMBER; i++) {
-            Cell cell = row.getCell(i);
-            if (cell != null && cell.getCellType() != CellType.BLANK){
-                return false;
-            }
-        }
-        return true;
-    }
-
-
-    private static class SubjectTeacher {
+    protected static class SubjectTeacher {
 
         String firstName;
         String lastName;
@@ -354,27 +327,6 @@ public class ScheduleAnalyzer {
         public String getSubject() {
             return subject;
         }
-    }
-
-    public List<LessonInfo> getLessons() {
-        return lessons;
-    }
-
-    public static void main(String[] args) throws FileNotFoundException {
-//        String s = "Hello";
-//        System.out.println(s.toString());
-//
-//        Object o = s;
-//        System.out.println(o.toString());
-
-        ScheduleAnalyzer analyzer = new ScheduleAnalyzer(new FileInputStream(new File("src/main/resources/download/Інженерія_програмного_забезпечення_БП-2_Осінь_2021–2022.xlsx")));
-        analyzer.analyze();
-        System.out.println(analyzer.getLessons());
-    }
-
-
-    public void saveSchedule() {
-
     }
 
 }
