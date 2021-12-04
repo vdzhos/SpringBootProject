@@ -1,6 +1,8 @@
 package com.sbproject.schedule.controllers;
 
 import com.sbproject.schedule.exceptions.schedule.ScheduleException;
+import com.sbproject.schedule.models.Lesson;
+import com.sbproject.schedule.models.Schedule;
 import com.sbproject.schedule.services.implementations.ScheduleReaderSaverService;
 import com.sbproject.schedule.services.implementations.SpecialtyServiceImpl;
 import com.sbproject.schedule.services.implementations.SubjectServiceImpl;
@@ -29,6 +31,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 /**
  * loads all the data in all the tabs on the settings page
@@ -77,6 +80,8 @@ public class MainController {
             adminLoggedIn = true;
         }
         model.addAttribute("adminLoggedIn",adminLoggedIn);
+        model.addAttribute("lessons",(List<Lesson>)lessonService.getAll());
+        model.addAttribute("schedule",new Schedule((List<Lesson>) lessonService.getAll()));
         return "mainPage";
     }
 

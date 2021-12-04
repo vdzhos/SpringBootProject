@@ -7,9 +7,14 @@ import com.sbproject.schedule.services.interfaces.SpecialtyService;
 import com.sbproject.schedule.services.interfaces.SubjectService;
 import com.sbproject.schedule.services.interfaces.TeacherService;
 import com.sbproject.schedule.xlsx.ScheduleAnalyzer;
+import com.sbproject.schedule.xlsx.ScheduleAnalyzerOF;
+import com.sbproject.schedule.xlsx.ScheduleAnalyzerStd;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
@@ -29,20 +34,31 @@ public class ScheduleReaderSaverService {
     private SpecialtyService specialtyService;
 
 
+    private byte[] readInputStream(InputStream inputStream) throws IOException {
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        int read = 0;
+        byte[] buff = new byte[1024];
+        while ((read = inputStream.read(buff)) != -1) {
+            bos.write(buff, 0, read);
+        }
+        return bos.toByteArray();
+    }
+
 
     public void readSaveSchedule(InputStream inputStream, long specialtyId) throws Exception {
-        List<ScheduleAnalyzer.LessonInfo> lessons = read(inputStream);
+        byte[] input = readInputStream(inputStream);
+        List<ScheduleAnalyzer.LessonInfo> lessons = read(input);
         Specialty s = specialtyService.getSpecialty(specialtyId);
         save(lessons, s);
     }
 
-    private void save(List<ScheduleAnalyzer.LessonInfo> lessons,Specialty s) throws Exception {
-        for (ScheduleAnalyzer.LessonInfo li: lessons) {
+    private void save(List<ScheduleAnalyzerStd.LessonInfo> lessons, Specialty s) throws Exception {
+        for (ScheduleAnalyzerStd.LessonInfo li: lessons) {
             save(li,s);
         }
     }
 
-    private void save(ScheduleAnalyzer.LessonInfo li, Specialty s) throws Exception {
+    private void save(ScheduleAnalyzerStd.LessonInfo li, Specialty s) throws Exception {
         Subject subject = saveSubject(li,s);
         Teacher teacher = saveTeacher(li,subject);
 
@@ -55,7 +71,7 @@ public class ScheduleReaderSaverService {
         lessonService.addLesson(lesson);
     }
 
-    private Teacher saveTeacher(ScheduleAnalyzer.LessonInfo li, Subject subject) throws Exception {
+    private Teacher saveTeacher(ScheduleAnalyzerStd.LessonInfo li, Subject subject) throws Exception {
         String teacherSurname = li.getTeacherSurname();
         Teacher teacher = null;
 
@@ -85,7 +101,7 @@ public class ScheduleReaderSaverService {
         }
     }
 
-    private Subject saveSubject(ScheduleAnalyzer.LessonInfo li, Specialty s) {
+    private Subject saveSubject(ScheduleAnalyzerStd.LessonInfo li, Specialty s) {
         String subjectName = li.getSubject();
         SubjectType type = li.getGroup();
         int quantityOfGroups = 1;
@@ -113,12 +129,25 @@ public class ScheduleReaderSaverService {
     }
 
 
-    private List<ScheduleAnalyzer.LessonInfo> read(InputStream inputStream) {
-        ScheduleAnalyzer analyzer = new ScheduleAnalyzer(inputStream);
-        analyzer.analyze();
+    private List<ScheduleAnalyzer.LessonInfo> read(byte[] bytes) {
+        ScheduleAnalyzer analyzer = new ScheduleAnalyzerStd(putBytesToInputStream(bytes));
+        try {
+            analyzer.analyze();
+        } catch (ScheduleException e) {
+            try {
+                System.out.println("TRYING TO PARSE OUR FORMAT");
+                analyzer = new ScheduleAnalyzerOF(putBytesToInputStream(bytes));
+                analyzer.analyze();
+            } catch (ScheduleException ee) {
+                throw new ScheduleException(e.getMessage()+' '+ee.getMessage());
+            }
+        }
         return analyzer.getLessons();
     }
 
+    private InputStream putBytesToInputStream(byte[] bytes) {
+        return new ByteArrayInputStream(bytes);
+    }
 
 
 }
