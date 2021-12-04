@@ -42,6 +42,8 @@ public class Teacher {
     @NotNull
     private List<Subject> subjects;
 
+
+
     @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL)
     private List<Lesson> lessons;
 

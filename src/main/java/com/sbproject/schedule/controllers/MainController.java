@@ -67,6 +67,9 @@ public class MainController {
         model.addAttribute("subjects",subjectService.getAll());
         model.addAttribute("lessons", lessonService.getAll());
         model.addAttribute("teachers", teacherService.getAll());
+        if(model.getAttribute("tab") == null){
+            model.addAttribute("tab",0);
+        }
         return "editSchedule";
     }
 
