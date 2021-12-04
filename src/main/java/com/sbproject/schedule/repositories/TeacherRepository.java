@@ -15,4 +15,11 @@ public interface TeacherRepository extends CrudRepository<Teacher,Long> {
 
     @Query("select case when count(t)> 0 then true else false end from Teacher t where lower(t.name) like lower(concat('%', :name,'%'))")
     boolean existsByName(@Param("name") String name);
+
+    @Query("select t from Teacher t where lower(t.name) like lower(concat('%', :name,'%'))")
+    Iterable<Teacher> findByPartName(@Param("name") String name);
+
+
+
 }
+

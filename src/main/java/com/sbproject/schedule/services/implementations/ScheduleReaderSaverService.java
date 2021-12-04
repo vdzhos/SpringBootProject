@@ -1,20 +1,22 @@
 package com.sbproject.schedule.services.implementations;
 
-import com.sbproject.schedule.models.Specialty;
-import com.sbproject.schedule.models.Subject;
-import com.sbproject.schedule.models.SubjectType;
+import com.sbproject.schedule.exceptions.schedule.ScheduleException;
+import com.sbproject.schedule.models.*;
 import com.sbproject.schedule.services.interfaces.LessonService;
 import com.sbproject.schedule.services.interfaces.SpecialtyService;
 import com.sbproject.schedule.services.interfaces.SubjectService;
 import com.sbproject.schedule.services.interfaces.TeacherService;
 import com.sbproject.schedule.xlsx.ScheduleAnalyzer;
+import com.sbproject.schedule.xlsx.ScheduleAnalyzerOF;
+import com.sbproject.schedule.xlsx.ScheduleAnalyzerStd;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Service
 public class ScheduleReaderSaverService {
@@ -32,45 +34,93 @@ public class ScheduleReaderSaverService {
     private SpecialtyService specialtyService;
 
 
+    private byte[] readInputStream(InputStream inputStream) throws IOException {
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        int read = 0;
+        byte[] buff = new byte[1024];
+        while ((read = inputStream.read(buff)) != -1) {
+            bos.write(buff, 0, read);
+        }
+        return bos.toByteArray();
+    }
 
-    public void readSaveSchedule(InputStream inputStream, long specialtyId) {
-        List<ScheduleAnalyzer.LessonInfo> lessons = read(inputStream);
+
+    public void readSaveSchedule(InputStream inputStream, long specialtyId) throws Exception {
+        byte[] input = readInputStream(inputStream);
+        List<ScheduleAnalyzer.LessonInfo> lessons = read(input);
         Specialty s = specialtyService.getSpecialty(specialtyId);
         save(lessons, s);
     }
 
-    private void save(List<ScheduleAnalyzer.LessonInfo> lessons,Specialty s) {
-        for (ScheduleAnalyzer.LessonInfo li: lessons) {
+    private void save(List<ScheduleAnalyzerStd.LessonInfo> lessons, Specialty s) throws Exception {
+        for (ScheduleAnalyzerStd.LessonInfo li: lessons) {
             save(li,s);
         }
     }
 
-    private void save(ScheduleAnalyzer.LessonInfo li, Specialty s) {
+    private void save(ScheduleAnalyzerStd.LessonInfo li, Specialty s) throws Exception {
         Subject subject = saveSubject(li,s);
-        saveTeacher(li,subject);
+        Teacher teacher = saveTeacher(li,subject);
 
+        Lesson lesson = new Lesson(li.getTime(),
+                subject,teacher,
+                li.getGroup(),
+                li.getWeeks(),
+                li.getRoom(),
+                li.getDay());
+        lessonService.addLesson(lesson);
     }
 
-    private void saveTeacher(ScheduleAnalyzer.LessonInfo li, Subject subject) {
+    private Teacher saveTeacher(ScheduleAnalyzerStd.LessonInfo li, Subject subject) throws Exception {
+        String teacherSurname = li.getTeacherSurname();
+        Teacher teacher = null;
 
+        Iterable<Teacher> teachers = teacherService.getTeacherByPartName(teacherSurname);
+
+        for (Teacher t: teachers) {
+            String[] name = t.getName().split("\\s+");
+            if (name.length != 3)
+                continue;
+//                throw new ScheduleException("Incorrect teacher name: "+t.getName());
+            if (name[1].startsWith(li.getTeacherFirstName()) && name[2].startsWith(li.getTeacherLastName())) {
+                teacher = t;
+                break;
+            }
+        }
+
+        if (teacher != null){
+            if (!teacher.getSubjects().contains(subject)){
+                teacher.addSubject(subject);
+                return teacherService.updateTeacherNoCheck(teacher);
+            }
+            return teacher;
+        } else {
+            teacher = new Teacher(teacherSurname+" "+li.getTeacherFirstName()+" "+li.getTeacherLastName());
+            teacher.addSubject(subject);
+            return teacherService.addTeacher(teacher);
+        }
     }
 
-    private Subject saveSubject(ScheduleAnalyzer.LessonInfo li, Specialty s) {
+    private Subject saveSubject(ScheduleAnalyzerStd.LessonInfo li, Specialty s) {
         String subjectName = li.getSubject();
         SubjectType type = li.getGroup();
-        int quantityOfGroups = 0;
+        int quantityOfGroups = 1;
         if (type.getType() == SubjectType.SubjectTypeEnum.PRACTICE) {
             quantityOfGroups = Integer.parseInt(type.getGroup());
         }
         if (subjectService.subjectExistsByName(subjectName)) {
             Subject subject = subjectService.getSubjectByName(li.getSubject());
+            boolean changed = false;
             if (!subject.getSpecialties().contains(s)) {
                 subject.addSpecialty(s);
+                changed = true;
             }
             if (subject.getQuantOfGroups() < quantityOfGroups) {
                 subject.setQuantOfGroups(quantityOfGroups);
+                changed = true;
             }
-            return subjectService.updateSubjectNoCheck(subject);
+            if (changed) return subjectService.updateSubjectNoCheck(subject);
+            return subject;
         } else {
             Subject subject = new Subject(subjectName,quantityOfGroups);
             subject.addSpecialty(s);
@@ -79,12 +129,25 @@ public class ScheduleReaderSaverService {
     }
 
 
-    private List<ScheduleAnalyzer.LessonInfo> read(InputStream inputStream) {
-        ScheduleAnalyzer analyzer = new ScheduleAnalyzer(inputStream);
-        analyzer.analyze();
+    private List<ScheduleAnalyzer.LessonInfo> read(byte[] bytes) {
+        ScheduleAnalyzer analyzer = new ScheduleAnalyzerStd(putBytesToInputStream(bytes));
+        try {
+            analyzer.analyze();
+        } catch (ScheduleException e) {
+            try {
+                System.out.println("TRYING TO PARSE OUR FORMAT");
+                analyzer = new ScheduleAnalyzerOF(putBytesToInputStream(bytes));
+                analyzer.analyze();
+            } catch (ScheduleException ee) {
+                throw new ScheduleException(e.getMessage()+' '+ee.getMessage());
+            }
+        }
         return analyzer.getLessons();
     }
 
+    private InputStream putBytesToInputStream(byte[] bytes) {
+        return new ByteArrayInputStream(bytes);
+    }
 
 
 }

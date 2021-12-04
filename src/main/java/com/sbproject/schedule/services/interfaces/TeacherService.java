@@ -13,10 +13,13 @@ public interface TeacherService {
     Teacher addTeacher(Teacher teacher);
 
     boolean teacherExistsById(Long id);
+    boolean teacherExistsByName(String name);
 
     boolean deleteTeacher(Long id) throws NoTeacherWithSuchIdException;
     boolean updateTeacher(Long id, String name);
     Teacher updateTeacher(Teacher teacher) throws NoTeacherWithSuchIdException;
+    Teacher updateTeacherNoCheck(Teacher teacher);
     Teacher getTeacherById(Long id) throws Exception;
+    Iterable<Teacher> getTeacherByPartName(String name) throws Exception;
     Iterable<Teacher> getAll();
 }
