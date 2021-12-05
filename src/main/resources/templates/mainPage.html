@@ -154,7 +154,7 @@
                          <form class="col-12" action="/view/teacher/" method="get">
                          	<div class="form-group">
                          		<div class="row">
-                                   <label for="teacherIdSelect">Choose specialty:</label>
+                                   <label for="teacherIdSelect">Choose teacher:</label>
                           		   <select required name="teacherId" id="teacherIdSelect" class="form-control">
                               	   		<option th:each="teacher: ${teachers}" th:text="${teacher.toString}" th:value="${teacher.id}" th:selected="${teachers[0].id}"></option>
                                	   </select>
