@@ -2,8 +2,6 @@ package com.sbproject.schedule.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -64,14 +62,11 @@ public class ScheduleTableController {
 		{
 			lessons = subjectService
 				.getSubjectById(Long.parseLong(subjectId))
-				.getLessons()
-				.stream()
-				.filter(less -> less.getIntWeeks().contains(week))
-				.collect(Collectors.toList());
+				.getLessons();
 		}
 		else
 		{
-			lessons = new ArrayList<Lesson>();
+			lessons.clear();
 			StreamSupport.stream(this.subjects.spliterator(), false).forEach(subj -> lessons.addAll(subj.getLessons()));
 		}
 		if(week != -1)
