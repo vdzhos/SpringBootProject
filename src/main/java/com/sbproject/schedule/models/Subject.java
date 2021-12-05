@@ -152,7 +152,12 @@ public class Subject {
     public Set<Specialty> getSpecialties() {
         return specialties;
     }
-
+    
+    public List<Lesson> getLessons()
+    {
+    	return this.lessons;
+    }
+    
     public String getSpecialtiesToString() {
         StringBuilder stringBuilder = new StringBuilder();
         if (specialties.isEmpty()) return "";

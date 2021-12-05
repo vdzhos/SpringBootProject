@@ -2,6 +2,7 @@ package com.sbproject.schedule.services.implementations;
 
 import com.sbproject.schedule.exceptions.subject.NoSubjectWithSuchIdToDelete;
 import com.sbproject.schedule.exceptions.subject.SubjectNotFoundException;
+import com.sbproject.schedule.models.Lesson;
 import com.sbproject.schedule.models.Specialty;
 import com.sbproject.schedule.models.Subject;
 import com.sbproject.schedule.repositories.SubjectRepository;
@@ -11,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 @Service
 public class SubjectServiceImpl implements SubjectService {
@@ -125,5 +128,25 @@ public class SubjectServiceImpl implements SubjectService {
         return subject.getName().equals(name) && subject.getQuantOfGroups() == quantOfGroups
                 && subject.getSpecialties().equals(specialties);
     }
+
+	@Override
+	public Set<Integer> getLessonWeeks(Long id) {
+		Subject sbj = this.getSubjectById(id);
+		SortedSet<Integer> set = new TreeSet<Integer>();
+		for(Lesson less : sbj.getLessons())
+			set.addAll(less.getIntWeeks());
+		return set;
+	}
+
+	@Override
+	public Set<Integer> getLessonWeeks(Set<Long> ids) {
+		SortedSet<Integer> set = new TreeSet<Integer>();
+		for(Long id : ids)
+			set.addAll(this.getLessonWeeks(id));
+		return set;
+	}
+    
+    
+    
 
 }

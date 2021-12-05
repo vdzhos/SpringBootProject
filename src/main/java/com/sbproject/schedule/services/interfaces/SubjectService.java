@@ -21,4 +21,9 @@ public interface SubjectService {
     Subject getSubjectById(Long id);
     boolean subjectExistsById(Long id);
     boolean subjectExistsByName(String name);
+    
+    Set<Integer> getLessonWeeks(Long id);
+    
+    Set<Integer> getLessonWeeks(Set<Long> ids);
+    
 }
