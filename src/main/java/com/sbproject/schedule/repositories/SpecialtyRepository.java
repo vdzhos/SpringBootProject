@@ -21,7 +21,7 @@ public interface SpecialtyRepository extends CrudRepository<Specialty, Long> {
     Iterable<Specialty> findByName(String name);
 
     @Query("select case when count(s)> 0 then true else false end from Specialty s where lower(s.name) like lower(concat('%', :name,'%')) and s.year = :year and not s.id = :id")
-    boolean existsByNameAndYearAndId(@Param("id") long id, @Param("name") String name,@Param("year") int year);
+    boolean existsByNameAndYearAndNotId(@Param("id") long id, @Param("name") String name,@Param("year") int year);
 
 
     @Query("select case when count(s)> 0 then true else false end from Specialty s where lower(s.name) like lower(concat('%', :name,'%')) and s.year = :year")

@@ -39,7 +39,7 @@ public class LessonController {
                             @RequestParam String room, Model model, RedirectAttributes redirect){
         RedirectView redirectView = new RedirectView("/admin",true);
         boolean success = true;
-        String notification = "New class has been successfully added!";
+        String notification = "New lesson has been successfully added!";
         try {
             lessonService.addLesson(Lesson.Time.values()[time],subjId,teachId,new SubjectType(group), weeks, room, DayOfWeek.of(day));
         } catch (Exception e) {
@@ -58,7 +58,7 @@ public class LessonController {
     public RedirectView deleteLesson(@RequestParam Long id, @RequestParam String lesson, Model model, RedirectAttributes redirect){
         RedirectView redirectView = new RedirectView("/admin",true);
         boolean success = true;
-        String notification = "Class has been successfully deleted!";
+        String notification = "Lesson has been successfully deleted!";
         ThreadContext.put("lesson", lesson);
         try {
             lessonService.deleteLesson(id);
@@ -81,7 +81,7 @@ public class LessonController {
                                @RequestParam String weeks, @RequestParam String room, Model model, RedirectAttributes redirect){
         RedirectView redirectView = new RedirectView("/admin",true);
         boolean success = true;
-        String notification = "Class has been successfully updated!";
+        String notification = "Lesson has been successfully updated!";
         try {
             lessonService.updateLesson(id,Lesson.Time.values()[time],subjId,teachId,new SubjectType(group),weeks,room,DayOfWeek.of(day));
         } catch (Exception e) {

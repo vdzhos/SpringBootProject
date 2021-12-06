@@ -1,32 +1,25 @@
 package com.sbproject.schedule.services.implementations;
 
 import com.sbproject.schedule.exceptions.subject.NoSubjectWithSuchIdToDelete;
-import com.sbproject.schedule.exceptions.subject.NoSubjectWithSuchIdToUpdate;
 import com.sbproject.schedule.exceptions.subject.SubjectNotFoundException;
+import com.sbproject.schedule.models.Lesson;
 import com.sbproject.schedule.models.Specialty;
 import com.sbproject.schedule.models.Subject;
-import com.sbproject.schedule.models.Teacher;
-import com.sbproject.schedule.repositories.SpecialtyRepository;
 import com.sbproject.schedule.repositories.SubjectRepository;
 import com.sbproject.schedule.services.interfaces.SubjectService;
-import com.sbproject.schedule.utils.Markers;
 import com.sbproject.schedule.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
-import java.util.Optional;
 import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 @Service
 public class SubjectServiceImpl implements SubjectService {
 
     @Autowired
     private SubjectRepository subjectRepository;
-
-    @Autowired
-    private SpecialtyRepository specialtyRepository;
 
     private Utils processor;
 
@@ -35,24 +28,22 @@ public class SubjectServiceImpl implements SubjectService {
         this.processor = processor;
     }
 
-    //TO DO - need to add better check
     @Override
-    public boolean addSubject(String name, int quantOfGroups, Set<Specialty> specialties) {
-        //must not use existsByNameAndSpecialties
-//        if(subjectRepository.existsByNameAndSpecialties(name, specialties))
-//            return false;
-//        subjectRepository.save(new Subject(processor.getUniqueId(), processor.processName(name), quantOfGroups, teachers, specialties));
-//        return true;
-        if (subjectRepository.existsByName(name) || specialties.isEmpty())
-            return false;
-        subjectRepository.save(new Subject(name, quantOfGroups, specialties));
-        return true;
+    public Subject addSubject(String name, int quantOfGroups, Set<Specialty> specialties) {
+        name = processor.processName(name);
+        processor.checkSubjectName(name);
+        processor.checkQuantOfGroups(quantOfGroups);
+        processor.checkQuantOfSpecialties(specialties == null? 0 : specialties.size());
+        Iterable<Subject> subjectsWithSuchName = subjectRepository.findByName(name);
+        processor.checkSpecialties(subjectsWithSuchName, specialties);
+        return subjectRepository.save(new Subject(name, quantOfGroups, specialties));
     }
 
     @Override
     public Subject addSubject(Subject subject) {
         subject.setId(-1L);
-        return subjectRepository.save(subject);
+        //return subjectRepository.save(subject);
+        return addSubject(subject.getName(), subject.getQuantOfGroups(), subject.getSpecialties());
     }
 
     @Transactional
@@ -63,28 +54,36 @@ public class SubjectServiceImpl implements SubjectService {
     }
 
     @Override
-    public boolean updateSubject(Long id, String name, int quantOfGroups, Set<Teacher> teachers, Set<Specialty> specialties) {
-        //subjectRepository.save(new Subject(processor.getUniqueId(), processor.processName(name), quantOfGroups, teachers, specialties));
-        //return false;
-        Optional<Subject> subjectOp = subjectRepository.findById(id);//.orElseThrow();
-        if (subjectOp.isPresent()){
-            Subject subject = subjectOp.get();
-            //logger.info();
-            //if(nothingChanged(subject)) return;
-            subject.setName(name);
+    public Subject updateSubject(Long id, String name, int quantOfGroups,
+                                 //Set<Teacher> teachers,
+                                 Set<Specialty> specialties) {
+        name = processor.processName(name);
+        processor.checkSubjectName(name);
+        processor.checkQuantOfGroups(quantOfGroups);
+        processor.checkQuantOfSpecialties(specialties == null? 0 : specialties.size());
+        Iterable<Subject> subjectsWithSuchName = subjectRepository.findByNameAndNotId(id, name);
+        processor.checkSpecialties(subjectsWithSuchName, specialties);
+        String finalName = name;
+        return subjectRepository.findById(id).map((subject) -> {
+            if (nothingChanged(subject, finalName, quantOfGroups, specialties))
+                return subject;
+            subject.setName(finalName);
             subject.setQuantOfGroups(quantOfGroups);
-            subject.setTeachers(teachers);
+            //subject.setTeachers(teachers);
             subject.setSpecialties(specialties);
-            subjectRepository.save(subject);
-            return true;
-        }
-        return false;
+            return subjectRepository.save(subject);
+        }).orElseGet(() -> {
+            //return subjectRepository.save(new Subject(id, finalName, quantOfGroups, teachers, specialties));
+            return subjectRepository.save(new Subject(id, finalName, quantOfGroups, specialties));
+        });
     }
 
     @Override
     public Subject updateSubject(Subject subject) {
-        if(!subjectExistsById(subject.getId())) throw new NoSubjectWithSuchIdToUpdate(subject.getId());
-        return subjectRepository.save(subject);
+        //if(!subjectExistsById(subject.getId())) throw new NoSubjectWithSuchIdToUpdate(subject.getId());
+        //return subjectRepository.save(subject);
+        //return updateSubject(subject.getId(), subject.getName(), subject.getQuantOfGroups(), subject.getTeachers(), subject.getSpecialties());
+        return updateSubject(subject.getId(), subject.getName(), subject.getQuantOfGroups(), subject.getSpecialties());
     }
 
     @Override
@@ -125,5 +124,29 @@ public class SubjectServiceImpl implements SubjectService {
         return subjectRepository.existsByName(name);
     }
 
+    private boolean nothingChanged(Subject subject, String name, int quantOfGroups, Set<Specialty> specialties) {
+        return subject.getName().equals(name) && subject.getQuantOfGroups() == quantOfGroups
+                && subject.getSpecialties().equals(specialties);
+    }
+
+	@Override
+	public Set<Integer> getLessonWeeks(Long id) {
+		Subject sbj = this.getSubjectById(id);
+		SortedSet<Integer> set = new TreeSet<Integer>();
+		for(Lesson less : sbj.getLessons())
+			set.addAll(less.getIntWeeks());
+		return set;
+	}
+
+	@Override
+	public Set<Integer> getLessonWeeks(Set<Long> ids) {
+		SortedSet<Integer> set = new TreeSet<Integer>();
+		for(Long id : ids)
+			set.addAll(this.getLessonWeeks(id));
+		return set;
+	}
+    
+    
+    
 
 }

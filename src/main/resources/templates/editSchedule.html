@@ -99,47 +99,40 @@
                     </div>
 
                     <div role="tabpanel" th:class="${tab==1} ? 'tab-pane fade show active' : 'tab-pane fade'" id="subjects">
-                        <h3 th:text="#{edit.subjects}">Subjects</h3>
+                        <h3 class="mt-3 mb-4" th:text="#{edit.subjects}">Subjects</h3>
 
                         <form action="/subject/add" method="post">
-                            <label><span th:text="#{edit.name}"></span>: <input required name="name" type="text" th:placeholder="#{edit.enter-the-name}"/></label>
-                            <label><span th:text="#{edit.quantity-of-groups}"></span>: <input required name="quantOfGroups" type="number" min="1" max="20"/></label>
-                            <label><span th:text="#{edit.specialties}"></span>:
-                                <input name="specialties" th:each="specialty: ${specialties}" th:value="${specialty.id}" th:text="${specialty.name}+'-'+${specialty.year}" type="checkbox"/>
-                            </label>
-                            <button type="submit" th:text="#{edit.add}">Add</button>
-                            <button type="reset" th:text="#{edit.clear}">Clear</button>
+                            <label class="mr-2"><span th:text="#{edit.name}"></span>: <input required name="name" type="text" th:placeholder="#{edit.enter-the-name}"/></label>
+                            <label class="mr-2"><span th:text="#{edit.quantity-of-groups}"></span>: <input required name="quantOfGroups" type="number" min="1" max="20"/></label>
+                            <label class="mr-4"><span th:text="#{edit.specialties}"></span>:
+                                <input name="specialties" th:each="specialty: ${specialties}"
+                                       th:value="${specialty.id}" th:text="${specialty}"
+                                       type="checkbox"/></label>
+                            <button id="btnAddSubject" class="btn btn-info mr-1" type="submit" th:text="#{edit.add}">Add</button>
+                            <button class="btn btn-secondary" type="reset" th:text="#{edit.clear}">Clear</button>
                         </form>
                         <br/>
-
-                        <div>
-                            <table border="1px">
-                                <caption th:text="#{edit.added-subjects}">Added subjects</caption>
+                        <div class="mt-5">
+                            <h4 class="mb-4" th:text="#{edit.added-subjects}">Added subjects</h4>
+                            <table class="table" >
                                 <tr>
-                                    <th th:text="#{edit.name}">Name</th>
-                                    <th th:text="#{edit.quantity-of-groups}">Quantity of groups</th>
-                                    <th th:text="#{edit.teachers}">Teachers</th>
-                                    <th th:text="#{edit.specialties}">Specialties</th>
-                                    <th></th>
-                                    <th></th>
+                                    <th style="width: 15%;" th:text="#{edit.name}">Name</th>
+                                    <th style="width: 15%;" th:text="#{edit.quantity-of-groups}">Quantity of groups</th>
+                                    <th style="width: 30%;" th:text="#{edit.teachers}">Teachers</th>
+                                    <th style="width: 30%;" th:text="#{edit.specialties}">Specialties</th>
+                                    <th style="width: 10%;"></th>
                                 </tr>
                                 <tr th:each="subject: ${subjects}">
                                     <td th:text="${subject.name}"></td>
                                     <td th:text="${subject.quantOfGroups}"></td>
-                                    <td th:text="${subject.teachers}"></td>
-                                    <td th:text="${subject.specialties}"></td>
-                                    <td><form action="subject/delete/" method="post">
-                                        <input name="id" type="hidden" th:value="${subject.id}">
-                                        <button type="submit" th:text="#{edit.delete}">Delete</button>
-                                    </form></td>
-                                    <td><form action="subject/update/" method="post">
-                                        <input name="id" type="hidden" th:value="${subject.id}">
-                                        <button type="submit" th:text="#{edit.update}">Update</button>
-                                    </form></td>
+                                    <td th:text="${subject.getTeachersToString()}"></td>
+                                    <td th:text="${subject.getSpecialtiesToString()}"></td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" th:attr="data-target='#modal'+${subject.id}" th:text="#{edit.change}">Change</button>
+                                    </td>
                                 </tr>
                             </table>
                         </div>
-
                     </div>
 
                     <div role="tabpanel" th:class="${tab==2} ? 'tab-pane fade show active' : 'tab-pane fade'" id="teachers">
@@ -147,7 +140,7 @@
 
                         <form action="/teacher/add" method="post">
                             <label><span th:text="#{edit.name}"></span>: <input name="name" type="text" th:placeholder="#{edit.enter-the-name}"/></label>
-                            <label><span th:text="#{edit.subjects}"></span>: <input name="subjects" th:each="subject: ${subjects}" th:value="${subject.id}" th:text="${subject.name}"
+                            <label><span th:text="#{edit.subjects}"></span>: <input name="subjects" th:each="subject: ${subjects}" th:value="${subject.id}" th:text="${subject}"
                                                     type="checkbox"/></label>
                             <button type="submit" th:text="#{edit.add}">Add</button>
                             <button type="reset" th:text="#{edit.clear}">Clear</button>
@@ -316,6 +309,55 @@
     </section>
 
     <section>
+        <div th:each="subject: ${subjects}" class="modal fade" th:id="'modal'+${subject.id}">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Subjects</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <div class="container">
+                            <div class="row align-items-center">
+                                <form class="col-12" action="/subject/update/" method="post">
+                                    <div class="form-group">
+                                        <label for="subjName">Name:</label>
+                                        <input required th:attr="value=${subject.name} " type="text" class="form-control" id="subjName" placeholder="Enter the name" name="subjName">
+                                    </div>
+                                    <input name="id" type="hidden" th:value="${subject.id}">
+                                    <input name="subject" type="hidden" th:value="${subject.toString()}">
+                                    <div class="form-group">
+                                        <label for="subjQuantOfGroups">Quantity of groups:</label>
+                                        <input required class="form-control" type="number" id="subjQuantOfGroups" name="subjQuantOfGroups" min="1" max="20" step="1" th:value="${subject.quantOfGroups}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="subjTeachers">Teachers:</label>
+                                        <input th:attr="value=${subject.getTeachersToString()} " type="text" class="form-control" id="subjTeachers" name="subjTeachers" disabled>
+                                    </div>
+                                    <div class="form-group">
+                                            <label class="mr-4"><span th:text="#{edit.specialties}"></span>:
+                                                <input name="subjSpecialties" th:each="specialty: ${specialties}" th:value="${specialty.id}"
+                                                       th:text="${specialty}" type="checkbox" th:checked="${subject.hasSpecialty(specialty)}"/></label>
+                                    </div>
+                                    <div style="height: 15px;"></div>
+                                    <div class="form-group">
+                                        <button id="btnUpdateSubject" type="submit" class="col-3 btn btn-success" th:text="#{edit.update}">Update</button>
+                                        <button formaction="subject/delete/" type="submit" class="ml-2 col-3 btn btn-danger" th:text="#{edit.delete}">Delete</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
         <div th:each="lesson: ${lessons}" class="modal fade" th:id="'modal'+${lesson.id}">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -415,6 +457,33 @@
 
 
 </section>
+
+<script>
+    function isAtLeastOneCheckboxChecked(name) {
+        const checkboxes = document.getElementsByName(name);
+        for (let i = 0; i < checkboxes.length; i += 1) {
+            if (checkboxes[i].checked) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    document.getElementById('btnAddSubject').addEventListener('click', () => {
+        if (!isAtLeastOneCheckboxChecked('specialties')) {
+            alert("Choose at least one specialty!");
+            //Do not allow request to process!
+        }
+    });
+
+    document.getElementById('btnUpdateSubject').addEventListener('click', () => {
+        if (!isAtLeastOneCheckboxChecked('subjSpecialties')) {
+            alert("Choose at least one specialty!");
+            //Do not allow request to process!
+        }
+    });
+
+</script>
 </body>
 </html>
 <!------------------------------------------------------------------------------------------------------------->

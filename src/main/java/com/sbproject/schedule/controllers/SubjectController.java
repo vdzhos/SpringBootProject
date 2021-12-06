@@ -7,6 +7,7 @@ import com.sbproject.schedule.services.interfaces.SubjectService;
 import com.sbproject.schedule.utils.Markers;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.ThreadContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -41,43 +42,72 @@ public class SubjectController {
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/add")
     public RedirectView addSubject(@RequestParam String name, @RequestParam int quantOfGroups,
-                             @RequestParam Set<Specialty> specialties, Model model, RedirectAttributes redir){
-        //put info about success/failure into the model
-        //return "redirect:/";
+                             @RequestParam Set<Specialty> specialties, RedirectAttributes redir){
         RedirectView redirectView= new RedirectView(REDIRECT_EDIT_PAGE_URL,true);
-        String notification = "Предмет '"+name+"' було успішно додано!";
-        boolean success = subjectService.addSubject(name, quantOfGroups, specialties);
-        if(success) logger.info(Markers.ALTERING_SUBJECT_TABLE_MARKER,"Subject {} with {} groups has been successfully added!", name, quantOfGroups);
-        else {
-            notification = "Предмет не було додано!";
-            logger.error(Markers.ALTERING_SUBJECT_TABLE_MARKER,"Subject {} with {} groups has not been added!", name, quantOfGroups);
+        String notification = "Subject '"+name+"' has been successfully added!";
+        boolean success = true;
+        try {
+            subjectService.addSubject(name, quantOfGroups, specialties);
+            logger.info(Markers.ALTERING_SUBJECT_TABLE_MARKER,"Subject {} with {} groups has been successfully added!", name, quantOfGroups);
         }
+        catch (Exception e) {
+            success = false;
+            notification = e.getMessage();
+            logger.error(Markers.ALTERING_SUBJECT_TABLE_MARKER,notification + " Subject {} with {} groups has not been added!", name, quantOfGroups);
+        }
+        redir.addFlashAttribute("showNotification", true);
         redir.addFlashAttribute("success", success);
         redir.addFlashAttribute("notification", notification);
+        redir.addFlashAttribute("tab",1);
+        return redirectView;
+    }
+
+    /*@PreAuthorize("hasRole('ADMIN')")
+    @PostMapping("/add")
+    public RedirectView addSubject(@RequestParam String name, @RequestParam int quantOfGroups, RedirectAttributes redir){
+        return addSubject(name, quantOfGroups, null, redir);
+    }*/
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @PostMapping("/delete")
+    public RedirectView deleteSubject(@RequestParam Long id, @RequestParam String subject, RedirectAttributes redir) {
+        ThreadContext.put("subject",subject);
+        subjectService.deleteSubject(id);
+        ThreadContext.clearAll();
+        RedirectView redirectView= new RedirectView(REDIRECT_EDIT_PAGE_URL,true);
+        String notification = "Subject has been successfully deleted!";
+        logger.info(Markers.DELETE_SUBJECT_MARKER,notification);
+        redir.addFlashAttribute("showNotification", true);
+        redir.addFlashAttribute("success", true);
+        redir.addFlashAttribute("notification",notification);
+        redir.addFlashAttribute("tab",1);
         return redirectView;
     }
 
     @PreAuthorize("hasRole('ADMIN')")
-    @PostMapping("/delete")
-    public String deleteSubject(@RequestParam Long id, Model model) throws Exception{
-        subjectService.deleteSubject(id);
-        logger.info(Markers.DELETE_SUBJECT_MARKER,"Subject has been successfully deleted!");
-        //put info about success/failure into the model
-        return "redirect:"+REDIRECT_EDIT_PAGE_URL;
+    @PostMapping("/update")
+    public RedirectView updateSubject(@RequestParam Long id, @RequestParam String subjName,
+                                      @RequestParam int subjQuantOfGroups,
+                                      //@RequestParam Set<Teacher> subjTeachers,
+                                      @RequestParam Set<Specialty> subjSpecialties,
+                                      RedirectAttributes redir){
+        RedirectView redirectView= new RedirectView(REDIRECT_EDIT_PAGE_URL,true);
+        String notification = "Subject has been successfully updated!";
+        boolean success = true;
+        try{
+            //subjectService.updateSubject(id, subjName, subjQuantOfGroups, subjTeachers, subjSpecialties);
+            subjectService.updateSubject(id, subjName, subjQuantOfGroups, subjSpecialties);
+            logger.info(Markers.UPDATE_SUBJECT_MARKER,notification);
+        } catch (Exception e) {
+            success = false;
+            notification = e.getMessage();
+            logger.error(Markers.UPDATE_SUBJECT_MARKER,notification + " Subject has not been updated!");
+        }
+        redir.addFlashAttribute("showNotification", true);
+        redir.addFlashAttribute("success", success);
+        redir.addFlashAttribute("notification",notification);
+        redir.addFlashAttribute("tab",1);
+        return redirectView;
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
-    @PostMapping("/update")//@RequestParam Long id,@RequestParam String newName,@RequestParam int newQuantOfGroups,@RequestParam List<Teacher> newTeachers, @RequestParam List<Specialty> newSpecialties
-    public String updateSubject(Model model){
-//        SubjectService.updateSubject(newName,newQuantOfSubjects, newTeachers, newSpecialties);
-        //put info about success/failure into the model
-        return "redirect:"+REDIRECT_EDIT_PAGE_URL;
-    }
-
-    @PreAuthorize("hasRole('ADMIN') or hasRole('REGULAR')")
-    @GetMapping("/get")
-    public String getSubjects(){
-        System.out.println(subjectService.countTeachers(4L));
-        return "main";
-    }
 }

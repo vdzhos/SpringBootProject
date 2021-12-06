@@ -76,6 +76,7 @@ public class MainController {
         }
         model.addAttribute("adminLoggedIn",adminLoggedIn);
         model.addAttribute("lessons",(List<Lesson>)lessonService.getAll());
+        model.addAttribute("teachers", teacherService.getAll());
         model.addAttribute("schedule",new Schedule((List<Lesson>) lessonService.getAll()));
         return "mainPage";
     }

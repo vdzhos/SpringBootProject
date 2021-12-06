@@ -35,7 +35,7 @@ public class SpecialtyController {
     @PostMapping("/add")
     public RedirectView addSpecialty(@RequestParam String name, @RequestParam int year, Model model, RedirectAttributes redir){
         RedirectView redirectView= new RedirectView(REDIRECT_EDIT_PAGE_URL,true);
-        String notification = "Спеціальність '"+name+" - "+year+"' було успішно додано!";
+        String notification = "Specialty '"+name+" - "+year+"' has been successfully added!";
         boolean success = true;
         try{
             specialtyService.addSpecialty(name, year);
@@ -57,7 +57,7 @@ public class SpecialtyController {
         specialtyService.deleteSpecialty(id);
         ThreadContext.clearAll();
         RedirectView redirectView= new RedirectView(REDIRECT_EDIT_PAGE_URL,true);
-        String notification = "Спеціальність було успішно видалено!";
+        String notification = "Specialty has been successfully deleted!\nAll subjects that had been taught only on this specialty have been deleted too!";
         redir.addFlashAttribute("showNotification", true);
         redir.addFlashAttribute("success", true);
         redir.addFlashAttribute("notification",notification);
@@ -69,7 +69,7 @@ public class SpecialtyController {
     @PostMapping("/update")
     public RedirectView updateSpecialty(@RequestParam Long id,@RequestParam String specName,@RequestParam int specYear, RedirectAttributes redir){
         RedirectView redirectView= new RedirectView(REDIRECT_EDIT_PAGE_URL,true);
-        String notification = "Спеціальність було успішно оновлено на '"+specName+" - "+specYear+"'!";
+        String notification = "Specialty has been successfully updated to '"+specName+" - "+specYear+"'!";
         boolean success = true;
         try{
             specialtyService.updateSpecialty(id,specName,specYear);

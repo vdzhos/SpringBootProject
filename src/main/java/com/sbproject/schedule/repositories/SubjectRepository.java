@@ -9,12 +9,13 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface SubjectRepository extends CrudRepository<Subject,Long> {
 
-    Iterable<Subject> findByName(String name);
+    @Query("select s from Subject s where lower(s.name) like lower( :name)")
+    Iterable<Subject> findByName(@Param("name") String name);
 
+    @Query("select s from Subject s where lower(s.name) like lower( :name) and not s.id = :id")
+    Iterable<Subject> findByNameAndNotId(@Param("id") long id, @Param("name") String name);
 
-    // Not tested
     @Query("select case when count(s)> 0 then true else false end from Subject s where lower(s.name) like lower(concat('%', :name,'%'))")
     boolean existsByName(@Param("name") String name);
-
 
 }

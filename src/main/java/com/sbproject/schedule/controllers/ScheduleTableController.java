@@ -1,0 +1,96 @@
+package com.sbproject.schedule.controllers;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.sbproject.schedule.models.Lesson;
+import com.sbproject.schedule.models.Subject;
+import com.sbproject.schedule.services.interfaces.SpecialtyService;
+import com.sbproject.schedule.services.interfaces.SubjectService;
+import com.sbproject.schedule.services.interfaces.TeacherService;
+
+@Controller
+@RequestMapping("/view")
+public class ScheduleTableController {
+
+	@Autowired
+    private SpecialtyService specialtyService;
+    @Autowired
+	private TeacherService teacherService;
+	@Autowired
+	private SubjectService subjectService;
+	
+	private Iterable<Subject> subjects;
+	
+	private Iterable<Integer> weeks;
+	
+	private List<Lesson> lessons;
+	
+	@GetMapping("/specialty")
+	public String getSpecialtySchedule(@RequestParam Long specialtyId, Model model) throws Throwable
+	{
+		initContainers(false, specialtyId);
+		model.addAttribute("subjects", subjects);
+		model.addAttribute("weeks", weeks);
+		model.addAttribute("lessons", lessons);
+		return "scheduleTablePage";
+	}
+	
+	@GetMapping("/teacher")
+	public String getTeacherSchedule(@RequestParam Long teacherId, Model model) throws Throwable
+	{
+		initContainers(true, teacherId);
+		model.addAttribute("subjects", subjects);
+		model.addAttribute("weeks", weeks);
+		model.addAttribute("lessons", lessons);
+		return "scheduleTablePage";
+	}
+	
+	@GetMapping("/filterSchedule")
+	public String applyFilters(@RequestParam String subjectId, @RequestParam int week, Model model)
+	{
+		if(!subjectId.equals("Not selected"))
+		{
+			lessons = subjectService
+				.getSubjectById(Long.parseLong(subjectId))
+				.getLessons();
+		}
+		else
+		{
+			lessons.clear();
+			StreamSupport.stream(this.subjects.spliterator(), false).forEach(subj -> lessons.addAll(subj.getLessons()));
+		}
+		if(week != -1)
+		{
+			lessons.removeIf(less -> !less.getIntWeeks().contains(week));
+		}
+		model.addAttribute("lessons", lessons);
+		model.addAttribute("subjects", this.subjects);
+		model.addAttribute("weeks", this.weeks);
+		return "scheduleTablePage";
+	}
+	
+	
+	private void initContainers(boolean forTeacher, Long id) throws Throwable
+	{
+		if(forTeacher)
+			subjects = this.teacherService.getTeacherById(id).getSubjects();
+		else
+			subjects = this.specialtyService.getSpecialty(id).getSubjects();
+		weeks = this.subjectService.getLessonWeeks(StreamSupport
+				.stream(subjects.spliterator(), false)
+				.map(sub -> sub.getId())
+				.collect(Collectors.toSet()));
+		lessons = new ArrayList<Lesson>();
+		StreamSupport.stream(this.subjects.spliterator(), false).forEach(subj -> lessons.addAll(subj.getLessons()));
+	}
+}

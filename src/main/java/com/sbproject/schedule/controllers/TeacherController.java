@@ -38,11 +38,11 @@ public class TeacherController {
     @PostMapping("/add")
     public RedirectView addTeacher(@RequestParam String name, @RequestParam List<Subject> subjects, Model model, RedirectAttributes redir){
         RedirectView redirectView= new RedirectView("/admin",true);
-        String notification = "Вчитель '"+name+"' був успішно доданий!";
+        String notification = "Teacher '"+name+"' has been successfully added!";
         boolean success =  teacherService.addTeacher(name, subjects);
         if(success) logger.info(Markers.ALTERING_TEACHER_TABLE_MARKER,"Teacher {} with {} subjects has been successfully added!", name, subjects);
         else {
-            notification = "Вчитель не був доданий!";
+            notification = "Teacher has not been added!";
             logger.error(Markers.ALTERING_TEACHER_TABLE_MARKER,"Teacher {} with {} subjects has not been added!", name, subjects);
         }
         redir.addFlashAttribute("success", success);
@@ -56,11 +56,11 @@ public class TeacherController {
     public RedirectView deleteTeacher(@RequestParam Long id, @RequestParam String teacherToString, Model model, RedirectAttributes redir) throws Exception {
         RedirectView redirectView = new RedirectView("/admin",true);
         String name = teacherService.getTeacherById(id).getName();
-        String notification = "Вчитель '"+ name +"' був успішно доданий!";
+        String notification = "Teacher '"+ name +"' has been successfully deleted!";
         boolean success =  teacherService.deleteTeacher(id);
         if(success) logger.info(Markers.DELETE_TEACHER_MARKER,"Teacher {} has been successfully deleted!", name);
         else {
-            notification = "Вчитель не був видалений!";
+            notification = "Teacher has not been deleted!";
             logger.error(Markers.DELETE_TEACHER_MARKER,"Teacher {} has not been deleted!", name);
         }
         redir.addFlashAttribute("success", success);
