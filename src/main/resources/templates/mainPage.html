@@ -22,8 +22,8 @@
 
 
 
-    <div  class="row">
-        <div th:if="${adminLoggedIn}" class="col-12">
+    <div th:if="${adminLoggedIn}" class="row">
+        <div class="col-12">
             <h3>Upload schedule from file</h3>
             <form class="container" action="/uploadSchedule" method="post" enctype="multipart/form-data">
                 <div class="form-group row align-items-center">
@@ -50,8 +50,8 @@
             <h3>Schedule</h3>
         </div>
         <div class="col-12">
-
-            <table class="table">
+            <h4 th:if="${schedule.getDays().size()<=0}">No schedule for this specialty yet</h4>
+            <table th:if="${schedule.getDays().size()>0}" class="table">
                 <tr>
                     <th>Day</th>
                     <th>Time</th>
@@ -61,7 +61,7 @@
                     <th>Weeks</th>
                     <th>Room</th>
                 </tr>
-                <th:block  th:each="day: ${schedule.getDays()}" >
+                <th:block th:each="day: ${schedule.getDays()}" >
                     <tr>
                         <td th:rowspan="${day.getTimeSlots().size()+1+day.getLessonsNumber()}" th:text="${day.getDay()}"></td>
                     </tr>
@@ -100,15 +100,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-

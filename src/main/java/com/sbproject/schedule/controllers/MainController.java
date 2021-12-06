@@ -1,15 +1,9 @@
 package com.sbproject.schedule.controllers;
 
-import com.sbproject.schedule.exceptions.schedule.ScheduleException;
 import com.sbproject.schedule.models.Lesson;
 import com.sbproject.schedule.models.Schedule;
-import com.sbproject.schedule.services.implementations.ScheduleReaderSaverService;
-import com.sbproject.schedule.services.implementations.SpecialtyServiceImpl;
-import com.sbproject.schedule.services.implementations.SubjectServiceImpl;
-import com.sbproject.schedule.services.interfaces.LessonService;
-import com.sbproject.schedule.services.interfaces.SpecialtyService;
-import com.sbproject.schedule.services.interfaces.SubjectService;
-import com.sbproject.schedule.services.interfaces.TeacherService;
+import com.sbproject.schedule.services.implementations.ScheduleReaderSaverServiceImpl;
+import com.sbproject.schedule.services.interfaces.*;
 import com.sbproject.schedule.xlsx.ScheduleDownloader;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +20,6 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedOutputStream;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
@@ -73,7 +65,7 @@ public class MainController {
         return "editSchedule";
     }
 
-//    @PreAuthorize("hasRole('REGULAR')")
+    @PreAuthorize("hasAnyRole('REGULAR', 'ADMIN')")
     @GetMapping
     public String showAllSchedules(Model model,Authentication authentication){
         model.addAttribute("appName",appName);
@@ -97,6 +89,7 @@ public class MainController {
 //        return redirectView;
 //    }
 
+    @PreAuthorize("hasAnyRole('REGULAR', 'ADMIN')")
     @GetMapping("/download")
     @ResponseBody
     public void download(HttpServletResponse response){
@@ -124,7 +117,7 @@ public class MainController {
         }
     }
 
-
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/uploadSchedule")
     public RedirectView uploadSchedule(@RequestParam("file") MultipartFile file, @RequestParam Long specialtyId, RedirectAttributes redir) throws Exception {
         RedirectView redirectView= new RedirectView("/",true);

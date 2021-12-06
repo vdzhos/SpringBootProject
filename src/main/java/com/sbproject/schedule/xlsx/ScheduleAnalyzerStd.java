@@ -341,19 +341,19 @@ public class ScheduleAnalyzerStd extends ScheduleAnalyzer {
 //        return new SubjectType(group);
 //    }
 //
-////    private SubjectType getGroup(Row row) {
-////        Cell cell = row.getCell(GROUP_COL);
-////        if (cell.getCellType() == CellType.NUMERIC) {
-////            return new SubjectType((int)Math.round(cell.getNumericCellValue()));
-////        }
-////        if (cell.getCellType() == CellType.STRING) {
-////            String groupString = processor.processName(cell.getStringCellValue()).toLowerCase();
-////            if (groupString.equals(LECTURE_STRING)) {
-////                return new SubjectType(0);
-////            }
-////            else return new SubjectType(groupString);
-////        }
-////    }
+//    private SubjectType getGroup(Row row) {
+//        Cell cell = row.getCell(GROUP_COL);
+//        if (cell.getCellType() == CellType.NUMERIC) {
+//            return new SubjectType((int)Math.round(cell.getNumericCellValue()));
+//        }
+//        if (cell.getCellType() == CellType.STRING) {
+//            String groupString = processor.processName(cell.getStringCellValue()).toLowerCase();
+//            if (groupString.equals(LECTURE_STRING)) {
+//                return new SubjectType(0);
+//            }
+//            else return new SubjectType(groupString);
+//        }
+//    }
 //
 //
 //    private Lesson.Time tryGetTime(Row row) {

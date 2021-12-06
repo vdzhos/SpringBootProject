@@ -16,7 +16,7 @@ public class GlobalAspect {
 
     private static Logger logger = LogManager.getLogger(GlobalAspect.class);
 
-    @AfterReturning(returning = "returnObject", value = "execution(* com.sbproject.schedule.services.implementations.*.get*(*))")
+    @AfterReturning(returning = "returnObject", value = "execution(* com.sbproject.schedule.services.implementations.*.get*(..))")
     public void getObjectAfterAdvice(JoinPoint joinPoint, Object returnObject){
         logger.info(Markers.GET_METHOD_INVOKED_MARKER, "GET Method " + joinPoint.getSignature() + " invoked with arguments: "
                 + Arrays.toString(joinPoint.getArgs())

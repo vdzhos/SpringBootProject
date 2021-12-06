@@ -218,14 +218,44 @@ public abstract class ScheduleAnalyzer {
         return subj.isBlank();
     }
 
+//    protected SubjectType getGroup(Row row) {
+//        Cell cell = row.getCell(GROUP_COL);
+//        int group = 0;
+//        if (cell.getCellType() == CellType.NUMERIC) {
+//            group = (int)Math.round(cell.getNumericCellValue());
+//        }
+//        return new SubjectType(group);
+//    }
+
+
+
     protected SubjectType getGroup(Row row) {
+        System.out.println("ANALYZER TYPE: "+FORMAT);
+        System.out.println("ANALYZER TYPE: "+LECTURE_STRING);
         Cell cell = row.getCell(GROUP_COL);
-        int group = 0;
         if (cell.getCellType() == CellType.NUMERIC) {
-            group = (int)Math.round(cell.getNumericCellValue());
+            return new SubjectType((int)Math.round(cell.getNumericCellValue()));
         }
-        return new SubjectType(group);
+        if (cell.getCellType() == CellType.STRING) {
+            String groupString = processor.processName(cell.getStringCellValue()).toLowerCase();
+            if (groupString.equals(LECTURE_STRING)) {
+                return new SubjectType(0);
+            } else {
+                return new SubjectType(tryGetInt(groupString));
+            }
+        }
+        throw new ScheduleException("Incorrect group format: "+cell.getCellType());
     }
+
+    protected int tryGetInt(String groupString) {
+        try {
+            return Integer.parseInt(processor.processName(groupString));
+        } catch (NumberFormatException e) {
+            throw new ScheduleException("Incorrect group format: "+groupString);
+        }
+    }
+
+
 
     protected String getWeeks(Row row) {
         Cell cell = row.getCell(WEEKS_COL);

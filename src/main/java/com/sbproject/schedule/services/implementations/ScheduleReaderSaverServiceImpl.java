@@ -2,10 +2,7 @@ package com.sbproject.schedule.services.implementations;
 
 import com.sbproject.schedule.exceptions.schedule.ScheduleException;
 import com.sbproject.schedule.models.*;
-import com.sbproject.schedule.services.interfaces.LessonService;
-import com.sbproject.schedule.services.interfaces.SpecialtyService;
-import com.sbproject.schedule.services.interfaces.SubjectService;
-import com.sbproject.schedule.services.interfaces.TeacherService;
+import com.sbproject.schedule.services.interfaces.*;
 import com.sbproject.schedule.xlsx.ScheduleAnalyzer;
 import com.sbproject.schedule.xlsx.ScheduleAnalyzerOF;
 import com.sbproject.schedule.xlsx.ScheduleAnalyzerStd;
@@ -19,7 +16,7 @@ import java.io.InputStream;
 import java.util.List;
 
 @Service
-public class ScheduleReaderSaverService {
+public class ScheduleReaderSaverServiceImpl implements ScheduleReaderSaverService {
 
     @Autowired
     private LessonService lessonService;
@@ -44,7 +41,7 @@ public class ScheduleReaderSaverService {
         return bos.toByteArray();
     }
 
-
+    @Override
     public void readSaveSchedule(InputStream inputStream, long specialtyId) throws Exception {
         byte[] input = readInputStream(inputStream);
         List<ScheduleAnalyzer.LessonInfo> lessons = read(input);
@@ -148,6 +145,5 @@ public class ScheduleReaderSaverService {
     private InputStream putBytesToInputStream(byte[] bytes) {
         return new ByteArrayInputStream(bytes);
     }
-
 
 }

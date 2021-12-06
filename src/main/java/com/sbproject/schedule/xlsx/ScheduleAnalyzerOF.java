@@ -29,7 +29,7 @@ public class ScheduleAnalyzerOF extends ScheduleAnalyzer {
         STRING_DAY_OF_WEEK_MAP.put(DayOfWeek.SATURDAY.toString().toLowerCase(),DayOfWeek.FRIDAY);
         STRING_DAY_OF_WEEK_MAP.put(DayOfWeek.SUNDAY.toString().toLowerCase(),DayOfWeek.SATURDAY);
 
-        LECTURE_STRING = "LECTURE";
+        LECTURE_STRING = "lecture";
         REMOTELY = "REMOTELY";
         COLS_NUMBER = 7;
 

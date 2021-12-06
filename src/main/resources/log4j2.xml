@@ -37,6 +37,11 @@
             <MarkerFilter marker="ADD_METHOD_INVOKED" onMatch="ACCEPT" onMismatch="DENY"/>
         </File>
 
+        <File name="SpecialtyCachingLogToFile" fileName="LOGS/Specialty_caching.log">
+            <PatternLayout pattern="%d [%t] %-5level %-50c{1.} - %msg %n"/>
+            <MarkerFilter marker="SPECIALTY_CACHING" onMatch="ACCEPT" onMismatch="DENY"/>
+        </File>
+
         <File name="GETMethodsToFile" fileName="LOGS/GET_methods.log">
             <PatternLayout pattern="%d [%t] %-5level %-50c{1.} - %msg %n"/>
             <MarkerFilter marker="GET_METHOD_INVOKED" onMatch="ACCEPT" onMismatch="DENY"/>
@@ -79,6 +84,9 @@
             <AppenderRef ref="GETMethodsToFile"/>
             <AppenderRef ref="UPDATEMethodsToFile"/>
             <AppenderRef ref="DELETEMethodsToFile"/>
+
+            <AppenderRef ref="SpecialtyCachingLogToFile"/>
+
             <AppenderRef ref="MethodInvokeTimeToFile"/>
             <AppenderRef ref="DeletedSpecialtiesToFile"/>
             <AppenderRef ref="DeletedSubjectsToFile"/>

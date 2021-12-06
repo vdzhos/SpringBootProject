@@ -16,6 +16,10 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.configurationprocessor.json.JSONArray;
 import org.springframework.boot.configurationprocessor.json.JSONException;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -44,8 +48,8 @@ public class SpecialtyServiceImpl implements SpecialtyService {
         this.specialtyRepository = specialtyRepository;
     }
 
-    //@ResponseBody
-    //@RequestMapping("/")
+
+    @CacheEvict(cacheNames = "allSpecialties", allEntries = true)
     @Override
     public Specialty addSpecialty(String name, int year) {
         name = processor.processName(name);
@@ -70,10 +74,11 @@ public class SpecialtyServiceImpl implements SpecialtyService {
         else throw new SpecialtyNotFoundException(id);
     }
 
-
-
+    @CachePut(cacheNames = "specialties", key = "#id")
+    @CacheEvict(cacheNames = "allSpecialties", allEntries = true)
     @Override
     public Specialty updateSpecialty(long id, String name, int year) {
+        logger.info(Markers.SPECIALTY_CACHING_MARKER, "Specialty {}-{} id={} updated in cache",id,name,year);
         name = processor.processName(name);
         processor.checkName(name);
         processor.checkYear(year);
@@ -96,39 +101,39 @@ public class SpecialtyServiceImpl implements SpecialtyService {
             return specialtyRepository.save(new Specialty(id,finalName,year));
         });
     }
-//    @Override
-//    public Specialty updateSpecialty(long id, String name, int year) {
-//        name = processor.processName(name);
-//        processor.checkName(name);
-//        processor.checkYear(year);
-//        if(specialtyRepository.existsByNameAndYearAndId(id,name,year)){
-//            logger.error(Markers.UPDATE_SPECIALTY_MARKER,"Specialty '{}'-'{}' already exists. Specialty has not been updated!",name,year);
-//            throw new SpecialtyInstanceAlreadyExistsException(Values.SPECIALTY_ALREADY_EXISTS);
-//        }
-//        Optional<Specialty> specialtyOp = specialtyRepository.findById(id);
-//        Specialty specialty = specialtyOp.orElseThrow(() -> new SpecialtyNotFoundException(id));
-//        logger.info(Markers.UPDATE_SPECIALTY_MARKER,"Specialty has not been changed as the new specialty is the exact old specialty!");
-//        if(nothingChanged(specialty,name,year)) return new Specialty(id,name,year);
-//        specialty.setName(name);
-//        specialty.setYear(year);
-//        Specialty s = specialtyRepository.save(specialty);
-//        logger.info(Markers.UPDATE_SPECIALTY_MARKER,"Specialty has been successfully updated to '{}'-'{}'!",name,year);
-//        return s;
-//    }
+
 
     private boolean nothingChanged(Specialty specialty, String name, int year) {
         return specialty.getName().equals(name)&&specialty.getYear()==year;
     }
 
+    @Cacheable(cacheNames = "allSpecialties")
     @Override
     public Iterable<Specialty> getAll() {
+        logger.info(Markers.SPECIALTY_CACHING_MARKER, "get all specialties method executed");
         return specialtyRepository.findAll();
     }
 
+    @Cacheable(cacheNames = "specialties", key = "#id")
     @Override
     public Specialty getSpecialty(Long id) {
+        logger.info(Markers.SPECIALTY_CACHING_MARKER, "Get specialty by id executed");
         return specialtyRepository.findById(id).orElseThrow(() -> new SpecialtyNotFoundException(id));
     }
+
+    @Scheduled(fixedDelay = 60000)
+    @CacheEvict(cacheNames = "allSpecialties", allEntries = true)
+    public void clearAllSpecialtiesCache() {
+        logger.info(Markers.SPECIALTY_CACHING_MARKER, "ALL: All specialties list removed from cache");
+    }
+
+    @Scheduled(cron = "0 */10 * ? * *")
+    @CacheEvict(cacheNames = "specialties", allEntries = true)
+    public void clearSpecialtiesCache() {
+        logger.info(Markers.SPECIALTY_CACHING_MARKER, "SPECIFIC: All specific specialties removed from cache");
+    }
+
+
 
 
     @Override

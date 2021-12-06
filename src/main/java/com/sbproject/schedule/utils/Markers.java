@@ -55,4 +55,9 @@ public class Markers {
     public static final Marker UPDATE_METHOD_INVOKED_MARKER = MarkerManager.getMarker("UPDATE_METHOD_INVOKED")
             .setParents(IMPORTANT_MARKER);
 
+
+    public static final Marker SPECIALTY_CACHING_MARKER = MarkerManager.getMarker("SPECIALTY_CACHING")
+            .setParents(IMPORTANT_MARKER);
+
+
 }
