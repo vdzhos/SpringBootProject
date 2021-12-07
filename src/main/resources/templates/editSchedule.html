@@ -213,14 +213,14 @@
                                 <option value="5">16:30-17:50</option>
                                 <option value="6">18:00-19:20</option>
                             </select></label>
-                            <label><span th:text="#{edit.subject}"></span>: <select required name="subjId">
+                            <label><span th:text="#{edit.subject}"></span>: <select required name="subjId" id="subjId">
                                 <option th:each="subject: ${subjects}" th:text="${subject.name}" th:value="${subject.id}"></option>
                             </select></label>
-                            <label><span th:text="#{edit.teacher}"></span>: <select required name="teachId">
+                            <label><span th:text="#{edit.teacher}"></span>: <select required name="teachId" id="teachId">
                                 <option th:each="teacher: ${teachers}" th:text="${teacher.name}" th:value="${teacher.id}"></option>
                             </select></label>
                             <label><span th:text="#{edit.group}"></span> (0 = lecture):
-                                <input required type="number" id="lessonGroup1" name="group" min="0" max="50" step="1" value="0">
+                                <input required type="number" id="lessonGroup" name="group" min="0" max="50" step="1" value="0">
                             </label>
                             <label><span th:text="#{edit.weeks}"></span>: <input required name="weeks" type="text"/></label>
                             <label><span th:text="#{edit.room}"></span>:
@@ -424,24 +424,24 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="row">
-                                            <label for="subjId">Subject:</label>
-                                            <select required name="subjId" id="subjId" class="form-control">
+                                            <label th:for="'subjId'+${lesson.id}">Subject:</label>
+                                            <select required name="subjId" th:id="'subjId'+${lesson.id}" class="form-control">
                                                 <option th:each="subject: ${subjects}" th:text="${subject.name}" th:value="${subject.id}" th:selected="${subject.id==lesson.subject.id}"></option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="row">
-                                            <label for="teachId">Teacher:</label>
-                                            <select required name="teachId" id="teachId" class="form-control">
+                                            <label th:for="'teachId'+${lesson.id}">Teacher:</label>
+                                            <select required name="teachId" th:id="'teachId'+${lesson.id}" class="form-control">
                                                 <option th:each="teacher: ${teachers}" th:text="${teacher.name}" th:value="${teacher.id}" th:selected="${teacher.id==lesson.teacher.id}"></option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="row">
-                                            <label for="lessonGroup">Group (0 = lecture):</label>
-                                            <input required class="form-control" type="number" id="lessonGroup" name="group" min="0" max="50" step="1" th:value="${lesson.group.getValue()}">
+                                            <label th:for="'lessonGroup'+${lesson.id}">Group (0 = lecture):</label>
+                                            <input required class="form-control" type="number" th:id="'lessonGroup'+${lesson.id}" name="group" min="0" max="50" step="1" th:value="${lesson.group.getValue()}">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -463,7 +463,7 @@
                                     <div style="height: 15px;"></div>
                                     <div class="form-group">
                                         <button type="submit" class="col-3 btn btn-success" th:text="#{edit.update}">Update</button>
-                                        <button formaction="lesson/delete/" type="submit" class="ml-2 col-3 btn btn-danger" th:text="#{edit.delete}">Delete</button>
+                                        <button formaction="lesson/delete/" formnovalidate type="submit" class="ml-2 col-3 btn btn-danger" th:text="#{edit.delete}">Delete</button>
                                     </div>
                                 </form>
                             </div>
@@ -473,6 +473,64 @@
             </div>
         </div>
     </section>
+
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+
+        let lessons = /*[[${lessons}]]*/ 'default';
+        let teachers = /*[[${teachers}]]*/ 'default';
+        let subjects = /*[[${subjects}]]*/ 'default';
+
+
+        function setOnChange() {
+            for (let lesson of lessons) {
+
+                let subjectUpdate = document.getElementById("subjId" + lesson.id.toString());
+                let teacherUpdate = document.getElementById("teachId" + lesson.id.toString());
+                let groupUpdate = document.getElementById("lessonGroup" + lesson.id.toString());
+
+                subjectUpdate.onchange = function(){
+                    subjectsOnChange(subjectUpdate,teacherUpdate,groupUpdate);
+                }
+                subjectsOnChange(subjectUpdate,teacherUpdate,groupUpdate);
+            }
+
+            let subjectUpdate = document.getElementById("subjId");
+            let teacherUpdate = document.getElementById("teachId");
+            let groupUpdate = document.getElementById("lessonGroup");
+
+            subjectUpdate.onchange = function(){
+                subjectsOnChange(subjectUpdate,teacherUpdate,groupUpdate);
+            }
+            subjectsOnChange(subjectUpdate,teacherUpdate,groupUpdate);
+
+        }
+
+        function subjectsOnChange(subjectUpdate,teacherUpdate,groupUpdate) {
+            let id = subjectUpdate.options[subjectUpdate.selectedIndex].value;
+            let options = [];
+
+            for (let teacher of teachers) {
+                if(teacher.subjects.filter(it => it.toString() === id.toString()).length > 0)
+                    options.push("<option value=\""+teacher.id+"\">"+teacher.name+"</option>");
+            }
+            teacherUpdate.innerHTML = options.join();
+
+            groupUpdate.max = findSubjectGroupsQuant(id);
+            groupUpdate.value = 0;
+        }
+
+        function findSubjectGroupsQuant(id) {
+            for (let subject of subjects) {
+                if(subject.id.toString()===id.toString()) return subject.quantOfGroups;
+            }
+            return 50;
+        }
+
+        setOnChange()
+
+        /*]]>*/
+    </script>
 
 
 </section>

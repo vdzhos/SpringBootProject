@@ -105,8 +105,6 @@ public class LessonServiceImpl implements LessonService {
             throw new TeacherNotFoundException("Teacher with id \""+subjId+"\" not found!");
         }
 
-        //перевірка, чи вже існує урок в конкретний час
-
         return new Object[]{r,s.get(),t.get()};
     }
 
