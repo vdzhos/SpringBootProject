@@ -16,7 +16,7 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 
 @Entity
-public class Lesson {
+public class Lesson implements Comparable<Lesson>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -98,8 +98,8 @@ public class Lesson {
         sb.append("Lesson{")
                 .append("id=").append(id).append(',')
                 .append("time=").append(time).append(',')
-                .append("subject=").append(subject).append(',')
-                .append("teacher=").append(teacher).append(',')
+                .append("subject=").append(subject.getName()).append(',')
+                .append("teacher=").append(teacher.getName()).append(',')
                 .append("group=").append(group).append(',')
                 .append("weeks=").append(weeks).append(',')
                 .append("room=").append(room).append(',')
@@ -204,8 +204,19 @@ public class Lesson {
 		}
     	return res;
     }
-    
-    
+
+    @Override
+    public int compareTo(Lesson that) {
+        if(this.dayOfWeek.getValue()>that.dayOfWeek.getValue()) return 1;
+        if(this.dayOfWeek.getValue()<that.dayOfWeek.getValue()) return -1;
+        if(this.time.ordinal()>that.time.ordinal()) return 1;
+        if(this.time.ordinal()<that.time.ordinal()) return -1;
+        if(this.group.getType().ordinal()>that.group.getType().ordinal()) return 1;
+        if(this.group.getType().ordinal()<that.group.getType().ordinal()) return -1;
+        return 0;
+    }
+
+
     public enum Time {
 
         TIME1("8:30-9:50"), TIME2("10:00-11:20"), TIME3("11:40-13:00"), TIME4("13:30-14:50"),

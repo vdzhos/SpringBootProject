@@ -195,6 +195,7 @@
                         <h3 th:text="#{edit.lessons}">Lessons</h3>
 
                         <form action="/lesson/add" method="post">
+                            <input name="specId" type="hidden" th:value="${lessonSpec}">
                             <label><span th:text="#{edit.day}"></span>: <select required name="day">
                                 <option value="1">MONDAY</option>
                                 <option value="2">TUESDAY</option>
@@ -231,6 +232,18 @@
                             </label>
                             <button class="btn btn-info mr-1" type="submit" th:text="#{edit.add}">Add</button>
                             <button class="btn btn-secondary" type="reset" th:text="#{edit.clear}">Clear</button>
+                        </form>
+
+                        <br>
+
+                        <form action="/lesson/getBySpecialtyId" method="get">
+                            <label for="specId">Schedule for: </label>
+                            <select required name="specId" id="specId">
+                                <option th:selected="${lessonSpec} == -1" value="-1">Not selected</option>
+                                <option th:each="specialty: ${specialties}" th:selected="${specialty.id} == ${lessonSpec}" th:text="${specialty.name} + '-' + ${specialty.year}" th:value="${specialty.id}"></option>
+                            </select>
+                            <br>
+                            <button class="btn btn-info mr-1" type="submit">Load schedule</button>
                         </form>
 
                         <div class="mt-5">
@@ -394,6 +407,7 @@
                                 <form class="col-12" action="/lesson/update/" method="post">
                                     <input name="id" type="hidden" th:value="${lesson.id}">
                                     <input name="lesson" type="hidden" th:value="${lesson.toString()}">
+                                    <input name="specId" type="hidden" th:value="${lessonSpec}">
                                     <div class="form-group">
                                         <div class="row">
                                             <label for="lessonDay">Day:</label>
@@ -481,18 +495,16 @@
         let teachers = /*[[${teachers}]]*/ 'default';
         let subjects = /*[[${subjects}]]*/ 'default';
 
-
         function setOnChange() {
             for (let lesson of lessons) {
-
                 let subjectUpdate = document.getElementById("subjId" + lesson.id.toString());
                 let teacherUpdate = document.getElementById("teachId" + lesson.id.toString());
                 let groupUpdate = document.getElementById("lessonGroup" + lesson.id.toString());
 
                 subjectUpdate.onchange = function(){
-                    subjectsOnChange(subjectUpdate,teacherUpdate,groupUpdate);
+                    subjectsOnChange(subjectUpdate,teacherUpdate,groupUpdate,null);
                 }
-                subjectsOnChange(subjectUpdate,teacherUpdate,groupUpdate);
+                subjectsOnChange(subjectUpdate,teacherUpdate,groupUpdate,lesson);
             }
 
             let subjectUpdate = document.getElementById("subjId");
@@ -506,18 +518,24 @@
 
         }
 
-        function subjectsOnChange(subjectUpdate,teacherUpdate,groupUpdate) {
+        function subjectsOnChange(subjectUpdate,teacherUpdate,groupUpdate,lesson) {
             let id = subjectUpdate.options[subjectUpdate.selectedIndex].value;
             let options = [];
 
             for (let teacher of teachers) {
                 if(teacher.subjects.filter(it => it.toString() === id.toString()).length > 0)
-                    options.push("<option value=\""+teacher.id+"\">"+teacher.name+"</option>");
+                    options.push("<option value=\""+teacher.id+"\" "+selected(lesson,teacher.id)+">"+teacher.name+"</option>");
             }
             teacherUpdate.innerHTML = options.join();
 
             groupUpdate.max = findSubjectGroupsQuant(id);
-            groupUpdate.value = 0;
+            if(lesson == null) groupUpdate.value = 0;
+            else groupUpdate.value = lesson.group.value;
+        }
+
+        function selected(lesson,id) {
+            if (lesson == null || lesson.teacher.toString() !== id.toString()) return "";
+            else return "selected";
         }
 
         function findSubjectGroupsQuant(id) {
