@@ -104,11 +104,19 @@
                         <form action="/subject/add" method="post">
                             <label class="mr-2"><span th:text="#{edit.name}"></span>: <input required name="name" type="text" th:placeholder="#{edit.enter-the-name}"/></label>
                             <label class="mr-2"><span th:text="#{edit.quantity-of-groups}"></span>: <input required name="quantOfGroups" type="number" min="1" max="20"/></label>
-                            <label class="mr-4"><span th:text="#{edit.specialties}"></span>:
+                            <!--<label class="mr-4"><span th:text="#{edit.specialties}"></span>:
                                 <input name="specialties" th:each="specialty: ${specialties}"
                                        th:value="${specialty.id}" th:text="${specialty}"
-                                       type="checkbox"/></label>
-                            <button id="btnAddSubject" class="btn btn-info mr-1" type="submit" th:text="#{edit.add}">Add</button>
+                                       type="checkbox"/></label>-->
+                            <div class="dropdown form-group">
+                                <button class="btn bg-light dropdown-toggle" type="button" id="dropdownMenuSpecialtyAdd" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="#{edit.specialties}">
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuSpecialtyAdd">
+                                    <li th:each="specialty: ${specialties}" class="dropdown-item"><input name="specialties" th:value="${specialty.id}"
+                                                                                                         th:text="${specialty}" type="checkbox"/></li>
+                                </ul>
+                            </div>
+                            <button id="btnAddSubject" class="btn btn-info mr-1" type="submit" th:text="#{edit.add}" >Add</button>
                             <button class="btn btn-secondary" type="reset" th:text="#{edit.clear}">Clear</button>
                         </form>
                         <br/>
@@ -140,8 +148,15 @@
 
                         <form action="/teacher/add" method="post">
                             <label><span th:text="#{edit.name}"></span>: <input name="name" type="text" th:placeholder="#{edit.enter-the-name}"/></label>
-                            <label><span th:text="#{edit.subjects}"></span>: <input name="subjects" th:each="subject: ${subjects}" th:value="${subject.id}" th:text="${subject}"
-                                                    type="checkbox"/></label>
+                            <!--<label><span th:text="#{edit.subjects}"></span>: <input name="subjects" th:each="subject: ${subjects}" th:value="${subject.id}" th:text="${subject}"
+                                                    type="checkbox"/></label>-->
+                            <div class="dropdown form-group">
+                                <button class="btn bg-light dropdown-toggle" type="button" id="dropdownMenuSubjectAdd" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="#{edit.subjects}">
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuSubjectAdd">
+                                    <li th:each="subject: ${subjects}" class="dropdown-item"><input name="subjects" th:value="${subject.id}" th:text="${subject}" type="checkbox"/></li>
+                                </ul>
+                            </div>
                             <button type="submit" th:text="#{edit.add}">Add</button>
                             <button type="reset" th:text="#{edit.clear}">Clear</button>
                         </form>
@@ -338,14 +353,18 @@
                                         <label for="subjTeachers">Teachers:</label>
                                         <input th:attr="value=${subject.getTeachersToString()} " type="text" class="form-control" id="subjTeachers" name="subjTeachers" disabled>
                                     </div>
-                                    <div class="form-group">
-                                            <label class="mr-4"><span th:text="#{edit.specialties}"></span>:
-                                                <input name="subjSpecialties" th:each="specialty: ${specialties}" th:value="${specialty.id}"
-                                                       th:text="${specialty}" type="checkbox" th:checked="${subject.hasSpecialty(specialty)}"/></label>
+                                    <div class="dropdown form-group">
+                                        <button class="btn bg-light dropdown-toggle" type="button" id="dropdownMenuSpecialty" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="#{edit.specialties}">
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuSpecialty">
+                                            <li th:each="specialty: ${specialties}" class="dropdown-item"><input name="subjSpecialties" th:data-subj="${subject.id}" th:value="${specialty.id}"
+                                                                                                                     th:text="${specialty}" type="checkbox" th:checked="${subject.hasSpecialty(specialty)}"/></li>
+                                        </ul>
                                     </div>
                                     <div style="height: 15px;"></div>
                                     <div class="form-group">
-                                        <button id="btnUpdateSubject" type="submit" class="col-3 btn btn-success" th:text="#{edit.update}">Update</button>
+                                        <!--<button id="btnUpdateSubject" type="submit" class="col-3 btn btn-success" th:text="#{edit.update}" onsubmit="processSubmitForm(event)">Update</button>-->
+                                        <button id="btnUpdateSubject" type="submit" class="col-3 btn btn-success" th:text="#{edit.update}" onclick="alert('clicked'); if (!isAtLeastOneCheckboxChecked('subjSpecialties', true)) { alert('Choose at least one specialty!'); event.preventDefault(); }">Update</button>
                                         <button formaction="subject/delete/" type="submit" class="ml-2 col-3 btn btn-danger" th:text="#{edit.delete}">Delete</button>
                                     </div>
                                 </form>
@@ -459,27 +478,27 @@
 </section>
 
 <script>
-    function isAtLeastOneCheckboxChecked(name) {
+    function isAtLeastOneCheckboxChecked(name, forUpdate = false) {
         const checkboxes = document.getElementsByName(name);
         for (let i = 0; i < checkboxes.length; i += 1) {
-            if (checkboxes[i].checked) {
-                return true;
+            const cur = checkboxes[i];
+            if (forUpdate) {
+                if (document.getElementById('modal' + (cur.dataset.subj)).classList.contains('show')) {
+                    if (cur.checked) {
+                        //alert (i + ' ' + checkboxes[i].value + " checked");
+                        return true;
+                    }
+                }
             }
+            else if (cur.checked) return true;
         }
         return false;
     }
 
-    document.getElementById('btnAddSubject').addEventListener('click', () => {
+    document.getElementById('btnAddSubject').addEventListener('click', (e) => {
         if (!isAtLeastOneCheckboxChecked('specialties')) {
             alert("Choose at least one specialty!");
-            //Do not allow request to process!
-        }
-    });
-
-    document.getElementById('btnUpdateSubject').addEventListener('click', () => {
-        if (!isAtLeastOneCheckboxChecked('subjSpecialties')) {
-            alert("Choose at least one specialty!");
-            //Do not allow request to process!
+            e.preventDefault();
         }
     });
 
