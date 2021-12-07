@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sbproject.schedule.models.Lesson;
 import com.sbproject.schedule.models.Subject;
+import com.sbproject.schedule.models.Teacher;
 import com.sbproject.schedule.services.interfaces.SpecialtyService;
 import com.sbproject.schedule.services.interfaces.SubjectService;
 import com.sbproject.schedule.services.interfaces.TeacherService;
@@ -45,13 +46,16 @@ public class ScheduleTableController {
 	private Iterable<Integer> weeks;
 	
 	private List<Lesson> lessons;
-
+	
+	private Long teacherId;
+	
 	@Value("${spring.application.name}")
 	private String appName;
 	
 	@GetMapping("/specialty")
 	public String getSpecialtySchedule(@RequestParam Long specialtyId, Model model) throws Throwable
 	{
+		this.teacherId = null;
 		initContainers(false, specialtyId);
 		model.addAttribute("appName",appName);
 		model.addAttribute("subjects", subjects);
@@ -85,6 +89,7 @@ public class ScheduleTableController {
 	@GetMapping("/teacher")
 	public String getTeacherSchedule(@RequestParam Long teacherId, Model model) throws Throwable
 	{
+		this.teacherId = teacherId;
 		initContainers(true, teacherId);
 		model.addAttribute("appName",appName);
 		model.addAttribute("subjects", subjects);
@@ -102,6 +107,8 @@ public class ScheduleTableController {
 			lessons = subjectService
 				.getSubjectById(Long.parseLong(subjectId))
 				.getLessons();
+			if(teacherId != null)
+				this.lessons.removeIf(less -> less.getTeacher().getId() != this.teacherId);
 		}
 		else
 		{
@@ -123,15 +130,29 @@ public class ScheduleTableController {
 	
 	private void initContainers(boolean forTeacher, Long id) throws Throwable
 	{
+		lessons = new ArrayList<Lesson>();
+		
 		if(forTeacher)
-			subjects = this.teacherService.getTeacherById(id).getSubjects();
+		{
+			Teacher teach = this.teacherService.getTeacherById(id);
+			subjects = teach.getSubjects();
+			StreamSupport.stream(this.subjects.spliterator(), false)
+			.forEach(subj -> lessons
+					.addAll(subj
+							.getLessons()
+							.stream()
+							.filter(less -> less.getTeacher().getId() == teach.getId())
+							.collect(Collectors.toList())));
+		}
 		else
+		{
 			subjects = this.specialtyService.getSpecialty(id).getSubjects();
+			StreamSupport.stream(this.subjects.spliterator(), false).forEach(subj -> lessons.addAll(subj.getLessons()));
+		}
 		weeks = this.subjectService.getLessonWeeks(StreamSupport
 				.stream(subjects.spliterator(), false)
 				.map(sub -> sub.getId())
 				.collect(Collectors.toSet()));
-		lessons = new ArrayList<Lesson>();
-		StreamSupport.stream(this.subjects.spliterator(), false).forEach(subj -> lessons.addAll(subj.getLessons()));
+		
 	}
 }
