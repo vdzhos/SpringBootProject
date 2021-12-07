@@ -12,7 +12,10 @@ public class Schedule {
     private List<Day> days;
     private static final int NUMBER_OF_DAYS = 7;
 
+    private List<Lesson> lessons;
+
     public Schedule(List<Lesson> lessons) {
+        this.lessons = lessons;
         buildDays(lessons);
     }
 
@@ -39,5 +42,9 @@ public class Schedule {
         for (int i = 0; i < lessons.length; i++) {
             lessons[i] = new ArrayList<>();
         }
+    }
+
+    public List<Lesson> getLessons() {
+        return lessons;
     }
 }

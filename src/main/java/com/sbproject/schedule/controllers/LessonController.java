@@ -1,10 +1,7 @@
 package com.sbproject.schedule.controllers;
 
 import com.sbproject.schedule.exceptions.lesson.NoLessonWithSuchIdFound;
-import com.sbproject.schedule.models.Lesson;
-import com.sbproject.schedule.models.Specialty;
-import com.sbproject.schedule.models.Subject;
-import com.sbproject.schedule.models.SubjectType;
+import com.sbproject.schedule.models.*;
 import com.sbproject.schedule.services.interfaces.LessonService;
 import com.sbproject.schedule.services.interfaces.SpecialtyService;
 import org.apache.logging.log4j.LogManager;
@@ -60,7 +57,7 @@ public class LessonController {
         redirect.addFlashAttribute("notification",notification);
         redirect.addFlashAttribute("tab",3);
 
-        redirect.addFlashAttribute("lessons", getLessons(specId,-1L));
+        redirect.addFlashAttribute("schedule", new Schedule((List<Lesson>) getLessons(specId,-1L)));
         redirect.addFlashAttribute("lessonSpec",specId);
 
         return redirectView;
@@ -85,7 +82,7 @@ public class LessonController {
         redirect.addFlashAttribute("notification",notification);
         redirect.addFlashAttribute("tab",3);
 
-        redirect.addFlashAttribute("lessons", getLessons(specId,-1L));
+        redirect.addFlashAttribute("schedule", new Schedule((List<Lesson>) getLessons(specId,-1L)));
         redirect.addFlashAttribute("lessonSpec",specId);
 
         return redirectView;
@@ -110,7 +107,7 @@ public class LessonController {
         redirect.addFlashAttribute("notification",notification);
         redirect.addFlashAttribute("tab",3);
 
-        redirect.addFlashAttribute("lessons", getLessons(specId,id));
+        redirect.addFlashAttribute("schedule", new Schedule((List<Lesson>) getLessons(specId,id)));
         redirect.addFlashAttribute("lessonSpec",specId);
 
         return redirectView;
@@ -121,7 +118,7 @@ public class LessonController {
     public RedirectView getLessonsBySpecialtyId(@RequestParam Long specId, Model model, RedirectAttributes redirect){
         RedirectView redirectView = new RedirectView("/admin",true);
 
-        redirect.addFlashAttribute("lessons", getLessons(specId,-1L));
+        redirect.addFlashAttribute("schedule", new Schedule((List<Lesson>) getLessons(specId,-1L)));
         redirect.addFlashAttribute("lessonSpec",specId);
         redirect.addFlashAttribute("tab",3);
 
