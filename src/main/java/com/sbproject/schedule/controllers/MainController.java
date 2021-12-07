@@ -4,7 +4,7 @@ import com.sbproject.schedule.models.Lesson;
 import com.sbproject.schedule.models.Schedule;
 import com.sbproject.schedule.models.Specialty;
 import com.sbproject.schedule.models.Subject;
-import com.sbproject.schedule.services.implementations.ScheduleReaderSaverService;
+import com.sbproject.schedule.services.implementations.ScheduleReaderSaverServiceImpl;
 import com.sbproject.schedule.services.implementations.SpecialtyServiceImpl;
 import com.sbproject.schedule.services.implementations.SubjectServiceImpl;
 import com.sbproject.schedule.services.interfaces.LessonService;
