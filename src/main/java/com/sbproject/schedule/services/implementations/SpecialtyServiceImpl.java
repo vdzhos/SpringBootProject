@@ -76,7 +76,7 @@ public class SpecialtyServiceImpl implements SpecialtyService {
     }
 
     @Caching(evict = { @CacheEvict(cacheNames = "specialties", allEntries = true),
-            @CacheEvict(cacheNames = "allSpecialties", allEntries = true)})
+            @CacheEvict(cacheNames = "allSpecialties", key = "#id")})
     @Transactional
     @Override
     public void deleteSpecialty(Long id) {
@@ -131,31 +131,33 @@ public class SpecialtyServiceImpl implements SpecialtyService {
     @Cacheable(cacheNames = "specialties", key = "#id")
     @Override
     public Specialty getSpecialty(Long id) {
-        logger.info(Markers.SPECIALTY_CACHING_MARKER, "Get specialty by id executed");
+        logger.info(Markers.SPECIALTY_CACHING_MARKER, "get specialty by id executed");
         return specialtyRepository.findById(id).orElseThrow(() -> new SpecialtyNotFoundException(id));
     }
 
-    @Scheduled(fixedDelay = 60000)
+    @Scheduled(fixedDelay = 120000)
     @CacheEvict(cacheNames = "allSpecialties", allEntries = true)
     public void clearAllSpecialtiesCache() {
-        logger.info(Markers.SPECIALTY_CACHING_MARKER, "ALL: All specialties list removed from cache");
+        logger.info(Markers.SPECIALTY_CACHING_MARKER, "SCHEDULED REMOVAL: All specialties list removed from cache");
     }
 
-    @Scheduled(cron = "0 */10 * ? * *")
+    @Scheduled(cron = "0 */2 * ? * *")
+//    @Scheduled(cron = "0 */1 * ? * *")
     @CacheEvict(cacheNames = "specialties", allEntries = true)
     public void clearSpecialtiesCache() {
-        logger.info(Markers.SPECIALTY_CACHING_MARKER, "SPECIFIC: All specific specialties removed from cache");
+        logger.info(Markers.SPECIALTY_CACHING_MARKER, "SCHEDULED REMOVAL: All specific specialties removed from cache");
     }
 
 
-
-    @Caching(evict = { @CacheEvict(cacheNames = "specialties", allEntries = true),
-            @CacheEvict(cacheNames = "allSpecialties", allEntries = true)})
+    @CacheEvict(cacheNames = {"specialties", "allSpecialties"}, allEntries = true)
+//    @Caching(evict = { @CacheEvict(cacheNames = "specialties", allEntries = true),
+//            @CacheEvict(cacheNames = "allSpecialties", allEntries = true)})
     @Override
     public void deleteAll() {
         specialtyRepository.deleteAll();
     }
 
+    @CacheEvict(cacheNames = "allSpecialties", allEntries = true)
     @Override
     public Specialty addSpecialty(String name, int year, JSONArray subjectIds) {
         Set<Subject> subjects = new HashSet<>();

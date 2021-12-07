@@ -9,6 +9,7 @@ import com.sbproject.schedule.repositories.SubjectRepository;
 import com.sbproject.schedule.services.interfaces.SubjectService;
 import com.sbproject.schedule.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.Set;
@@ -28,6 +29,7 @@ public class SubjectServiceImpl implements SubjectService {
         this.processor = processor;
     }
 
+    @CacheEvict(cacheNames = {"specialties", "allSpecialties"}, allEntries = true)
     @Override
     public Subject addSubject(String name, int quantOfGroups, Set<Specialty> specialties) {
         name = processor.processName(name);
@@ -39,6 +41,7 @@ public class SubjectServiceImpl implements SubjectService {
         return subjectRepository.save(new Subject(name, quantOfGroups, specialties));
     }
 
+    @CacheEvict(cacheNames = {"specialties", "allSpecialties"}, allEntries = true)
     @Override
     public Subject addSubject(Subject subject) {
         subject.setId(-1L);
@@ -46,6 +49,7 @@ public class SubjectServiceImpl implements SubjectService {
         return addSubject(subject.getName(), subject.getQuantOfGroups(), subject.getSpecialties());
     }
 
+    @CacheEvict(cacheNames = {"specialties", "allSpecialties"}, allEntries = true)
     @Transactional
     @Override
     public void deleteSubject(Long id) {
@@ -53,6 +57,7 @@ public class SubjectServiceImpl implements SubjectService {
         subjectRepository.deleteById(id);
     }
 
+    @CacheEvict(cacheNames = {"specialties", "allSpecialties"}, allEntries = true)
     @Override
     public Subject updateSubject(Long id, String name, int quantOfGroups,
                                  //Set<Teacher> teachers,
@@ -78,6 +83,7 @@ public class SubjectServiceImpl implements SubjectService {
         });
     }
 
+    @CacheEvict(cacheNames = {"specialties", "allSpecialties"}, allEntries = true)
     @Override
     public Subject updateSubject(Subject subject) {
         //if(!subjectExistsById(subject.getId())) throw new NoSubjectWithSuchIdToUpdate(subject.getId());
@@ -86,10 +92,13 @@ public class SubjectServiceImpl implements SubjectService {
         return updateSubject(subject.getId(), subject.getName(), subject.getQuantOfGroups(), subject.getSpecialties());
     }
 
+    // need not use @CacheEvict for specialties as the method is invoked in
+    // other methods where @CacheEvict for specialties is already specified
     @Override
     public Subject updateSubjectNoCheck(Subject subject) {
         return subjectRepository.save(subject);
     }
+
 
     @Override
     public Iterable<Subject> getAll() {

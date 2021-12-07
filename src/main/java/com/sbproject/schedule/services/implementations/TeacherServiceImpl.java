@@ -12,6 +12,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.aspectj.weaver.ast.Not;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,6 +32,7 @@ public class TeacherServiceImpl implements TeacherService {
         this.teacherRepository = teacherRepository;
     }
 
+    @CacheEvict(cacheNames = {"specialties", "allSpecialties"}, allEntries = true)
     //TO DO - need to add name check probably
     @Override
     public boolean addTeacher(String name, List<Subject> subjects) {
@@ -38,6 +40,7 @@ public class TeacherServiceImpl implements TeacherService {
         return true;
     }
 
+    @CacheEvict(cacheNames = {"specialties", "allSpecialties"}, allEntries = true)
     @Override
     public Teacher addTeacher(Teacher teacher) {
         teacher.setId(-1L);
@@ -54,6 +57,7 @@ public class TeacherServiceImpl implements TeacherService {
         return teacherRepository.existsByName(name);
     }
 
+    @CacheEvict(cacheNames = {"specialties", "allSpecialties"}, allEntries = true)
     @Override
     public boolean deleteTeacher(Long id) throws NoTeacherWithSuchIdException{
         if(!teacherExistsById(id)) throw new NoTeacherWithSuchIdException(id, "deleted");
@@ -61,18 +65,23 @@ public class TeacherServiceImpl implements TeacherService {
         return true;
     }
 
+    @CacheEvict(cacheNames = {"specialties", "allSpecialties"}, allEntries = true)
     @Override
     public boolean updateTeacher(Long id, String name) {
         teacherRepository.save(new Teacher(id, name));
         return true;
     }
 
+    @CacheEvict(cacheNames = {"specialties", "allSpecialties"}, allEntries = true)
     @Override
     public Teacher updateTeacher(Teacher teacher) throws NoTeacherWithSuchIdException {
         if(!teacherExistsById(teacher.getId())) throw new NoTeacherWithSuchIdException(teacher.getId(), "updated");
         return teacherRepository.save(teacher);
     }
 
+
+    // need not use @CacheEvict for specialties as the method is invoked in
+    // other methods where @CacheEvict for specialties is already specified
     @Override
     public Teacher updateTeacherNoCheck(Teacher teacher) {
         return teacherRepository.save(teacher);
