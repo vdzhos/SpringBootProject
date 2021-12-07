@@ -100,6 +100,17 @@
                             
                             <div class="form-group">
                             	<div class="row">
+                            		<label for="roomSelect">Choose room:</label>
+                            		<select required name="room" id="roomSelect" class="form-control">
+                            			<option selected="selected" value="Not selected">Not selected</option>
+                              	   		<option th:each="rm: ${rooms}" th:text="${rm}" th:value="${rm}"></option>
+                               	   </select>
+                            	</div>
+                            
+                            </div>
+                            
+                            <div class="form-group">
+                            	<div class="row">
                             		<label for="weekSelect">Choose week:</label>
                             		<select required name="week" id="weekSelect" class="form-control">
                             			<option selected="selected" th:value="-1">Not selected</option>

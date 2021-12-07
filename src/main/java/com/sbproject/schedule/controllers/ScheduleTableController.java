@@ -1,7 +1,9 @@
 package com.sbproject.schedule.controllers;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -36,6 +38,8 @@ public class ScheduleTableController {
 	
 	private Iterable<Integer> weeks;
 	
+	private Set<String> rooms;
+	
 	private List<Lesson> lessons;
 	
 	private Long teacherId;
@@ -47,7 +51,7 @@ public class ScheduleTableController {
 	public String getSpecialtySchedule(@RequestParam Long specialtyId, Model model) throws Throwable
 	{
 		this.teacherId = null;
-		initContainers(false, specialtyId);
+		initContainers(false, specialtyId, model);
 		model.addAttribute("appName",appName);
 		model.addAttribute("subjects", subjects);
 		model.addAttribute("weeks", weeks);
@@ -60,7 +64,7 @@ public class ScheduleTableController {
 	public String getTeacherSchedule(@RequestParam Long teacherId, Model model) throws Throwable
 	{
 		this.teacherId = teacherId;
-		initContainers(true, teacherId);
+		initContainers(true, teacherId, model);
 		model.addAttribute("appName",appName);
 		model.addAttribute("subjects", subjects);
 		model.addAttribute("weeks", weeks);
@@ -70,7 +74,7 @@ public class ScheduleTableController {
 	}
 	
 	@GetMapping("/filterSchedule")
-	public String applyFilters(@RequestParam String subjectId, @RequestParam int week, Model model)
+	public String applyFilters(@RequestParam String subjectId, @RequestParam int week, @RequestParam String room, Model model)
 	{
 		if(!subjectId.equals("Not selected"))
 		{
@@ -82,23 +86,29 @@ public class ScheduleTableController {
 		}
 		else
 		{
-			lessons.clear();
+			if(lessons != null)
+				lessons.clear();
 			StreamSupport.stream(this.subjects.spliterator(), false).forEach(subj -> lessons.addAll(subj.getLessons()));
 		}
 		if(week != -1)
 		{
 			lessons.removeIf(less -> !less.getIntWeeks().contains(week));
 		}
+		if(!room.equals("Not selected"))
+		{
+			lessons.removeIf(less -> !less.getRoom().equalsByString(room));
+		}
 		model.addAttribute("schedule",new Schedule(lessons));
 		model.addAttribute("appName",appName);
 //		model.addAttribute("lessons", lessons);
 		model.addAttribute("subjects", this.subjects);
+		model.addAttribute("rooms", rooms);
 		model.addAttribute("weeks", this.weeks);
 		return "scheduleTablePage";
 	}
 	
 	
-	private void initContainers(boolean forTeacher, Long id) throws Throwable
+	private void initContainers(boolean forTeacher, Long id, Model model) throws Throwable
 	{
 		lessons = new ArrayList<Lesson>();
 		
@@ -123,6 +133,12 @@ public class ScheduleTableController {
 				.stream(subjects.spliterator(), false)
 				.map(sub -> sub.getId())
 				.collect(Collectors.toSet()));
-		
+		this.rooms = new HashSet<String>();
+		lessons.stream().forEach(less -> rooms.add(less.getRoom().getTypeOrName()));
+		model.addAttribute("appName",appName);
+		model.addAttribute("subjects", subjects);
+		model.addAttribute("weeks", weeks);
+		model.addAttribute("rooms", rooms);
+		model.addAttribute("schedule",new Schedule(lessons));
 	}
 }
