@@ -52,11 +52,6 @@ public class ScheduleTableController {
 	{
 		this.teacherId = null;
 		initContainers(false, specialtyId, model);
-		model.addAttribute("appName",appName);
-		model.addAttribute("subjects", subjects);
-		model.addAttribute("weeks", weeks);
-		model.addAttribute("schedule",new Schedule(lessons));
-//		model.addAttribute("lessons", lessons);
 		return "scheduleTablePage";
 	}
 	
@@ -65,11 +60,6 @@ public class ScheduleTableController {
 	{
 		this.teacherId = teacherId;
 		initContainers(true, teacherId, model);
-		model.addAttribute("appName",appName);
-		model.addAttribute("subjects", subjects);
-		model.addAttribute("weeks", weeks);
-		model.addAttribute("schedule",new Schedule(lessons));
-//		model.addAttribute("lessons", lessons);
 		return "scheduleTablePage";
 	}
 	
