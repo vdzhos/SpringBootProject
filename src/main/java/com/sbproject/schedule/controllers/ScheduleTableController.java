@@ -1,5 +1,9 @@
 package com.sbproject.schedule.controllers;
 
+import java.io.BufferedOutputStream;
+import java.io.IOException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -8,8 +12,10 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 import com.sbproject.schedule.models.Schedule;
+import com.sbproject.schedule.xlsx.ScheduleDownloader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +28,9 @@ import com.sbproject.schedule.models.Teacher;
 import com.sbproject.schedule.services.interfaces.SpecialtyService;
 import com.sbproject.schedule.services.interfaces.SubjectService;
 import com.sbproject.schedule.services.interfaces.TeacherService;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpServletResponse;
 
 @Controller
 @RequestMapping("/view")
@@ -53,6 +62,27 @@ public class ScheduleTableController {
 		this.teacherId = null;
 		initContainers(false, specialtyId, model);
 		return "scheduleTablePage";
+	}
+
+
+	@GetMapping("/download")
+	@ResponseBody
+	public void download(HttpServletResponse response){
+		String fileName1 = "Schedule_example.xlsx";
+		String fileName2 = URLEncoder.encode(fileName1, StandardCharsets.UTF_8);
+		response.setContentType("application/ms-excel; charset=UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		response.setHeader("Content-Disposition","attachment; filename="+fileName2);
+		response.setHeader("Content-Transfer-Encoding","binary");
+		try{
+			BufferedOutputStream bos =new BufferedOutputStream(response.getOutputStream());
+			ScheduleDownloader sd = new ScheduleDownloader("Schedule1");
+			sd.downloadSchedule(lessons, bos);
+			bos.close();
+			response.flushBuffer();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@GetMapping("/teacher")
