@@ -7,6 +7,8 @@ import com.sbproject.schedule.xlsx.ScheduleAnalyzer;
 import com.sbproject.schedule.xlsx.ScheduleAnalyzerOF;
 import com.sbproject.schedule.xlsx.ScheduleAnalyzerStd;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 
 import java.io.ByteArrayInputStream;
@@ -41,11 +43,14 @@ public class ScheduleReaderSaverServiceImpl implements ScheduleReaderSaverServic
         return bos.toByteArray();
     }
 
+    @Caching(evict = { @CacheEvict(cacheNames = "specialties", allEntries = true),
+            @CacheEvict(cacheNames = "allSpecialties", allEntries = true)})
     @Override
     public void readSaveSchedule(InputStream inputStream, long specialtyId) throws Exception {
         byte[] input = readInputStream(inputStream);
         List<ScheduleAnalyzer.LessonInfo> lessons = read(input);
         Specialty s = specialtyService.getSpecialty(specialtyId);
+
         save(lessons, s);
     }
 

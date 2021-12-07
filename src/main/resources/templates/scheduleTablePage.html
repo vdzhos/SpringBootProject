@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>View Schedule</title>
@@ -13,9 +13,64 @@
 
 
 <div class="container">
-<button class="nav-link btn btn-info mr-3" type="submit" data-toggle="modal" data-target="#modalFilters" style="margin: 20px 0 0 20px;">Apply Filters</button>
+    <div style="margin-top: 1em; display: flex; justify-content: end;">
+        <a class="nav-link btn btn-info mr-3" href="/" th:text="#{edit.home}">Home</a>
+        <a class="nav-link btn btn-info mr-3" href="/profile" th:text="#{edit.user-profile}">User Profile</a>
+        <a class="nav-link btn btn-secondary" href="/logout" th:text="#{edit.log-out}">Log out</a>
+    </div>
 
+    <header class="mb-5">
+        <h1 th:text="${appName}"></h1>
+    </header>
+    <div class="row">
+        <div class="col-12">
+            <button class="btn btn-lg btn-info mb-2" type="submit" data-toggle="modal" data-target="#modalFilters">Apply Filters</button>
+        </div>
+    </div>
+    <hr/>
+
+    <div class="row">
+        <div class="col-12">
+            <h3>Schedule</h3>
+        </div>
+        <div class="col-12">
+            <h4 th:if="${schedule.getDays().size()<=0}">No results found</h4>
+            <table th:if="${schedule.getDays().size()>0}" class="table">
+                <tr>
+                    <th>Day</th>
+                    <th>Time</th>
+                    <th>Subject</th>
+                    <th>Teacher</th>
+                    <th>Group</th>
+                    <th>Weeks</th>
+                    <th>Room</th>
+                </tr>
+                <th:block th:each="day: ${schedule.getDays()}" >
+                    <tr>
+                        <td th:rowspan="${day.getTimeSlots().size()+1+day.getLessonsNumber()}" th:text="${day.getDay()}"></td>
+                    </tr>
+                    <th:block th:each="timeSlot: ${day.getTimeSlots()}">
+                        <tr>
+                            <td th:rowspan="${timeSlot.getLessons().size()+1}" th:text="${timeSlot.getTime()}"></td>
+                        </tr>
+                        <tr th:each="lesson: ${timeSlot.getLessons()}">
+                            <td th:text="${lesson.getSubject().getName()}"></td>
+                            <td th:text="${lesson.getTeacher().getName()}"></td>
+                            <td th:text="${lesson.getGroup()}"></td>
+                            <td th:text="${lesson.getWeeks()}"></td>
+                            <td th:text="${lesson.getRoom()}"></td>
+                        </tr>
+                    </th:block>
+                </th:block>
+            </table>
+        </div>
+    </div>
 </div>
+
+
+
+
+
 
 
 <!-- Modal for filters selection -->

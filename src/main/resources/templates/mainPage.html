@@ -27,8 +27,8 @@
             <h3>Upload schedule from file</h3>
             <form class="container" action="/uploadSchedule" method="post" enctype="multipart/form-data">
                 <div class="form-group row align-items-center">
-                    <select class="form-control mt-2 col-3 mr-3" name="specialtyId">
-                        <option th:each="specialty: ${specialties}" th:value="${specialty.getId()}" th:text="${specialty.getName()+'-'+specialty.getYear()}"></option>
+                    <select required class="form-control mt-2 col-3 mr-3" name="specialtyId">
+                        <option th:each="specialty: ${specialties}" th:value="${specialty.getId()}" th:text="${specialty.toString()}"></option>
                     </select>
                     <input class="mt-2" name="file" type="file">
                     <button type="submit" class="btn btn-info mt-2">Upload</button>
@@ -44,56 +44,57 @@
 
         <hr class="col-12"/>
     </div>
-
     <div class="row">
-        <div class="col-12">
-            <h3>Schedule</h3>
-        </div>
-        <div class="col-12">
-            <h4 th:if="${schedule.getDays().size()<=0}">No schedule for this specialty yet</h4>
-            <table th:if="${schedule.getDays().size()>0}" class="table">
-                <tr>
-                    <th>Day</th>
-                    <th>Time</th>
-                    <th>Subject</th>
-                    <th>Teacher</th>
-                    <th>Group</th>
-                    <th>Weeks</th>
-                    <th>Room</th>
-                </tr>
-                <th:block th:each="day: ${schedule.getDays()}" >
-                    <tr>
-                        <td th:rowspan="${day.getTimeSlots().size()+1+day.getLessonsNumber()}" th:text="${day.getDay()}"></td>
-                    </tr>
-                    <th:block th:each="timeSlot: ${day.getTimeSlots()}">
-                        <tr>
-                            <td th:rowspan="${timeSlot.getLessons().size()+1}" th:text="${timeSlot.getTime()}"></td>
-                        </tr>
-                        <tr th:each="lesson: ${timeSlot.getLessons()}">
-                            <td th:text="${lesson.getSubject().getName()}"></td>
-                            <td th:text="${lesson.getTeacher().getName()}"></td>
-                            <td th:text="${lesson.getGroup()}"></td>
-                            <td th:text="${lesson.getWeeks()}"></td>
-                            <td th:text="${lesson.getRoom()}"></td>
-                        </tr>
-                    </th:block>
-                </th:block>
-
-            </table>
-
-        </div>
+<!--        <div class="col-12">-->
+<!--            <form action="/download" method="get">-->
+<!--                <button class="btn btn-info mr-3" type="submit">Download</button>-->
+<!--            </form>-->
+<!--        </div>-->
+        <div class="row">
+            <div class="col-12">
+                <button class="btn btn-info mr-3" type="submit" data-toggle="modal" data-target="#modalSpecialty">Specialty Schedule</button>
+                <button class="btn btn-info mr-3" type="submit" data-toggle="modal" data-target="#modalTeacher">Teacher Schedule</button>
+            </div>
+           </div>
     </div>
 
-    <div class="row">
-        <div class="col-12">
-            <form action="/download" method="get">
-                <button class="nav-link btn btn-info mr-3" type="submit" style="margin: 20px 0 0 20px;">Download</button>
-            </form>
-            <button class="nav-link btn btn-info mr-3" type="submit" data-toggle="modal" data-target="#modalSpecialty" style="margin: 20px 0 0 20px;">Specialty Schedule</button>
-             <button class="nav-link btn btn-info mr-3" type="submit" data-toggle="modal" data-target="#modalTeacher" style="margin: 20px 0 0 20px;">Teacher Schedule</button>
-        </div>
-    </div>
 
+<!--    <div class="row">-->
+<!--        <div class="col-12">-->
+<!--            <h3>Schedule</h3>-->
+<!--        </div>-->
+<!--        <div class="col-12">-->
+<!--            <h4 th:if="${schedule.getDays().size()<=0}">No schedule for this specialty yet</h4>-->
+<!--            <table th:if="${schedule.getDays().size()>0}" class="table">-->
+<!--                <tr>-->
+<!--                    <th>Day</th>-->
+<!--                    <th>Time</th>-->
+<!--                    <th>Subject</th>-->
+<!--                    <th>Teacher</th>-->
+<!--                    <th>Group</th>-->
+<!--                    <th>Weeks</th>-->
+<!--                    <th>Room</th>-->
+<!--                </tr>-->
+<!--                <th:block th:each="day: ${schedule.getDays()}" >-->
+<!--                    <tr>-->
+<!--                        <td th:rowspan="${day.getTimeSlots().size()+1+day.getLessonsNumber()}" th:text="${day.getDay()}"></td>-->
+<!--                    </tr>-->
+<!--                    <th:block th:each="timeSlot: ${day.getTimeSlots()}">-->
+<!--                        <tr>-->
+<!--                            <td th:rowspan="${timeSlot.getLessons().size()+1}" th:text="${timeSlot.getTime()}"></td>-->
+<!--                        </tr>-->
+<!--                        <tr th:each="lesson: ${timeSlot.getLessons()}">-->
+<!--                            <td th:text="${lesson.getSubject().getName()}"></td>-->
+<!--                            <td th:text="${lesson.getTeacher().getName()}"></td>-->
+<!--                            <td th:text="${lesson.getGroup()}"></td>-->
+<!--                            <td th:text="${lesson.getWeeks()}"></td>-->
+<!--                            <td th:text="${lesson.getRoom()}"></td>-->
+<!--                        </tr>-->
+<!--                    </th:block>-->
+<!--                </th:block>-->
+<!--            </table>-->
+<!--        </div>-->
+<!--    </div>-->
 
     <!--    <h1>Welcome to the main page!</h1>-->
 </div>

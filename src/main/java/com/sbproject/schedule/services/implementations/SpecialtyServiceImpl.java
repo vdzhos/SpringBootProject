@@ -19,6 +19,7 @@ import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -64,6 +65,7 @@ public class SpecialtyServiceImpl implements SpecialtyService {
         return s;
     }
 
+
     private void deleteSubjects(Long spId) {
         Iterable<Subject> subjects = subjectService.getAll();
         for (Subject s: subjects) {
@@ -73,6 +75,8 @@ public class SpecialtyServiceImpl implements SpecialtyService {
         }
     }
 
+    @Caching(evict = { @CacheEvict(cacheNames = "specialties", allEntries = true),
+            @CacheEvict(cacheNames = "allSpecialties", allEntries = true)})
     @Transactional
     @Override
     public void deleteSpecialty(Long id) {
@@ -145,7 +149,8 @@ public class SpecialtyServiceImpl implements SpecialtyService {
 
 
 
-
+    @Caching(evict = { @CacheEvict(cacheNames = "specialties", allEntries = true),
+            @CacheEvict(cacheNames = "allSpecialties", allEntries = true)})
     @Override
     public void deleteAll() {
         specialtyRepository.deleteAll();
@@ -162,7 +167,8 @@ public class SpecialtyServiceImpl implements SpecialtyService {
             }
         }
         Specialty specialty = addSpecialty(name,year);
-        subjects.forEach(s -> {s.addSpecialty(specialty); subjectService.updateSubjectNoCheck(s);});
+        subjects.forEach(s -> {s.addSpecialty(specialty);
+        subjectService.updateSubjectNoCheck(s);});
         specialty.setSubjects(subjects);
         return specialty;
     }

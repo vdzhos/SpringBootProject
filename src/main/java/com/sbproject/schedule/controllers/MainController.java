@@ -77,7 +77,7 @@ public class MainController {
         model.addAttribute("adminLoggedIn",adminLoggedIn);
         model.addAttribute("lessons",(List<Lesson>)lessonService.getAll());
         model.addAttribute("teachers", teacherService.getAll());
-        model.addAttribute("schedule",new Schedule((List<Lesson>) lessonService.getAll()));
+//        model.addAttribute("schedule",new Schedule((List<Lesson>) lessonService.getAll()));
         return "mainPage";
     }
 
@@ -120,7 +120,7 @@ public class MainController {
 
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/uploadSchedule")
-    public RedirectView uploadSchedule(@RequestParam("file") MultipartFile file, @RequestParam Long specialtyId, RedirectAttributes redir) throws Exception {
+    public RedirectView uploadSchedule(@RequestParam("file") MultipartFile file, @RequestParam(required = false) Long specialtyId, RedirectAttributes redir) throws Exception {
         RedirectView redirectView= new RedirectView("/",true);
         String notification = "Розклад було успішно додано!";
         boolean success = true;
