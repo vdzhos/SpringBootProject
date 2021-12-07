@@ -2,7 +2,15 @@ package com.sbproject.schedule.controllers;
 
 import com.sbproject.schedule.models.Lesson;
 import com.sbproject.schedule.models.Schedule;
-import com.sbproject.schedule.services.implementations.ScheduleReaderSaverServiceImpl;
+import com.sbproject.schedule.models.Specialty;
+import com.sbproject.schedule.models.Subject;
+import com.sbproject.schedule.services.implementations.ScheduleReaderSaverService;
+import com.sbproject.schedule.services.implementations.SpecialtyServiceImpl;
+import com.sbproject.schedule.services.implementations.SubjectServiceImpl;
+import com.sbproject.schedule.services.interfaces.LessonService;
+import com.sbproject.schedule.services.interfaces.SpecialtyService;
+import com.sbproject.schedule.services.interfaces.SubjectService;
+import com.sbproject.schedule.services.interfaces.TeacherService;
 import com.sbproject.schedule.services.interfaces.*;
 import com.sbproject.schedule.xlsx.ScheduleDownloader;
 
@@ -23,7 +31,9 @@ import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 /**
  * loads all the data in all the tabs on the settings page
@@ -57,11 +67,17 @@ public class MainController {
         model.addAttribute("appName",appName);
         model.addAttribute("specialties",specialtyService.getAll());
         model.addAttribute("subjects",subjectService.getAll());
-        model.addAttribute("lessons", lessonService.getAll());
         model.addAttribute("teachers", teacherService.getAll());
         if(model.getAttribute("tab") == null){
             model.addAttribute("tab",0);
         }
+        if(model.getAttribute("lessons") == null){
+            model.addAttribute("lessons", lessonService.getAll());
+        }
+        if(model.getAttribute("lessonSpec") == null){
+            model.addAttribute("lessonSpec", -1);
+        }
+
         return "editSchedule";
     }
 
