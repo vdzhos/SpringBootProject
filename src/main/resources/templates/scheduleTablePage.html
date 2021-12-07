@@ -23,8 +23,13 @@
         <h1 th:text="${appName}"></h1>
     </header>
     <div class="row">
-        <div class="col-12">
+        <div class="col-6">
             <button class="btn btn-lg btn-info mb-2" type="submit" data-toggle="modal" data-target="#modalFilters">Apply Filters</button>
+        </div>
+        <div class="col-6 d-flex justify-content-end">
+            <form action="/view/download" method="get">
+                <button class="btn btn-lg btn-info mr-3" type="submit">Download</button>
+            </form>
         </div>
     </div>
     <hr/>
@@ -97,6 +102,17 @@
                                	   </select>
                                 </div>
                          	</div>
+                            
+                            <div class="form-group">
+                            	<div class="row">
+                            		<label for="roomSelect">Choose room:</label>
+                            		<select required name="room" id="roomSelect" class="form-control">
+                            			<option selected="selected" value="Not selected">Not selected</option>
+                              	   		<option th:each="rm: ${rooms}" th:text="${rm}" th:value="${rm}"></option>
+                               	   </select>
+                            	</div>
+                            
+                            </div>
                             
                             <div class="form-group">
                             	<div class="row">

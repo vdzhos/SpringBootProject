@@ -3,34 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <title>Profile Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
-<body>
 
-<h2>Profile</h2>
+<body style="margin: 0; padding: 0; background-color: #17a2b8;">
 
-<form action="/profile" th:object="${user}" method="post">
-	<div>
-    	<label>Login:   </label> <label th:text="*{login}"></label>
-    </div>
-    <br>
-    <div>
-	    <label>Password: <input name="password" type="password" th:value="*{password}" th:filed="*{password}"/></label>
-	    <ul>
-	        <li style="color: orangered;" th:each="err : ${#fields.errors('password')}" th:text="${err}"/>
-		</ul>
-    </div>   
-    <br>
-    <div>
-    	<label>User role:   </label> <label th:text="*{role.name}"></label>
-    </div>
-    <br>
-    <p></p>
-    <button type="submit">Change password</button>
-    <br>
-    <p></p>
-    <button type="submit" formaction="/profile/back">Back</button>
-</form>
-<p></p>
-<p style="color: green;" th:text="${message}"></p> 
+<div style="margin-top: 50px; margin-bottom: 50px; max-width: 600px; height: auto; min-height: 100% !important; border: 1px solid #9C9C9C; background-color: #EAEAEA;" class = "container">
+	<div class="row justify-content-center align-items-center">
+		<div class="col-sm-11"> 
+			<form action="/profile" th:object="${user}" method="post">
+				<h3 style="margin-top: 20px;" class="text-center text-info">User Profile</h3>
+				<div class="form-group">
+					<h5 class="text-info">Login: 
+					<label style="color: black;" th:text="*{login}"></label></h5>
+				</div>
+				<div class="form-group">
+					<h5 class="text-info">Password:</h5>
+			        <input name="password" type="password" th:value="*{password}" th:filed="*{password}" class="form-control"/>
+			        <ul>
+			           <li style="color: orangered;" th:each="err : ${#fields.errors('password')}" th:text="${err}"/>
+			        </ul>  
+				</div>
+				<div class="form-group">
+					<h5 class="text-info">User role: 
+			        <label style="color: black;" th:text="*{role.name}"></label> </h5>
+				</div>
+				
+				<div class="form-group" style="width:100%">		
+			    	<button type="submit" class="btn btn-info btn-md" style="margin-top: 10px;">Change password</button>
+			    	<button type="submit" class="btn btn-info btn-md" style="margin-top: 10px; float: right;" formaction="/profile/back">Home</button>
+			    </div>
+			    
+			    <div class="form-group">
+			    	<h5 style="color: green; margin-top: 20px;" th:text="${message}"></h5> 
+			    </div>
+			</form>
+		</div>
+	</div>
+</div>
+
 </body>
 </html>

@@ -37,7 +37,21 @@ public class Room implements Serializable {
     public String toString() {
         return room;
     }
-
+    
+    public String getTypeOrName()
+    {
+    	if(this.type == RoomType.REMOTELY)
+    		return "REMOTELY";
+    	return this.room;
+    }
+    
+    public boolean equalsByString(String room)
+    {
+    	if(this.type == RoomType.REMOTELY)
+    		return room.equals("REMOTELY");
+    	return room.equals(this.room);
+    }
+    
     public enum RoomType{
         REMOTELY, ROOM;
     }
