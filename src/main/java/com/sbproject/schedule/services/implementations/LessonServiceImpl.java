@@ -33,7 +33,7 @@ public class LessonServiceImpl implements LessonService {
 
     private static final Logger logger = LogManager.getLogger(LessonServiceImpl.class);
 
-    @CacheEvict(cacheNames = {"specialties", "allSpecialties"}, allEntries = true)
+    @CacheEvict(cacheNames = {"specialties", "allSpecialties", "subjects", "allSubjects"}, allEntries = true)
     @Override
     public Lesson addLesson(Lesson.Time time, Long subjId, Long teachId, SubjectType subjectType, String weeks, String room, DayOfWeek dayOfWeek) {
         Object[] res = verifyAndProcessData(subjId,teachId,weeks,room);
@@ -41,7 +41,7 @@ public class LessonServiceImpl implements LessonService {
         return lessonRepository.save(new Lesson(time,(Subject) res[1],(Teacher) res[2],subjectType,weeks,(Room) res[0],dayOfWeek));
     }
 
-    @CacheEvict(cacheNames = {"specialties", "allSpecialties"}, allEntries = true)
+    @CacheEvict(cacheNames = {"specialties", "allSpecialties", "subjects", "allSubjects"}, allEntries = true)
     @Override
     public Lesson addLesson(Lesson lesson) {
         lesson.setId(-1L);
@@ -53,7 +53,7 @@ public class LessonServiceImpl implements LessonService {
         return lessonRepository.existsById(id);
     }
 
-    @CacheEvict(cacheNames = {"specialties", "allSpecialties"}, allEntries = true)
+    @CacheEvict(cacheNames = {"specialties", "allSpecialties", "subjects", "allSubjects"}, allEntries = true)
     @Override
     public void deleteLesson(Long id) throws NoLessonWithSuchIdFound {
         if(!lessonExistsById(id)){
@@ -64,7 +64,7 @@ public class LessonServiceImpl implements LessonService {
         logger.info(Markers.DELETE_LESSON_MARKER,"Lesson successfully deleted!");
     }
 
-    @CacheEvict(cacheNames = {"specialties", "allSpecialties"}, allEntries = true)
+    @CacheEvict(cacheNames = {"specialties", "allSpecialties", "subjects", "allSubjects"}, allEntries = true)
     @Override
     public Lesson updateLesson(Long id, Lesson.Time time, Long subjId, Long teachId, SubjectType subjectType, String weeks, String room, DayOfWeek dayOfWeek) {
         Object[] res = verifyAndProcessData(subjId,teachId,weeks,room);
@@ -72,7 +72,7 @@ public class LessonServiceImpl implements LessonService {
         return lessonRepository.save(new Lesson(id,time,(Subject) res[1],(Teacher) res[2],subjectType,weeks,(Room) res[0],dayOfWeek));
     }
 
-    @CacheEvict(cacheNames = {"specialties", "allSpecialties"}, allEntries = true)
+    @CacheEvict(cacheNames = {"specialties", "allSpecialties", "subjects", "allSubjects"}, allEntries = true)
     @Override
     public Lesson updateLesson(Lesson lesson) throws NoLessonWithSuchIdFound {
         if(!lessonExistsById(lesson.getId())) throw new NoLessonWithSuchIdFound(lesson.getId(),"updated");

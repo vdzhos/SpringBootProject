@@ -58,6 +58,7 @@ public class Markers {
 
     public static final Marker SPECIALTY_CACHING_MARKER = MarkerManager.getMarker("SPECIALTY_CACHING")
             .setParents(IMPORTANT_MARKER);
-
+    public static final Marker SUBJECT_CACHING_MARKER = MarkerManager.getMarker("SUBJECT_CACHING")
+            .setParents(IMPORTANT_MARKER);
 
 }

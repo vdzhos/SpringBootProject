@@ -1,5 +1,6 @@
 package com.sbproject.schedule.services.implementations;
 
+import com.sbproject.schedule.controllers.SubjectController;
 import com.sbproject.schedule.exceptions.subject.NoSubjectWithSuchIdToDelete;
 import com.sbproject.schedule.exceptions.subject.SubjectNotFoundException;
 import com.sbproject.schedule.models.Lesson;
@@ -7,9 +8,16 @@ import com.sbproject.schedule.models.Specialty;
 import com.sbproject.schedule.models.Subject;
 import com.sbproject.schedule.repositories.SubjectRepository;
 import com.sbproject.schedule.services.interfaces.SubjectService;
+import com.sbproject.schedule.utils.Markers;
 import com.sbproject.schedule.utils.Utils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.Set;
@@ -24,12 +32,15 @@ public class SubjectServiceImpl implements SubjectService {
 
     private Utils processor;
 
+    private static Logger logger = LogManager.getLogger(SubjectController.class);
+
     @Autowired
     public void setProcessor(Utils processor) {
         this.processor = processor;
     }
 
-    @CacheEvict(cacheNames = {"specialties", "allSpecialties"}, allEntries = true)
+
+    @CacheEvict(cacheNames = {"specialties", "allSpecialties", "allSubjects"}, allEntries = true)
     @Override
     public Subject addSubject(String name, int quantOfGroups, Set<Specialty> specialties) {
         name = processor.processName(name);
@@ -41,7 +52,7 @@ public class SubjectServiceImpl implements SubjectService {
         return subjectRepository.save(new Subject(name, quantOfGroups, specialties));
     }
 
-    @CacheEvict(cacheNames = {"specialties", "allSpecialties"}, allEntries = true)
+    @CacheEvict(cacheNames = {"specialties", "allSpecialties", "allSubjects"}, allEntries = true)
     @Override
     public Subject addSubject(Subject subject) {
         subject.setId(-1L);
@@ -49,6 +60,8 @@ public class SubjectServiceImpl implements SubjectService {
         return addSubject(subject.getName(), subject.getQuantOfGroups(), subject.getSpecialties());
     }
 
+    @Caching(evict = { @CacheEvict(cacheNames = "allSubjects", allEntries = true),
+            @CacheEvict(cacheNames = "subjects", key = "#id")})
     @CacheEvict(cacheNames = {"specialties", "allSpecialties"}, allEntries = true)
     @Transactional
     @Override
@@ -57,7 +70,8 @@ public class SubjectServiceImpl implements SubjectService {
         subjectRepository.deleteById(id);
     }
 
-    @CacheEvict(cacheNames = {"specialties", "allSpecialties"}, allEntries = true)
+    @CachePut(cacheNames = "subjects", key = "#id")
+    @CacheEvict(cacheNames = {"specialties", "allSpecialties", "allSubjects"}, allEntries = true)
     @Override
     public Subject updateSubject(Long id, String name, int quantOfGroups,
                                  //Set<Teacher> teachers,
@@ -99,18 +113,13 @@ public class SubjectServiceImpl implements SubjectService {
         return subjectRepository.save(subject);
     }
 
-
+    @Cacheable(cacheNames = "allSubjects")
     @Override
     public Iterable<Subject> getAll() {
         return subjectRepository.findAll();
     }
 
-
-    @Transactional
-    public String countTeachers(long subjectId){
-        return subjectRepository.findById(subjectId).get().getTeachers().toString();
-    }
-
+    @Cacheable(cacheNames = "subjects", key = "#name")
     @Override
     public Subject getSubjectByName(String name) {
         Iterable<Subject> res = subjectRepository.findByName(name);
@@ -118,6 +127,7 @@ public class SubjectServiceImpl implements SubjectService {
         return res.iterator().next();
     }
 
+    @Cacheable(cacheNames = "subjects", key = "#id")
     @Override
     public Subject getSubjectById(Long id) {
         return subjectRepository.findById(id).orElseThrow(() -> new SubjectNotFoundException("Subject with id '"+ id +"' has not been found!"));
@@ -154,8 +164,18 @@ public class SubjectServiceImpl implements SubjectService {
 			set.addAll(this.getLessonWeeks(id));
 		return set;
 	}
-    
-    
+
+    @Scheduled(fixedDelay = 120000)
+    @CacheEvict(cacheNames = "allSubjects", allEntries = true)
+    public void clearAllSubjectsCache() {
+        logger.info(Markers.SUBJECT_CACHING_MARKER, "SCHEDULED REMOVAL: All subjects list removed from cache");
+    }
+
+    @Scheduled(cron = "0 */2 * ? * *")
+    @CacheEvict(cacheNames = "subjects", allEntries = true)
+    public void clearSubjectsCache() {
+        logger.info(Markers.SUBJECT_CACHING_MARKER, "SCHEDULED REMOVAL: All specific subjects removed from cache");
+    }
     
 
 }

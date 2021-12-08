@@ -43,7 +43,7 @@ public class ScheduleReaderSaverServiceImpl implements ScheduleReaderSaverServic
         return bos.toByteArray();
     }
 
-    @CacheEvict(cacheNames = {"specialties", "allSpecialties"}, allEntries = true)
+    @CacheEvict(cacheNames = {"specialties", "allSpecialties", "subjects", "allSubjects"}, allEntries = true)
     @Override
     public void readSaveSchedule(InputStream inputStream, long specialtyId) throws Exception {
         byte[] input = readInputStream(inputStream);

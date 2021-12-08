@@ -30,7 +30,7 @@ public class TeacherServiceImpl implements TeacherService {
         this.teacherRepository = teacherRepository;
     }
 
-    @CacheEvict(cacheNames = {"specialties", "allSpecialties"}, allEntries = true)
+    @CacheEvict(cacheNames = {"specialties", "allSpecialties", "subjects", "allSubjects"}, allEntries = true)
     //TO DO - need to add name check probably
     @Override
     public boolean addTeacher(String name, Set<Subject> subjects) {
@@ -38,7 +38,7 @@ public class TeacherServiceImpl implements TeacherService {
         return true;
     }
 
-    @CacheEvict(cacheNames = {"specialties", "allSpecialties"}, allEntries = true)
+    @CacheEvict(cacheNames = {"specialties", "allSpecialties", "subjects", "allSubjects"}, allEntries = true)
     @Override
     public Teacher addTeacher(Teacher teacher) {
         teacher.setId(-1L);
@@ -55,7 +55,7 @@ public class TeacherServiceImpl implements TeacherService {
         return teacherRepository.existsByName(name);
     }
 
-    @CacheEvict(cacheNames = {"specialties", "allSpecialties"}, allEntries = true)
+    @CacheEvict(cacheNames = {"specialties", "allSpecialties", "subjects", "allSubjects"}, allEntries = true)
     @Override
     public boolean deleteTeacher(Long id) throws NoTeacherWithSuchIdException{
         if(!teacherExistsById(id)) throw new NoTeacherWithSuchIdException(id, "deleted");
@@ -63,14 +63,14 @@ public class TeacherServiceImpl implements TeacherService {
         return true;
     }
 
-    @CacheEvict(cacheNames = {"specialties", "allSpecialties"}, allEntries = true)
+    @CacheEvict(cacheNames = {"specialties", "allSpecialties", "subjects", "allSubjects"}, allEntries = true)
     @Override
     public boolean updateTeacher(Long id, String name) {
         teacherRepository.save(new Teacher(id, name));
         return true;
     }
 
-    @CacheEvict(cacheNames = {"specialties", "allSpecialties"}, allEntries = true)
+    @CacheEvict(cacheNames = {"specialties", "allSpecialties", "subjects", "allSubjects"}, allEntries = true)
     @Override
     public Teacher updateTeacher(Teacher teacher) throws NoTeacherWithSuchIdException {
         if(!teacherExistsById(teacher.getId())) throw new NoTeacherWithSuchIdException(teacher.getId(), "updated");

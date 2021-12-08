@@ -9,7 +9,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
-public class SubjectUnitTest {
+public class SubjectJPATest {
 
     @Autowired
     private TestEntityManager entityManager;
@@ -67,6 +67,22 @@ public class SubjectUnitTest {
 
         Iterable<Subject> subjects = subjectRepository.findAll();
         assertThat(subjects).hasSize(1).contains(s1);
+    }
+
+    @Test
+    public void should_update_subject_by_id() {
+        Subject s = new Subject("Subject 1", 3);
+        entityManager.persist(s);
+
+        Subject foundS = subjectRepository.findById(s.getId()).get();
+        foundS.setName("Subject updated");
+        foundS.setQuantOfGroups(5);
+        subjectRepository.save(foundS);
+
+        Subject foundSAgain = subjectRepository.findById(s.getId()).get();
+        assertThat(foundSAgain).isEqualTo(foundS);
+        assertThat(foundSAgain).hasFieldOrPropertyWithValue("name", "Subject updated");
+        assertThat(foundSAgain).hasFieldOrPropertyWithValue("quantOfGroups", 5);
     }
 
 }
