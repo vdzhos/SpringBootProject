@@ -64,7 +64,7 @@ public class TeacherServiceImpl implements TeacherService {
 
     @Caching(evict = { @CacheEvict(cacheNames = "allTeachers", allEntries = true),
             @CacheEvict(cacheNames = "teachers", key = "#id")})
-    @CacheEvict(cacheNames = {"specialties", "allSpecialties", "subjects", "allSubjects"}, allEntries = true)
+    @CacheEvict(cacheNames = {"specialties", "allSpecialties", "subjects", "allSubjects","lessons","allLessons"}, allEntries = true)
     @Transactional
     @Override
     public boolean deleteTeacher(Long id) throws NoTeacherWithSuchIdException{
@@ -74,7 +74,7 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @CachePut(cacheNames = "teachers", key = "#id")
-    @CacheEvict(cacheNames = {"specialties", "allSpecialties", "subjects", "allSubjects", "allTeachers"}, allEntries = true)
+    @CacheEvict(cacheNames = {"specialties", "allSpecialties", "subjects", "allSubjects", "allTeachers","lessons","allLessons"}, allEntries = true)
     @Override
     public boolean updateTeacher(Long id, String name) {
         teacherRepository.save(new Teacher(id, name));
@@ -82,7 +82,7 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @CachePut(cacheNames = "teachers", key = "#teacher.id")
-    @CacheEvict(cacheNames = {"specialties", "allSpecialties", "subjects", "allSubjects", "allTeachers"}, allEntries = true)
+    @CacheEvict(cacheNames = {"specialties", "allSpecialties", "subjects", "allSubjects", "allTeachers","lessons","allLessons"}, allEntries = true)
     @Override
     public Teacher updateTeacher(Teacher teacher) throws NoTeacherWithSuchIdException {
         if(!teacherExistsById(teacher.getId())) throw new NoTeacherWithSuchIdException(teacher.getId(), "updated");

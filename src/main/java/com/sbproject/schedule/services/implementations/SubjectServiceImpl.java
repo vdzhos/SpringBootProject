@@ -62,7 +62,7 @@ public class SubjectServiceImpl implements SubjectService {
 
     @Caching(evict = { @CacheEvict(cacheNames = "allSubjects", allEntries = true),
             @CacheEvict(cacheNames = "subjects", key = "#id")})
-    @CacheEvict(cacheNames = {"specialties", "allSpecialties", "teachers", "allTeachers"}, allEntries = true)
+    @CacheEvict(cacheNames = {"specialties", "allSpecialties", "teachers", "allTeachers","lessons","allLessons"}, allEntries = true)
     @Transactional
     @Override
     public void deleteSubject(Long id) {
@@ -71,7 +71,7 @@ public class SubjectServiceImpl implements SubjectService {
     }
 
     @CachePut(cacheNames = "subjects", key = "#id")
-    @CacheEvict(cacheNames = {"specialties", "allSpecialties", "allSubjects", "teachers", "allTeachers"}, allEntries = true)
+    @CacheEvict(cacheNames = {"specialties", "allSpecialties", "allSubjects", "teachers", "allTeachers","lessons","allLessons"}, allEntries = true)
     @Override
     public Subject updateSubject(Long id, String name, int quantOfGroups,
                                  //Set<Teacher> teachers,
@@ -97,7 +97,7 @@ public class SubjectServiceImpl implements SubjectService {
         });
     }
 
-    @CacheEvict(cacheNames = {"specialties", "allSpecialties"}, allEntries = true)
+    @CacheEvict(cacheNames = {"specialties", "allSpecialties","lessons","allLessons"}, allEntries = true)
     @Override
     public Subject updateSubject(Subject subject) {
         //if(!subjectExistsById(subject.getId())) throw new NoSubjectWithSuchIdToUpdate(subject.getId());

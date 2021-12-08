@@ -36,3 +36,4 @@
 2021-12-08 15:39:27,512 [http-nio-8081-exec-8] INFO  c.s.s.c.TeacherController                          - Teacher Teacher 1 has been successfully deleted! -  
 2021-12-08 17:35:22,663 [http-nio-8081-exec-9] INFO  c.s.s.c.TeacherController                          - Teacher Teacher 1 has been successfully deleted! -  
 2021-12-08 17:35:47,365 [http-nio-8081-exec-2] INFO  c.s.s.c.TeacherController                          - Teacher Teacher 2 has been successfully deleted! -  
+2021-12-08 18:02:06,902 [http-nio-8081-exec-3] INFO  c.s.s.c.TeacherController                          - Teacher Teacher 1 has been successfully deleted! -  
