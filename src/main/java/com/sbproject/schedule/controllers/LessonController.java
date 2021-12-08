@@ -128,7 +128,7 @@ public class LessonController {
     private Iterable<Lesson> getLessons(Long specId, Long deleteUpdated){
         List<Lesson> lessons;
         if(specId == -1){
-            lessons = (List<Lesson>) lessonService.getAll();
+            lessons = Collections.emptyList();
         }else{
             Iterable<Subject> subjects = specialtyService.getSpecialty(specId).getSubjects();
             lessons = new ArrayList<>();
@@ -143,8 +143,8 @@ public class LessonController {
                     }
                 }
             }
+            Collections.sort(lessons);
         }
-        Collections.sort(lessons);
         return lessons;
     }
 

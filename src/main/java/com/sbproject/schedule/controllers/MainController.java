@@ -33,6 +33,7 @@ import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -72,7 +73,7 @@ public class MainController {
             model.addAttribute("tab",0);
         }
         if(model.getAttribute("schedule") == null){
-            model.addAttribute("schedule", new Schedule((List<Lesson>) lessonService.getAll()));
+            model.addAttribute("schedule", new Schedule(Collections.emptyList()));
         }
         if(model.getAttribute("lessonSpec") == null){
             model.addAttribute("lessonSpec", -1);

@@ -22,7 +22,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.DayOfWeek;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class LessonServiceImpl implements LessonService {
@@ -117,7 +120,7 @@ public class LessonServiceImpl implements LessonService {
         if(room.equals("remotely")) r = new Room();
         else r = new Room(room);
 
-        if(weeks.isEmpty() || !weeks.matches("^([1-9][0-9]*(-[1-9][0-9]*)?)(,([1-9][0-9]*(-[1-9][0-9]*)?))*$")){
+        if(weeks.isEmpty() || !weeks.matches("^([1-9][0-9]*(-[1-9][0-9]*)?)(,([1-9][0-9]*(-[1-9][0-9]*)?))*$") || !checkWeeksAscending(weeks)){
             logger.error(Markers.ALTERING_LESSON_TABLE_MARKER,"Lesson not added!");
             throw new InvalidLessonArgumentsException("weeks",weeks);
         }
@@ -135,6 +138,18 @@ public class LessonServiceImpl implements LessonService {
         }
 
         return new Object[]{r,s.get(),t.get()};
+    }
+
+    private boolean checkWeeksAscending(String weeks){
+        List<Integer> w = Stream.of(weeks.split("[,-]")).map(Integer::parseInt).collect(Collectors.toList());
+        boolean ok = true;
+        for (int i = 1; i < w.size(); i++) {
+            if(w.get(i)<=w.get(i-1)) {
+                ok = false;
+                break;
+            }
+        }
+        return ok;
     }
 
 }
