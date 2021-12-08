@@ -8,6 +8,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.sbproject.schedule.exceptions.user.LoginUsedException;
@@ -36,6 +40,7 @@ public class UserServiceImpl implements UserService {
 		this.userRepo = repo;
 	}
 
+	
 	@Override
 	public User addUser(UserDTO dto) throws LoginUsedException {
 		if(!userRepo.findById(dto.getLogin()).isEmpty()) {
@@ -50,6 +55,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 
+	@Cacheable(cacheNames = "users", key="#login")
 	@Override
 	public User getUser(String login) throws UserNotFoundException {
 		Optional<User> opt = userRepo.findById(login);
@@ -60,6 +66,7 @@ public class UserServiceImpl implements UserService {
 		return opt.get();
 	}
 
+	@CacheEvict(cacheNames="users", key="#login")
 	@Override
 	public boolean deleteUser(String login) throws UserNotFoundException {
 		Optional<User> opt = userRepo.findById(login);
@@ -72,6 +79,7 @@ public class UserServiceImpl implements UserService {
 		return true;
 	}
 
+	@CachePut(cacheNames = "users", key = "#user.login")
 	@Override
 	public User updateUser(User user) {
 		userRepo.deleteById(user.getLogin());
@@ -79,4 +87,12 @@ public class UserServiceImpl implements UserService {
 		return user;
 	}
 
+	
+	@Scheduled(cron = "0 */5 * ? * *")
+    @CacheEvict(cacheNames = "users", allEntries = true)
+	public void clearUsersCache()
+	{
+		logger.info(Markers.USER_CACHING_MARKER, "SCHEDULED REMOVAL: All users removed from cache");
+	}
+			
 }

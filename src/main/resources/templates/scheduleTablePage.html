@@ -36,7 +36,8 @@
 
     <div class="row">
         <div class="col-12">
-            <h3>Schedule</h3>
+            <h3>Schedule for:  
+            <label style="padding-left:15px;" th:text="${entityName}"></label></h3>
         </div>
         <div class="col-12">
             <h4 th:if="${!schedule.hasLessons()}">No results found</h4>
