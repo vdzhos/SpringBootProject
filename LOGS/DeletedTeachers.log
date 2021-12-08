@@ -28,3 +28,11 @@
 2021-12-03 23:13:24,219 [http-nio-8081-exec-2] INFO  c.s.s.c.TeacherController                          - Teacher Teacher 3 has been successfully deleted! -  
 2021-12-03 23:22:07,450 [http-nio-8081-exec-4] INFO  c.s.s.c.TeacherController                          - Teacher Teacher 1 has been successfully deleted! -  
 2021-12-04 18:39:22,375 [http-nio-8081-exec-2] INFO  c.s.s.c.TeacherController                          - Teacher Teacher 1 has been successfully deleted! -  
+2021-12-08 11:44:26,315 [http-nio-8081-exec-1] INFO  c.s.s.c.TeacherController                          - Teacher  has been successfully deleted! -  
+2021-12-08 15:39:18,034 [http-nio-8081-exec-10] INFO  c.s.s.c.TeacherController                          - Teacher  has been successfully deleted! -  
+2021-12-08 15:39:18,588 [http-nio-8081-exec-2] INFO  c.s.s.c.TeacherController                          - Teacher Illia Kuznets has been successfully deleted! -  
+2021-12-08 15:39:26,457 [http-nio-8081-exec-4] INFO  c.s.s.c.TeacherController                          - Teacher Teacher 3 has been successfully deleted! -  
+2021-12-08 15:39:26,996 [http-nio-8081-exec-6] INFO  c.s.s.c.TeacherController                          - Teacher Teacher 2 has been successfully deleted! -  
+2021-12-08 15:39:27,512 [http-nio-8081-exec-8] INFO  c.s.s.c.TeacherController                          - Teacher Teacher 1 has been successfully deleted! -  
+2021-12-08 17:35:22,663 [http-nio-8081-exec-9] INFO  c.s.s.c.TeacherController                          - Teacher Teacher 1 has been successfully deleted! -  
+2021-12-08 17:35:47,365 [http-nio-8081-exec-2] INFO  c.s.s.c.TeacherController                          - Teacher Teacher 2 has been successfully deleted! -  

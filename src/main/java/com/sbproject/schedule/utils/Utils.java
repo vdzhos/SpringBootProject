@@ -16,6 +16,8 @@ public interface Utils {
 
     void checkSubjectName(String name);
 
+    void checkTeacherName(String name);
+
     public Long getUniqueId();
 
     void checkYear(int year);
@@ -25,4 +27,6 @@ public interface Utils {
     void checkQuantOfSpecialties(int quantOfSpecialties);
 
     void checkSpecialties(Iterable<Subject> subjects, Set<Specialty> specialties);
+
+//    void checkTeachersSubjects (Set<Subject> subjects);
 }

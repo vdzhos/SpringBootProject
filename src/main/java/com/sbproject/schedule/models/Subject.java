@@ -56,7 +56,7 @@ public class Subject {
             resolver = EntityIdResolver.class)
     @JsonIdentityReference(alwaysAsId = true)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "subjects_specialties",
             joinColumns = @JoinColumn(name = "subject_id", nullable = false),

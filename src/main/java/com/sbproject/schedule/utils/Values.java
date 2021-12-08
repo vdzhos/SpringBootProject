@@ -12,4 +12,6 @@ public class Values {
     public static final int MAX_QUANT_OF_GROUPS = 50;
     public static final String INVALID_SUBJECT_NAME = "Incorrect subject name!";
     public static final int MIN_QUANT_OF_SPECIALTIES_ON_SUBJECT = 1;
+    public static final int MIN_QUANT_OF_SUBJECTS_FOR_TEACHER = 1;
+
 }

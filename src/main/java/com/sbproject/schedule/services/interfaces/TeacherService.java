@@ -10,7 +10,7 @@ import java.util.Set;
 
 public interface TeacherService {
 
-    boolean addTeacher(String name, Set<Subject> subjects);
+    Teacher addTeacher(String name, Set<Subject> subjects);
     Teacher addTeacher(Teacher teacher);
 
     boolean teacherExistsById(Long id);
