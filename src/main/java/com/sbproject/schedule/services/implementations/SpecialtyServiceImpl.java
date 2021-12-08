@@ -75,8 +75,8 @@ public class SpecialtyServiceImpl implements SpecialtyService {
         }
     }
 
-    @Caching(evict = { @CacheEvict(cacheNames = "specialties", allEntries = true),
-            @CacheEvict(cacheNames = "allSpecialties", key = "#id")})
+    @Caching(evict = { @CacheEvict(cacheNames = "allSpecialties", allEntries = true),
+            @CacheEvict(cacheNames = "specialties", key = "#id")})
     @CacheEvict(cacheNames = {"subjects", "allSubjects"}, allEntries = true)
     @Transactional
     @Override
