@@ -6,11 +6,9 @@ import com.sbproject.schedule.models.Subject;
 import com.sbproject.schedule.models.Teacher;
 import com.sbproject.schedule.repositories.TeacherRepository;
 import com.sbproject.schedule.services.interfaces.TeacherService;
-import com.sbproject.schedule.utils.Markers;
 import com.sbproject.schedule.utils.Utils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.aspectj.weaver.ast.Not;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
@@ -35,7 +33,7 @@ public class TeacherServiceImpl implements TeacherService {
     @CacheEvict(cacheNames = {"specialties", "allSpecialties"}, allEntries = true)
     //TO DO - need to add name check probably
     @Override
-    public boolean addTeacher(String name, List<Subject> subjects) {
+    public boolean addTeacher(String name, Set<Subject> subjects) {
         teacherRepository.save(new Teacher(name, subjects));
         return true;
     }

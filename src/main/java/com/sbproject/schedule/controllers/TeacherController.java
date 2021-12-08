@@ -36,7 +36,7 @@ public class TeacherController {
 
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/add")
-    public RedirectView addTeacher(@RequestParam String name, @RequestParam List<Subject> subjects, Model model, RedirectAttributes redir){
+    public RedirectView addTeacher(@RequestParam String name, @RequestParam Set<Subject> subjects, Model model, RedirectAttributes redir){
         RedirectView redirectView= new RedirectView("/admin",true);
         String notification = "Teacher '"+name+"' has been successfully added!";
         boolean success =  teacherService.addTeacher(name, subjects);

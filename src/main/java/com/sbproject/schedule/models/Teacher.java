@@ -40,16 +40,16 @@ public class Teacher {
             joinColumns = @JoinColumn(name = "teacher_id", nullable = false),
             inverseJoinColumns = @JoinColumn(name = "subject_id", nullable = false))
     @NotNull
-    private List<Subject> subjects;
+    private Set<Subject> subjects;
 
 
 
     @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL)
-    private List<Lesson> lessons;
+    private Set<Lesson> lessons;
 
     public Teacher(String name) {
         this.name = name;
-        subjects = new ArrayList<>();
+        subjects = new HashSet<>();
     }
 
 
@@ -61,7 +61,7 @@ public class Teacher {
         this.name = name;
     }
 
-    public Teacher(String name, List<Subject> subjects) {
+    public Teacher(String name, Set<Subject> subjects) {
         this.subjects = subjects;
         this.name = name;
     }
@@ -95,7 +95,7 @@ public class Teacher {
         this.name = name;
     }
 
-    public List<Subject> getSubjects() {
+    public Set<Subject> getSubjects() {
         return subjects;
     }
 

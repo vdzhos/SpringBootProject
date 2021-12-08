@@ -5,11 +5,12 @@ import com.sbproject.schedule.models.Subject;
 import com.sbproject.schedule.models.Teacher;
 
 import java.util.List;
+import java.util.Set;
 
 
 public interface TeacherService {
 
-    boolean addTeacher(String name, List<Subject> subjects);
+    boolean addTeacher(String name, Set<Subject> subjects);
     Teacher addTeacher(Teacher teacher);
 
     boolean teacherExistsById(Long id);
