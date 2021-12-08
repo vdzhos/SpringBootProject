@@ -1,9 +1,7 @@
 package com.sbproject.schedule.controllers;
 
 import com.sbproject.schedule.models.Specialty;
-import com.sbproject.schedule.models.Teacher;
 import com.sbproject.schedule.services.implementations.SubjectServiceImpl;
-import com.sbproject.schedule.services.interfaces.SubjectService;
 import com.sbproject.schedule.utils.Markers;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -11,15 +9,12 @@ import org.apache.logging.log4j.ThreadContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -62,12 +57,6 @@ public class SubjectController {
         return redirectView;
     }
 
-    /*@PreAuthorize("hasRole('ADMIN')")
-    @PostMapping("/add")
-    public RedirectView addSubject(@RequestParam String name, @RequestParam int quantOfGroups, RedirectAttributes redir){
-        return addSubject(name, quantOfGroups, null, redir);
-    }*/
-
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/delete")
     public RedirectView deleteSubject(@RequestParam Long id, @RequestParam String subject, RedirectAttributes redir) {
@@ -88,14 +77,12 @@ public class SubjectController {
     @PostMapping("/update")
     public RedirectView updateSubject(@RequestParam Long id, @RequestParam String subjName,
                                       @RequestParam int subjQuantOfGroups,
-                                      //@RequestParam Set<Teacher> subjTeachers,
                                       @RequestParam Set<Specialty> subjSpecialties,
                                       RedirectAttributes redir){
         RedirectView redirectView= new RedirectView(REDIRECT_EDIT_PAGE_URL,true);
         String notification = "Subject has been successfully updated!";
         boolean success = true;
         try{
-            //subjectService.updateSubject(id, subjName, subjQuantOfGroups, subjTeachers, subjSpecialties);
             subjectService.updateSubject(id, subjName, subjQuantOfGroups, subjSpecialties);
             logger.info(Markers.UPDATE_SUBJECT_MARKER,notification);
         } catch (Exception e) {

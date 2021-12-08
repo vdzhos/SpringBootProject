@@ -56,7 +56,6 @@ public class SubjectServiceImpl implements SubjectService {
     @Override
     public Subject addSubject(Subject subject) {
         subject.setId(-1L);
-        //return subjectRepository.save(subject);
         return addSubject(subject.getName(), subject.getQuantOfGroups(), subject.getSpecialties());
     }
 
@@ -73,9 +72,7 @@ public class SubjectServiceImpl implements SubjectService {
     @CachePut(cacheNames = "subjects", key = "#id")
     @CacheEvict(cacheNames = {"specialties", "allSpecialties", "allSubjects"}, allEntries = true)
     @Override
-    public Subject updateSubject(Long id, String name, int quantOfGroups,
-                                 //Set<Teacher> teachers,
-                                 Set<Specialty> specialties) {
+    public Subject updateSubject(Long id, String name, int quantOfGroups, Set<Specialty> specialties) {
         name = processor.processName(name);
         processor.checkSubjectName(name);
         processor.checkQuantOfGroups(quantOfGroups);
@@ -88,11 +85,9 @@ public class SubjectServiceImpl implements SubjectService {
                 return subject;
             subject.setName(finalName);
             subject.setQuantOfGroups(quantOfGroups);
-            //subject.setTeachers(teachers);
             subject.setSpecialties(specialties);
             return subjectRepository.save(subject);
         }).orElseGet(() -> {
-            //return subjectRepository.save(new Subject(id, finalName, quantOfGroups, teachers, specialties));
             return subjectRepository.save(new Subject(id, finalName, quantOfGroups, specialties));
         });
     }
@@ -100,9 +95,6 @@ public class SubjectServiceImpl implements SubjectService {
     @CacheEvict(cacheNames = {"specialties", "allSpecialties"}, allEntries = true)
     @Override
     public Subject updateSubject(Subject subject) {
-        //if(!subjectExistsById(subject.getId())) throw new NoSubjectWithSuchIdToUpdate(subject.getId());
-        //return subjectRepository.save(subject);
-        //return updateSubject(subject.getId(), subject.getName(), subject.getQuantOfGroups(), subject.getTeachers(), subject.getSpecialties());
         return updateSubject(subject.getId(), subject.getName(), subject.getQuantOfGroups(), subject.getSpecialties());
     }
 

@@ -92,9 +92,7 @@ public class Subject {
         this.specialties = specialties;
     }
 
-    public Subject(long id, String name, int quantOfGroups,
-                   //Set<Teacher> teachers,
-                   Set<Specialty> specialties) {
+    public Subject(long id, String name, int quantOfGroups, Set<Specialty> specialties) {
         this.name = name;
         this.quantOfGroups = quantOfGroups;
         this.teachers = new HashSet<>();
@@ -105,17 +103,6 @@ public class Subject {
     public String toString() {
         return name + '(' + getSpecialtiesToString() + ')';
     }
-
-//    @Override
-//    public String toString() {
-//        return "Subject{" +
-//                "id=" + id +
-//                ", name='" + name + '\'' +
-//                ", quantOfGroups=" + quantOfGroups +
-//                ", teachers: " + teachers +
-//                ", specialties: " + specialties + '}';
-//    }
-
 
     public Long getId() {
         return id;

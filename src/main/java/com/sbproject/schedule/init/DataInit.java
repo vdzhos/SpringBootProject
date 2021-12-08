@@ -26,15 +26,6 @@ public class DataInit implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-//        long countUsers = userRepository.count();
-
-//        if(countUsers == 0) {
-//        	User u1 = new User("vovan", "1234", Role.ADMIN);
-//        	User u2 = new User("illya", "4321", Role.REGULAR);
-//        	userRepository.save(u1);
-//        	userRepository.save(u2);
-//        }
-
         addSpecialties();
         addSubjects();
         addTeachers();
@@ -90,7 +81,6 @@ public class DataInit implements ApplicationRunner {
         specialtyRepository.save(sp1);
         specialtyRepository.save(sp2);
         specialtyRepository.save(sp3);
-        //specialtyRepository.findAll();
     }
 
     private void addLessons(){
