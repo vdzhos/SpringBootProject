@@ -30,7 +30,7 @@
                     <select required class="form-control mt-2 col-3 mr-3" name="specialtyId">
                         <option th:each="specialty: ${specialties}" th:value="${specialty.getId()}" th:text="${specialty.toString()}"></option>
                     </select>
-                    <input class="mt-2" name="file" type="file">
+                    <input class="mt-2" name="file" type="file" required>
                     <button type="submit" class="btn btn-info mt-2">Upload</button>
                 </div>
             </form>
@@ -47,8 +47,8 @@
     <div class="row">
         <div class="row">
             <div class="col-12">
-                <button class="btn btn-info mr-3" type="submit" data-toggle="modal" data-target="#modalSpecialty">Specialty Schedule</button>
-                <button class="btn btn-info mr-3" type="submit" data-toggle="modal" data-target="#modalTeacher">Teacher Schedule</button>
+                <button class="btn btn-lg btn-info mr-3" data-toggle="modal" data-target="#modalSpecialty">Specialty Schedule</button>
+                <button class="btn btn-lg btn-info mr-3" data-toggle="modal" data-target="#modalTeacher">Teacher Schedule</button>
             </div>
            </div>
     </div>

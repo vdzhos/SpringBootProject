@@ -1,7 +1,6 @@
 package com.sbproject.schedule.services.implementations;
 
 import com.sbproject.schedule.exceptions.teacher.NoTeacherWithSuchIdException;
-import com.sbproject.schedule.models.Lesson;
 import com.sbproject.schedule.models.Subject;
 import com.sbproject.schedule.models.Teacher;
 import com.sbproject.schedule.repositories.TeacherRepository;
@@ -19,7 +18,6 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Set;
 
 @Service

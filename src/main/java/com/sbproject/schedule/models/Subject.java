@@ -45,7 +45,7 @@ public class Subject {
             resolver = EntityIdResolver.class)
     @JsonIdentityReference(alwaysAsId = true)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @ManyToMany(mappedBy = "subjects", fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "subjects", fetch = FetchType.EAGER)
     private Set<Teacher> teachers;
 
 

@@ -24,10 +24,10 @@ public class CustomCacheManager implements CacheManager, InitializingBean {
 
     @Override
     public Cache getCache(String name) {
-        Cache cache = (Cache)this.cacheMap.get(name);
+        Cache cache = this.cacheMap.get(name);
         if (cache == null) {
             synchronized(this.cacheMap) {
-                cache = (Cache)this.cacheMap.get(name);
+                cache = this.cacheMap.get(name);
                 if (cache == null) {
                     cache = new ConcurrentMapCache(name, new ConcurrentHashMap(256), false);
                     this.cacheMap.put(name, cache);
