@@ -39,10 +39,14 @@ public class TeacherController {
     public RedirectView addTeacher(@RequestParam String name, @RequestParam Set<Subject> subjects, Model model, RedirectAttributes redir){
         RedirectView redirectView= new RedirectView("/admin",true);
         String notification = "Teacher '"+name+"' has been successfully added!";
-        boolean success =  teacherService.addTeacher(name, subjects);
-        if(success) logger.info(Markers.ALTERING_TEACHER_TABLE_MARKER,"Teacher {} with {} subjects has been successfully added!", name, subjects);
-        else {
-            notification = "Teacher has not been added!";
+        boolean success = true;
+        try {
+            teacherService.addTeacher(name, subjects);
+            logger.info(Markers.ALTERING_TEACHER_TABLE_MARKER,"Teacher {} with {} subjects has been successfully added!", name, subjects);
+        }
+        catch (Exception e) {
+            success = false;
+            notification = e.getMessage();
             logger.error(Markers.ALTERING_TEACHER_TABLE_MARKER,"Teacher {} with {} subjects has not been added!", name, subjects);
         }
         redir.addFlashAttribute("success", success);

@@ -28,7 +28,7 @@ public class Teacher {
 
 
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JsonIdentityInfo(
             generator = ObjectIdGenerators.PropertyGenerator.class,
             property = "id",

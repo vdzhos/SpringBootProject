@@ -77,7 +77,7 @@ public class SpecialtyServiceImpl implements SpecialtyService {
 
     @Caching(evict = { @CacheEvict(cacheNames = "allSpecialties", allEntries = true),
             @CacheEvict(cacheNames = "specialties", key = "#id")})
-    @CacheEvict(cacheNames = {"subjects", "allSubjects"}, allEntries = true)
+    @CacheEvict(cacheNames = {"subjects", "allSubjects", "teachers", "allTeachers","lessons","allLessons"}, allEntries = true)
     @Transactional
     @Override
     public void deleteSpecialty(Long id) {
@@ -90,7 +90,7 @@ public class SpecialtyServiceImpl implements SpecialtyService {
     }
 
     @CachePut(cacheNames = "specialties", key = "#id")
-    @CacheEvict(cacheNames = {"allSpecialties", "subjects", "allSubjects"}, allEntries = true)
+    @CacheEvict(cacheNames = {"allSpecialties", "subjects", "allSubjects", "teachers", "allTeachers","lessons","allLessons"}, allEntries = true)
     @Override
     public Specialty updateSpecialty(long id, String name, int year) {
         logger.info(Markers.SPECIALTY_CACHING_MARKER, "Specialty {}-{} id={} updated in cache",id,name,year);
@@ -150,7 +150,7 @@ public class SpecialtyServiceImpl implements SpecialtyService {
     }
 
 
-    @CacheEvict(cacheNames = {"specialties", "allSpecialties", "subjects", "allSubjects"}, allEntries = true)
+    @CacheEvict(cacheNames = {"specialties", "allSpecialties", "subjects", "allSubjects", "teachers", "allTeachers","lessons","allLessons"}, allEntries = true)
 //    @Caching(evict = { @CacheEvict(cacheNames = "specialties", allEntries = true),
 //            @CacheEvict(cacheNames = "allSpecialties", allEntries = true)})
     @Override

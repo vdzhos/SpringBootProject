@@ -147,7 +147,7 @@
                         <h3 th:text="#{edit.teachers}">Teachers</h3>
 
                         <form action="/teacher/add" method="post">
-                            <label><span th:text="#{edit.name}"></span>: <input name="name" type="text" th:placeholder="#{edit.enter-the-name}"/></label>
+                            <label><span th:text="#{edit.name}"></span>: <input required name="name" type="text" th:placeholder="#{edit.enter-the-name}"/></label>
                             <!--<label><span th:text="#{edit.subjects}"></span>: <input name="subjects" th:each="subject: ${subjects}" th:value="${subject.id}" th:text="${subject}"
                                                     type="checkbox"/></label>-->
                             <div class="dropdown form-group">
@@ -157,8 +157,8 @@
                                     <li th:each="subject: ${subjects}" class="dropdown-item"><input name="subjects" th:value="${subject.id}" th:text="${subject}" type="checkbox"/></li>
                                 </ul>
                             </div>
-                            <button type="submit" th:text="#{edit.add}">Add</button>
-                            <button type="reset" th:text="#{edit.clear}">Clear</button>
+                            <button id="btnAddTeacher" class="btn btn-info mr-1" type="submit" th:text="#{edit.add}">Add</button>
+                            <button class="btn btn-secondary" type="reset" th:text="#{edit.clear}">Clear</button>
                         </form>
                         <br/>
 
@@ -617,6 +617,13 @@
     document.getElementById('btnAddSubject').addEventListener('click', (e) => {
         if (!isAtLeastOneCheckboxChecked('specialties')) {
             alert("Choose at least one specialty!");
+            e.preventDefault();
+        }
+    });
+
+    document.getElementById('btnAddTeacher').addEventListener('click', (e) => {
+        if (!isAtLeastOneCheckboxChecked('subjects')) {
+            alert("Choose at least one subject!");
             e.preventDefault();
         }
     });

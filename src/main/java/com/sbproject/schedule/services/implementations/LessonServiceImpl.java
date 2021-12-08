@@ -14,7 +14,12 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.DayOfWeek;
 import java.util.Optional;
@@ -33,7 +38,7 @@ public class LessonServiceImpl implements LessonService {
 
     private static final Logger logger = LogManager.getLogger(LessonServiceImpl.class);
 
-    @CacheEvict(cacheNames = {"specialties", "allSpecialties", "subjects", "allSubjects"}, allEntries = true)
+    @CacheEvict(cacheNames = {"specialties", "allSpecialties", "subjects", "allSubjects","allLessons", "teachers", "allTeachers"}, allEntries = true)
     @Override
     public Lesson addLesson(Lesson.Time time, Long subjId, Long teachId, SubjectType subjectType, String weeks, String room, DayOfWeek dayOfWeek) {
         Object[] res = verifyAndProcessData(subjId,teachId,weeks,room);
@@ -41,7 +46,7 @@ public class LessonServiceImpl implements LessonService {
         return lessonRepository.save(new Lesson(time,(Subject) res[1],(Teacher) res[2],subjectType,weeks,(Room) res[0],dayOfWeek));
     }
 
-    @CacheEvict(cacheNames = {"specialties", "allSpecialties", "subjects", "allSubjects"}, allEntries = true)
+    @CacheEvict(cacheNames = {"specialties", "allSpecialties", "subjects", "allSubjects","allLessons", "teachers", "allTeachers"}, allEntries = true)
     @Override
     public Lesson addLesson(Lesson lesson) {
         lesson.setId(-1L);
@@ -53,7 +58,9 @@ public class LessonServiceImpl implements LessonService {
         return lessonRepository.existsById(id);
     }
 
-    @CacheEvict(cacheNames = {"specialties", "allSpecialties", "subjects", "allSubjects"}, allEntries = true)
+    @Caching(evict = { @CacheEvict(cacheNames = {"specialties", "allSpecialties", "subjects", "allSubjects","allLessons", "teachers", "allTeachers"}, allEntries = true),
+            @CacheEvict(cacheNames = "lessons", key = "#id")})
+    @Transactional
     @Override
     public void deleteLesson(Long id) throws NoLessonWithSuchIdFound {
         if(!lessonExistsById(id)){
@@ -64,7 +71,8 @@ public class LessonServiceImpl implements LessonService {
         logger.info(Markers.DELETE_LESSON_MARKER,"Lesson successfully deleted!");
     }
 
-    @CacheEvict(cacheNames = {"specialties", "allSpecialties", "subjects", "allSubjects"}, allEntries = true)
+    @CachePut(cacheNames = "lessons", key = "#id")
+    @CacheEvict(cacheNames = {"specialties", "allSpecialties", "subjects", "allSubjects","allLessons", "teachers", "allTeachers"}, allEntries = true)
     @Override
     public Lesson updateLesson(Long id, Lesson.Time time, Long subjId, Long teachId, SubjectType subjectType, String weeks, String room, DayOfWeek dayOfWeek) {
         Object[] res = verifyAndProcessData(subjId,teachId,weeks,room);
@@ -72,21 +80,36 @@ public class LessonServiceImpl implements LessonService {
         return lessonRepository.save(new Lesson(id,time,(Subject) res[1],(Teacher) res[2],subjectType,weeks,(Room) res[0],dayOfWeek));
     }
 
-    @CacheEvict(cacheNames = {"specialties", "allSpecialties", "subjects", "allSubjects"}, allEntries = true)
+    @CachePut(cacheNames = "lessons", key = "#lesson.id")
+    @CacheEvict(cacheNames = {"specialties", "allSpecialties", "subjects", "allSubjects","allLessons", "teachers", "allTeachers"}, allEntries = true)
     @Override
     public Lesson updateLesson(Lesson lesson) throws NoLessonWithSuchIdFound {
         if(!lessonExistsById(lesson.getId())) throw new NoLessonWithSuchIdFound(lesson.getId(),"updated");
         return lessonRepository.save(lesson);
     }
 
+    @Cacheable(cacheNames = "lessons", key = "#id")
     @Override
     public Lesson getLessonById(Long id) throws NoLessonWithSuchIdFound{
         return lessonRepository.findById(id).orElseThrow(() -> new NoLessonWithSuchIdFound(id,"get"));
     }
 
+    @Cacheable(cacheNames = "allLessons")
     @Override
     public Iterable<Lesson> getAll() {
         return lessonRepository.findAll();
+    }
+
+    @Scheduled(fixedDelay = 120000)
+    @CacheEvict(cacheNames = "allLessons", allEntries = true)
+    public void clearAllLessonsCache() {
+        logger.info(Markers.LESSON_CACHING_MARKER, "SCHEDULED REMOVAL: All lessons list removed from cache");
+    }
+
+    @Scheduled(cron = "0 */2 * ? * *")
+    @CacheEvict(cacheNames = "lessons", allEntries = true)
+    public void clearLessonsCache() {
+        logger.info(Markers.LESSON_CACHING_MARKER, "SCHEDULED REMOVAL: All specific lessons removed from cache");
     }
 
     private Object[] verifyAndProcessData(Long subjId, Long teachId, String weeks, String room){
