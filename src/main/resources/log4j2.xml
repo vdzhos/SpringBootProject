@@ -46,6 +46,16 @@
             <PatternLayout pattern="%d [%t] %-5level %-50c{1.} - %msg %n"/>
             <MarkerFilter marker="SUBJECT_CACHING" onMatch="ACCEPT" onMismatch="DENY"/>
         </File>
+        
+        <File name="UserCachingLogToFile" fileName="LOGS/User_caching.log">
+            <PatternLayout pattern="%d [%t] %-5level %-50c{1.} - %msg %n"/>
+            <MarkerFilter marker="USER_CACHING" onMatch="ACCEPT" onMismatch="DENY"/>
+        </File>
+
+        <File name="CustomCachingLogToFile" fileName="LOGS/Custom_caching.log">
+            <PatternLayout pattern="%d [%t] %-5level %-50c{1.} - %msg %n"/>
+            <MarkerFilter marker="CUSTOM_CACHING" onMatch="ACCEPT" onMismatch="DENY"/>
+        </File>
 
         <File name="GETMethodsToFile" fileName="LOGS/GET_methods.log">
             <PatternLayout pattern="%d [%t] %-5level %-50c{1.} - %msg %n"/>
@@ -92,6 +102,9 @@
 
             <AppenderRef ref="SpecialtyCachingLogToFile"/>
             <AppenderRef ref="SubjectCachingLogToFile"/>
+			<AppenderRef ref="UserCachingLogToFile"/>
+
+            <AppenderRef ref="CustomCachingLogToFile"/>
 
             <AppenderRef ref="MethodInvokeTimeToFile"/>
             <AppenderRef ref="DeletedSpecialtiesToFile"/>

@@ -139,7 +139,7 @@ public class MainController {
     @PostMapping("/uploadSchedule")
     public RedirectView uploadSchedule(@RequestParam("file") MultipartFile file, @RequestParam(required = false) Long specialtyId, RedirectAttributes redir) throws Exception {
         RedirectView redirectView= new RedirectView("/",true);
-        String notification = "Розклад було успішно додано!";
+        String notification = "The schedule has been successfully uploaded!";
         boolean success = true;
         try {
             readerSaverService.readSaveSchedule(file.getInputStream(),specialtyId);

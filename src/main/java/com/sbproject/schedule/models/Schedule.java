@@ -47,4 +47,9 @@ public class Schedule {
     public List<Lesson> getLessons() {
         return lessons;
     }
+
+
+    public boolean hasLessons() {
+        return lessons.size() > 0;
+    }
 }

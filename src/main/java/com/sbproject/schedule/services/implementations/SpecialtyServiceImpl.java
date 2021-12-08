@@ -25,6 +25,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -155,7 +156,10 @@ public class SpecialtyServiceImpl implements SpecialtyService {
 //            @CacheEvict(cacheNames = "allSpecialties", allEntries = true)})
     @Override
     public void deleteAll() {
-        specialtyRepository.deleteAll();
+        for (Specialty s : getAll()) {
+            specialtyRepository.deleteById(s.getId());
+            deleteSubjects(s.getId());
+        }
     }
 
     @CacheEvict(cacheNames = "allSpecialties", allEntries = true)

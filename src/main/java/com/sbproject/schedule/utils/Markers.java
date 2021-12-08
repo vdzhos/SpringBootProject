@@ -64,4 +64,11 @@ public class Markers {
             .setParents(IMPORTANT_MARKER);
     public static final Marker LESSON_CACHING_MARKER = MarkerManager.getMarker("LESSON_CACHING")
             .setParents(IMPORTANT_MARKER);
+    public static final Marker USER_CACHING_MARKER = MarkerManager.getMarker("USER_CACHING")
+            .setParents(IMPORTANT_MARKER);
+
+
+    public static final Marker CUSTOM_CACHING_MARKER = MarkerManager.getMarker("CUSTOM_CACHING")
+            .setParents(IMPORTANT_MARKER);
+
 }
