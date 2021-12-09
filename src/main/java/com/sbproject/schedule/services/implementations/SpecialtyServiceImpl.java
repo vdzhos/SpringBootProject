@@ -3,6 +3,7 @@ package com.sbproject.schedule.services.implementations;
 import com.sbproject.schedule.controllers.LessonController;
 import com.sbproject.schedule.exceptions.specialty.SpecialtyInstanceAlreadyExistsException;
 import com.sbproject.schedule.exceptions.specialty.SpecialtyNotFoundException;
+import com.sbproject.schedule.models.Lesson;
 import com.sbproject.schedule.models.Specialty;
 import com.sbproject.schedule.models.Subject;
 import com.sbproject.schedule.repositories.SpecialtyRepository;
@@ -24,9 +25,8 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.StreamSupport;
 
 @Service
 public class SpecialtyServiceImpl implements SpecialtyService {
@@ -127,7 +127,9 @@ public class SpecialtyServiceImpl implements SpecialtyService {
     @Override
     public Iterable<Specialty> getAll() {
         logger.info(Markers.SPECIALTY_CACHING_MARKER, "get all specialties method executed");
-        return specialtyRepository.findAll();
+        List<Specialty> specialties = (List<Specialty>)specialtyRepository.findAll();
+        Collections.sort(specialties);
+        return specialties;
     }
 
     @Cacheable(cacheNames = "specialties", key = "#id")
@@ -179,5 +181,20 @@ public class SpecialtyServiceImpl implements SpecialtyService {
         specialty.setSubjects(subjects);
         return specialty;
     }
+
+    @Override
+    public Iterable<Subject> getSpecialtySubjects(Long specialtyId) {
+        return getSpecialty(specialtyId).getSubjects();
+    }
+
+    @Override
+    public List<Lesson> getSpecialtyLessons(Long id) {
+        List<Lesson> lessons = new ArrayList<Lesson>();
+        for (Subject s : getSpecialtySubjects(id)) {
+            lessons.addAll(s.getLessons());
+        }
+        return lessons;
+    }
+
 
 }

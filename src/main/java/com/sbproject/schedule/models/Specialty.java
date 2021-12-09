@@ -13,8 +13,7 @@ import java.util.Set;
 
 @Entity
 @Table
-public class Specialty {
-
+public class Specialty implements Comparable<Specialty> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -111,4 +110,16 @@ public class Specialty {
     public int hashCode() {
         return Objects.hash(getId(), getName(), getYear());
     }
+
+
+    @Override
+    public int compareTo(Specialty o) {
+        int cmp = getName().compareTo(o.getName());
+        if (cmp == 0) return getYear()-o.getYear();
+        return cmp;
+    }
+
+
+
 }
+

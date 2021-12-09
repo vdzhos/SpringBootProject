@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Set;
 
 import com.sbproject.schedule.models.Schedule;
+import com.sbproject.schedule.services.interfaces.SpecialtyService;
 import com.sbproject.schedule.xlsx.ScheduleDownloader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -32,6 +33,9 @@ public class ScheduleTableController {
 
 	@Autowired
 	private ScheduleService scheduleService;
+
+	@Autowired
+	private SpecialtyService specialtyService;
 	
 	private Iterable<Subject> subjects;
 	
@@ -124,7 +128,7 @@ public class ScheduleTableController {
 		return "scheduleTablePage";
 	}
 	
-	
+
 	private void initContainers(boolean forTeacher, Long id, Model model) throws Throwable
 	{
 		if(forTeacher)
@@ -136,8 +140,10 @@ public class ScheduleTableController {
 		else
 		{
 			entityName = this.scheduleService.getSpecialty(id).toString();
-			subjects = this.scheduleService.getSpecialtySubjects(id);
-			lessons = this.scheduleService.getSpecialtyLessons(id);
+			subjects = specialtyService.getSpecialtySubjects(id);
+//			subjects = this.scheduleService.getSpecialtySubjects(id);
+			lessons = specialtyService.getSpecialtyLessons(id);
+//			lessons = this.scheduleService.getSpecialtyLessons(id);
 		}
 		weeks = this.scheduleService.getSubjectLessonsWeeks(subjects);
 

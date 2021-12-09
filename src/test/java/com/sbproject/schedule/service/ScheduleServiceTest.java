@@ -1,32 +1,22 @@
 package com.sbproject.schedule.service;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
-
-import static org.assertj.core.api.Assertions.assertThat;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.sbproject.schedule.models.Lesson;
 import com.sbproject.schedule.models.Specialty;
 import com.sbproject.schedule.models.Subject;
-import com.sbproject.schedule.services.interfaces.LessonService;
-import com.sbproject.schedule.services.interfaces.ScheduleService;
-import com.sbproject.schedule.services.interfaces.SpecialtyService;
-import com.sbproject.schedule.services.interfaces.SubjectService;
-import com.sbproject.schedule.services.interfaces.TeacherService;
-
+import com.sbproject.schedule.services.interfaces.*;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
-@RunWith(SpringRunner.class)
+import java.util.*;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+//import org.junit.runner.RunWith;
+
+//@RunWith(SpringRunner.class)
 @SpringBootTest
 @Transactional
 public class ScheduleServiceTest {

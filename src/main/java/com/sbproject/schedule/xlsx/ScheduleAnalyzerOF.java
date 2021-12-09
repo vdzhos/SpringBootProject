@@ -26,8 +26,8 @@ public class ScheduleAnalyzerOF extends ScheduleAnalyzer {
         STRING_DAY_OF_WEEK_MAP.put(DayOfWeek.WEDNESDAY.toString().toLowerCase(),DayOfWeek.WEDNESDAY);
         STRING_DAY_OF_WEEK_MAP.put(DayOfWeek.THURSDAY.toString().toLowerCase(),DayOfWeek.THURSDAY);
         STRING_DAY_OF_WEEK_MAP.put(DayOfWeek.FRIDAY.toString().toLowerCase(),DayOfWeek.FRIDAY);
-        STRING_DAY_OF_WEEK_MAP.put(DayOfWeek.SATURDAY.toString().toLowerCase(),DayOfWeek.FRIDAY);
-        STRING_DAY_OF_WEEK_MAP.put(DayOfWeek.SUNDAY.toString().toLowerCase(),DayOfWeek.SATURDAY);
+        STRING_DAY_OF_WEEK_MAP.put(DayOfWeek.SATURDAY.toString().toLowerCase(),DayOfWeek.SATURDAY);
+        STRING_DAY_OF_WEEK_MAP.put(DayOfWeek.SUNDAY.toString().toLowerCase(),DayOfWeek.SUNDAY);
 
         LECTURE_STRING = "lecture";
         REMOTELY = "REMOTELY";

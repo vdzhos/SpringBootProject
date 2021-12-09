@@ -8,11 +8,23 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <style>
+        th {
+            background: rgba(33, 225, 255, 0.35);
+        }
+
+        .day-class:nth-child(2n+1) {
+            background: rgba(33, 225, 255, 0.03);
+        }
+
+    </style>
+
 </head>
 <body>
 
 
-<div class="container">
+<div class="container mb-5">
     <div style="margin-top: 1em; display: flex; justify-content: end;">
         <a class="nav-link btn btn-info mr-3" href="/" th:text="#{edit.home}">Home</a>
         <a class="nav-link btn btn-info mr-3" href="/profile" th:text="#{edit.user-profile}">User Profile</a>
@@ -35,7 +47,7 @@
     <hr/>
 
     <div class="row">
-        <div class="col-12">
+        <div class="col-12 mt-4">
             <h3>Schedule for:  
             <label style="padding-left:15px;" th:text="${entityName}"></label></h3>
         </div>
@@ -51,7 +63,7 @@
                     <th>Weeks</th>
                     <th>Room</th>
                 </tr>
-                <th:block th:each="day: ${schedule.getDays()}" >
+                <tbody class="day-class" th:each="day: ${schedule.getDays()}" >
                     <tr>
                         <td th:rowspan="${day.getTimeSlots().size()+1+day.getLessonsNumber()}" th:text="${day.getDay()}"></td>
                     </tr>
@@ -67,7 +79,7 @@
                             <td th:text="${lesson.getRoom()}"></td>
                         </tr>
                     </th:block>
-                </th:block>
+                </tbody>
             </table>
         </div>
     </div>

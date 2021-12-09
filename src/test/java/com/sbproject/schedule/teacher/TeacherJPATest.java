@@ -1,10 +1,8 @@
 package com.sbproject.schedule.teacher;
 
 
-import com.sbproject.schedule.models.Specialty;
 import com.sbproject.schedule.models.Teacher;
 import com.sbproject.schedule.repositories.TeacherRepository;
-import org.bouncycastle.jcajce.provider.symmetric.TEA;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

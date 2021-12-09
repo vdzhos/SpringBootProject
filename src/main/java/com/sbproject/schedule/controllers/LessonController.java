@@ -130,7 +130,8 @@ public class LessonController {
         if(specId == -1){
             lessons = Collections.emptyList();
         }else{
-            Iterable<Subject> subjects = specialtyService.getSpecialty(specId).getSubjects();
+            Iterable<Subject> subjects = specialtyService.getSpecialtySubjects(specId);
+//            Iterable<Subject> subjects = specialtyService.getSpecialty(specId).getSubjects();
             lessons = new ArrayList<>();
             StreamSupport.stream(subjects.spliterator(), false).forEach(subj -> lessons.addAll(subj.getLessons()));
             if(deleteUpdated!=-1){
