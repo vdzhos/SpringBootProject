@@ -14,9 +14,7 @@ import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-//import org.junit.runner.RunWith;
 
-//@RunWith(SpringRunner.class)
 @SpringBootTest
 @Transactional
 public class ScheduleServiceTest {

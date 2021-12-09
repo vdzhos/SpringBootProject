@@ -5,6 +5,9 @@ import com.sbproject.schedule.repositories.LessonRepository;
 import com.sbproject.schedule.repositories.SpecialtyRepository;
 import com.sbproject.schedule.repositories.SubjectRepository;
 import com.sbproject.schedule.repositories.TeacherRepository;
+import com.sbproject.schedule.repositories.UserRepository;
+import com.sbproject.schedule.utils.Role;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -25,6 +28,8 @@ public class DataInit implements ApplicationRunner {
     private TeacherRepository teacherRepository;
     @Autowired
     private LessonRepository lessonRepository;
+    @Autowired
+    private UserRepository userRepository;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
@@ -32,8 +37,16 @@ public class DataInit implements ApplicationRunner {
         addSubjects();
         addTeachers();
         addLessons();
+        addUsers();
     }
 
+    private void addUsers() 
+    {
+    	User u1 = new User("vovan", "1234", Role.ADMIN);
+    	User u2 = new User("ilya", "4321", Role.REGULAR);
+    	this.userRepository.save(u1);
+    	this.userRepository.save(u2);
+    }
 
     private void addTeachers() {
         Teacher t = new Teacher("Teacher 1");
