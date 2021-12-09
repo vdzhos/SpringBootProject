@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-public class Teacher {
+public class Teacher implements Comparable<Teacher>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -102,4 +102,10 @@ public class Teacher {
     public void addSubject(Subject subject) {
         subjects.add(subject);
     }
+
+
+	@Override
+	public int compareTo(Teacher that) {
+		return this.name.compareTo(that.name);
+	}
 }
