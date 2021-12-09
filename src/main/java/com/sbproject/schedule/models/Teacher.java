@@ -4,15 +4,12 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.sbproject.schedule.utils.EntityIdResolver;
-import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -67,13 +64,6 @@ public class Teacher implements Comparable<Teacher>{
         this.subjects = subjects;
         this.name = name;
     }
-
-//    @Override
-//    public String toString() {
-//        return "Teacher{" +
-//                "id=" + id +
-//                ", name='" + name + '}';
-//    }
 
     public Set<Lesson> lessons() {
         return lessons;

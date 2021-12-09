@@ -162,12 +162,8 @@ public abstract class ScheduleAnalyzer {
         try {
             Workbook workbook = new XSSFWorkbook(inputStream);
             Sheet sheet = workbook.getSheetAt(SHEET_START);
-//            Row row = sheet.getRow(ROW_START);
             for(int i = ROW_START; ; i++) {
                 Row row = sheet.getRow(i);
-//                if (row == null) {
-//                    throw new ScheduleException("Incorrect standard format!");
-//                }
                 if (isEmptyRow(row)){
                     break;
                 }
@@ -217,17 +213,6 @@ public abstract class ScheduleAnalyzer {
         subj = subj.replaceAll("\\s+", "");
         return subj.isBlank();
     }
-
-//    protected SubjectType getGroup(Row row) {
-//        Cell cell = row.getCell(GROUP_COL);
-//        int group = 0;
-//        if (cell.getCellType() == CellType.NUMERIC) {
-//            group = (int)Math.round(cell.getNumericCellValue());
-//        }
-//        return new SubjectType(group);
-//    }
-
-
 
     protected SubjectType getGroup(Row row) {
         System.out.println("ANALYZER TYPE: "+FORMAT);

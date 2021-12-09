@@ -1,11 +1,9 @@
 package com.sbproject.schedule.services.interfaces;
 
-import com.sbproject.schedule.exceptions.teacher.TeacherAlreadyExistsException;
 import com.sbproject.schedule.exceptions.teacher.TeacherNotFoundException;
 import com.sbproject.schedule.models.Subject;
 import com.sbproject.schedule.models.Teacher;
 
-import java.util.List;
 import java.util.Set;
 
 

@@ -9,6 +9,5 @@ import com.sbproject.schedule.utils.Role;
 @Repository
 public interface UserRepository extends CrudRepository<User, String>{
 
-	//User findByLogin(String login);
     Iterable<User> findByRole(Role role);
 }

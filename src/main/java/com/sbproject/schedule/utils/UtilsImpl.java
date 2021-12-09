@@ -7,13 +7,6 @@ import com.sbproject.schedule.exceptions.subject.SubjectIllegalArgumentException
 import com.sbproject.schedule.exceptions.teacher.TeacherIllegalArgumentException;
 import com.sbproject.schedule.models.Specialty;
 import com.sbproject.schedule.models.Subject;
-import com.sbproject.schedule.models.Teacher;
-import org.springframework.validation.FieldError;
-import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 import java.util.regex.Matcher;

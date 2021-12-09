@@ -26,7 +26,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
-import java.util.stream.StreamSupport;
 
 @Service
 public class SpecialtyServiceImpl implements SpecialtyService {
@@ -146,7 +145,6 @@ public class SpecialtyServiceImpl implements SpecialtyService {
     }
 
     @Scheduled(cron = "0 */2 * ? * *")
-//    @Scheduled(cron = "0 */1 * ? * *")
     @CacheEvict(cacheNames = "specialties", allEntries = true)
     public void clearSpecialtiesCache() {
         logger.info(Markers.SPECIALTY_CACHING_MARKER, "SCHEDULED REMOVAL: All specific specialties removed from cache");
@@ -154,8 +152,6 @@ public class SpecialtyServiceImpl implements SpecialtyService {
 
 
     @CacheEvict(cacheNames = {"specialties", "allSpecialties", "subjects", "allSubjects", "teachers", "allTeachers","lessons","allLessons"}, allEntries = true)
-//    @Caching(evict = { @CacheEvict(cacheNames = "specialties", allEntries = true),
-//            @CacheEvict(cacheNames = "allSpecialties", allEntries = true)})
     @Override
     public void deleteAll() {
         for (Specialty s : getAll()) {

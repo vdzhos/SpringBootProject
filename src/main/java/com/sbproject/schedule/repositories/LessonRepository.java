@@ -1,4 +1,4 @@
-package com.sbproject.schedule.repositories;//package com.sbproject.schedule.repositories_fakes.interfaces;
+package com.sbproject.schedule.repositories;
 
 import com.sbproject.schedule.models.Lesson;
 import org.springframework.data.repository.CrudRepository;

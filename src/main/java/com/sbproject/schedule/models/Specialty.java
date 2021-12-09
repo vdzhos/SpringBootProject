@@ -55,14 +55,6 @@ public class Specialty implements Comparable<Specialty> {
         return name + '-' + year;
     }
 
-    /* @Override
-    public String toString() {
-        return "Specialty{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", year=" + year +
-                '}';
-    } */
 
     public Long getId() {
         return id;

@@ -7524,6 +7524,446 @@ The returned value is: true
 2021-12-09 21:30:00,005 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name teachers 
 2021-12-09 21:30:00,005 [scheduling-1] INFO  c.s.s.s.i.TeacherServiceImpl                       - SCHEDULED REMOVAL: All specific teachers removed from cache 
 2021-12-09 21:30:00,005 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.TeacherServiceImpl.clearTeachersCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:31:47,413 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - CREATE NEW CACHE by name allLessons 
+2021-12-09 21:31:47,418 [scheduling-1] INFO  c.s.s.s.i.LessonServiceImpl                        - SCHEDULED REMOVAL: All lessons list removed from cache 
+2021-12-09 21:31:47,421 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.LessonServiceImpl.clearAllLessonsCache()	- Elapsed Time: 2 ms 
+2021-12-09 21:31:47,422 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - CREATE NEW CACHE by name allSubjects 
+2021-12-09 21:31:47,425 [scheduling-1] INFO  c.s.s.c.SubjectController                          - SCHEDULED REMOVAL: All subjects list removed from cache 
+2021-12-09 21:31:47,425 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SubjectServiceImpl.clearAllSubjectsCache()	- Elapsed Time: 3 ms 
+2021-12-09 21:31:47,426 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - CREATE NEW CACHE by name allSpecialties 
+2021-12-09 21:31:47,428 [scheduling-1] INFO  c.s.s.c.LessonController                           - SCHEDULED REMOVAL: All specialties list removed from cache 
+2021-12-09 21:31:47,428 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SpecialtyServiceImpl.clearAllSpecialtiesCache()	- Elapsed Time: 2 ms 
+2021-12-09 21:31:47,429 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - CREATE NEW CACHE by name allTeachers 
+2021-12-09 21:31:47,431 [scheduling-1] INFO  c.s.s.s.i.TeacherServiceImpl                       - SCHEDULED REMOVAL: All teachers list removed from cache 
+2021-12-09 21:31:47,431 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.TeacherServiceImpl.clearAllTeachersCache()	- Elapsed Time: 2 ms 
+2021-12-09 21:32:00,010 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - CREATE NEW CACHE by name subjects 
+2021-12-09 21:32:00,010 [scheduling-1] INFO  c.s.s.c.SubjectController                          - SCHEDULED REMOVAL: All specific subjects removed from cache 
+2021-12-09 21:32:00,010 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SubjectServiceImpl.clearSubjectsCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:32:00,011 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - CREATE NEW CACHE by name specialties 
+2021-12-09 21:32:00,011 [scheduling-1] INFO  c.s.s.c.LessonController                           - SCHEDULED REMOVAL: All specific specialties removed from cache 
+2021-12-09 21:32:00,011 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SpecialtyServiceImpl.clearSpecialtiesCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:32:00,012 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - CREATE NEW CACHE by name teachers 
+2021-12-09 21:32:00,012 [scheduling-1] INFO  c.s.s.s.i.TeacherServiceImpl                       - SCHEDULED REMOVAL: All specific teachers removed from cache 
+2021-12-09 21:32:00,012 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.TeacherServiceImpl.clearTeachersCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:32:00,012 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - CREATE NEW CACHE by name lessons 
+2021-12-09 21:32:00,013 [scheduling-1] INFO  c.s.s.s.i.LessonServiceImpl                        - SCHEDULED REMOVAL: All specific lessons removed from cache 
+2021-12-09 21:32:00,013 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.LessonServiceImpl.clearLessonsCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:32:12,228 [http-nio-8081-exec-3] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - UserDetails com.sbproject.schedule.services.implementations.CustomUserDetailsService.loadUserByUsername(String)	- Elapsed Time: 5 ms 
+2021-12-09 21:32:12,240 [http-nio-8081-exec-4] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allSpecialties 
+2021-12-09 21:32:12,241 [http-nio-8081-exec-4] INFO  c.s.s.c.LessonController                           - get all specialties method executed 
+2021-12-09 21:32:12,250 [http-nio-8081-exec-4] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - Iterable com.sbproject.schedule.services.implementations.SpecialtyServiceImpl.getAll()	- Elapsed Time: 8 ms 
+2021-12-09 21:32:12,257 [http-nio-8081-exec-4] INFO  c.s.s.a.GlobalAspect                               - GET Method Iterable com.sbproject.schedule.services.implementations.SpecialtyServiceImpl.getAll() invoked with arguments: []. The returned value is: [IPZ-3, IPZ-4, KN-3] 
+2021-12-09 21:32:12,258 [http-nio-8081-exec-4] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allLessons 
+2021-12-09 21:32:12,267 [http-nio-8081-exec-4] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - Iterable com.sbproject.schedule.services.implementations.LessonServiceImpl.getAll()	- Elapsed Time: 8 ms 
+2021-12-09 21:32:12,267 [http-nio-8081-exec-4] INFO  c.s.s.a.GlobalAspect                               - GET Method Iterable com.sbproject.schedule.services.implementations.LessonServiceImpl.getAll() invoked with arguments: []. The returned value is: [Lesson{id=10,time=8:30-9:50,subject=Subject 1,teacher=Teacher 1,group=lecture,weeks=1-15,room=215,dayOfWeek=MONDAY}, Lesson{id=11,time=10:00-11:20,subject=Subject 1,teacher=Teacher 2,group=1,weeks=1-15,room=216,dayOfWeek=MONDAY}, Lesson{id=12,time=11:40-13:00,subject=Subject 2,teacher=Teacher 3,group=2,weeks=1-15,room=216,dayOfWeek=MONDAY}] 
+2021-12-09 21:32:12,268 [http-nio-8081-exec-4] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allTeachers 
+2021-12-09 21:32:12,269 [http-nio-8081-exec-4] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - Iterable com.sbproject.schedule.services.implementations.TeacherServiceImpl.getAll()	- Elapsed Time: 1 ms 
+2021-12-09 21:32:12,269 [http-nio-8081-exec-4] INFO  c.s.s.a.GlobalAspect                               - GET Method Iterable com.sbproject.schedule.services.implementations.TeacherServiceImpl.getAll() invoked with arguments: []. The returned value is: [Teacher 1, Teacher 2, Teacher 3] 
+2021-12-09 21:32:13,366 [http-nio-8081-exec-5] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allSpecialties 
+2021-12-09 21:32:13,367 [http-nio-8081-exec-5] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allSubjects 
+2021-12-09 21:32:13,373 [http-nio-8081-exec-5] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - Iterable com.sbproject.schedule.services.implementations.SubjectServiceImpl.getAll()	- Elapsed Time: 5 ms 
+2021-12-09 21:32:13,375 [http-nio-8081-exec-5] INFO  c.s.s.a.GlobalAspect                               - GET Method Iterable com.sbproject.schedule.services.implementations.SubjectServiceImpl.getAll() invoked with arguments: []. The returned value is: [Subject 1(IPZ-4, IPZ-3), Subject 2(IPZ-4, KN-3), Subject 3(KN-3)] 
+2021-12-09 21:32:13,376 [http-nio-8081-exec-5] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allTeachers 
+2021-12-09 21:32:19,479 [http-nio-8081-exec-6] INFO  c.s.s.c.LessonController                           - get specialty by id executed 
+2021-12-09 21:32:19,481 [http-nio-8081-exec-6] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - Iterable com.sbproject.schedule.services.implementations.SpecialtyServiceImpl.getSpecialtySubjects(Long)	- Elapsed Time: 1 ms 
+2021-12-09 21:32:19,483 [http-nio-8081-exec-6] INFO  c.s.s.a.GlobalAspect                               - GET Method Iterable com.sbproject.schedule.services.implementations.SpecialtyServiceImpl.getSpecialtySubjects(Long) invoked with arguments: [1]. The returned value is: [Subject 1(IPZ-4, IPZ-3)] 
+2021-12-09 21:32:19,496 [http-nio-8081-exec-7] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allSpecialties 
+2021-12-09 21:32:19,496 [http-nio-8081-exec-7] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allSubjects 
+2021-12-09 21:32:19,496 [http-nio-8081-exec-7] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allTeachers 
+2021-12-09 21:32:24,306 [http-nio-8081-exec-8] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allSpecialties 
+2021-12-09 21:32:24,306 [http-nio-8081-exec-8] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name subjects 
+2021-12-09 21:32:24,306 [http-nio-8081-exec-8] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allSubjects 
+2021-12-09 21:32:24,307 [http-nio-8081-exec-8] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name teachers 
+2021-12-09 21:32:24,307 [http-nio-8081-exec-8] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allTeachers 
+2021-12-09 21:32:24,307 [http-nio-8081-exec-8] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name lessons 
+2021-12-09 21:32:24,307 [http-nio-8081-exec-8] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allLessons 
+2021-12-09 21:32:24,307 [http-nio-8081-exec-8] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name specialties 
+2021-12-09 21:32:24,307 [http-nio-8081-exec-8] INFO  c.s.s.c.LessonController                           - Specialty 1-IPZ id=5 updated in cache 
+2021-12-09 21:32:24,320 [http-nio-8081-exec-8] INFO  c.s.s.c.LessonController                           - Specialty has been successfully updated to 'IPZ'-'5'! 
+2021-12-09 21:32:24,320 [http-nio-8081-exec-8] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - Specialty com.sbproject.schedule.services.implementations.SpecialtyServiceImpl.updateSpecialty(long,String,int)	- Elapsed Time: 13 ms 
+2021-12-09 21:32:24,321 [http-nio-8081-exec-8] INFO  c.s.s.a.GlobalAspect                               - UPDATE Method Specialty com.sbproject.schedule.services.implementations.SpecialtyServiceImpl.updateSpecialty(long,String,int) invoked with arguments: [1, IPZ, 5]. The returned value is: IPZ-5 
+2021-12-09 21:32:24,339 [http-nio-8081-exec-9] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allSpecialties 
+2021-12-09 21:32:24,339 [http-nio-8081-exec-9] INFO  c.s.s.c.LessonController                           - get all specialties method executed 
+2021-12-09 21:32:24,340 [http-nio-8081-exec-9] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - Iterable com.sbproject.schedule.services.implementations.SpecialtyServiceImpl.getAll()	- Elapsed Time: 1 ms 
+2021-12-09 21:32:24,341 [http-nio-8081-exec-9] INFO  c.s.s.a.GlobalAspect                               - GET Method Iterable com.sbproject.schedule.services.implementations.SpecialtyServiceImpl.getAll() invoked with arguments: []. The returned value is: [IPZ-4, IPZ-5, KN-3] 
+2021-12-09 21:32:24,341 [http-nio-8081-exec-9] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allSubjects 
+2021-12-09 21:32:24,344 [http-nio-8081-exec-9] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - Iterable com.sbproject.schedule.services.implementations.SubjectServiceImpl.getAll()	- Elapsed Time: 3 ms 
+2021-12-09 21:32:24,344 [http-nio-8081-exec-9] INFO  c.s.s.a.GlobalAspect                               - GET Method Iterable com.sbproject.schedule.services.implementations.SubjectServiceImpl.getAll() invoked with arguments: []. The returned value is: [Subject 1(IPZ-5, IPZ-4), Subject 2(IPZ-4, KN-3), Subject 3(KN-3)] 
+2021-12-09 21:32:24,345 [http-nio-8081-exec-9] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allTeachers 
+2021-12-09 21:32:24,346 [http-nio-8081-exec-9] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - Iterable com.sbproject.schedule.services.implementations.TeacherServiceImpl.getAll()	- Elapsed Time: 1 ms 
+2021-12-09 21:32:24,346 [http-nio-8081-exec-9] INFO  c.s.s.a.GlobalAspect                               - GET Method Iterable com.sbproject.schedule.services.implementations.TeacherServiceImpl.getAll() invoked with arguments: []. The returned value is: [Teacher 1, Teacher 2, Teacher 3] 
+2021-12-09 21:32:27,843 [http-nio-8081-exec-10] INFO  c.s.s.c.LessonController                           - get specialty by id executed 
+2021-12-09 21:32:27,844 [http-nio-8081-exec-10] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - Iterable com.sbproject.schedule.services.implementations.SpecialtyServiceImpl.getSpecialtySubjects(Long)	- Elapsed Time: 1 ms 
+2021-12-09 21:32:27,846 [http-nio-8081-exec-10] INFO  c.s.s.a.GlobalAspect                               - GET Method Iterable com.sbproject.schedule.services.implementations.SpecialtyServiceImpl.getSpecialtySubjects(Long) invoked with arguments: [1]. The returned value is: [Subject 1(IPZ-5, IPZ-4)] 
+2021-12-09 21:32:27,853 [http-nio-8081-exec-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allSpecialties 
+2021-12-09 21:32:27,853 [http-nio-8081-exec-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allSubjects 
+2021-12-09 21:32:27,853 [http-nio-8081-exec-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allTeachers 
+2021-12-09 21:33:47,426 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allLessons 
+2021-12-09 21:33:47,426 [scheduling-1] INFO  c.s.s.s.i.LessonServiceImpl                        - SCHEDULED REMOVAL: All lessons list removed from cache 
+2021-12-09 21:33:47,426 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.LessonServiceImpl.clearAllLessonsCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:33:47,426 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allSubjects 
+2021-12-09 21:33:47,426 [scheduling-1] INFO  c.s.s.c.SubjectController                          - SCHEDULED REMOVAL: All subjects list removed from cache 
+2021-12-09 21:33:47,426 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SubjectServiceImpl.clearAllSubjectsCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:33:47,441 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allSpecialties 
+2021-12-09 21:33:47,441 [scheduling-1] INFO  c.s.s.c.LessonController                           - SCHEDULED REMOVAL: All specialties list removed from cache 
+2021-12-09 21:33:47,441 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SpecialtyServiceImpl.clearAllSpecialtiesCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:33:47,441 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allTeachers 
+2021-12-09 21:33:47,441 [scheduling-1] INFO  c.s.s.s.i.TeacherServiceImpl                       - SCHEDULED REMOVAL: All teachers list removed from cache 
+2021-12-09 21:33:47,442 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.TeacherServiceImpl.clearAllTeachersCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:34:00,008 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name specialties 
+2021-12-09 21:34:00,008 [scheduling-1] INFO  c.s.s.c.LessonController                           - SCHEDULED REMOVAL: All specific specialties removed from cache 
+2021-12-09 21:34:00,008 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SpecialtyServiceImpl.clearSpecialtiesCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:34:00,008 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name subjects 
+2021-12-09 21:34:00,008 [scheduling-1] INFO  c.s.s.c.SubjectController                          - SCHEDULED REMOVAL: All specific subjects removed from cache 
+2021-12-09 21:34:00,009 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SubjectServiceImpl.clearSubjectsCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:34:00,009 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name teachers 
+2021-12-09 21:34:00,009 [scheduling-1] INFO  c.s.s.s.i.TeacherServiceImpl                       - SCHEDULED REMOVAL: All specific teachers removed from cache 
+2021-12-09 21:34:00,009 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.TeacherServiceImpl.clearTeachersCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:34:00,009 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name lessons 
+2021-12-09 21:34:00,009 [scheduling-1] INFO  c.s.s.s.i.LessonServiceImpl                        - SCHEDULED REMOVAL: All specific lessons removed from cache 
+2021-12-09 21:34:00,009 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.LessonServiceImpl.clearLessonsCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:35:00,006 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - CREATE NEW CACHE by name users 
+2021-12-09 21:35:00,008 [scheduling-1] INFO  c.s.s.s.i.UserServiceImpl                          - SCHEDULED REMOVAL: All users removed from cache 
+2021-12-09 21:35:00,009 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.UserServiceImpl.clearUsersCache()	- Elapsed Time: 2 ms 
+2021-12-09 21:35:47,441 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allLessons 
+2021-12-09 21:35:47,441 [scheduling-1] INFO  c.s.s.s.i.LessonServiceImpl                        - SCHEDULED REMOVAL: All lessons list removed from cache 
+2021-12-09 21:35:47,441 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.LessonServiceImpl.clearAllLessonsCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:35:47,441 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allSubjects 
+2021-12-09 21:35:47,441 [scheduling-1] INFO  c.s.s.c.SubjectController                          - SCHEDULED REMOVAL: All subjects list removed from cache 
+2021-12-09 21:35:47,441 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SubjectServiceImpl.clearAllSubjectsCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:35:47,441 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allSpecialties 
+2021-12-09 21:35:47,441 [scheduling-1] INFO  c.s.s.c.LessonController                           - SCHEDULED REMOVAL: All specialties list removed from cache 
+2021-12-09 21:35:47,442 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SpecialtyServiceImpl.clearAllSpecialtiesCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:35:47,442 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allTeachers 
+2021-12-09 21:35:47,442 [scheduling-1] INFO  c.s.s.s.i.TeacherServiceImpl                       - SCHEDULED REMOVAL: All teachers list removed from cache 
+2021-12-09 21:35:47,442 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.TeacherServiceImpl.clearAllTeachersCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:36:00,000 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name subjects 
+2021-12-09 21:36:00,000 [scheduling-1] INFO  c.s.s.c.SubjectController                          - SCHEDULED REMOVAL: All specific subjects removed from cache 
+2021-12-09 21:36:00,000 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SubjectServiceImpl.clearSubjectsCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:36:00,000 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name teachers 
+2021-12-09 21:36:00,001 [scheduling-1] INFO  c.s.s.s.i.TeacherServiceImpl                       - SCHEDULED REMOVAL: All specific teachers removed from cache 
+2021-12-09 21:36:00,001 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.TeacherServiceImpl.clearTeachersCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:36:00,001 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name specialties 
+2021-12-09 21:36:00,001 [scheduling-1] INFO  c.s.s.c.LessonController                           - SCHEDULED REMOVAL: All specific specialties removed from cache 
+2021-12-09 21:36:00,002 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SpecialtyServiceImpl.clearSpecialtiesCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:36:00,002 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name lessons 
+2021-12-09 21:36:00,003 [scheduling-1] INFO  c.s.s.s.i.LessonServiceImpl                        - SCHEDULED REMOVAL: All specific lessons removed from cache 
+2021-12-09 21:36:00,003 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.LessonServiceImpl.clearLessonsCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:37:47,447 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allLessons 
+2021-12-09 21:37:47,447 [scheduling-1] INFO  c.s.s.s.i.LessonServiceImpl                        - SCHEDULED REMOVAL: All lessons list removed from cache 
+2021-12-09 21:37:47,447 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.LessonServiceImpl.clearAllLessonsCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:37:47,447 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allSubjects 
+2021-12-09 21:37:47,447 [scheduling-1] INFO  c.s.s.c.SubjectController                          - SCHEDULED REMOVAL: All subjects list removed from cache 
+2021-12-09 21:37:47,447 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SubjectServiceImpl.clearAllSubjectsCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:37:47,447 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allSpecialties 
+2021-12-09 21:37:47,447 [scheduling-1] INFO  c.s.s.c.LessonController                           - SCHEDULED REMOVAL: All specialties list removed from cache 
+2021-12-09 21:37:47,447 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SpecialtyServiceImpl.clearAllSpecialtiesCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:37:47,448 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allTeachers 
+2021-12-09 21:37:47,448 [scheduling-1] INFO  c.s.s.s.i.TeacherServiceImpl                       - SCHEDULED REMOVAL: All teachers list removed from cache 
+2021-12-09 21:37:47,448 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.TeacherServiceImpl.clearAllTeachersCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:38:00,004 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name teachers 
+2021-12-09 21:38:00,004 [scheduling-1] INFO  c.s.s.s.i.TeacherServiceImpl                       - SCHEDULED REMOVAL: All specific teachers removed from cache 
+2021-12-09 21:38:00,004 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.TeacherServiceImpl.clearTeachersCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:38:00,004 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name specialties 
+2021-12-09 21:38:00,004 [scheduling-1] INFO  c.s.s.c.LessonController                           - SCHEDULED REMOVAL: All specific specialties removed from cache 
+2021-12-09 21:38:00,004 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SpecialtyServiceImpl.clearSpecialtiesCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:38:00,005 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name subjects 
+2021-12-09 21:38:00,005 [scheduling-1] INFO  c.s.s.c.SubjectController                          - SCHEDULED REMOVAL: All specific subjects removed from cache 
+2021-12-09 21:38:00,005 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SubjectServiceImpl.clearSubjectsCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:38:00,005 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name lessons 
+2021-12-09 21:38:00,005 [scheduling-1] INFO  c.s.s.s.i.LessonServiceImpl                        - SCHEDULED REMOVAL: All specific lessons removed from cache 
+2021-12-09 21:38:00,005 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.LessonServiceImpl.clearLessonsCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:39:47,453 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allLessons 
+2021-12-09 21:39:47,453 [scheduling-1] INFO  c.s.s.s.i.LessonServiceImpl                        - SCHEDULED REMOVAL: All lessons list removed from cache 
+2021-12-09 21:39:47,453 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.LessonServiceImpl.clearAllLessonsCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:39:47,453 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allSubjects 
+2021-12-09 21:39:47,453 [scheduling-1] INFO  c.s.s.c.SubjectController                          - SCHEDULED REMOVAL: All subjects list removed from cache 
+2021-12-09 21:39:47,453 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SubjectServiceImpl.clearAllSubjectsCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:39:47,453 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allSpecialties 
+2021-12-09 21:39:47,453 [scheduling-1] INFO  c.s.s.c.LessonController                           - SCHEDULED REMOVAL: All specialties list removed from cache 
+2021-12-09 21:39:47,454 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SpecialtyServiceImpl.clearAllSpecialtiesCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:39:47,454 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allTeachers 
+2021-12-09 21:39:47,454 [scheduling-1] INFO  c.s.s.s.i.TeacherServiceImpl                       - SCHEDULED REMOVAL: All teachers list removed from cache 
+2021-12-09 21:39:47,454 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.TeacherServiceImpl.clearAllTeachersCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:40:00,014 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name users 
+2021-12-09 21:40:00,014 [scheduling-1] INFO  c.s.s.s.i.UserServiceImpl                          - SCHEDULED REMOVAL: All users removed from cache 
+2021-12-09 21:40:00,014 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.UserServiceImpl.clearUsersCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:40:00,014 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name specialties 
+2021-12-09 21:40:00,015 [scheduling-1] INFO  c.s.s.c.LessonController                           - SCHEDULED REMOVAL: All specific specialties removed from cache 
+2021-12-09 21:40:00,015 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SpecialtyServiceImpl.clearSpecialtiesCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:40:00,015 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name subjects 
+2021-12-09 21:40:00,015 [scheduling-1] INFO  c.s.s.c.SubjectController                          - SCHEDULED REMOVAL: All specific subjects removed from cache 
+2021-12-09 21:40:00,015 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SubjectServiceImpl.clearSubjectsCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:40:00,016 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name teachers 
+2021-12-09 21:40:00,016 [scheduling-1] INFO  c.s.s.s.i.TeacherServiceImpl                       - SCHEDULED REMOVAL: All specific teachers removed from cache 
+2021-12-09 21:40:00,016 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.TeacherServiceImpl.clearTeachersCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:40:00,016 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name lessons 
+2021-12-09 21:40:00,016 [scheduling-1] INFO  c.s.s.s.i.LessonServiceImpl                        - SCHEDULED REMOVAL: All specific lessons removed from cache 
+2021-12-09 21:40:00,016 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.LessonServiceImpl.clearLessonsCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:41:47,455 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allLessons 
+2021-12-09 21:41:47,455 [scheduling-1] INFO  c.s.s.s.i.LessonServiceImpl                        - SCHEDULED REMOVAL: All lessons list removed from cache 
+2021-12-09 21:41:47,455 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.LessonServiceImpl.clearAllLessonsCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:41:47,455 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allSubjects 
+2021-12-09 21:41:47,455 [scheduling-1] INFO  c.s.s.c.SubjectController                          - SCHEDULED REMOVAL: All subjects list removed from cache 
+2021-12-09 21:41:47,455 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SubjectServiceImpl.clearAllSubjectsCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:41:47,455 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allSpecialties 
+2021-12-09 21:41:47,456 [scheduling-1] INFO  c.s.s.c.LessonController                           - SCHEDULED REMOVAL: All specialties list removed from cache 
+2021-12-09 21:41:47,456 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SpecialtyServiceImpl.clearAllSpecialtiesCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:41:47,456 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allTeachers 
+2021-12-09 21:41:47,456 [scheduling-1] INFO  c.s.s.s.i.TeacherServiceImpl                       - SCHEDULED REMOVAL: All teachers list removed from cache 
+2021-12-09 21:41:47,456 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.TeacherServiceImpl.clearAllTeachersCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:42:00,003 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name subjects 
+2021-12-09 21:42:00,003 [scheduling-1] INFO  c.s.s.c.SubjectController                          - SCHEDULED REMOVAL: All specific subjects removed from cache 
+2021-12-09 21:42:00,003 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SubjectServiceImpl.clearSubjectsCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:42:00,003 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name lessons 
+2021-12-09 21:42:00,003 [scheduling-1] INFO  c.s.s.s.i.LessonServiceImpl                        - SCHEDULED REMOVAL: All specific lessons removed from cache 
+2021-12-09 21:42:00,004 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.LessonServiceImpl.clearLessonsCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:42:00,004 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name specialties 
+2021-12-09 21:42:00,004 [scheduling-1] INFO  c.s.s.c.LessonController                           - SCHEDULED REMOVAL: All specific specialties removed from cache 
+2021-12-09 21:42:00,004 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SpecialtyServiceImpl.clearSpecialtiesCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:42:00,005 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name teachers 
+2021-12-09 21:42:00,005 [scheduling-1] INFO  c.s.s.s.i.TeacherServiceImpl                       - SCHEDULED REMOVAL: All specific teachers removed from cache 
+2021-12-09 21:42:00,005 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.TeacherServiceImpl.clearTeachersCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:43:47,462 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allLessons 
+2021-12-09 21:43:47,462 [scheduling-1] INFO  c.s.s.s.i.LessonServiceImpl                        - SCHEDULED REMOVAL: All lessons list removed from cache 
+2021-12-09 21:43:47,462 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.LessonServiceImpl.clearAllLessonsCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:43:47,462 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allSubjects 
+2021-12-09 21:43:47,463 [scheduling-1] INFO  c.s.s.c.SubjectController                          - SCHEDULED REMOVAL: All subjects list removed from cache 
+2021-12-09 21:43:47,463 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SubjectServiceImpl.clearAllSubjectsCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:43:47,463 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allSpecialties 
+2021-12-09 21:43:47,463 [scheduling-1] INFO  c.s.s.c.LessonController                           - SCHEDULED REMOVAL: All specialties list removed from cache 
+2021-12-09 21:43:47,463 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SpecialtyServiceImpl.clearAllSpecialtiesCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:43:47,463 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allTeachers 
+2021-12-09 21:43:47,463 [scheduling-1] INFO  c.s.s.s.i.TeacherServiceImpl                       - SCHEDULED REMOVAL: All teachers list removed from cache 
+2021-12-09 21:43:47,464 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.TeacherServiceImpl.clearAllTeachersCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:44:00,011 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name lessons 
+2021-12-09 21:44:00,011 [scheduling-1] INFO  c.s.s.s.i.LessonServiceImpl                        - SCHEDULED REMOVAL: All specific lessons removed from cache 
+2021-12-09 21:44:00,013 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.LessonServiceImpl.clearLessonsCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:44:00,014 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name specialties 
+2021-12-09 21:44:00,015 [scheduling-1] INFO  c.s.s.c.LessonController                           - SCHEDULED REMOVAL: All specific specialties removed from cache 
+2021-12-09 21:44:00,016 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SpecialtyServiceImpl.clearSpecialtiesCache()	- Elapsed Time: 1 ms 
+2021-12-09 21:44:00,016 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name subjects 
+2021-12-09 21:44:00,016 [scheduling-1] INFO  c.s.s.c.SubjectController                          - SCHEDULED REMOVAL: All specific subjects removed from cache 
+2021-12-09 21:44:00,016 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SubjectServiceImpl.clearSubjectsCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:44:00,017 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name teachers 
+2021-12-09 21:44:00,019 [scheduling-1] INFO  c.s.s.s.i.TeacherServiceImpl                       - SCHEDULED REMOVAL: All specific teachers removed from cache 
+2021-12-09 21:44:00,019 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.TeacherServiceImpl.clearTeachersCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:45:00,003 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name users 
+2021-12-09 21:45:00,004 [scheduling-1] INFO  c.s.s.s.i.UserServiceImpl                          - SCHEDULED REMOVAL: All users removed from cache 
+2021-12-09 21:45:00,004 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.UserServiceImpl.clearUsersCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:45:47,463 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allLessons 
+2021-12-09 21:45:47,463 [scheduling-1] INFO  c.s.s.s.i.LessonServiceImpl                        - SCHEDULED REMOVAL: All lessons list removed from cache 
+2021-12-09 21:45:47,463 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.LessonServiceImpl.clearAllLessonsCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:45:47,477 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allSubjects 
+2021-12-09 21:45:47,477 [scheduling-1] INFO  c.s.s.c.SubjectController                          - SCHEDULED REMOVAL: All subjects list removed from cache 
+2021-12-09 21:45:47,477 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SubjectServiceImpl.clearAllSubjectsCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:45:47,477 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allSpecialties 
+2021-12-09 21:45:47,477 [scheduling-1] INFO  c.s.s.c.LessonController                           - SCHEDULED REMOVAL: All specialties list removed from cache 
+2021-12-09 21:45:47,477 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SpecialtyServiceImpl.clearAllSpecialtiesCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:45:47,477 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allTeachers 
+2021-12-09 21:45:47,477 [scheduling-1] INFO  c.s.s.s.i.TeacherServiceImpl                       - SCHEDULED REMOVAL: All teachers list removed from cache 
+2021-12-09 21:45:47,477 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.TeacherServiceImpl.clearAllTeachersCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:46:00,009 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name teachers 
+2021-12-09 21:46:00,009 [scheduling-1] INFO  c.s.s.s.i.TeacherServiceImpl                       - SCHEDULED REMOVAL: All specific teachers removed from cache 
+2021-12-09 21:46:00,009 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.TeacherServiceImpl.clearTeachersCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:46:00,009 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name specialties 
+2021-12-09 21:46:00,009 [scheduling-1] INFO  c.s.s.c.LessonController                           - SCHEDULED REMOVAL: All specific specialties removed from cache 
+2021-12-09 21:46:00,009 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SpecialtyServiceImpl.clearSpecialtiesCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:46:00,010 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name subjects 
+2021-12-09 21:46:00,010 [scheduling-1] INFO  c.s.s.c.SubjectController                          - SCHEDULED REMOVAL: All specific subjects removed from cache 
+2021-12-09 21:46:00,010 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SubjectServiceImpl.clearSubjectsCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:46:00,010 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name lessons 
+2021-12-09 21:46:00,010 [scheduling-1] INFO  c.s.s.s.i.LessonServiceImpl                        - SCHEDULED REMOVAL: All specific lessons removed from cache 
+2021-12-09 21:46:00,010 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.LessonServiceImpl.clearLessonsCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:47:47,475 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allLessons 
+2021-12-09 21:47:47,475 [scheduling-1] INFO  c.s.s.s.i.LessonServiceImpl                        - SCHEDULED REMOVAL: All lessons list removed from cache 
+2021-12-09 21:47:47,475 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.LessonServiceImpl.clearAllLessonsCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:47:47,490 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allSubjects 
+2021-12-09 21:47:47,490 [scheduling-1] INFO  c.s.s.c.SubjectController                          - SCHEDULED REMOVAL: All subjects list removed from cache 
+2021-12-09 21:47:47,490 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SubjectServiceImpl.clearAllSubjectsCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:47:47,490 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allSpecialties 
+2021-12-09 21:47:47,490 [scheduling-1] INFO  c.s.s.c.LessonController                           - SCHEDULED REMOVAL: All specialties list removed from cache 
+2021-12-09 21:47:47,490 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SpecialtyServiceImpl.clearAllSpecialtiesCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:47:47,490 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allTeachers 
+2021-12-09 21:47:47,490 [scheduling-1] INFO  c.s.s.s.i.TeacherServiceImpl                       - SCHEDULED REMOVAL: All teachers list removed from cache 
+2021-12-09 21:47:47,490 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.TeacherServiceImpl.clearAllTeachersCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:48:00,014 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name lessons 
+2021-12-09 21:48:00,014 [scheduling-1] INFO  c.s.s.s.i.LessonServiceImpl                        - SCHEDULED REMOVAL: All specific lessons removed from cache 
+2021-12-09 21:48:00,015 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.LessonServiceImpl.clearLessonsCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:48:00,015 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name specialties 
+2021-12-09 21:48:00,015 [scheduling-1] INFO  c.s.s.c.LessonController                           - SCHEDULED REMOVAL: All specific specialties removed from cache 
+2021-12-09 21:48:00,015 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SpecialtyServiceImpl.clearSpecialtiesCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:48:00,015 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name subjects 
+2021-12-09 21:48:00,015 [scheduling-1] INFO  c.s.s.c.SubjectController                          - SCHEDULED REMOVAL: All specific subjects removed from cache 
+2021-12-09 21:48:00,015 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SubjectServiceImpl.clearSubjectsCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:48:00,016 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name teachers 
+2021-12-09 21:48:00,016 [scheduling-1] INFO  c.s.s.s.i.TeacherServiceImpl                       - SCHEDULED REMOVAL: All specific teachers removed from cache 
+2021-12-09 21:48:00,016 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.TeacherServiceImpl.clearTeachersCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:49:47,480 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allLessons 
+2021-12-09 21:49:47,480 [scheduling-1] INFO  c.s.s.s.i.LessonServiceImpl                        - SCHEDULED REMOVAL: All lessons list removed from cache 
+2021-12-09 21:49:47,480 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.LessonServiceImpl.clearAllLessonsCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:49:47,495 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allSubjects 
+2021-12-09 21:49:47,495 [scheduling-1] INFO  c.s.s.c.SubjectController                          - SCHEDULED REMOVAL: All subjects list removed from cache 
+2021-12-09 21:49:47,495 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SubjectServiceImpl.clearAllSubjectsCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:49:47,495 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allSpecialties 
+2021-12-09 21:49:47,495 [scheduling-1] INFO  c.s.s.c.LessonController                           - SCHEDULED REMOVAL: All specialties list removed from cache 
+2021-12-09 21:49:47,495 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SpecialtyServiceImpl.clearAllSpecialtiesCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:49:47,495 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allTeachers 
+2021-12-09 21:49:47,495 [scheduling-1] INFO  c.s.s.s.i.TeacherServiceImpl                       - SCHEDULED REMOVAL: All teachers list removed from cache 
+2021-12-09 21:49:47,495 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.TeacherServiceImpl.clearAllTeachersCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:50:00,007 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name subjects 
+2021-12-09 21:50:00,007 [scheduling-1] INFO  c.s.s.c.SubjectController                          - SCHEDULED REMOVAL: All specific subjects removed from cache 
+2021-12-09 21:50:00,007 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SubjectServiceImpl.clearSubjectsCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:50:00,007 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name lessons 
+2021-12-09 21:50:00,007 [scheduling-1] INFO  c.s.s.s.i.LessonServiceImpl                        - SCHEDULED REMOVAL: All specific lessons removed from cache 
+2021-12-09 21:50:00,007 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.LessonServiceImpl.clearLessonsCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:50:00,008 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name users 
+2021-12-09 21:50:00,008 [scheduling-1] INFO  c.s.s.s.i.UserServiceImpl                          - SCHEDULED REMOVAL: All users removed from cache 
+2021-12-09 21:50:00,008 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.UserServiceImpl.clearUsersCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:50:00,008 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name teachers 
+2021-12-09 21:50:00,008 [scheduling-1] INFO  c.s.s.s.i.TeacherServiceImpl                       - SCHEDULED REMOVAL: All specific teachers removed from cache 
+2021-12-09 21:50:00,008 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.TeacherServiceImpl.clearTeachersCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:50:00,008 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name specialties 
+2021-12-09 21:50:00,008 [scheduling-1] INFO  c.s.s.c.LessonController                           - SCHEDULED REMOVAL: All specific specialties removed from cache 
+2021-12-09 21:50:00,008 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SpecialtyServiceImpl.clearSpecialtiesCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:51:47,490 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allLessons 
+2021-12-09 21:51:47,490 [scheduling-1] INFO  c.s.s.s.i.LessonServiceImpl                        - SCHEDULED REMOVAL: All lessons list removed from cache 
+2021-12-09 21:51:47,490 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.LessonServiceImpl.clearAllLessonsCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:51:47,506 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allSubjects 
+2021-12-09 21:51:47,506 [scheduling-1] INFO  c.s.s.c.SubjectController                          - SCHEDULED REMOVAL: All subjects list removed from cache 
+2021-12-09 21:51:47,506 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SubjectServiceImpl.clearAllSubjectsCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:51:47,506 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allSpecialties 
+2021-12-09 21:51:47,506 [scheduling-1] INFO  c.s.s.c.LessonController                           - SCHEDULED REMOVAL: All specialties list removed from cache 
+2021-12-09 21:51:47,506 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SpecialtyServiceImpl.clearAllSpecialtiesCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:51:47,506 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allTeachers 
+2021-12-09 21:51:47,506 [scheduling-1] INFO  c.s.s.s.i.TeacherServiceImpl                       - SCHEDULED REMOVAL: All teachers list removed from cache 
+2021-12-09 21:51:47,506 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.TeacherServiceImpl.clearAllTeachersCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:52:00,000 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name lessons 
+2021-12-09 21:52:00,000 [scheduling-1] INFO  c.s.s.s.i.LessonServiceImpl                        - SCHEDULED REMOVAL: All specific lessons removed from cache 
+2021-12-09 21:52:00,000 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.LessonServiceImpl.clearLessonsCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:52:00,000 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name teachers 
+2021-12-09 21:52:00,000 [scheduling-1] INFO  c.s.s.s.i.TeacherServiceImpl                       - SCHEDULED REMOVAL: All specific teachers removed from cache 
+2021-12-09 21:52:00,001 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.TeacherServiceImpl.clearTeachersCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:52:00,001 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name subjects 
+2021-12-09 21:52:00,001 [scheduling-1] INFO  c.s.s.c.SubjectController                          - SCHEDULED REMOVAL: All specific subjects removed from cache 
+2021-12-09 21:52:00,001 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SubjectServiceImpl.clearSubjectsCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:52:00,001 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name specialties 
+2021-12-09 21:52:00,001 [scheduling-1] INFO  c.s.s.c.LessonController                           - SCHEDULED REMOVAL: All specific specialties removed from cache 
+2021-12-09 21:52:00,002 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SpecialtyServiceImpl.clearSpecialtiesCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:53:47,500 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allLessons 
+2021-12-09 21:53:47,500 [scheduling-1] INFO  c.s.s.s.i.LessonServiceImpl                        - SCHEDULED REMOVAL: All lessons list removed from cache 
+2021-12-09 21:53:47,500 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.LessonServiceImpl.clearAllLessonsCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:53:47,515 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allSubjects 
+2021-12-09 21:53:47,515 [scheduling-1] INFO  c.s.s.c.SubjectController                          - SCHEDULED REMOVAL: All subjects list removed from cache 
+2021-12-09 21:53:47,515 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SubjectServiceImpl.clearAllSubjectsCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:53:47,515 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allSpecialties 
+2021-12-09 21:53:47,515 [scheduling-1] INFO  c.s.s.c.LessonController                           - SCHEDULED REMOVAL: All specialties list removed from cache 
+2021-12-09 21:53:47,515 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SpecialtyServiceImpl.clearAllSpecialtiesCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:53:47,515 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allTeachers 
+2021-12-09 21:53:47,515 [scheduling-1] INFO  c.s.s.s.i.TeacherServiceImpl                       - SCHEDULED REMOVAL: All teachers list removed from cache 
+2021-12-09 21:53:47,515 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.TeacherServiceImpl.clearAllTeachersCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:54:00,005 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name teachers 
+2021-12-09 21:54:00,005 [scheduling-1] INFO  c.s.s.s.i.TeacherServiceImpl                       - SCHEDULED REMOVAL: All specific teachers removed from cache 
+2021-12-09 21:54:00,005 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.TeacherServiceImpl.clearTeachersCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:54:00,005 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name specialties 
+2021-12-09 21:54:00,005 [scheduling-1] INFO  c.s.s.c.LessonController                           - SCHEDULED REMOVAL: All specific specialties removed from cache 
+2021-12-09 21:54:00,005 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SpecialtyServiceImpl.clearSpecialtiesCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:54:00,005 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name subjects 
+2021-12-09 21:54:00,006 [scheduling-1] INFO  c.s.s.c.SubjectController                          - SCHEDULED REMOVAL: All specific subjects removed from cache 
+2021-12-09 21:54:00,006 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SubjectServiceImpl.clearSubjectsCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:54:00,006 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name lessons 
+2021-12-09 21:54:00,006 [scheduling-1] INFO  c.s.s.s.i.LessonServiceImpl                        - SCHEDULED REMOVAL: All specific lessons removed from cache 
+2021-12-09 21:54:00,006 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.LessonServiceImpl.clearLessonsCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:55:00,001 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name users 
+2021-12-09 21:55:00,001 [scheduling-1] INFO  c.s.s.s.i.UserServiceImpl                          - SCHEDULED REMOVAL: All users removed from cache 
+2021-12-09 21:55:00,001 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.UserServiceImpl.clearUsersCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:55:47,514 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allLessons 
+2021-12-09 21:55:47,514 [scheduling-1] INFO  c.s.s.s.i.LessonServiceImpl                        - SCHEDULED REMOVAL: All lessons list removed from cache 
+2021-12-09 21:55:47,514 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.LessonServiceImpl.clearAllLessonsCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:55:47,530 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allSubjects 
+2021-12-09 21:55:47,530 [scheduling-1] INFO  c.s.s.c.SubjectController                          - SCHEDULED REMOVAL: All subjects list removed from cache 
+2021-12-09 21:55:47,530 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SubjectServiceImpl.clearAllSubjectsCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:55:47,530 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allSpecialties 
+2021-12-09 21:55:47,530 [scheduling-1] INFO  c.s.s.c.LessonController                           - SCHEDULED REMOVAL: All specialties list removed from cache 
+2021-12-09 21:55:47,530 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SpecialtyServiceImpl.clearAllSpecialtiesCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:55:47,530 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allTeachers 
+2021-12-09 21:55:47,530 [scheduling-1] INFO  c.s.s.s.i.TeacherServiceImpl                       - SCHEDULED REMOVAL: All teachers list removed from cache 
+2021-12-09 21:55:47,531 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.TeacherServiceImpl.clearAllTeachersCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:56:00,003 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name subjects 
+2021-12-09 21:56:00,003 [scheduling-1] INFO  c.s.s.c.SubjectController                          - SCHEDULED REMOVAL: All specific subjects removed from cache 
+2021-12-09 21:56:00,003 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SubjectServiceImpl.clearSubjectsCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:56:00,003 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name teachers 
+2021-12-09 21:56:00,004 [scheduling-1] INFO  c.s.s.s.i.TeacherServiceImpl                       - SCHEDULED REMOVAL: All specific teachers removed from cache 
+2021-12-09 21:56:00,004 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.TeacherServiceImpl.clearTeachersCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:56:00,004 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name lessons 
+2021-12-09 21:56:00,004 [scheduling-1] INFO  c.s.s.s.i.LessonServiceImpl                        - SCHEDULED REMOVAL: All specific lessons removed from cache 
+2021-12-09 21:56:00,004 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.LessonServiceImpl.clearLessonsCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:56:00,004 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name specialties 
+2021-12-09 21:56:00,005 [scheduling-1] INFO  c.s.s.c.LessonController                           - SCHEDULED REMOVAL: All specific specialties removed from cache 
+2021-12-09 21:56:00,006 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SpecialtyServiceImpl.clearSpecialtiesCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:57:47,529 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allLessons 
+2021-12-09 21:57:47,529 [scheduling-1] INFO  c.s.s.s.i.LessonServiceImpl                        - SCHEDULED REMOVAL: All lessons list removed from cache 
+2021-12-09 21:57:47,529 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.LessonServiceImpl.clearAllLessonsCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:57:47,544 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allSubjects 
+2021-12-09 21:57:47,544 [scheduling-1] INFO  c.s.s.c.SubjectController                          - SCHEDULED REMOVAL: All subjects list removed from cache 
+2021-12-09 21:57:47,544 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SubjectServiceImpl.clearAllSubjectsCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:57:47,544 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allSpecialties 
+2021-12-09 21:57:47,544 [scheduling-1] INFO  c.s.s.c.LessonController                           - SCHEDULED REMOVAL: All specialties list removed from cache 
+2021-12-09 21:57:47,544 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SpecialtyServiceImpl.clearAllSpecialtiesCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:57:47,545 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allTeachers 
+2021-12-09 21:57:47,545 [scheduling-1] INFO  c.s.s.s.i.TeacherServiceImpl                       - SCHEDULED REMOVAL: All teachers list removed from cache 
+2021-12-09 21:57:47,545 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.TeacherServiceImpl.clearAllTeachersCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:58:00,004 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name specialties 
+2021-12-09 21:58:00,004 [scheduling-1] INFO  c.s.s.c.LessonController                           - SCHEDULED REMOVAL: All specific specialties removed from cache 
+2021-12-09 21:58:00,004 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SpecialtyServiceImpl.clearSpecialtiesCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:58:00,004 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name teachers 
+2021-12-09 21:58:00,004 [scheduling-1] INFO  c.s.s.s.i.TeacherServiceImpl                       - SCHEDULED REMOVAL: All specific teachers removed from cache 
+2021-12-09 21:58:00,004 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.TeacherServiceImpl.clearTeachersCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:58:00,004 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name lessons 
+2021-12-09 21:58:00,004 [scheduling-1] INFO  c.s.s.s.i.LessonServiceImpl                        - SCHEDULED REMOVAL: All specific lessons removed from cache 
+2021-12-09 21:58:00,005 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.LessonServiceImpl.clearLessonsCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:58:00,005 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name subjects 
+2021-12-09 21:58:00,005 [scheduling-1] INFO  c.s.s.c.SubjectController                          - SCHEDULED REMOVAL: All specific subjects removed from cache 
+2021-12-09 21:58:00,005 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SubjectServiceImpl.clearSubjectsCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:59:47,533 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allLessons 
+2021-12-09 21:59:47,533 [scheduling-1] INFO  c.s.s.s.i.LessonServiceImpl                        - SCHEDULED REMOVAL: All lessons list removed from cache 
+2021-12-09 21:59:47,533 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.LessonServiceImpl.clearAllLessonsCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:59:47,549 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allSubjects 
+2021-12-09 21:59:47,549 [scheduling-1] INFO  c.s.s.c.SubjectController                          - SCHEDULED REMOVAL: All subjects list removed from cache 
+2021-12-09 21:59:47,549 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SubjectServiceImpl.clearAllSubjectsCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:59:47,549 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allSpecialties 
+2021-12-09 21:59:47,549 [scheduling-1] INFO  c.s.s.c.LessonController                           - SCHEDULED REMOVAL: All specialties list removed from cache 
+2021-12-09 21:59:47,549 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SpecialtyServiceImpl.clearAllSpecialtiesCache()	- Elapsed Time: 0 ms 
+2021-12-09 21:59:47,549 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allTeachers 
+2021-12-09 21:59:47,549 [scheduling-1] INFO  c.s.s.s.i.TeacherServiceImpl                       - SCHEDULED REMOVAL: All teachers list removed from cache 
+2021-12-09 21:59:47,549 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.TeacherServiceImpl.clearAllTeachersCache()	- Elapsed Time: 0 ms 
+2021-12-09 22:00:00,007 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name users 
+2021-12-09 22:00:00,007 [scheduling-1] INFO  c.s.s.s.i.UserServiceImpl                          - SCHEDULED REMOVAL: All users removed from cache 
+2021-12-09 22:00:00,007 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.UserServiceImpl.clearUsersCache()	- Elapsed Time: 0 ms 
+2021-12-09 22:00:00,007 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name lessons 
+2021-12-09 22:00:00,007 [scheduling-1] INFO  c.s.s.s.i.LessonServiceImpl                        - SCHEDULED REMOVAL: All specific lessons removed from cache 
+2021-12-09 22:00:00,008 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.LessonServiceImpl.clearLessonsCache()	- Elapsed Time: 0 ms 
+2021-12-09 22:00:00,008 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name subjects 
+2021-12-09 22:00:00,008 [scheduling-1] INFO  c.s.s.c.SubjectController                          - SCHEDULED REMOVAL: All specific subjects removed from cache 
+2021-12-09 22:00:00,008 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SubjectServiceImpl.clearSubjectsCache()	- Elapsed Time: 0 ms 
+2021-12-09 22:00:00,008 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name specialties 
+2021-12-09 22:00:00,008 [scheduling-1] INFO  c.s.s.c.LessonController                           - SCHEDULED REMOVAL: All specific specialties removed from cache 
+2021-12-09 22:00:00,008 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SpecialtyServiceImpl.clearSpecialtiesCache()	- Elapsed Time: 0 ms 
+2021-12-09 22:00:00,009 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name teachers 
+2021-12-09 22:00:00,009 [scheduling-1] INFO  c.s.s.s.i.TeacherServiceImpl                       - SCHEDULED REMOVAL: All specific teachers removed from cache 
+2021-12-09 22:00:00,009 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.TeacherServiceImpl.clearTeachersCache()	- Elapsed Time: 0 ms 
+2021-12-09 22:01:47,542 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allLessons 
+2021-12-09 22:01:47,542 [scheduling-1] INFO  c.s.s.s.i.LessonServiceImpl                        - SCHEDULED REMOVAL: All lessons list removed from cache 
+2021-12-09 22:01:47,542 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.LessonServiceImpl.clearAllLessonsCache()	- Elapsed Time: 0 ms 
+2021-12-09 22:01:47,556 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allSubjects 
+2021-12-09 22:01:47,556 [scheduling-1] INFO  c.s.s.c.SubjectController                          - SCHEDULED REMOVAL: All subjects list removed from cache 
+2021-12-09 22:01:47,556 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SubjectServiceImpl.clearAllSubjectsCache()	- Elapsed Time: 0 ms 
+2021-12-09 22:01:47,556 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allSpecialties 
+2021-12-09 22:01:47,556 [scheduling-1] INFO  c.s.s.c.LessonController                           - SCHEDULED REMOVAL: All specialties list removed from cache 
+2021-12-09 22:01:47,556 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SpecialtyServiceImpl.clearAllSpecialtiesCache()	- Elapsed Time: 0 ms 
+2021-12-09 22:01:47,557 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allTeachers 
+2021-12-09 22:01:47,557 [scheduling-1] INFO  c.s.s.s.i.TeacherServiceImpl                       - SCHEDULED REMOVAL: All teachers list removed from cache 
+2021-12-09 22:01:47,557 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.TeacherServiceImpl.clearAllTeachersCache()	- Elapsed Time: 0 ms 
 2021-12-09 21:47:45,904 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - CREATE NEW CACHE by name allLessons 
 2021-12-09 21:47:45,910 [scheduling-1] INFO  c.s.s.s.i.LessonServiceImpl                        - SCHEDULED REMOVAL: All lessons list removed from cache 
 2021-12-09 21:47:45,913 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.LessonServiceImpl.clearAllLessonsCache()	- Elapsed Time: 3 ms 
@@ -11430,3 +11870,166 @@ insert into teachers_subjects (teacher_id, subject_id) values (?, ?) [23505-200]
 2021-12-10 00:02:00,016 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name specialties 
 2021-12-10 00:02:00,016 [scheduling-1] INFO  c.s.s.c.LessonController                           - SCHEDULED REMOVAL: All specific specialties removed from cache 
 2021-12-10 00:02:00,017 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SpecialtyServiceImpl.clearSpecialtiesCache()	- Elapsed Time: 0 ms 
+2021-12-10 00:34:13,940 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - CREATE NEW CACHE by name allLessons 
+2021-12-10 00:34:13,946 [scheduling-1] INFO  c.s.s.s.i.LessonServiceImpl                        - SCHEDULED REMOVAL: All lessons list removed from cache 
+2021-12-10 00:34:13,949 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.LessonServiceImpl.clearAllLessonsCache()	- Elapsed Time: 2 ms 
+2021-12-10 00:34:13,949 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - CREATE NEW CACHE by name allSubjects 
+2021-12-10 00:34:13,953 [scheduling-1] INFO  c.s.s.c.SubjectController                          - SCHEDULED REMOVAL: All subjects list removed from cache 
+2021-12-10 00:34:13,954 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SubjectServiceImpl.clearAllSubjectsCache()	- Elapsed Time: 4 ms 
+2021-12-10 00:34:13,955 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - CREATE NEW CACHE by name allSpecialties 
+2021-12-10 00:34:13,957 [scheduling-1] INFO  c.s.s.c.LessonController                           - SCHEDULED REMOVAL: All specialties list removed from cache 
+2021-12-10 00:34:13,957 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SpecialtyServiceImpl.clearAllSpecialtiesCache()	- Elapsed Time: 2 ms 
+2021-12-10 00:34:13,958 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - CREATE NEW CACHE by name allTeachers 
+2021-12-10 00:34:13,960 [scheduling-1] INFO  c.s.s.s.i.TeacherServiceImpl                       - SCHEDULED REMOVAL: All teachers list removed from cache 
+2021-12-10 00:34:13,961 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.TeacherServiceImpl.clearAllTeachersCache()	- Elapsed Time: 2 ms 
+2021-12-10 00:34:34,754 [http-nio-8081-exec-8] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - UserDetails com.sbproject.schedule.services.implementations.CustomUserDetailsService.loadUserByUsername(String)	- Elapsed Time: 6 ms 
+2021-12-10 00:34:39,182 [http-nio-8081-exec-10] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allSpecialties 
+2021-12-10 00:34:39,183 [http-nio-8081-exec-10] INFO  c.s.s.c.LessonController                           - get all specialties method executed 
+2021-12-10 00:34:39,189 [http-nio-8081-exec-10] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - Iterable com.sbproject.schedule.services.implementations.SpecialtyServiceImpl.getAll()	- Elapsed Time: 7 ms 
+2021-12-10 00:34:39,197 [http-nio-8081-exec-10] INFO  c.s.s.a.GlobalAspect                               - GET Method Iterable com.sbproject.schedule.services.implementations.SpecialtyServiceImpl.getAll() invoked with arguments: []. The returned value is: [IPZ-3, IPZ-4, KN-3] 
+2021-12-10 00:34:39,198 [http-nio-8081-exec-10] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allLessons 
+2021-12-10 00:34:39,208 [http-nio-8081-exec-10] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - Iterable com.sbproject.schedule.services.implementations.LessonServiceImpl.getAll()	- Elapsed Time: 10 ms 
+2021-12-10 00:34:39,209 [http-nio-8081-exec-10] INFO  c.s.s.a.GlobalAspect                               - GET Method Iterable com.sbproject.schedule.services.implementations.LessonServiceImpl.getAll() invoked with arguments: []. The returned value is: [Lesson{id=10,time=8:30-9:50,subject=Subject 1,teacher=Teacher 1,group=lecture,weeks=1-15,room=215,dayOfWeek=MONDAY}, Lesson{id=11,time=10:00-11:20,subject=Subject 1,teacher=Teacher 2,group=1,weeks=1-15,room=216,dayOfWeek=MONDAY}, Lesson{id=12,time=11:40-13:00,subject=Subject 2,teacher=Teacher 3,group=2,weeks=1-15,room=216,dayOfWeek=MONDAY}] 
+2021-12-10 00:34:39,209 [http-nio-8081-exec-10] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allTeachers 
+2021-12-10 00:34:39,211 [http-nio-8081-exec-10] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - Iterable com.sbproject.schedule.services.implementations.TeacherServiceImpl.getAll()	- Elapsed Time: 1 ms 
+2021-12-10 00:34:39,211 [http-nio-8081-exec-10] INFO  c.s.s.a.GlobalAspect                               - GET Method Iterable com.sbproject.schedule.services.implementations.TeacherServiceImpl.getAll() invoked with arguments: []. The returned value is: [Teacher 1, Teacher 2, Teacher 3] 
+2021-12-10 00:34:50,436 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - CREATE NEW CACHE by name allLessons 
+2021-12-10 00:34:50,442 [scheduling-1] INFO  c.s.s.s.i.LessonServiceImpl                        - SCHEDULED REMOVAL: All lessons list removed from cache 
+2021-12-10 00:34:50,444 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.LessonServiceImpl.clearAllLessonsCache()	- Elapsed Time: 2 ms 
+2021-12-10 00:34:50,445 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - CREATE NEW CACHE by name allSubjects 
+2021-12-10 00:34:50,449 [scheduling-1] INFO  c.s.s.c.SubjectController                          - SCHEDULED REMOVAL: All subjects list removed from cache 
+2021-12-10 00:34:50,449 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SubjectServiceImpl.clearAllSubjectsCache()	- Elapsed Time: 3 ms 
+2021-12-10 00:34:50,449 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - CREATE NEW CACHE by name allSpecialties 
+2021-12-10 00:34:50,452 [scheduling-1] INFO  c.s.s.c.LessonController                           - SCHEDULED REMOVAL: All specialties list removed from cache 
+2021-12-10 00:34:50,452 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SpecialtyServiceImpl.clearAllSpecialtiesCache()	- Elapsed Time: 2 ms 
+2021-12-10 00:34:50,453 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - CREATE NEW CACHE by name allTeachers 
+2021-12-10 00:34:50,454 [scheduling-1] INFO  c.s.s.s.i.TeacherServiceImpl                       - SCHEDULED REMOVAL: All teachers list removed from cache 
+2021-12-10 00:34:50,454 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.TeacherServiceImpl.clearAllTeachersCache()	- Elapsed Time: 2 ms 
+2021-12-10 00:35:00,005 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - CREATE NEW CACHE by name users 
+2021-12-10 00:35:00,008 [scheduling-1] INFO  c.s.s.s.i.UserServiceImpl                          - SCHEDULED REMOVAL: All users removed from cache 
+2021-12-10 00:35:00,008 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.UserServiceImpl.clearUsersCache()	- Elapsed Time: 2 ms 
+2021-12-10 00:35:01,807 [http-nio-8081-exec-3] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - UserDetails com.sbproject.schedule.services.implementations.CustomUserDetailsService.loadUserByUsername(String)	- Elapsed Time: 6 ms 
+2021-12-10 00:35:01,819 [http-nio-8081-exec-4] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allSpecialties 
+2021-12-10 00:35:01,820 [http-nio-8081-exec-4] INFO  c.s.s.c.LessonController                           - get all specialties method executed 
+2021-12-10 00:35:01,827 [http-nio-8081-exec-4] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - Iterable com.sbproject.schedule.services.implementations.SpecialtyServiceImpl.getAll()	- Elapsed Time: 7 ms 
+2021-12-10 00:35:01,835 [http-nio-8081-exec-4] INFO  c.s.s.a.GlobalAspect                               - GET Method Iterable com.sbproject.schedule.services.implementations.SpecialtyServiceImpl.getAll() invoked with arguments: []. The returned value is: [IPZ-3, IPZ-4, KN-3] 
+2021-12-10 00:35:01,836 [http-nio-8081-exec-4] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allLessons 
+2021-12-10 00:35:01,846 [http-nio-8081-exec-4] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - Iterable com.sbproject.schedule.services.implementations.LessonServiceImpl.getAll()	- Elapsed Time: 9 ms 
+2021-12-10 00:35:01,846 [http-nio-8081-exec-4] INFO  c.s.s.a.GlobalAspect                               - GET Method Iterable com.sbproject.schedule.services.implementations.LessonServiceImpl.getAll() invoked with arguments: []. The returned value is: [Lesson{id=10,time=8:30-9:50,subject=Subject 1,teacher=Teacher 1,group=lecture,weeks=1-15,room=215,dayOfWeek=MONDAY}, Lesson{id=11,time=10:00-11:20,subject=Subject 1,teacher=Teacher 2,group=1,weeks=1-15,room=216,dayOfWeek=MONDAY}, Lesson{id=12,time=11:40-13:00,subject=Subject 2,teacher=Teacher 3,group=2,weeks=1-15,room=216,dayOfWeek=MONDAY}] 
+2021-12-10 00:35:01,846 [http-nio-8081-exec-4] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allTeachers 
+2021-12-10 00:35:01,848 [http-nio-8081-exec-4] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - Iterable com.sbproject.schedule.services.implementations.TeacherServiceImpl.getAll()	- Elapsed Time: 1 ms 
+2021-12-10 00:35:01,848 [http-nio-8081-exec-4] INFO  c.s.s.a.GlobalAspect                               - GET Method Iterable com.sbproject.schedule.services.implementations.TeacherServiceImpl.getAll() invoked with arguments: []. The returned value is: [Teacher 1, Teacher 2, Teacher 3] 
+2021-12-10 00:35:21,222 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - CREATE NEW CACHE by name allLessons 
+2021-12-10 00:35:21,230 [scheduling-1] INFO  c.s.s.s.i.LessonServiceImpl                        - SCHEDULED REMOVAL: All lessons list removed from cache 
+2021-12-10 00:35:21,231 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.LessonServiceImpl.clearAllLessonsCache()	- Elapsed Time: 2 ms 
+2021-12-10 00:35:21,232 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - CREATE NEW CACHE by name allSubjects 
+2021-12-10 00:35:21,236 [scheduling-1] INFO  c.s.s.c.SubjectController                          - SCHEDULED REMOVAL: All subjects list removed from cache 
+2021-12-10 00:35:21,237 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SubjectServiceImpl.clearAllSubjectsCache()	- Elapsed Time: 5 ms 
+2021-12-10 00:35:21,239 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - CREATE NEW CACHE by name allSpecialties 
+2021-12-10 00:35:21,241 [scheduling-1] INFO  c.s.s.c.LessonController                           - SCHEDULED REMOVAL: All specialties list removed from cache 
+2021-12-10 00:35:21,242 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SpecialtyServiceImpl.clearAllSpecialtiesCache()	- Elapsed Time: 2 ms 
+2021-12-10 00:35:21,242 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - CREATE NEW CACHE by name allTeachers 
+2021-12-10 00:35:21,245 [scheduling-1] INFO  c.s.s.s.i.TeacherServiceImpl                       - SCHEDULED REMOVAL: All teachers list removed from cache 
+2021-12-10 00:35:21,245 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.TeacherServiceImpl.clearAllTeachersCache()	- Elapsed Time: 2 ms 
+2021-12-10 00:35:26,729 [http-nio-8081-exec-3] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - UserDetails com.sbproject.schedule.services.implementations.CustomUserDetailsService.loadUserByUsername(String)	- Elapsed Time: 5 ms 
+2021-12-10 00:35:26,741 [http-nio-8081-exec-4] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allSpecialties 
+2021-12-10 00:35:26,742 [http-nio-8081-exec-4] INFO  c.s.s.c.LessonController                           - get all specialties method executed 
+2021-12-10 00:35:26,751 [http-nio-8081-exec-4] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - Iterable com.sbproject.schedule.services.implementations.SpecialtyServiceImpl.getAll()	- Elapsed Time: 8 ms 
+2021-12-10 00:35:26,757 [http-nio-8081-exec-4] INFO  c.s.s.a.GlobalAspect                               - GET Method Iterable com.sbproject.schedule.services.implementations.SpecialtyServiceImpl.getAll() invoked with arguments: []. The returned value is: [IPZ-3, IPZ-4, KN-3] 
+2021-12-10 00:35:26,758 [http-nio-8081-exec-4] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allLessons 
+2021-12-10 00:35:26,767 [http-nio-8081-exec-4] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - Iterable com.sbproject.schedule.services.implementations.LessonServiceImpl.getAll()	- Elapsed Time: 9 ms 
+2021-12-10 00:35:26,767 [http-nio-8081-exec-4] INFO  c.s.s.a.GlobalAspect                               - GET Method Iterable com.sbproject.schedule.services.implementations.LessonServiceImpl.getAll() invoked with arguments: []. The returned value is: [Lesson{id=10,time=8:30-9:50,subject=Subject 1,teacher=Teacher 1,group=lecture,weeks=1-15,room=215,dayOfWeek=MONDAY}, Lesson{id=11,time=10:00-11:20,subject=Subject 1,teacher=Teacher 2,group=1,weeks=1-15,room=216,dayOfWeek=MONDAY}, Lesson{id=12,time=11:40-13:00,subject=Subject 2,teacher=Teacher 3,group=2,weeks=1-15,room=216,dayOfWeek=MONDAY}] 
+2021-12-10 00:35:26,768 [http-nio-8081-exec-4] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allTeachers 
+2021-12-10 00:35:26,769 [http-nio-8081-exec-4] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - Iterable com.sbproject.schedule.services.implementations.TeacherServiceImpl.getAll()	- Elapsed Time: 1 ms 
+2021-12-10 00:35:26,769 [http-nio-8081-exec-4] INFO  c.s.s.a.GlobalAspect                               - GET Method Iterable com.sbproject.schedule.services.implementations.TeacherServiceImpl.getAll() invoked with arguments: []. The returned value is: [Teacher 1, Teacher 2, Teacher 3] 
+2021-12-10 00:35:41,632 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - CREATE NEW CACHE by name allLessons 
+2021-12-10 00:35:41,641 [scheduling-1] INFO  c.s.s.s.i.LessonServiceImpl                        - SCHEDULED REMOVAL: All lessons list removed from cache 
+2021-12-10 00:35:41,643 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.LessonServiceImpl.clearAllLessonsCache()	- Elapsed Time: 3 ms 
+2021-12-10 00:35:41,644 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - CREATE NEW CACHE by name allSubjects 
+2021-12-10 00:35:41,648 [scheduling-1] INFO  c.s.s.c.SubjectController                          - SCHEDULED REMOVAL: All subjects list removed from cache 
+2021-12-10 00:35:41,648 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SubjectServiceImpl.clearAllSubjectsCache()	- Elapsed Time: 4 ms 
+2021-12-10 00:35:41,649 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - CREATE NEW CACHE by name allSpecialties 
+2021-12-10 00:35:41,651 [scheduling-1] INFO  c.s.s.c.LessonController                           - SCHEDULED REMOVAL: All specialties list removed from cache 
+2021-12-10 00:35:41,651 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SpecialtyServiceImpl.clearAllSpecialtiesCache()	- Elapsed Time: 2 ms 
+2021-12-10 00:35:41,651 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - CREATE NEW CACHE by name allTeachers 
+2021-12-10 00:35:41,654 [scheduling-1] INFO  c.s.s.s.i.TeacherServiceImpl                       - SCHEDULED REMOVAL: All teachers list removed from cache 
+2021-12-10 00:35:41,654 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.TeacherServiceImpl.clearAllTeachersCache()	- Elapsed Time: 2 ms 
+2021-12-10 00:35:48,454 [http-nio-8081-exec-6] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - UserDetails com.sbproject.schedule.services.implementations.CustomUserDetailsService.loadUserByUsername(String)	- Elapsed Time: 7 ms 
+2021-12-10 00:35:57,311 [http-nio-8081-exec-8] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allSpecialties 
+2021-12-10 00:35:57,312 [http-nio-8081-exec-8] INFO  c.s.s.c.LessonController                           - get all specialties method executed 
+2021-12-10 00:35:57,319 [http-nio-8081-exec-8] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - Iterable com.sbproject.schedule.services.implementations.SpecialtyServiceImpl.getAll()	- Elapsed Time: 7 ms 
+2021-12-10 00:35:57,327 [http-nio-8081-exec-8] INFO  c.s.s.a.GlobalAspect                               - GET Method Iterable com.sbproject.schedule.services.implementations.SpecialtyServiceImpl.getAll() invoked with arguments: []. The returned value is: [IPZ-3, IPZ-4, KN-3] 
+2021-12-10 00:35:57,328 [http-nio-8081-exec-8] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allLessons 
+2021-12-10 00:35:57,338 [http-nio-8081-exec-8] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - Iterable com.sbproject.schedule.services.implementations.LessonServiceImpl.getAll()	- Elapsed Time: 10 ms 
+2021-12-10 00:35:57,339 [http-nio-8081-exec-8] INFO  c.s.s.a.GlobalAspect                               - GET Method Iterable com.sbproject.schedule.services.implementations.LessonServiceImpl.getAll() invoked with arguments: []. The returned value is: [Lesson{id=10,time=8:30-9:50,subject=Subject 1,teacher=Teacher 1,group=lecture,weeks=1-15,room=215,dayOfWeek=MONDAY}, Lesson{id=11,time=10:00-11:20,subject=Subject 1,teacher=Teacher 2,group=1,weeks=1-15,room=216,dayOfWeek=MONDAY}, Lesson{id=12,time=11:40-13:00,subject=Subject 2,teacher=Teacher 3,group=2,weeks=1-15,room=216,dayOfWeek=MONDAY}] 
+2021-12-10 00:35:57,339 [http-nio-8081-exec-8] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allTeachers 
+2021-12-10 00:35:57,341 [http-nio-8081-exec-8] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - Iterable com.sbproject.schedule.services.implementations.TeacherServiceImpl.getAll()	- Elapsed Time: 1 ms 
+2021-12-10 00:35:57,341 [http-nio-8081-exec-8] INFO  c.s.s.a.GlobalAspect                               - GET Method Iterable com.sbproject.schedule.services.implementations.TeacherServiceImpl.getAll() invoked with arguments: []. The returned value is: [Teacher 1, Teacher 2, Teacher 3] 
+2021-12-10 00:36:00,008 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - CREATE NEW CACHE by name subjects 
+2021-12-10 00:36:00,008 [scheduling-1] INFO  c.s.s.c.SubjectController                          - SCHEDULED REMOVAL: All specific subjects removed from cache 
+2021-12-10 00:36:00,009 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SubjectServiceImpl.clearSubjectsCache()	- Elapsed Time: 0 ms 
+2021-12-10 00:36:00,009 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - CREATE NEW CACHE by name specialties 
+2021-12-10 00:36:00,010 [scheduling-1] INFO  c.s.s.c.LessonController                           - SCHEDULED REMOVAL: All specific specialties removed from cache 
+2021-12-10 00:36:00,010 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SpecialtyServiceImpl.clearSpecialtiesCache()	- Elapsed Time: 0 ms 
+2021-12-10 00:36:00,010 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - CREATE NEW CACHE by name teachers 
+2021-12-10 00:36:00,011 [scheduling-1] INFO  c.s.s.s.i.TeacherServiceImpl                       - SCHEDULED REMOVAL: All specific teachers removed from cache 
+2021-12-10 00:36:00,011 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.TeacherServiceImpl.clearTeachersCache()	- Elapsed Time: 0 ms 
+2021-12-10 00:36:00,011 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - CREATE NEW CACHE by name lessons 
+2021-12-10 00:36:00,012 [scheduling-1] INFO  c.s.s.s.i.LessonServiceImpl                        - SCHEDULED REMOVAL: All specific lessons removed from cache 
+2021-12-10 00:36:00,012 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.LessonServiceImpl.clearLessonsCache()	- Elapsed Time: 0 ms 
+2021-12-10 00:36:02,367 [http-nio-8081-exec-4] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - UserDetails com.sbproject.schedule.services.implementations.CustomUserDetailsService.loadUserByUsername(String)	- Elapsed Time: 0 ms 
+2021-12-10 00:36:03,345 [http-nio-8081-exec-6] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allSpecialties 
+2021-12-10 00:36:03,345 [http-nio-8081-exec-6] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allLessons 
+2021-12-10 00:36:03,346 [http-nio-8081-exec-6] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allTeachers 
+2021-12-10 00:36:26,367 [http-nio-8081-exec-10] INFO  c.s.s.s.i.UserServiceImpl                          - User registrated: vovan1 : 123123 : ADMIN 
+2021-12-10 00:36:26,398 [http-nio-8081-exec-10] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - User com.sbproject.schedule.services.implementations.UserServiceImpl.addUser(UserDTO)	- Elapsed Time: 33 ms 
+2021-12-10 00:36:26,400 [http-nio-8081-exec-10] INFO  c.s.s.a.GlobalAspect                               - ADD Method User com.sbproject.schedule.services.implementations.UserServiceImpl.addUser(UserDTO) invoked with arguments: [com.sbproject.schedule.models.UserDTO@6adb9c13] The returned value is: User{login = vovan1\ password = 123123\ role = ADMIN} 
+2021-12-10 00:36:26,400 [http-nio-8081-exec-10] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - UserDetails com.sbproject.schedule.services.implementations.CustomUserDetailsService.loadUserByUsername(String)	- Elapsed Time: 0 ms 
+2021-12-10 00:36:26,415 [http-nio-8081-exec-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allSpecialties 
+2021-12-10 00:36:26,415 [http-nio-8081-exec-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allLessons 
+2021-12-10 00:36:26,415 [http-nio-8081-exec-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allTeachers 
+2021-12-10 00:36:33,161 [http-nio-8081-exec-2] INFO  c.s.s.c.CustomCacheManager                         - CREATE NEW CACHE by name users 
+2021-12-10 00:36:33,165 [http-nio-8081-exec-2] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - User com.sbproject.schedule.services.implementations.UserServiceImpl.getUser(String)	- Elapsed Time: 1 ms 
+2021-12-10 00:36:33,165 [http-nio-8081-exec-2] INFO  c.s.s.a.GlobalAspect                               - GET Method User com.sbproject.schedule.services.implementations.UserServiceImpl.getUser(String) invoked with arguments: [vovan1]. The returned value is: User{login = vovan1\ password = 123123\ role = ADMIN} 
+2021-12-10 00:36:42,740 [http-nio-8081-exec-3] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name users 
+2021-12-10 00:36:42,749 [http-nio-8081-exec-3] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - User com.sbproject.schedule.services.implementations.UserServiceImpl.updateUser(User)	- Elapsed Time: 8 ms 
+2021-12-10 00:36:42,749 [http-nio-8081-exec-3] INFO  c.s.s.a.GlobalAspect                               - UPDATE Method User com.sbproject.schedule.services.implementations.UserServiceImpl.updateUser(User) invoked with arguments: [User{login = vovan1\ password = 123123123\ role = ADMIN}]. The returned value is: User{login = vovan1\ password = 123123123\ role = ADMIN} 
+2021-12-10 00:36:44,158 [http-nio-8081-exec-6] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allSpecialties 
+2021-12-10 00:36:44,158 [http-nio-8081-exec-6] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allLessons 
+2021-12-10 00:36:44,158 [http-nio-8081-exec-6] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allTeachers 
+2021-12-10 00:36:50,940 [http-nio-8081-exec-9] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - UserDetails com.sbproject.schedule.services.implementations.CustomUserDetailsService.loadUserByUsername(String)	- Elapsed Time: 1 ms 
+2021-12-10 00:36:50,946 [http-nio-8081-exec-10] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allSpecialties 
+2021-12-10 00:36:50,947 [http-nio-8081-exec-10] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allLessons 
+2021-12-10 00:36:50,947 [http-nio-8081-exec-10] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allTeachers 
+2021-12-10 00:37:06,818 [http-nio-8081-exec-6] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - UserDetails com.sbproject.schedule.services.implementations.CustomUserDetailsService.loadUserByUsername(String)	- Elapsed Time: 1 ms 
+2021-12-10 00:37:08,787 [http-nio-8081-exec-8] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allSpecialties 
+2021-12-10 00:37:08,787 [http-nio-8081-exec-8] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allLessons 
+2021-12-10 00:37:08,788 [http-nio-8081-exec-8] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allTeachers 
+2021-12-10 00:37:13,296 [http-nio-8081-exec-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - UserDetails com.sbproject.schedule.services.implementations.CustomUserDetailsService.loadUserByUsername(String)	- Elapsed Time: 0 ms 
+2021-12-10 00:37:13,300 [http-nio-8081-exec-2] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allSpecialties 
+2021-12-10 00:37:13,301 [http-nio-8081-exec-2] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allLessons 
+2021-12-10 00:37:13,301 [http-nio-8081-exec-2] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allTeachers 
+2021-12-10 00:37:41,647 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allLessons 
+2021-12-10 00:37:41,647 [scheduling-1] INFO  c.s.s.s.i.LessonServiceImpl                        - SCHEDULED REMOVAL: All lessons list removed from cache 
+2021-12-10 00:37:41,647 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.LessonServiceImpl.clearAllLessonsCache()	- Elapsed Time: 0 ms 
+2021-12-10 00:37:41,663 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allSubjects 
+2021-12-10 00:37:41,663 [scheduling-1] INFO  c.s.s.c.SubjectController                          - SCHEDULED REMOVAL: All subjects list removed from cache 
+2021-12-10 00:37:41,663 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SubjectServiceImpl.clearAllSubjectsCache()	- Elapsed Time: 0 ms 
+2021-12-10 00:37:41,664 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allSpecialties 
+2021-12-10 00:37:41,664 [scheduling-1] INFO  c.s.s.c.LessonController                           - SCHEDULED REMOVAL: All specialties list removed from cache 
+2021-12-10 00:37:41,664 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SpecialtyServiceImpl.clearAllSpecialtiesCache()	- Elapsed Time: 0 ms 
+2021-12-10 00:37:41,664 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allTeachers 
+2021-12-10 00:37:41,664 [scheduling-1] INFO  c.s.s.s.i.TeacherServiceImpl                       - SCHEDULED REMOVAL: All teachers list removed from cache 
+2021-12-10 00:37:41,664 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.TeacherServiceImpl.clearAllTeachersCache()	- Elapsed Time: 0 ms 
+2021-12-10 00:38:00,007 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name lessons 
+2021-12-10 00:38:00,007 [scheduling-1] INFO  c.s.s.s.i.LessonServiceImpl                        - SCHEDULED REMOVAL: All specific lessons removed from cache 
+2021-12-10 00:38:00,007 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.LessonServiceImpl.clearLessonsCache()	- Elapsed Time: 0 ms 
+2021-12-10 00:38:00,007 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name subjects 
+2021-12-10 00:38:00,008 [scheduling-1] INFO  c.s.s.c.SubjectController                          - SCHEDULED REMOVAL: All specific subjects removed from cache 
+2021-12-10 00:38:00,008 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SubjectServiceImpl.clearSubjectsCache()	- Elapsed Time: 0 ms 
+2021-12-10 00:38:00,008 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name specialties 
+2021-12-10 00:38:00,008 [scheduling-1] INFO  c.s.s.c.LessonController                           - SCHEDULED REMOVAL: All specific specialties removed from cache 
+2021-12-10 00:38:00,008 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SpecialtyServiceImpl.clearSpecialtiesCache()	- Elapsed Time: 0 ms 
+2021-12-10 00:38:00,009 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name teachers 
+2021-12-10 00:38:00,009 [scheduling-1] INFO  c.s.s.s.i.TeacherServiceImpl                       - SCHEDULED REMOVAL: All specific teachers removed from cache 
+2021-12-10 00:38:00,009 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.TeacherServiceImpl.clearTeachersCache()	- Elapsed Time: 0 ms 

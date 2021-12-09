@@ -1,6 +1,5 @@
 package com.sbproject.schedule.utils;
 
-import com.sbproject.schedule.exceptions.specialty.InvalidSpecialtyNameException;
 import com.sbproject.schedule.models.Specialty;
 import com.sbproject.schedule.models.Subject;
 
@@ -18,7 +17,7 @@ public interface Utils {
 
     void checkTeacherName(String name);
 
-    public Long getUniqueId();
+    Long getUniqueId();
 
     void checkYear(int year);
 

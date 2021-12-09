@@ -97,8 +97,6 @@ public class SubjectServiceImpl implements SubjectService {
         return updateSubject(subject.getId(), subject.getName(), subject.getQuantOfGroups(), subject.getSpecialties());
     }
 
-    // need not use @CacheEvict for specialties as the method is invoked in
-    // other methods where @CacheEvict for specialties is already specified
     @Override
     public Subject updateSubjectNoCheck(Subject subject) {
         return subjectRepository.save(subject);

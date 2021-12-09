@@ -9,10 +9,8 @@ import org.apache.logging.log4j.core.config.plugins.PluginElement;
 import org.apache.logging.log4j.core.config.plugins.PluginFactory;
 import org.apache.logging.log4j.core.layout.PatternLayout;
 
-import java.io.IOException;
 import java.io.Serializable;
 
-// name attr - name which will be used in Configuration
 @Plugin(name="CustomAppender", category= Core.CATEGORY_NAME, elementType= Appender.ELEMENT_TYPE)
 public class CustomAppender extends AbstractAppender {
 

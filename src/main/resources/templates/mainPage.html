@@ -54,43 +54,6 @@
     </div>
 
 
-<!--    <div class="row">-->
-<!--        <div class="col-12">-->
-<!--            <h3>Schedule</h3>-->
-<!--        </div>-->
-<!--        <div class="col-12">-->
-<!--            <h4 th:if="${schedule.getDays().size()<=0}">No schedule for this specialty yet</h4>-->
-<!--            <table th:if="${schedule.getDays().size()>0}" class="table">-->
-<!--                <tr>-->
-<!--                    <th>Day</th>-->
-<!--                    <th>Time</th>-->
-<!--                    <th>Subject</th>-->
-<!--                    <th>Teacher</th>-->
-<!--                    <th>Group</th>-->
-<!--                    <th>Weeks</th>-->
-<!--                    <th>Room</th>-->
-<!--                </tr>-->
-<!--                <th:block th:each="day: ${schedule.getDays()}" >-->
-<!--                    <tr>-->
-<!--                        <td th:rowspan="${day.getTimeSlots().size()+1+day.getLessonsNumber()}" th:text="${day.getDay()}"></td>-->
-<!--                    </tr>-->
-<!--                    <th:block th:each="timeSlot: ${day.getTimeSlots()}">-->
-<!--                        <tr>-->
-<!--                            <td th:rowspan="${timeSlot.getLessons().size()+1}" th:text="${timeSlot.getTime()}"></td>-->
-<!--                        </tr>-->
-<!--                        <tr th:each="lesson: ${timeSlot.getLessons()}">-->
-<!--                            <td th:text="${lesson.getSubject().getName()}"></td>-->
-<!--                            <td th:text="${lesson.getTeacher().getName()}"></td>-->
-<!--                            <td th:text="${lesson.getGroup()}"></td>-->
-<!--                            <td th:text="${lesson.getWeeks()}"></td>-->
-<!--                            <td th:text="${lesson.getRoom()}"></td>-->
-<!--                        </tr>-->
-<!--                    </th:block>-->
-<!--                </th:block>-->
-<!--            </table>-->
-<!--        </div>-->
-<!--    </div>-->
-
     <!--    <h1>Welcome to the main page!</h1>-->
 </div>
 

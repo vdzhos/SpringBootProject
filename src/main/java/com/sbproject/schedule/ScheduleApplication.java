@@ -11,7 +11,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication
 @EnableCaching
 @EnableScheduling
-//@ComponentScan(basePackages = {"com.sbproject.schedule.repositories"})
 public class ScheduleApplication {
 
 	public static void main(String[] args) {

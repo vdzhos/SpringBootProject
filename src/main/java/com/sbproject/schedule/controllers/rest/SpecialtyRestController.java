@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
-import java.util.Set;
 
 @RestController
 @Validated
@@ -82,10 +81,6 @@ public class SpecialtyRestController {
             throw new IncorrectRequestBodyException(""+e.getMessage());
         }
     }
-//    @PostMapping
-//    public Specialty addSpecialty(@Valid @RequestBody Specialty specialty){
-//        return specialtyService.addSpecialty(specialty.getName(),specialty.getYear());
-//    }
 
     @Operation(summary = "Update a specialty by its id")
     @ApiResponses(value = {

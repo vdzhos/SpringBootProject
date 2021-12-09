@@ -96,14 +96,6 @@ public class ScheduleServiceImpl implements ScheduleService {
 				.getLessons();
 	}
 
-	/*@Override
-	public List<Lesson> getSubjectLessonsByTeacher(Long subjId, Long teachId) {
-		return this.getSubjectLessons(subjId)
-				.stream()
-				.filter(less -> less.getTeacher().getId() == teachId)
-				.collect(Collectors.toList());
-	}*/
-
 	@Override
 	public List<Lesson> filterLessonsByWeek(List<Lesson> list, int week) {
 		return list

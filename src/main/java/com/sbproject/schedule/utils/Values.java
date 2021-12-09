@@ -1,7 +1,5 @@
 package com.sbproject.schedule.utils;
 
-import org.apache.xmlbeans.impl.regex.RegularExpression;
-
 public class Values {
 
     public static final int MAX_YEAR = 6;

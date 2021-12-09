@@ -21,7 +21,6 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import java.time.DayOfWeek;
 import java.util.*;
-import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 @Controller
@@ -134,7 +133,6 @@ public class LessonController {
             lessons = Collections.emptyList();
         }else{
             Iterable<Subject> subjects = specialtyService.getSpecialtySubjects(specId);
-//            Iterable<Subject> subjects = specialtyService.getSpecialty(specId).getSubjects();
             lessons = new ArrayList<>();
             StreamSupport.stream(subjects.spliterator(), false).forEach(subj -> lessons.addAll(subjectService.getSubjectLessons(subj.getId())));
             if(deleteUpdated!=-1){

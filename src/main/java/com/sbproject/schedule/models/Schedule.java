@@ -1,6 +1,5 @@
 package com.sbproject.schedule.models;
 
-import javax.swing.*;
 import java.time.DayOfWeek;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -28,10 +27,6 @@ public class Schedule {
             days.get(i).setDay(DayOfWeek.of(i+1));
         }
     }
-
-//    public Day getDay(DayOfWeek day) {
-//        return days.get(day.ordinal());
-//    }
 
     public List<Day> getDays() {
         days.removeIf(d -> d.getLessonsNumber() == 0);
