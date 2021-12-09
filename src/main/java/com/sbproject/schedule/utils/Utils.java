@@ -28,5 +28,5 @@ public interface Utils {
 
     void checkSpecialties(Iterable<Subject> subjects, Set<Specialty> specialties);
 
-//    void checkTeachersSubjects (Set<Subject> subjects);
+    void checkTeachersSubjects (Set<Subject> subjects);
 }

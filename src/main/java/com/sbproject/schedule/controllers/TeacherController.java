@@ -1,14 +1,10 @@
 package com.sbproject.schedule.controllers;
 
-import com.sbproject.schedule.exceptions.teacher.NoTeacherWithSuchIdException;
 import com.sbproject.schedule.models.Subject;
-import com.sbproject.schedule.services.implementations.TeacherServiceImpl;
-import com.sbproject.schedule.services.interfaces.LessonService;
 import com.sbproject.schedule.services.interfaces.TeacherService;
 import com.sbproject.schedule.utils.Markers;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.ThreadContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -19,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
-import java.util.List;
 import java.util.Set;
 
 @Controller
@@ -57,7 +52,7 @@ public class TeacherController {
 
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/delete")
-    public RedirectView deleteTeacher(@RequestParam Long id, @RequestParam String teacherToString, Model model, RedirectAttributes redir) throws Exception {
+    public RedirectView deleteTeacher(@RequestParam Long id, Model model, RedirectAttributes redir) throws Exception {
         RedirectView redirectView = new RedirectView("/admin",true);
         String name = teacherService.getTeacherById(id).getName();
         String notification = "Teacher '"+ name +"' has been successfully deleted!";
@@ -75,12 +70,25 @@ public class TeacherController {
 
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/update")
-    public String updateTeacher(/*@RequestParam Long id, @RequestParam String newName, */Model model){
-        logger.info(Markers.ALTERING_TEACHER_TABLE_MARKER,"Teacher has been successfully updated!");
-        //teacherService.updateTeacher(id, newName);
-        //put info about success/failure into the model
-        return "redirect:/";
+    public RedirectView updateTeacher(@RequestParam Long id, @RequestParam String teacherName,
+                                      @RequestParam Set<Subject> teacherSubjects,
+                                      RedirectAttributes redir){
+        RedirectView redirectView= new RedirectView("/admin",true);
+        String notification = "Teacher has been successfully updated!";
+        boolean success = true;
+        try{
+            teacherService.updateTeacher(id, teacherName, teacherSubjects);
+            logger.info(Markers.UPDATE_TEACHER_MARKER,notification);
+        } catch (Exception e) {
+            success = false;
+            notification = e.getMessage();
+            logger.error(Markers.UPDATE_TEACHER_MARKER,notification + " Teacher has not been updated!");
+        }
+        redir.addFlashAttribute("showNotification", true);
+        redir.addFlashAttribute("success", success);
+        redir.addFlashAttribute("notification",notification);
+        redir.addFlashAttribute("tab",2);
+        return redirectView;
     }
-
 
 }

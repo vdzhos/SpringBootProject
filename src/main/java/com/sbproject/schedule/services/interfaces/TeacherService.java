@@ -1,6 +1,6 @@
 package com.sbproject.schedule.services.interfaces;
 
-import com.sbproject.schedule.exceptions.teacher.NoTeacherWithSuchIdException;
+import com.sbproject.schedule.exceptions.teacher.TeacherNotFoundException;
 import com.sbproject.schedule.models.Subject;
 import com.sbproject.schedule.models.Teacher;
 
@@ -16,11 +16,13 @@ public interface TeacherService {
     boolean teacherExistsById(Long id);
     boolean teacherExistsByName(String name);
 
-    boolean deleteTeacher(Long id) throws NoTeacherWithSuchIdException;
-    boolean updateTeacher(Long id, String name);
-    Teacher updateTeacher(Teacher teacher) throws NoTeacherWithSuchIdException;
+    boolean deleteTeacher(Long id) throws TeacherNotFoundException;
+    Teacher updateTeacher(Long id, String name, Set<Subject> subjects);
+    Teacher updateTeacher(Teacher teacher);
     Teacher updateTeacherNoCheck(Teacher teacher);
-    Teacher getTeacherById(Long id) throws Exception;
+    Teacher getTeacherById(Long id) throws TeacherNotFoundException;
+
     Iterable<Teacher> getTeacherByPartName(String name) throws Exception;
+    Teacher getTeacherByName(String name) throws Exception;
     Iterable<Teacher> getAll();
 }

@@ -1,6 +1,8 @@
 package com.sbproject.schedule.controllers.rest;
 
-import com.sbproject.schedule.exceptions.teacher.NoTeacherWithSuchIdException;
+import com.sbproject.schedule.exceptions.teacher.TeacherAlreadyExistsException;
+import com.sbproject.schedule.exceptions.teacher.TeacherIllegalArgumentException;
+import com.sbproject.schedule.exceptions.teacher.TeacherNotFoundException;
 import com.sbproject.schedule.models.Teacher;
 import com.sbproject.schedule.services.interfaces.TeacherService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -11,6 +13,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -81,7 +84,7 @@ public class TeacherControllerREST {
                     content = @Content) })
     @PutMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
-    public Teacher updateTeacher(@PathVariable(value = "id") Long id, @Valid @RequestBody Teacher teacher) throws NoTeacherWithSuchIdException {
+    public Teacher updateTeacher(@PathVariable(value = "id") Long id, @Valid @RequestBody Teacher teacher) throws TeacherNotFoundException {
         teacher.setId(id);
         return teacherService.updateTeacher(teacher);
     }
@@ -94,20 +97,38 @@ public class TeacherControllerREST {
                     content = @Content) })
     @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
-    public Map<String, Boolean> deleteTeacher(@PathVariable(value = "id") Long id) throws NoTeacherWithSuchIdException {
+    public Map<String, Boolean> deleteTeacher(@PathVariable(value = "id") Long id) throws TeacherNotFoundException {
         teacherService.deleteTeacher(id);
         Map<String, Boolean> result = new HashMap<>();
         result.put("deleted",true);
         return result;
     }
 
-    @ExceptionHandler(NoTeacherWithSuchIdException.class)
+    @ExceptionHandler(TeacherNotFoundException.class)
     @ResponseStatus(code = HttpStatus.NOT_FOUND)
-    public Map<String, String> handleException(NoTeacherWithSuchIdException ex){
+    public Map<String, String> handleException(TeacherNotFoundException ex){
         Map<String, String> result = new HashMap<>();
-        result.put(ex.getDelOrUpdOrGet(), "false");
+        result.put("success", "false");
         result.put("error", ex.getMessage());
         return result;
+    }
+
+    @ExceptionHandler(value = {TeacherIllegalArgumentException.class})
+    @ResponseStatus(code = HttpStatus.BAD_REQUEST)
+    public ResponseEntity<Map<String,String>> handleOtherExceptions(TeacherIllegalArgumentException e){
+        Map<String,String> map = new HashMap<>();
+        map.put("success","false");
+        map.put("error",e.getMessage());
+        return new ResponseEntity<>(map,HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(value = {TeacherAlreadyExistsException.class})
+    @ResponseStatus(code = HttpStatus.BAD_REQUEST)
+    public ResponseEntity<Map<String,String>> handleOtherExceptions(TeacherAlreadyExistsException e){
+        Map<String,String> map = new HashMap<>();
+        map.put("success","false");
+        map.put("error",e.getMessage());
+        return new ResponseEntity<>(map,HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)

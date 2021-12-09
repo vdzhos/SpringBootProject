@@ -1,6 +1,8 @@
 package com.sbproject.schedule.services.implementations;
 
-import com.sbproject.schedule.exceptions.teacher.NoTeacherWithSuchIdException;
+import com.sbproject.schedule.exceptions.subject.SubjectNotFoundException;
+import com.sbproject.schedule.exceptions.teacher.TeacherAlreadyExistsException;
+import com.sbproject.schedule.exceptions.teacher.TeacherNotFoundException;
 import com.sbproject.schedule.models.Subject;
 import com.sbproject.schedule.models.Teacher;
 import com.sbproject.schedule.repositories.TeacherRepository;
@@ -65,26 +67,35 @@ public class TeacherServiceImpl implements TeacherService {
     @CacheEvict(cacheNames = {"specialties", "allSpecialties", "subjects", "allSubjects","lessons","allLessons"}, allEntries = true)
     @Transactional
     @Override
-    public boolean deleteTeacher(Long id) throws NoTeacherWithSuchIdException{
-        if(!teacherExistsById(id)) throw new NoTeacherWithSuchIdException(id, "deleted");
+    public boolean deleteTeacher(Long id) throws TeacherNotFoundException {
+        if(!teacherExistsById(id)) throw new TeacherNotFoundException("Teacher with id \""+id+"\" not found!");
         teacherRepository.deleteById(id);
         return true;
     }
 
+
     @CachePut(cacheNames = "teachers", key = "#id")
     @CacheEvict(cacheNames = {"specialties", "allSpecialties", "subjects", "allSubjects", "allTeachers","lessons","allLessons"}, allEntries = true)
     @Override
-    public boolean updateTeacher(Long id, String name) {
-        teacherRepository.save(new Teacher(id, name));
-        return true;
+    public Teacher updateTeacher(Long id, String name, Set<Subject> subjects) {
+        name = processor.processName(name);
+        processor.checkTeacherName(name);
+        processor.checkTeachersSubjects(subjects);
+        if(teacherRepository.existsByNameAndNotId(id,name)){
+            logger.error(Markers.UPDATE_TEACHER_MARKER,"Teacher '{}' already exists. Teacher has not been updated!",name);
+            throw new TeacherAlreadyExistsException(name);
+        }
+        String finalName = name;
+        return teacherRepository.findById(id).map((teacher) -> {
+            teacher.setName(finalName);
+            teacher.setSubjects(subjects);
+            return teacherRepository.save(teacher);
+        }).orElseGet(() -> teacherRepository.save(new Teacher(finalName, subjects)));
     }
 
-    @CachePut(cacheNames = "teachers", key = "#teacher.id")
-    @CacheEvict(cacheNames = {"specialties", "allSpecialties", "subjects", "allSubjects", "allTeachers","lessons","allLessons"}, allEntries = true)
     @Override
-    public Teacher updateTeacher(Teacher teacher) throws NoTeacherWithSuchIdException {
-        if(!teacherExistsById(teacher.getId())) throw new NoTeacherWithSuchIdException(teacher.getId(), "updated");
-        return teacherRepository.save(teacher);
+    public Teacher updateTeacher(Teacher teacher) {
+        return updateTeacher(teacher.getId(), teacher.getName(), teacher.getSubjects());
     }
 
 
@@ -97,16 +108,17 @@ public class TeacherServiceImpl implements TeacherService {
 
     @Cacheable(cacheNames = "teachers", key = "#id")
     @Override
-    public Teacher getTeacherById(Long id) throws Exception{
-        return teacherRepository.findById(id).orElseThrow(() -> new NoTeacherWithSuchIdException(id, "get"));
+    public Teacher getTeacherById(Long id) throws TeacherNotFoundException{
+        return teacherRepository.findById(id).orElseThrow(() -> new TeacherNotFoundException("Teacher with id \""+id+"\" not found!"));
     }
 
-   //change teacherRepository.findByName from Iterable<Teacher> to Teacher
-//    @Cacheable(cacheNames = "teachers", key = "#name")
-//    @Override
-//    public Teacher getTeacherByName(String name) throws Exception{
-//        return teacherRepository.findByName(name).orElseThrow(() -> new NoTeacherWithSuchIdException(id, "get"));
-//    }
+   @Cacheable(cacheNames = "teachers", key = "#name")
+   @Override
+   public Teacher getTeacherByName(String name) throws Exception {
+       Iterable<Teacher> res = teacherRepository.findByName(name);
+       if (!res.iterator().hasNext()) throw new TeacherNotFoundException("Teacher with name '"+ name +"' has not been found!");
+       return res.iterator().next();
+   }
 
     @Override
     public Iterable<Teacher> getTeacherByPartName(String name) throws Exception {

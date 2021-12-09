@@ -84,12 +84,12 @@ public class UtilsImpl  implements Utils {
         }
     }
 
-//    @Override
-//    public void checkTeachersSubjects(Set<Subject> subjects)
-//    {
-//        int quant = subjects == null ? 0 : subjects.size();
-//        if(quant < Values.MIN_QUANT_OF_SUBJECTS_FOR_TEACHER)
-//            throw new TeacherIllegalArgumentException("Subject quantity for Teacher = " + quant + " is incorrect - less than " + Values.MIN_QUANT_OF_SUBJECTS_FOR_TEACHER);
-//    }
+    @Override
+    public void checkTeachersSubjects(Set<Subject> subjects)
+    {
+        int quant = subjects == null ? 0 : subjects.size();
+        if(quant < Values.MIN_QUANT_OF_SUBJECTS_FOR_TEACHER)
+            throw new TeacherIllegalArgumentException("Subject quantity for Teacher = " + quant + " is incorrect - less than " + Values.MIN_QUANT_OF_SUBJECTS_FOR_TEACHER);
+    }
 
 }

@@ -42,8 +42,6 @@ public class Teacher implements Comparable<Teacher>{
     @NotNull
     private Set<Subject> subjects;
 
-
-
     @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL)
     private Set<Lesson> lessons;
 
@@ -99,10 +97,36 @@ public class Teacher implements Comparable<Teacher>{
         return subjects;
     }
 
+    public void setSubjects(Set<Subject> subjects) {
+        this.subjects = subjects;
+    }
+
+    public String getSubjectsToString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        if (subjects.isEmpty()) return "";
+        for (Subject s : subjects) {
+            stringBuilder.append(s).append(", ");
+        }
+        stringBuilder.deleteCharAt(stringBuilder.length() - 1).deleteCharAt(stringBuilder.length() - 1);
+        return stringBuilder.toString();
+    }
+
     public void addSubject(Subject subject) {
         subjects.add(subject);
     }
 
+    public boolean hasSubject(Subject s)
+    {
+        return subjects.contains(s);
+    }
+
+    public boolean hasSubject(Long sId) {
+        for (Subject s: subjects) {
+            if (s.getId().equals(sId))
+                return true;
+        }
+        return false;
+    }
 
 	@Override
 	public int compareTo(Teacher that) {

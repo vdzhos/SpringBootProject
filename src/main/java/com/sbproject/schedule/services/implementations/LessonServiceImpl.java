@@ -134,7 +134,7 @@ public class LessonServiceImpl implements LessonService {
         }
         if(t.isEmpty()){
             logger.error(Markers.ALTERING_LESSON_TABLE_MARKER,"Lesson not added!");
-            throw new TeacherNotFoundException("Teacher with id \""+subjId+"\" not found!");
+            throw new TeacherNotFoundException("Teacher with id \""+teachId+"\" not found!");
         }
 
         return new Object[]{r,s.get(),t.get()};
