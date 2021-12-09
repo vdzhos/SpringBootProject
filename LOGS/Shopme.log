@@ -3635,3 +3635,56 @@ The returned value is: true
 2021-12-08 18:06:00,026 [scheduling-1] INFO  c.s.s.c.CustomCashManager                          - GET EXISTING CACHE by name specialties 
 2021-12-08 18:06:00,027 [scheduling-1] INFO  c.s.s.c.LessonController                           - SCHEDULED REMOVAL: All specific specialties removed from cache 
 2021-12-08 18:06:00,027 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SpecialtyServiceImpl.clearSpecialtiesCache()	- Elapsed Time: 0 ms 
+2021-12-09 09:42:28,003 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - CREATE NEW CACHE by name allLessons 
+2021-12-09 09:42:32,760 [scheduling-1] INFO  c.s.s.s.i.LessonServiceImpl                        - SCHEDULED REMOVAL: All lessons list removed from cache 
+2021-12-09 09:42:33,596 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.LessonServiceImpl.clearAllLessonsCache()	- Elapsed Time: 44 ms 
+2021-12-09 09:42:33,601 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - CREATE NEW CACHE by name allSubjects 
+2021-12-09 09:42:33,620 [scheduling-1] INFO  c.s.s.c.SubjectController                          - SCHEDULED REMOVAL: All subjects list removed from cache 
+2021-12-09 09:42:33,628 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SubjectServiceImpl.clearAllSubjectsCache()	- Elapsed Time: 25 ms 
+2021-12-09 09:42:33,630 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - CREATE NEW CACHE by name allSpecialties 
+2021-12-09 09:42:33,685 [scheduling-1] INFO  c.s.s.c.LessonController                           - SCHEDULED REMOVAL: All specialties list removed from cache 
+2021-12-09 09:42:33,726 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SpecialtyServiceImpl.clearAllSpecialtiesCache()	- Elapsed Time: 56 ms 
+2021-12-09 09:42:33,728 [scheduling-1] INFO  c.s.s.c.CustomCacheManager                         - CREATE NEW CACHE by name allTeachers 
+2021-12-09 09:42:33,746 [scheduling-1] INFO  c.s.s.s.i.TeacherServiceImpl                       - SCHEDULED REMOVAL: All teachers list removed from cache 
+2021-12-09 09:42:33,747 [scheduling-1] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.TeacherServiceImpl.clearAllTeachersCache()	- Elapsed Time: 16 ms 
+2021-12-09 09:42:37,696 [main] INFO  c.s.s.c.CustomCacheManager                         - CREATE NEW CACHE by name subjects 
+2021-12-09 09:42:37,723 [main] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - Subject com.sbproject.schedule.services.implementations.SubjectServiceImpl.getSubjectById(Long)	- Elapsed Time: 19 ms 
+2021-12-09 09:42:37,942 [main] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name subjects 
+2021-12-09 09:42:37,964 [main] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - Subject com.sbproject.schedule.services.implementations.SubjectServiceImpl.getSubjectById(Long)	- Elapsed Time: 20 ms 
+2021-12-09 09:42:37,973 [main] INFO  c.s.s.a.GlobalAspect                               - GET Method Subject com.sbproject.schedule.services.implementations.SubjectServiceImpl.getSubjectById(Long) invoked with arguments: [4]. The returned value is: Subject 1(IPZ-4, IPZ-3) 
+2021-12-09 09:42:38,092 [main] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allSubjects 
+2021-12-09 09:42:38,265 [main] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - Iterable com.sbproject.schedule.services.implementations.SubjectServiceImpl.getAll()	- Elapsed Time: 168 ms 
+2021-12-09 09:42:38,266 [main] INFO  c.s.s.a.GlobalAspect                               - GET Method Iterable com.sbproject.schedule.services.implementations.SubjectServiceImpl.getAll() invoked with arguments: []. The returned value is: [Subject 1(IPZ-4, IPZ-3), Subject 2(IPZ-4, KN-3), Subject 3(KN-3)] 
+2021-12-09 09:42:38,323 [main] INFO  c.s.s.c.CustomCacheManager                         - CREATE NEW CACHE by name specialties 
+2021-12-09 09:42:38,325 [main] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allSpecialties 
+2021-12-09 09:42:38,326 [main] INFO  c.s.s.c.CustomCacheManager                         - CREATE NEW CACHE by name teachers 
+2021-12-09 09:42:38,327 [main] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allTeachers 
+2021-12-09 09:42:38,328 [main] INFO  c.s.s.c.CustomCacheManager                         - CREATE NEW CACHE by name lessons 
+2021-12-09 09:42:38,328 [main] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allLessons 
+2021-12-09 09:42:38,329 [main] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allSubjects 
+2021-12-09 09:42:38,330 [main] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name subjects 
+2021-12-09 09:42:38,413 [main] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SubjectServiceImpl.deleteSubject(Long)	- Elapsed Time: 82 ms 
+2021-12-09 09:42:38,415 [main] INFO  c.s.s.a.GlobalAspect                               - DELETE Method void com.sbproject.schedule.services.implementations.SubjectServiceImpl.deleteSubject(Long) invoked with arguments: [4]. The returned value is: null 
+2021-12-09 09:42:39,028 [main] INFO  c.s.s.c.r.SubjectRestController                    - Subject has been successfully deleted! 
+2021-12-09 09:42:39,103 [main] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name specialties 
+2021-12-09 09:42:39,107 [main] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allSpecialties 
+2021-12-09 09:42:39,109 [main] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allSubjects 
+2021-12-09 09:42:39,135 [main] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - Subject com.sbproject.schedule.services.implementations.SubjectServiceImpl.addSubject(Subject)	- Elapsed Time: 25 ms 
+2021-12-09 09:42:39,139 [main] INFO  c.s.s.a.GlobalAspect                               - ADD Method Subject com.sbproject.schedule.services.implementations.SubjectServiceImpl.addSubject(Subject) invoked with arguments: [New subj(IPZ-4, IPZ-3)] The returned value is: New subj(IPZ-4, IPZ-3) 
+2021-12-09 09:42:39,158 [main] INFO  c.s.s.c.r.SubjectRestController                    - Subject New subj with 2 groups has been successfully added! 
+2021-12-09 09:42:39,595 [main] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name specialties 
+2021-12-09 09:42:39,595 [main] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allSpecialties 
+2021-12-09 09:42:39,595 [main] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name teachers 
+2021-12-09 09:42:39,596 [main] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allTeachers 
+2021-12-09 09:42:39,596 [main] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name lessons 
+2021-12-09 09:42:39,596 [main] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allLessons 
+2021-12-09 09:42:39,597 [main] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allSubjects 
+2021-12-09 09:42:39,597 [main] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name subjects 
+2021-12-09 09:42:39,668 [main] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - void com.sbproject.schedule.services.implementations.SubjectServiceImpl.deleteSubject(Long)	- Elapsed Time: 8 ms 
+2021-12-09 09:42:39,738 [main] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name specialties 
+2021-12-09 09:42:39,739 [main] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allSpecialties 
+2021-12-09 09:42:39,739 [main] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name lessons 
+2021-12-09 09:42:39,739 [main] INFO  c.s.s.c.CustomCacheManager                         - GET EXISTING CACHE by name allLessons 
+2021-12-09 09:42:39,818 [main] INFO  c.s.s.a.InvokeTimeLoggingAspect                    - Subject com.sbproject.schedule.services.implementations.SubjectServiceImpl.updateSubject(Subject)	- Elapsed Time: 77 ms 
+2021-12-09 09:42:39,821 [main] INFO  c.s.s.a.GlobalAspect                               - UPDATE Method Subject com.sbproject.schedule.services.implementations.SubjectServiceImpl.updateSubject(Subject) invoked with arguments: [Upd subj(IPZ-4, IPZ-3)]. The returned value is: Upd subj(IPZ-4, IPZ-3) 
+2021-12-09 09:42:39,902 [main] INFO  c.s.s.c.r.SubjectRestController                    - Subject has been successfully updated! 

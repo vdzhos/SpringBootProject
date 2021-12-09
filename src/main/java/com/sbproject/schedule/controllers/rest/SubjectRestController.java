@@ -1,7 +1,9 @@
 package com.sbproject.schedule.controllers.rest;
 
 import com.sbproject.schedule.exceptions.handlers.ErrorMessage;
+import com.sbproject.schedule.exceptions.specialty.SpecialtyIllegalArgumentException;
 import com.sbproject.schedule.exceptions.subject.NoSubjectWithSuchIdToDelete;
+import com.sbproject.schedule.exceptions.subject.SubjectIllegalArgumentException;
 import com.sbproject.schedule.models.Subject;
 import com.sbproject.schedule.services.implementations.SubjectServiceImpl;
 import com.sbproject.schedule.utils.Markers;
@@ -122,6 +124,15 @@ public class SubjectRestController {
         result.put("deleted", "false");
         result.put("error", ex.getMessage());
         return new ResponseEntity<>(result, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(value = {SubjectIllegalArgumentException.class})
+    @ResponseStatus(code = HttpStatus.BAD_REQUEST)
+    public ResponseEntity<Map<String,String>> handleOtherExceptions(SubjectIllegalArgumentException e){
+        Map<String,String> map = new HashMap<>();
+        map.put("success","false");
+        map.put("error",e.getMessage());
+        return new ResponseEntity<>(map,HttpStatus.BAD_REQUEST);
     }
 
 }
