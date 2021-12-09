@@ -1,8 +1,13 @@
 package com.sbproject.schedule.init;
 
 import com.sbproject.schedule.models.*;
-import com.sbproject.schedule.repositories.*;
+import com.sbproject.schedule.repositories.LessonRepository;
+import com.sbproject.schedule.repositories.SpecialtyRepository;
+import com.sbproject.schedule.repositories.SubjectRepository;
+import com.sbproject.schedule.repositories.TeacherRepository;
+import com.sbproject.schedule.repositories.UserRepository;
 import com.sbproject.schedule.utils.Role;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -28,13 +33,20 @@ public class DataInit implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        addUsers();
         addSpecialties();
         addSubjects();
         addTeachers();
         addLessons();
+        addUsers();
     }
 
+    private void addUsers() 
+    {
+    	User u1 = new User("vovan", "1234", Role.ADMIN);
+    	User u2 = new User("ilya", "4321", Role.REGULAR);
+    	this.userRepository.save(u1);
+    	this.userRepository.save(u2);
+    }
 
     private void addTeachers() {
         Teacher t = new Teacher("Teacher 1");
@@ -102,14 +114,6 @@ public class DataInit implements ApplicationRunner {
         lessonRepository.save(l1);
         lessonRepository.save(l2);
         lessonRepository.save(l3);
-    }
-
-    private void addUsers(){
-        User vovan = new User("vovan","1234", Role.ADMIN);
-        User ilya = new User("ilya","4321", Role.REGULAR);
-
-        userRepository.save(vovan);
-        userRepository.save(ilya);
     }
 
 
