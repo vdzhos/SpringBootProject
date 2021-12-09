@@ -114,7 +114,7 @@
                          		<div class="row">
                                    <label for="specialtyIdSelect">Choose specialty:</label>
                           		   <select required name="specialtyId" id="specialtyIdSelect" class="form-control">
-                              	   		<option th:each="specialty: ${specialties}" th:text="${specialty.toString}" th:value="${specialty.id}" th:selected="${specialties[0].id}"></option>
+                              	   		<option th:each="specialty: ${specialties}" th:text="${specialty.toString}" th:value="${specialty.id}"></option>
                                	   </select>
                                 </div>
                          	</div>
@@ -152,7 +152,7 @@
                          		<div class="row">
                                    <label for="teacherIdSelect">Choose teacher:</label>
                           		   <select required name="teacherId" id="teacherIdSelect" class="form-control">
-                              	   		<option th:each="teacher: ${teachers}" th:text="${teacher.toString}" th:value="${teacher.id}" th:selected="${teachers[0].id}"></option>
+                              	   		<option th:each="teacher: ${teachers}" th:text="${teacher.toString}" th:value="${teacher.id}"></option>
                                	   </select>
                                 </div>
                          	</div>

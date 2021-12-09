@@ -36,4 +36,6 @@ public interface ScheduleService {
 	
 	List<Lesson> filterLessonsByRoom(List<Lesson> list, String room);
 	
+	Set<Teacher> getTeachersFromSubjects(Iterable<Subject> subjects);
+	
 }

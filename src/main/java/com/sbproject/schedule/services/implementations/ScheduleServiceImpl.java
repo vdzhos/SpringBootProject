@@ -125,4 +125,11 @@ public class ScheduleServiceImpl implements ScheduleService {
 		return lessons;
 	}
 
+	@Override
+	public Set<Teacher> getTeachersFromSubjects(Iterable<Subject> subjects) {
+		Set<Teacher> res = new HashSet<>();
+		subjects.forEach(subj -> res.addAll(subj.getTeachers()));
+		return res;
+	}
+
 }

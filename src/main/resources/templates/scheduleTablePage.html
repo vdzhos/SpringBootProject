@@ -104,6 +104,16 @@
                                 </div>
                          	</div>
                             
+                            <div class="form-group" th:attr="hidden=!${forSpecialty}">
+                            	<div class="row">
+									<label for="teacherSelect">Choose teacher:</label>
+									<select required name="teacherId" id="teacherSelect" class="form-control">
+                            			<option selected="selected" value="Not selected">Not selected</option>
+                              	   		<option th:each="tchr: ${teachers}" th:text="${tchr.name}" th:value="${tchr.id}"></option>
+                               	   	</select>                          	
+                            	</div>
+                            </div>
+                            
                             <div class="form-group">
                             	<div class="row">
                             		<label for="roomSelect">Choose room:</label>

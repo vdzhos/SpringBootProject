@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sbproject.schedule.models.Lesson;
 import com.sbproject.schedule.models.Subject;
+import com.sbproject.schedule.models.Teacher;
 import com.sbproject.schedule.services.interfaces.ScheduleService;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -40,6 +41,8 @@ public class ScheduleTableController {
 	
 	private List<Lesson> lessons;
 	
+	private Set<Teacher> teachers;
+	
 	private Long teacherId;
 	
 	private String entityName;
@@ -52,6 +55,9 @@ public class ScheduleTableController {
 	{
 		this.teacherId = null;
 		initContainers(false, specialtyId, model);
+		this.teachers = this.scheduleService.getTeachersFromSubjects(subjects);
+		model.addAttribute("forSpecialty", true);
+		model.addAttribute("teachers", teachers);
 		return "scheduleTablePage";
 	}
 
@@ -81,12 +87,14 @@ public class ScheduleTableController {
 	public String getTeacherSchedule(@RequestParam Long teacherId, Model model) throws Throwable
 	{
 		this.teacherId = teacherId;
+		this.teachers = null;
 		initContainers(true, teacherId, model);
+		model.addAttribute("forSpecialty", false);
 		return "scheduleTablePage";
 	}
 	
 	@GetMapping("/filterSchedule")
-	public String applyFilters(@RequestParam String subjectId, @RequestParam int week, @RequestParam String room, Model model)
+	public String applyFilters(@RequestParam String subjectId, @RequestParam String teacherId, @RequestParam int week, @RequestParam String room, Model model)
 	{
 		if(!subjectId.equals("Not selected"))
 			lessons = this.scheduleService.getSubjectLessons(Long.parseLong(subjectId));
@@ -95,7 +103,9 @@ public class ScheduleTableController {
 		
 		if(this.teacherId != null)
 			lessons.removeIf(less -> less.getTeacher().getId().longValue() != this.teacherId.longValue());
-		
+		else if(!teacherId.equals("Not selected"))
+			lessons.removeIf(less -> less.getTeacher().getId().longValue() != Long.parseLong(teacherId));
+
 		if(week != -1)
 			lessons = this.scheduleService.filterLessonsByWeek(lessons, week);
 		
@@ -108,6 +118,9 @@ public class ScheduleTableController {
 		model.addAttribute("subjects", this.subjects);
 		model.addAttribute("rooms", rooms);
 		model.addAttribute("weeks", this.weeks);
+		model.addAttribute("forSpecialty", this.teacherId == null);
+		if(this.teachers != null)
+			model.addAttribute("teachers", teachers);
 		return "scheduleTablePage";
 	}
 	
