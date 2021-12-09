@@ -8,11 +8,13 @@ import com.sbproject.schedule.repositories.TeacherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.time.DayOfWeek;
 
 @Component
+@Profile("dev")
 public class DataInit implements ApplicationRunner {
 
     @Autowired
