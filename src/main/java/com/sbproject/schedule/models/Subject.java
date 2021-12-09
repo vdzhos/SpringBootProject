@@ -20,7 +20,7 @@ import java.util.Set;
 
 
 @Entity
-public class Subject {
+public class Subject implements Comparable<Subject> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -191,5 +191,14 @@ public class Subject {
 
     public boolean hasOnlyOneSpecialty() {
         return specialties.size() == 1;
+    }
+
+    @Override
+    public int compareTo(Subject o) {
+        int cmp = getName().compareTo(o.getName());
+        if (cmp == 0) {
+            return getQuantOfGroups() - o.getQuantOfGroups();
+        }
+        return cmp;
     }
 }

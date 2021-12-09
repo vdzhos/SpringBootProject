@@ -17,34 +17,35 @@ public class GlobalAspect {
     private static Logger logger = LogManager.getLogger(GlobalAspect.class);
 
     @AfterReturning(returning = "returnObject", value = "execution(* com.sbproject.schedule.services.implementations.*.get*(..))")
-    public void getObjectAfterAdvice(JoinPoint joinPoint, Object returnObject){
+    public void getObjectAfterAdvice(JoinPoint joinPoint, Object returnObject) {
         logger.info(Markers.GET_METHOD_INVOKED_MARKER, "GET Method " + joinPoint.getSignature() + " invoked with arguments: "
                 + Arrays.toString(joinPoint.getArgs())
-                +". The returned value is: " +
+                + ". The returned value is: " +
                 returnObject);
     }
 
     @AfterReturning(returning = "returnObject", value = "execution(* com.sbproject.schedule.services.implementations.*.add*(..))")
-    public void addSpecialtyAfterAdvice(JoinPoint joinPoint, Object returnObject){
-        logger.info(Markers.ADD_METHOD_INVOKED_MARKER,"ADD Method "
-                +joinPoint.getSignature() + " invoked with arguments: "
+    public void addSpecialtyAfterAdvice(JoinPoint joinPoint, Object returnObject) {
+        logger.info(Markers.ADD_METHOD_INVOKED_MARKER, "ADD Method "
+                + joinPoint.getSignature() + " invoked with arguments: "
                 + Arrays.toString(joinPoint.getArgs())
-                +" The returned value is: "
-                +returnObject.toString());
+                + " The returned value is: "
+                + returnObject.toString());
     }
 
     @AfterReturning(returning = "returnObject", value = "execution(* com.sbproject.schedule.services.implementations.*.update*(..))")
-    public void updateObjectAfterAdvice(JoinPoint joinPoint, Object returnObject){
+    public void updateObjectAfterAdvice(JoinPoint joinPoint, Object returnObject) {
         logger.info(Markers.UPDATE_METHOD_INVOKED_MARKER, "UPDATE Method " + joinPoint.getSignature() + " invoked with arguments: "
                 + Arrays.toString(joinPoint.getArgs())
-                +". The returned value is: " +
+                + ". The returned value is: " +
                 returnObject.toString());
     }
+
     @AfterReturning(returning = "returnObject", value = "execution(* com.sbproject.schedule.services.implementations.*.delete*(*))")
-    public void deleteObjectByIdAfterAdvice(JoinPoint joinPoint, Object returnObject){
+    public void deleteObjectByIdAfterAdvice(JoinPoint joinPoint, Object returnObject) {
         logger.info(Markers.DELETE_METHOD_INVOKED_MARKER, "DELETE Method " + joinPoint.getSignature() + " invoked with arguments: "
                 + Arrays.toString(joinPoint.getArgs())
-                +". The returned value is: " +
+                + ". The returned value is: " +
                 returnObject);
     }
 

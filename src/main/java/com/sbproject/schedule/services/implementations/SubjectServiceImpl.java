@@ -20,9 +20,8 @@ import org.springframework.cache.annotation.Caching;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import java.util.Set;
-import java.util.SortedSet;
-import java.util.TreeSet;
+
+import java.util.*;
 
 @Service
 public class SubjectServiceImpl implements SubjectService {
@@ -108,7 +107,9 @@ public class SubjectServiceImpl implements SubjectService {
     @Cacheable(cacheNames = "allSubjects")
     @Override
     public Iterable<Subject> getAll() {
-        return subjectRepository.findAll();
+        List<Subject> subjects = (List<Subject>)subjectRepository.findAll();
+        Collections.sort(subjects);
+        return subjects;
     }
 
     @Cacheable(cacheNames = "subjects", key = "#name")
