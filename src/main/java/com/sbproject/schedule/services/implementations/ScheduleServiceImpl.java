@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -127,7 +128,7 @@ public class ScheduleServiceImpl implements ScheduleService {
 
 	@Override
 	public Set<Teacher> getTeachersFromSubjects(Iterable<Subject> subjects) {
-		Set<Teacher> res = new HashSet<>();
+		Set<Teacher> res = new TreeSet<>();
 		subjects.forEach(subj -> res.addAll(subj.getTeachers()));
 		return res;
 	}
