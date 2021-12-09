@@ -16,6 +16,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class UtilsImpl  implements Utils {
 
@@ -45,7 +47,10 @@ public class UtilsImpl  implements Utils {
 
     @Override
     public void checkTeacherName(String name) {
-        // check
+        Pattern pattern = Pattern.compile(Values.FULL_NAME_PATTERN);
+        Matcher matcher = pattern.matcher(name);
+        if(!matcher.matches())
+            throw new TeacherIllegalArgumentException("Incorrect name: " + name + " for a teacher!");
     }
 
     @Override

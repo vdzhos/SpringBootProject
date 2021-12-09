@@ -37,18 +37,21 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @CacheEvict(cacheNames = {"specialties", "allSpecialties", "subjects", "allSubjects", "allTeachers"}, allEntries = true)
-    //TO DO - need to add name check probably
     @Override
     public Teacher addTeacher(String name, Set<Subject> subjects) {
         name = processor.processName(name);
         processor.checkTeacherName(name);
-//        processor.checkTeachersSubjects(subjects);
+        processor.checkTeachersSubjects(subjects);
+        if(teacherRepository.existsByName(name)){
+            logger.error(Markers.UPDATE_TEACHER_MARKER,"Teacher '{}' already exists. Teacher has not been added!",name);
+            throw new TeacherAlreadyExistsException(name);
+        }
         return teacherRepository.save(new Teacher(name, subjects));
     }
 
     @CacheEvict(cacheNames = {"specialties", "allSpecialties", "subjects", "allSubjects", "allTeachers"}, allEntries = true)
     @Override
-    public Teacher addTeacher(Teacher teacher) {
+    public Teacher addTeacher(Teacher teacher){
         return addTeacher(teacher.getName(), teacher.getSubjects());
     }
 

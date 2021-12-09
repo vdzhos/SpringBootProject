@@ -44,6 +44,7 @@ public class TeacherController {
             notification = e.getMessage();
             logger.error(Markers.ALTERING_TEACHER_TABLE_MARKER,"Teacher {} with {} subjects has not been added!", name, subjects);
         }
+        redir.addFlashAttribute("showNotification", true);
         redir.addFlashAttribute("success", success);
         redir.addFlashAttribute("notification", notification);
         redir.addFlashAttribute("tab",2);
@@ -62,6 +63,7 @@ public class TeacherController {
             notification = "Teacher has not been deleted!";
             logger.error(Markers.DELETE_TEACHER_MARKER,"Teacher {} has not been deleted!", name);
         }
+        redir.addFlashAttribute("showNotification", true);
         redir.addFlashAttribute("success", success);
         redir.addFlashAttribute("notification", notification);
         redir.addFlashAttribute("tab",2);

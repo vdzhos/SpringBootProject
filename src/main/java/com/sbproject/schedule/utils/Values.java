@@ -1,5 +1,7 @@
 package com.sbproject.schedule.utils;
 
+import org.apache.xmlbeans.impl.regex.RegularExpression;
+
 public class Values {
 
     public static final int MAX_YEAR = 6;
@@ -9,6 +11,7 @@ public class Values {
     public static final String SPECIALTY_ALREADY_EXISTS = "Specialty with such parameters already exists!";
 
     public static final String TEACHER_ALREADY_EXISTS = "Teacher with such name already exists!";
+    public static final String FULL_NAME_PATTERN = "(?=^.{0,40}$)^([a-zA-ZА-Яа-яІіЇї]+[-']?[a-zA-ZА-Яа-яІіЇї]+)+\\s([a-zA-ZА-Яа-яІіЇї]+[-']?[a-zA-ZА-Яа-яІіЇї]+)+(\\s[a-zA-ZА-Яа-яІіЇї\\-']+)?$";
 
     public static final int MIN_QUANT_OF_GROUPS = 1;
     public static final int MAX_QUANT_OF_GROUPS = 50;
