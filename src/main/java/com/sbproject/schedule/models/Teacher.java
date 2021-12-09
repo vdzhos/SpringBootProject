@@ -45,6 +45,10 @@ public class Teacher implements Comparable<Teacher>{
     @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL)
     private Set<Lesson> lessons;
 
+    public void setLessons(Set<Lesson> lessons) {
+        this.lessons = lessons;
+    }
+
     public Teacher(String name) {
         this.name = name;
         subjects = new HashSet<>();

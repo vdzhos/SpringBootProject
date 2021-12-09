@@ -37,3 +37,13 @@
 2021-12-08 17:35:22,663 [http-nio-8081-exec-9] INFO  c.s.s.c.TeacherController                          - Teacher Teacher 1 has been successfully deleted! -  
 2021-12-08 17:35:47,365 [http-nio-8081-exec-2] INFO  c.s.s.c.TeacherController                          - Teacher Teacher 2 has been successfully deleted! -  
 2021-12-08 18:02:06,902 [http-nio-8081-exec-3] INFO  c.s.s.c.TeacherController                          - Teacher Teacher 1 has been successfully deleted! -  
+2021-12-09 17:47:34,621 [http-nio-8081-exec-6] INFO  c.s.s.c.TeacherController                          - Teacher Teacher 1 has been successfully deleted! -  
+2021-12-09 17:47:36,509 [http-nio-8081-exec-8] INFO  c.s.s.c.TeacherController                          - Teacher Teacher 2 has been successfully deleted! -  
+2021-12-09 17:47:37,940 [http-nio-8081-exec-10] INFO  c.s.s.c.TeacherController                          - Teacher Teacher 3 has been successfully deleted! -  
+2021-12-09 18:18:12,995 [http-nio-8081-exec-9] INFO  c.s.s.c.TeacherController                          - Teacher Teacher 3 has been successfully deleted! -  
+2021-12-09 18:18:15,601 [http-nio-8081-exec-1] INFO  c.s.s.c.TeacherController                          - Teacher Teacher 2 has been successfully deleted! -  
+2021-12-09 18:18:17,067 [http-nio-8081-exec-2] INFO  c.s.s.c.TeacherController                          - Teacher Teacher 1 has been successfully deleted! -  
+2021-12-09 19:29:32,434 [http-nio-8081-exec-8] INFO  c.s.s.c.TeacherController                          - Teacher Teacher 2 has been successfully deleted! -  
+2021-12-09 19:42:03,294 [http-nio-8081-exec-8] INFO  c.s.s.c.TeacherController                          - Teacher Teacher 2 has been successfully deleted! -  
+2021-12-09 19:42:16,503 [http-nio-8081-exec-4] INFO  c.s.s.c.TeacherController                          - Teacher Teacher 1 has been successfully deleted! -  
+2021-12-09 22:32:50,493 [http-nio-8081-exec-6] INFO  c.s.s.c.TeacherController                          - Teacher Teacher First has been successfully deleted! -  

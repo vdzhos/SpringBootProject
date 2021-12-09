@@ -19,6 +19,7 @@ import com.sbproject.schedule.services.interfaces.ScheduleService;
 import com.sbproject.schedule.services.interfaces.SpecialtyService;
 import com.sbproject.schedule.services.interfaces.SubjectService;
 import com.sbproject.schedule.services.interfaces.TeacherService;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ScheduleServiceImpl implements ScheduleService {
@@ -29,14 +30,14 @@ public class ScheduleServiceImpl implements ScheduleService {
 	private TeacherService teacherService;
 	@Autowired
 	private SubjectService subjectService;
-	
+
+	@Transactional
 	@Override
 	public List<Lesson> getTeacherLessons(Long id) throws Throwable {
 		List<Lesson> lessons = new ArrayList<Lesson>();
 		StreamSupport.stream(this.getTeacherSubjects(id).spliterator(), false)
 		.forEach(subj -> lessons
-				.addAll(subj
-						.getLessons()
+				.addAll(subjectService.getSubjectLessons(subj.getId())
 						.stream()
 						.filter(less -> less.getTeacher().getId() == id)
 						.collect(Collectors.toList())));

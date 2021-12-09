@@ -20,9 +20,8 @@ import org.springframework.cache.annotation.Caching;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import java.util.Set;
-import java.util.SortedSet;
-import java.util.TreeSet;
+
+import java.util.*;
 
 @Service
 public class SubjectServiceImpl implements SubjectService {
@@ -168,6 +167,11 @@ public class SubjectServiceImpl implements SubjectService {
     public void clearSubjectsCache() {
         logger.info(Markers.SUBJECT_CACHING_MARKER, "SCHEDULED REMOVAL: All specific subjects removed from cache");
     }
-    
+
+
+    @Override
+    public List<Lesson> getSubjectLessons(Long subjectId) {
+        return getSubjectById(subjectId).getLessons();
+    }
 
 }

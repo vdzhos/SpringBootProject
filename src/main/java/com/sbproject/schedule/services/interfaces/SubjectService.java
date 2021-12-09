@@ -2,7 +2,8 @@ package com.sbproject.schedule.services.interfaces;
 
 import com.sbproject.schedule.models.Specialty;
 import com.sbproject.schedule.models.Subject;
-import com.sbproject.schedule.models.Teacher;
+import com.sbproject.schedule.models.Lesson;
+
 
 import java.util.List;
 import java.util.Set;
@@ -20,7 +21,9 @@ public interface SubjectService {
     Subject getSubjectById(Long id);
     boolean subjectExistsById(Long id);
     boolean subjectExistsByName(String name);
-    
+
+    List<Lesson> getSubjectLessons(Long subjectId);
+
     Set<Integer> getLessonWeeks(Long id);
     
     Set<Integer> getLessonWeeks(Set<Long> ids);

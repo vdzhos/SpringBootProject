@@ -5,10 +5,14 @@ import com.sbproject.schedule.exceptions.teacher.TeacherAlreadyExistsException;
 import com.sbproject.schedule.exceptions.teacher.TeacherNotFoundException;
 import com.sbproject.schedule.models.Subject;
 import com.sbproject.schedule.models.Teacher;
+import com.sbproject.schedule.models.Lesson;
+import com.sbproject.schedule.repositories.LessonRepository;
 import com.sbproject.schedule.repositories.TeacherRepository;
+import com.sbproject.schedule.services.interfaces.LessonService;
 import com.sbproject.schedule.services.interfaces.TeacherService;
 import com.sbproject.schedule.utils.Markers;
 import com.sbproject.schedule.utils.Utils;
+import com.sun.xml.bind.v2.util.QNameMap;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +24,9 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class TeacherServiceImpl implements TeacherService {
