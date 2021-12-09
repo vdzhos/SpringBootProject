@@ -27,16 +27,13 @@ public interface ScheduleService {
 	Set<String> getLessonsRooms(List<Lesson> list);
 	
 //filters
+	
 	List<Lesson> getLessonsFromSubjects(Iterable<Subject> subjects);
 	
 	List<Lesson> getSubjectLessons(Long id);
 	
-//	List<Lesson> getSubjectLessonsByTeacher(Long subjId, Long teachId);
-	
 	List<Lesson> filterLessonsByWeek(List<Lesson> list, int week);
 	
 	List<Lesson> filterLessonsByRoom(List<Lesson> list, String room);
-	
-//	List<Lesson> getLessonsFromSubjectFilteredByTeacher(Iterable<Subject> subjects, Long teachId);
 	
 }
