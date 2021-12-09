@@ -53,3 +53,4 @@
 2021-12-09 17:24:39,734 [main] INFO  c.s.s.s.i.LessonServiceImpl                        - Lesson successfully deleted! -  
 2021-12-09 17:25:23,803 [main] INFO  c.s.s.s.i.LessonServiceImpl                        - Lesson not deleted! -  
 2021-12-09 17:25:24,131 [main] INFO  c.s.s.s.i.LessonServiceImpl                        - Lesson successfully deleted! -  
+2021-12-09 21:05:39,449 [http-nio-8081-exec-2] INFO  c.s.s.s.i.LessonServiceImpl                        - Lesson successfully deleted! - Lesson{id=13,time=10:00-11:20,subject=Subject 1,teacher=Teacher 2,group=lecture,weeks=2-14,room=216,dayOfWeek=MONDAY} 

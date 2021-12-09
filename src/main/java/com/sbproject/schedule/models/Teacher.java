@@ -71,6 +71,9 @@ public class Teacher implements Comparable<Teacher>{
 //                ", name='" + name + '}';
 //    }
 
+    public Set<Lesson> lessons() {
+        return lessons;
+    }
 
     @Override
     public String toString() {

@@ -24,6 +24,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.DayOfWeek;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -43,8 +44,8 @@ public class LessonServiceImpl implements LessonService {
 
     @CacheEvict(cacheNames = {"specialties", "allSpecialties", "subjects", "allSubjects","allLessons", "teachers", "allTeachers"}, allEntries = true)
     @Override
-    public Lesson addLesson(Lesson.Time time, Long subjId, Long teachId, SubjectType subjectType, String weeks, String room, DayOfWeek dayOfWeek) {
-        Object[] res = verifyAndProcessData(subjId,teachId,weeks,room);
+    public Lesson addLesson(Lesson.Time time, Long subjId, Long teachId, SubjectType subjectType, String weeks, String room, DayOfWeek dayOfWeek) throws Exception {
+        Object[] res = verifyAndProcessData(subjId,teachId,weeks,room,time,subjectType,dayOfWeek);
         logger.info(Markers.ALTERING_LESSON_TABLE_MARKER,"Lesson successfully added!");
         return lessonRepository.save(new Lesson(time,(Subject) res[1],(Teacher) res[2],subjectType,weeks,(Room) res[0],dayOfWeek));
     }
@@ -77,8 +78,8 @@ public class LessonServiceImpl implements LessonService {
     @CachePut(cacheNames = "lessons", key = "#id")
     @CacheEvict(cacheNames = {"specialties", "allSpecialties", "subjects", "allSubjects","allLessons", "teachers", "allTeachers"}, allEntries = true)
     @Override
-    public Lesson updateLesson(Long id, Lesson.Time time, Long subjId, Long teachId, SubjectType subjectType, String weeks, String room, DayOfWeek dayOfWeek) {
-        Object[] res = verifyAndProcessData(subjId,teachId,weeks,room);
+    public Lesson updateLesson(Long id, Lesson.Time time, Long subjId, Long teachId, SubjectType subjectType, String weeks, String room, DayOfWeek dayOfWeek) throws Exception {
+        Object[] res = verifyAndProcessData(subjId,teachId,weeks,room,time,subjectType,dayOfWeek);
         logger.info(Markers.ALTERING_LESSON_TABLE_MARKER,"Lesson successfully added!");
         return lessonRepository.save(new Lesson(id,time,(Subject) res[1],(Teacher) res[2],subjectType,weeks,(Room) res[0],dayOfWeek));
     }
@@ -115,12 +116,14 @@ public class LessonServiceImpl implements LessonService {
         logger.info(Markers.LESSON_CACHING_MARKER, "SCHEDULED REMOVAL: All specific lessons removed from cache");
     }
 
-    private Object[] verifyAndProcessData(Long subjId, Long teachId, String weeks, String room){
+    private Object[] verifyAndProcessData(Long subjId, Long teachId, String weeks, String room,Lesson.Time time, SubjectType subjectType,  DayOfWeek dayOfWeek) throws Exception {
         Room r;
         if(room.equals("remotely")) r = new Room();
         else r = new Room(room);
 
-        if(weeks.isEmpty() || !weeks.matches("^([1-9][0-9]*(-[1-9][0-9]*)?)(,([1-9][0-9]*(-[1-9][0-9]*)?))*$") || !checkWeeksAscending(weeks)){
+        List<Integer> weeksList = Stream.of(weeks.split("[,-]")).map(Integer::parseInt).collect(Collectors.toList());
+
+        if(weeks.isEmpty() || !weeks.matches("^([1-9][0-9]*(-[1-9][0-9]*)?)(,([1-9][0-9]*(-[1-9][0-9]*)?))*$") || !checkWeeksAscending(weeksList)){
             logger.error(Markers.ALTERING_LESSON_TABLE_MARKER,"Lesson not added!");
             throw new InvalidLessonArgumentsException("weeks",weeks);
         }
@@ -137,11 +140,31 @@ public class LessonServiceImpl implements LessonService {
             throw new TeacherNotFoundException("Teacher with id \""+teachId+"\" not found!");
         }
 
+        for (Lesson l : t.get().lessons()) {
+            Set<Integer> w = l.getIntWeeks().stream().distinct().filter(weeksList::contains).collect(Collectors.toSet());
+            boolean sameTime = l.getDayOfWeek()==dayOfWeek && l.getTime() == time && !w.isEmpty();
+
+            if(sameTime){
+                if(!l.getSubject().getId().equals(s.get().getId())){
+                    logger.error(Markers.ALTERING_LESSON_TABLE_MARKER,"Lesson not added!");
+                    throw new Exception("Teacher can't teach different lessons at the same time!");
+                }else if(!l.getRoom().getRoom().equals(room)){
+                    logger.error(Markers.ALTERING_LESSON_TABLE_MARKER,"Lesson not added!");
+                    throw new Exception("Teacher can't have lessons in different rooms at the same time!");
+                }else if(l.getGroup().getGroup().equals(subjectType.getGroup())){
+                    logger.error(Markers.ALTERING_LESSON_TABLE_MARKER,"Lesson not added!");
+                    throw new Exception("Duplicate lesson for same group!");
+                }else if(!(l.getGroup().getType() == SubjectType.SubjectTypeEnum.PRACTICE && subjectType.getType() == SubjectType.SubjectTypeEnum.PRACTICE)){
+                    logger.error(Markers.ALTERING_LESSON_TABLE_MARKER,"Lesson not added!");
+                    throw new Exception("Teacher can't have lecture and practice at the same time!");
+                }
+            }
+        }
+
         return new Object[]{r,s.get(),t.get()};
     }
 
-    private boolean checkWeeksAscending(String weeks){
-        List<Integer> w = Stream.of(weeks.split("[,-]")).map(Integer::parseInt).collect(Collectors.toList());
+    private boolean checkWeeksAscending(List<Integer> w){
         boolean ok = true;
         for (int i = 1; i < w.size(); i++) {
             if(w.get(i)<=w.get(i-1)) {
