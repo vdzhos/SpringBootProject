@@ -35,3 +35,9 @@
 2021-12-10 01:39:03,163 [main] INFO  c.s.s.s.i.UserServiceImpl                          - User deleted: ilya 
 2021-12-10 01:39:03,210 [main] INFO  c.s.s.s.i.UserServiceImpl                          - User registrated: gleb : 0000 : ADMIN 
 2021-12-10 01:45:25,108 [http-nio-9090-exec-8] INFO  c.s.s.s.i.UserServiceImpl                          - User registrated: vovan : 1234 : ADMIN 
+2021-12-10 01:49:16,434 [main] INFO  c.s.s.s.i.UserServiceImpl                          - User deleted: ilya 
+2021-12-10 01:49:16,497 [main] INFO  c.s.s.s.i.UserServiceImpl                          - User registrated: gleb : 0000 : ADMIN 
+2021-12-10 09:14:23,020 [main] INFO  c.s.s.s.i.UserServiceImpl                          - User deleted: ilya 
+2021-12-10 09:14:23,105 [main] INFO  c.s.s.s.i.UserServiceImpl                          - User registrated: gleb : 0000 : ADMIN 
+2021-12-10 09:23:06,377 [main] INFO  c.s.s.s.i.UserServiceImpl                          - User deleted: ilya 
+2021-12-10 09:23:06,753 [main] INFO  c.s.s.s.i.UserServiceImpl                          - User registrated: gleb : 0000 : ADMIN 

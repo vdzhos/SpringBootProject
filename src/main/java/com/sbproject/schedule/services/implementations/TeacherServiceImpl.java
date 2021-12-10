@@ -1,10 +1,14 @@
 package com.sbproject.schedule.services.implementations;
 
+import com.sbproject.schedule.exceptions.lesson.NoLessonWithSuchIdFound;
 import com.sbproject.schedule.exceptions.teacher.TeacherAlreadyExistsException;
 import com.sbproject.schedule.exceptions.teacher.TeacherNotFoundException;
 import com.sbproject.schedule.models.Subject;
+import com.sbproject.schedule.models.SubjectType;
 import com.sbproject.schedule.models.Teacher;
+import com.sbproject.schedule.models.Lesson;
 import com.sbproject.schedule.repositories.TeacherRepository;
+import com.sbproject.schedule.services.interfaces.LessonService;
 import com.sbproject.schedule.services.interfaces.TeacherService;
 import com.sbproject.schedule.utils.Markers;
 import com.sbproject.schedule.utils.Utils;
@@ -20,19 +24,22 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class TeacherServiceImpl implements TeacherService {
 
     private TeacherRepository teacherRepository;
+    private LessonService lessonService;
     private static Logger logger = LogManager.getLogger(TeacherServiceImpl.class);
 
     @Autowired
     private Utils processor;
 
     @Autowired
-    public void setTeacherRepository(TeacherRepository teacherRepository) {
+    public void setTeacherRepository(TeacherRepository teacherRepository, LessonService lessonService) {
         this.teacherRepository = teacherRepository;
+        this.lessonService = lessonService;
     }
 
     @CacheEvict(cacheNames = {"specialties", "allSpecialties", "subjects", "allSubjects", "allTeachers"}, allEntries = true)
@@ -91,8 +98,24 @@ public class TeacherServiceImpl implements TeacherService {
         return teacherRepository.findById(id).map((teacher) -> {
             teacher.setName(finalName);
             teacher.setSubjects(subjects);
+            Set<Long> ids = subjects.stream().map(Subject::getId).collect(Collectors.toSet());
+            deleteLessonsWithIncorrectSubjects(ids, teacher.getId());
             return teacherRepository.save(teacher);
         }).orElseGet(() -> teacherRepository.save(new Teacher(finalName, subjects)));
+    }
+
+
+    private void deleteLessonsWithIncorrectSubjects(Set<Long> ids, Long teacherId) {
+        Iterable<Lesson> lessons = lessonService.getAll();
+        for (Lesson lesson: lessons) {
+            if (lesson.getTeacher().getId().equals(teacherId) && !ids.contains(lesson.getSubject().getId())) {
+                try {
+                    lessonService.deleteLesson(lesson.getId());
+                } catch (NoLessonWithSuchIdFound noLessonWithSuchIdFound) {
+                    noLessonWithSuchIdFound.printStackTrace();
+                }
+            }
+        }
     }
 
     @Override
