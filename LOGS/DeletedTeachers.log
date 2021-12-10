@@ -33,3 +33,4 @@
 2021-12-09 18:11:33,937 [http-nio-8082-exec-3] INFO  c.s.s.c.TeacherController                          - Teacher Teacher 1 has been successfully deleted! -  
 2021-12-09 18:11:34,964 [http-nio-8082-exec-5] INFO  c.s.s.c.TeacherController                          - Teacher Teacher 3 has been successfully deleted! -  
 2021-12-09 18:11:35,815 [http-nio-8082-exec-7] INFO  c.s.s.c.TeacherController                          - Teacher Teacher 2 has been successfully deleted! -  
+2021-12-10 09:29:30,145 [http-nio-8082-exec-5] INFO  c.s.s.c.TeacherController                          - Teacher Глибовець М М has been successfully deleted! -  

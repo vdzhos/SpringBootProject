@@ -24,4 +24,6 @@ public interface TeacherService {
     Iterable<Teacher> getTeacherByPartName(String name) throws Exception;
     Teacher getTeacherByName(String name) throws Exception;
     Iterable<Teacher> getAll();
+
+
 }
