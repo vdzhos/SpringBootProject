@@ -2998,3 +2998,13 @@ vovan (ROLE_ADMIN)  --- /subject/update/
 vovan (ROLE_ADMIN)  --- /admin 
 vovan (ROLE_ADMIN)  --- /lesson/getBySpecialtyId 
 vovan (ROLE_ADMIN)  --- /admin 
+anonymousUser (ROLE_ANONYMOUS)  --- /login 
+anonymousUser (ROLE_ANONYMOUS)  --- /login 
+anonymousUser (ROLE_ANONYMOUS)  --- /login 
+anonymousUser (ROLE_ANONYMOUS)  --- /login 
+anonymousUser (ROLE_ANONYMOUS)  --- /registration 
+anonymousUser (ROLE_ANONYMOUS)  --- /login 
+anonymousUser (ROLE_ANONYMOUS)  --- /registration 
+user1 (ROLE_ADMIN)  --- / 
+user1 (ROLE_ADMIN)  --- /favicon.ico 
+user1 (ROLE_ADMIN)  --- /admin 

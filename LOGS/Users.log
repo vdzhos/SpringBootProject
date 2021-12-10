@@ -35,3 +35,4 @@
 2021-12-10 01:39:03,163 [main] INFO  c.s.s.s.i.UserServiceImpl                          - User deleted: ilya 
 2021-12-10 01:39:03,210 [main] INFO  c.s.s.s.i.UserServiceImpl                          - User registrated: gleb : 0000 : ADMIN 
 2021-12-10 01:45:25,108 [http-nio-9090-exec-8] INFO  c.s.s.s.i.UserServiceImpl                          - User registrated: vovan : 1234 : ADMIN 
+2021-12-10 03:00:40,641 [http-nio-9090-exec-2] INFO  c.s.s.s.i.UserServiceImpl                          - User registrated: user1 : 1234 : ADMIN 
