@@ -1,12 +1,15 @@
 package com.sbproject.schedule.services.implementations;
 
 import com.sbproject.schedule.controllers.SubjectController;
+import com.sbproject.schedule.exceptions.lesson.NoLessonWithSuchIdFound;
 import com.sbproject.schedule.exceptions.subject.NoSubjectWithSuchIdToDelete;
 import com.sbproject.schedule.exceptions.subject.SubjectNotFoundException;
 import com.sbproject.schedule.models.Lesson;
 import com.sbproject.schedule.models.Specialty;
 import com.sbproject.schedule.models.Subject;
+import com.sbproject.schedule.models.SubjectType;
 import com.sbproject.schedule.repositories.SubjectRepository;
+import com.sbproject.schedule.services.interfaces.LessonService;
 import com.sbproject.schedule.services.interfaces.SubjectService;
 import com.sbproject.schedule.utils.Markers;
 import com.sbproject.schedule.utils.Utils;
@@ -28,6 +31,9 @@ public class SubjectServiceImpl implements SubjectService {
 
     @Autowired
     private SubjectRepository subjectRepository;
+
+    @Autowired
+    private LessonService lessonService;
 
     private Utils processor;
 
@@ -82,6 +88,11 @@ public class SubjectServiceImpl implements SubjectService {
         return subjectRepository.findById(id).map((subject) -> {
             if (nothingChanged(subject, finalName, quantOfGroups, specialties))
                 return subject;
+
+            if (subject.getQuantOfGroups() > quantOfGroups) {
+                deleteLessonsWithIncorrectGroups(quantOfGroups, subject.getId());
+            }
+
             subject.setName(finalName);
             subject.setQuantOfGroups(quantOfGroups);
             subject.setSpecialties(specialties);
@@ -89,6 +100,21 @@ public class SubjectServiceImpl implements SubjectService {
         }).orElseGet(() -> {
             return subjectRepository.save(new Subject(id, finalName, quantOfGroups, specialties));
         });
+    }
+
+    private void deleteLessonsWithIncorrectGroups(int newGroupNum, Long subjectId) {
+        Iterable<Lesson> lessons = lessonService.getAll();
+        for (Lesson lesson: lessons) {
+            if (lesson.getGroup().getType() == SubjectType.SubjectTypeEnum.LECTURE) continue;
+            if (lesson.getSubject().getId().equals(subjectId) &&
+                    Integer.parseInt(lesson.getGroup().getGroup()) > newGroupNum) {
+                try {
+                    lessonService.deleteLesson(lesson.getId());
+                } catch (NoLessonWithSuchIdFound noLessonWithSuchIdFound) {
+                    noLessonWithSuchIdFound.printStackTrace();
+                }
+            }
+        }
     }
 
     @CacheEvict(cacheNames = {"specialties", "allSpecialties","lessons","allLessons"}, allEntries = true)
