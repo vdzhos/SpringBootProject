@@ -4,6 +4,7 @@ import com.sbproject.schedule.exceptions.lesson.NoLessonWithSuchIdFound;
 import com.sbproject.schedule.models.*;
 import com.sbproject.schedule.services.interfaces.LessonService;
 import com.sbproject.schedule.services.interfaces.SpecialtyService;
+import com.sbproject.schedule.services.interfaces.SubjectService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.ThreadContext;
@@ -20,7 +21,6 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import java.time.DayOfWeek;
 import java.util.*;
-import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 @Controller
@@ -28,14 +28,16 @@ import java.util.stream.StreamSupport;
 public class LessonController {
 
     private LessonService lessonService;
+    private SubjectService subjectService;
     private SpecialtyService specialtyService;
 
     private static Logger logger = LogManager.getLogger(LessonController.class);
 
     @Autowired
-    public LessonController(LessonService lessonService, SpecialtyService specialtyService) {
+    public LessonController(LessonService lessonService, SpecialtyService specialtyService, SubjectService subjectService) {
         this.lessonService = lessonService;
         this.specialtyService = specialtyService;
+        this.subjectService = subjectService;
     }
 
     @PostMapping("/add")
@@ -131,9 +133,8 @@ public class LessonController {
             lessons = Collections.emptyList();
         }else{
             Iterable<Subject> subjects = specialtyService.getSpecialtySubjects(specId);
-//            Iterable<Subject> subjects = specialtyService.getSpecialty(specId).getSubjects();
             lessons = new ArrayList<>();
-            StreamSupport.stream(subjects.spliterator(), false).forEach(subj -> lessons.addAll(subj.getLessons()));
+            StreamSupport.stream(subjects.spliterator(), false).forEach(subj -> lessons.addAll(subjectService.getSubjectLessons(subj.getId())));
             if(deleteUpdated!=-1){
                 List<Long> subjIds = new ArrayList<>();
                 subjects.forEach(it -> subjIds.add(it.getId()));

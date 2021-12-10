@@ -123,8 +123,6 @@ public class SubjectServiceImpl implements SubjectService {
         return updateSubject(subject.getId(), subject.getName(), subject.getQuantOfGroups(), subject.getSpecialties());
     }
 
-    // need not use @CacheEvict for specialties as the method is invoked in
-    // other methods where @CacheEvict for specialties is already specified
     @Override
     public Subject updateSubjectNoCheck(Subject subject) {
         return subjectRepository.save(subject);
@@ -195,6 +193,11 @@ public class SubjectServiceImpl implements SubjectService {
     public void clearSubjectsCache() {
         logger.info(Markers.SUBJECT_CACHING_MARKER, "SCHEDULED REMOVAL: All specific subjects removed from cache");
     }
-    
+
+
+    @Override
+    public List<Lesson> getSubjectLessons(Long subjectId) {
+        return getSubjectById(subjectId).getLessons();
+    }
 
 }

@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-//@ConditionalOnProperty(prefix = "custom", name = "use-test-database", havingValue = "false")
 public class Config {
 
     @Bean

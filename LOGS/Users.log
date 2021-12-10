@@ -27,3 +27,11 @@
 2021-11-17 23:10:47,807 [http-nio-8081-exec-1] FATAL c.s.s.c.UserProfileController                      - Unauthorized session! 
 2021-12-02 09:25:26,762 [main] INFO  c.s.s.s.i.UserServiceImpl                          - User deleted: ilya 
 2021-12-02 09:25:27,079 [main] INFO  c.s.s.s.i.UserServiceImpl                          - User registrated: gleb : 0000 : ADMIN 
+2021-12-10 00:36:26,367 [http-nio-8081-exec-10] INFO  c.s.s.s.i.UserServiceImpl                          - User registrated: vovan1 : 123123 : ADMIN 
+2021-12-10 01:13:55,985 [http-nio-9090-exec-2] INFO  c.s.s.s.i.UserServiceImpl                          - User registrated: vovan : 1234 : ADMIN 
+2021-12-10 01:15:46,808 [http-nio-9090-exec-6] INFO  c.s.s.s.i.UserServiceImpl                          - User registrated: vovan : 1234 : ADMIN 
+2021-12-10 01:30:52,223 [main] INFO  c.s.s.s.i.UserServiceImpl                          - User deleted: ilya 
+2021-12-10 01:30:52,310 [main] INFO  c.s.s.s.i.UserServiceImpl                          - User registrated: gleb : 0000 : ADMIN 
+2021-12-10 01:39:03,163 [main] INFO  c.s.s.s.i.UserServiceImpl                          - User deleted: ilya 
+2021-12-10 01:39:03,210 [main] INFO  c.s.s.s.i.UserServiceImpl                          - User registrated: gleb : 0000 : ADMIN 
+2021-12-10 01:45:25,108 [http-nio-9090-exec-8] INFO  c.s.s.s.i.UserServiceImpl                          - User registrated: vovan : 1234 : ADMIN 

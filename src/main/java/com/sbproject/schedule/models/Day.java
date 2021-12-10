@@ -1,7 +1,6 @@
 package com.sbproject.schedule.models;
 
 import java.time.DayOfWeek;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,16 +27,7 @@ public class Day {
         for (int i = 0; i < NUMBER_OF_TIME_SLOTS; i++){
             timeSlots.get(i).setTime(Lesson.Time.values()[i]);
         }
-//        timeSlots = new List[NUMBER_OF_TIME_SLOTS];
-//        for (int i = 0; i < timeSlots.length; i++) {
-//            timeSlots[i] = new ArrayList<>();
-//        }
-//        lessons.forEach(l -> timeSlots[l.getTime().ordinal()].add(l));
     }
-//
-//    public TimeSlot getTimeSlot(Lesson.Time time) {
-//        return timeSlots.get(time.ordinal());
-//    }
 
     public List<TimeSlot> getTimeSlots() {
         timeSlots.removeIf(t -> t.getLessons().size()==0);

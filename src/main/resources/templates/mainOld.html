@@ -45,13 +45,6 @@
             </form></td>
         </tr>
     </table>
-<!--    <form>-->
-<!--        <label>Discipline-->
-<!--            <select name="discipline" th:each="secialty: ${specialties}">-->
-<!--                <option th:text="${specialty.name}"></option>-->
-<!--            </select>-->
-<!--        </label>-->
-<!--    </form>-->
 </div>
 
 <div>
@@ -131,11 +124,9 @@
     <table border="1px">
         <caption>Added teachers</caption>
         <tr>
-<!--            <th>Id</th>-->
             <th>Name</th>
         </tr>
         <tr th:each="teacher: ${teachers}">
-<!--            <td th:text="${teacher.id}"></td>-->
             <td th:text="${teacher.name}"></td>
             <td><form action="teacher/delete/" method="post">
                 <input name="id" type="hidden" th:value="${teacher.id}">

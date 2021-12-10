@@ -12,10 +12,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
 import com.sbproject.schedule.repositories.UserRepository;
 import com.sbproject.schedule.services.implementations.CustomUserDetailsService;
-import org.springframework.stereotype.Service;
 
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableWebSecurity
@@ -26,12 +24,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private CustomUserDetailsService userDService;
 
-	//@Bean
-	//public PasswordEncoder getPasswordEncoder() {
-	//	return new BCryptPasswordEncoder();
-	//}
-
-	//temporary solution
 	private PasswordEncoder getPasswordEncoder() {
 		return new PasswordEncoder() {
 			@Override
@@ -66,7 +58,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.authorizeRequests()
 				.antMatchers("/login/**", "/registration/**","/restLogin/authenticate","/restLogin/newuser","/h2-console/**").permitAll()
 				.anyRequest().authenticated()
-//      .and().csrf().ignoringAntMatchers("/h2-console/**")
 				.and().headers().frameOptions().sameOrigin()
 				.and()
 				.formLogin()

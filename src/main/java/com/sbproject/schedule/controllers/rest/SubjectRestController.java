@@ -1,7 +1,6 @@
 package com.sbproject.schedule.controllers.rest;
 
 import com.sbproject.schedule.exceptions.handlers.ErrorMessage;
-import com.sbproject.schedule.exceptions.specialty.SpecialtyIllegalArgumentException;
 import com.sbproject.schedule.exceptions.subject.NoSubjectWithSuchIdToDelete;
 import com.sbproject.schedule.exceptions.subject.SubjectIllegalArgumentException;
 import com.sbproject.schedule.models.Subject;

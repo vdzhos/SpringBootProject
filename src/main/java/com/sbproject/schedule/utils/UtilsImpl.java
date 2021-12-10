@@ -7,15 +7,10 @@ import com.sbproject.schedule.exceptions.subject.SubjectIllegalArgumentException
 import com.sbproject.schedule.exceptions.teacher.TeacherIllegalArgumentException;
 import com.sbproject.schedule.models.Specialty;
 import com.sbproject.schedule.models.Subject;
-import com.sbproject.schedule.models.Teacher;
-import org.springframework.validation.FieldError;
-import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class UtilsImpl  implements Utils {
 
@@ -45,7 +40,10 @@ public class UtilsImpl  implements Utils {
 
     @Override
     public void checkTeacherName(String name) {
-        // check
+        Pattern pattern = Pattern.compile(Values.FULL_NAME_PATTERN);
+        Matcher matcher = pattern.matcher(name);
+        if(!matcher.matches())
+            throw new TeacherIllegalArgumentException("Incorrect name: " + name + " for a teacher!");
     }
 
     @Override
@@ -84,12 +82,12 @@ public class UtilsImpl  implements Utils {
         }
     }
 
-//    @Override
-//    public void checkTeachersSubjects(Set<Subject> subjects)
-//    {
-//        int quant = subjects == null ? 0 : subjects.size();
-//        if(quant < Values.MIN_QUANT_OF_SUBJECTS_FOR_TEACHER)
-//            throw new TeacherIllegalArgumentException("Subject quantity for Teacher = " + quant + " is incorrect - less than " + Values.MIN_QUANT_OF_SUBJECTS_FOR_TEACHER);
-//    }
+    @Override
+    public void checkTeachersSubjects(Set<Subject> subjects)
+    {
+        int quant = subjects == null ? 0 : subjects.size();
+        if(quant < Values.MIN_QUANT_OF_SUBJECTS_FOR_TEACHER)
+            throw new TeacherIllegalArgumentException("Subject quantity for Teacher = " + quant + " is incorrect - less than " + Values.MIN_QUANT_OF_SUBJECTS_FOR_TEACHER);
+    }
 
 }

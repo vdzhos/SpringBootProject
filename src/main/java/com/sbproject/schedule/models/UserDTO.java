@@ -26,11 +26,6 @@ public class UserDTO {
 	@NotBlank(message = "Role code must not be blank")
 	@RoleCodeMatches
 	private String roleCode;
-	
-	
-	
-//	@Pattern(regexp = "^(?=.{4,10}$)[a-zA-Z0-9._]+$", message = "New password doesn't match the pattern!")
-//	private String newPassword;
 
 	public UserDTO() {
 		this.login = "";

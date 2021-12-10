@@ -80,12 +80,6 @@ public class ScheduleAnalyzerOF extends ScheduleAnalyzer {
     }
 
     public static void main(String[] args) throws FileNotFoundException {
-//        String s = "Hello";
-//        System.out.println(s.toString());
-//
-//        Object o = s;
-//        System.out.println(o.toString());
-
         System.out.println(DayOfWeek.MONDAY.toString());
         ScheduleAnalyzer analyzer = new ScheduleAnalyzerStd(new FileInputStream(new File("src/main/resources/download/Schedule_exampleOF.xlsx")));
         analyzer.analyze();

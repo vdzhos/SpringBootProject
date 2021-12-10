@@ -141,9 +141,7 @@ public class ScheduleTableController {
 		{
 			entityName = this.scheduleService.getSpecialty(id).toString();
 			subjects = specialtyService.getSpecialtySubjects(id);
-//			subjects = this.scheduleService.getSpecialtySubjects(id);
 			lessons = specialtyService.getSpecialtyLessons(id);
-//			lessons = this.scheduleService.getSpecialtyLessons(id);
 		}
 		weeks = this.scheduleService.getSubjectLessonsWeeks(subjects);
 
